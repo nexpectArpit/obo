@@ -38,12 +38,29 @@ jobs:
           playwright install chromium --with-deps
 
       - name: Restore Browser Session Cache
+        id: cache-restore
         uses: actions/cache/restore@v4
         with:
           path: .user_data
           key: oboe-session-${{ github.run_id }}-${{ github.run_number }}
           restore-keys: |
             oboe-session-
+
+      - name: Download Session Seed from Release (Fallback)
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        run: |
+          echo "Cache missed. Checking for manual session seed..."
+          API_URL="https://api.github.com/repos/${{ github.repository }}/releases/tags/session-seed"
+          ASSET_URL=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $API_URL | grep -oP '"browser_download_url": "\K[^"]+' | grep user_data.zip || true)
+          if [ -n "$ASSET_URL" ]; then
+            echo "Found session seed: $ASSET_URL"
+            curl -L -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -o user_data.zip "$ASSET_URL"
+            unzip -q user_data.zip
+            rm user_data.zip
+            echo "Session seed successfully extracted."
+          else
+            echo "No session seed release found. Proceeding with default."
+          fi
 
       - name: Create Env File
         run: |
