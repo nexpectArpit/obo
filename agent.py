@@ -1,0 +1,464 @@
+import os
+import json
+import random
+import time
+from pathlib import Path
+from browser import OboeBrowser
+from llm import OboeLLM
+
+# Load topics from topics.json
+topics_path = Path(__file__).resolve().parent / "topics.json"
+try:
+    with open(topics_path, "r") as f:
+        RANDOM_TOPICS = json.load(f)
+except Exception:
+    RANDOM_TOPICS = {"new_topics": ["Quantum computing basics"], "level_up_topics": []}
+
+
+class OboeAgent:
+    def __init__(self, topic="random", headless=False, resume=False):
+        self.topic = topic
+        self.browser = OboeBrowser(headless=headless)
+        self.llm = OboeLLM()
+        self.resume = resume
+        
+        # Load learned skills history
+        self.learned_skills_path = Path(__file__).resolve().parent / "learned_skills.json"
+        self.learned_skills = {}
+        if self.learned_skills_path.exists():
+            try:
+                self.learned_skills = json.loads(self.learned_skills_path.read_text())
+            except Exception as e:
+                print(f"[WARNING] Failed to load learned_skills.json: {e}")
+                
+        self.achieved_skills = {}
+        self.total_mcqs_count = 0
+        self.wrong_mcqs_count = 0
+        self.last_action_was_mcq = False
+
+    def update_time_tracker(self, elapsed_time):
+        """Track sessions and calculate rolling 24h & calendar day (IST) totals."""
+        tracker_path = Path(__file__).resolve().parent / "time_tracker.json"
+        
+        # Load existing sessions
+        data = {"sessions": []}
+        if tracker_path.exists():
+            try:
+                data = json.loads(tracker_path.read_text())
+            except Exception:
+                pass
+                
+        if "sessions" not in data:
+            data["sessions"] = []
+            
+        # Append current session
+        current_ts = time.time()
+        data["sessions"].append({
+            "timestamp": current_ts,
+            "duration_seconds": int(elapsed_time),
+            "topic": self.topic
+        })
+        
+        # Filter sessions to keep only the last 7 days (to prevent file growing indefinitely)
+        one_week_ago = current_ts - (7 * 86400)
+        data["sessions"] = [s for s in data["sessions"] if s.get("timestamp", 0) > one_week_ago]
+        
+        # Save tracker file
+        try:
+            tracker_path.write_text(json.dumps(data, indent=4))
+        except Exception as e:
+            print(f"[WARNING] Failed to write time_tracker.json: {e}")
+            
+        # 1. Calculate rolling 24h total
+        twenty_four_hours_ago = current_ts - 86400
+        rolling_24h_seconds = sum(
+            s.get("duration_seconds", 0) 
+            for s in data["sessions"] 
+            if s.get("timestamp", 0) > twenty_four_hours_ago
+        )
+        
+        # 2. Calculate calendar day (IST) total
+        from datetime import datetime, timezone, timedelta
+        ist_tz = timezone(timedelta(hours=5, minutes=30))
+        ist_now = datetime.now(timezone.utc).astimezone(ist_tz)
+        current_date_ist = ist_now.date()
+        
+        today_ist_seconds = 0
+        for s in data["sessions"]:
+            s_ts = s.get("timestamp", 0)
+            try:
+                s_dt_ist = datetime.fromtimestamp(s_ts, timezone.utc).astimezone(ist_tz)
+                if s_dt_ist.date() == current_date_ist:
+                    today_ist_seconds += s.get("duration_seconds", 0)
+            except Exception:
+                pass
+                
+        return rolling_24h_seconds, today_ist_seconds
+
+    def run(self):
+        """Run the main observe-reason-act loop."""
+        print("Starting obo agent...")
+        start_time = time.time()
+        
+        # Write PID file
+        pid_path = Path(__file__).resolve().parent / "agent.pid"
+        try:
+            pid_path.write_text(str(os.getpid()))
+        except Exception as pe:
+            print(f"[WARNING] Failed to write PID file: {pe}")
+
+        # Write initial state
+        state_path = Path(__file__).resolve().parent / "agent_state.json"
+        state_data = {
+            "status": "RUNNING",
+            "topic": self.topic,
+            "started_at": start_time
+        }
+        try:
+            state_path.write_text(json.dumps(state_data, indent=4))
+        except Exception as se:
+            print(f"[WARNING] Failed to write state file: {se}")
+
+        try:
+            self.browser.start()
+            self.browser.navigate_to_home()
+            
+            if self.resume:
+                # Target history links specifically (skipping PINNED section)
+                history_xpath = 'xpath=//div[text()="Chat History"]/following::a[contains(@href, "/chat/")]'
+                
+                # Check if links are already visible
+                links = self.browser.page.locator(history_xpath).all()
+                if not links:
+                    # Sidebar is collapsed, toggle it
+                    trigger = self.browser.page.locator('[data-sidebar="trigger"]')
+                    if trigger.count() > 0 and trigger.first.is_visible():
+                        print("[INFO] Collapsed sidebar detected. Toggling sidebar trigger to show history...")
+                        trigger.first.click()
+                        time.sleep(2)
+                    else:
+                        print("[INFO] Sidebar trigger is hidden/already open. Waiting for links...")
+                        time.sleep(2)
+                    links = self.browser.page.locator(history_xpath).all()
+
+                # Find the most recent chat in the Chat History list and click it
+                if links:
+                    target_link = links[0]
+                    chat_title = (target_link.text_content() or "").strip()
+                    target_href = target_link.get_attribute("href")
+                    print(f"\n==================================================")
+                    print(f"[INFO] RESUMING CHAT: '{chat_title}'")
+                    print(f"[INFO] Href: {target_href}")
+                    print("==================================================\n")
+                    target_link.click()
+                    # Wait for chat history to fully render
+                    time.sleep(5)
+                else:
+                    print("[WARNING] No chat history found to resume. Proceeding with topic selection.")
+                    self.resume = False
+
+            if not self.resume:
+                # If the browser defaults to an active chat page, force a fresh session
+                current_url = self.browser.page.url
+                if "/chat/" in current_url:
+                    print("[INFO] Active chat page detected on startup. Navigating to New Chat dashboard...")
+                    # Toggle sidebar trigger to ensure New Chat button is clickable
+                    trigger = self.browser.page.locator('[data-sidebar="trigger"]')
+                    if trigger.count() > 0:
+                        trigger.first.click()
+                        time.sleep(1.5)
+                    
+                    new_chat_btn = self.browser.page.locator('button').filter(has_text="New Chat")
+                    if new_chat_btn.count() > 0:
+                        new_chat_btn.first.click()
+                        print("[INFO] Clicked 'New Chat' button successfully.")
+                        time.sleep(3)
+
+                # If topic is random, select one from the list
+                if self.topic == "random":
+                    new_list = RANDOM_TOPICS.get("new_topics", [])
+                    lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
+                    combined = []
+                    for t in new_list:
+                        combined.append(("new", t))
+                    for entry in lvl_list:
+                        if isinstance(entry, dict) and "topic" in entry:
+                            combined.append(("level_up", entry["topic"]))
+                            
+                    if combined:
+                        choice_type, chosen_topic = random.choice(combined)
+                        self.topic = chosen_topic
+                        print(f"[INFO] Selected random learning topic: '{self.topic}' (type: {choice_type})")
+                    else:
+                        self.topic = "Quantum computing basics"
+                        print("[WARNING] topics.json is empty! Defaulting to 'Quantum computing basics'")
+
+                # Remove the topic from topics.json if it is present (including explicit CLI topics)
+                new_list = RANDOM_TOPICS.get("new_topics", [])
+                lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
+                
+                removed = False
+                if self.topic in new_list:
+                    new_list.remove(self.topic)
+                    removed = True
+                else:
+                    for entry in list(lvl_list):
+                        if isinstance(entry, dict) and entry.get("topic") == self.topic:
+                            lvl_list.remove(entry)
+                            removed = True
+                            break
+                            
+                RANDOM_TOPICS["new_topics"] = new_list
+                RANDOM_TOPICS["level_up_topics"] = lvl_list
+
+                # Save updated list back to topics.json
+                try:
+                    with open(topics_path, "w") as f:
+                        json.dump(RANDOM_TOPICS, f, indent=4)
+                    if removed:
+                        print(f"[INFO] Removed '{self.topic}' from topics.json to prevent repeats.")
+                except Exception as e:
+                    print(f"[WARNING] Failed to save updated topics.json: {e}")
+
+                # Update state file with the actual selected topic
+                state_data["topic"] = self.topic
+                try:
+                    state_path.write_text(json.dumps(state_data, indent=4))
+                except Exception:
+                    pass
+
+                # If a new topic is specified and we are on the dashboard, start it
+                state = self.browser.get_interaction_state()
+                if self.topic and state == "free_text":
+                    # Check if the page is the new chat dashboard (placeholder exists)
+                    textarea = self.browser.page.locator('textarea[name="prompt"]')
+                    placeholder = textarea.get_attribute("placeholder") or ""
+                    if "I want to learn" in placeholder:
+                        print(f"Starting new chat on topic: '{self.topic}'")
+                        self.browser.type_and_submit(self.topic)
+                        # Allow generation to kick off
+                        time.sleep(5)
+            
+            # Run the interaction loop
+            consecutive_loadings = 0
+            while True:
+                # First observation
+                obs1 = self.browser.observe_page()
+                state1 = obs1["state"]
+
+                if state1 == "loading":
+                    consecutive_loadings += 1
+                    if consecutive_loadings > 30:
+                        print("Page stuck in loading state for too long. Exiting.")
+                        break
+                    print("Oboe is thinking/generating... waiting 3 seconds...")
+                    time.sleep(3)
+                    continue
+
+                # Ensure page is stable (Oboe finished typing)
+                print("Waiting 5 seconds to verify page stability...")
+                time.sleep(5)
+                obs2 = self.browser.observe_page()
+                state2 = obs2["state"]
+
+                if state1 != state2:
+                    print("Page state changed during wait. Retrying observation...")
+                    continue
+                if len(obs1["messages"]) != len(obs2["messages"]):
+                    print("New messages arrived. Oboe is still writing...")
+                    continue
+                if obs1["messages"] and obs2["messages"]:
+                    last_msg_1 = obs1["messages"][-1]
+                    last_msg_2 = obs2["messages"][-1]
+                    if last_msg_1["role"] == last_msg_2["role"] and last_msg_1["text"] != last_msg_2["text"]:
+                        print("Message text is updating. Oboe is still typing...")
+                        continue
+
+                # Page is stable, proceed with decision
+                obs = obs2
+                state = state2
+                choices = obs["choices"]
+                messages = obs["messages"]
+
+                # Evaluate last MCQ action result if applicable
+                if self.last_action_was_mcq and messages:
+                    # Find the last assistant message (Oboe's reply to our choice selection)
+                    assistant_msgs = [m for m in messages if m["role"] == "assistant"]
+                    if assistant_msgs:
+                        oboe_reply = assistant_msgs[-1]["text"].lower()
+                        self.total_mcqs_count += 1
+                        wrong_indicators = ["actually", "incorrect", "wrong", "snag", "correct answer is", "close, but", "consequence of", "different"]
+                        if any(ind in oboe_reply for ind in wrong_indicators):
+                            self.wrong_mcqs_count += 1
+                            print(f"\n>>> [STATS Update] MCQ Answer: INCORRECT <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
+                        else:
+                            print(f"\n>>> [STATS Update] MCQ Answer: CORRECT! <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
+                    self.last_action_was_mcq = False
+
+                # Simulating human reading time based on length of last message (approx. 200 WPM)
+                if messages and messages[-1]["role"] == "assistant":
+                    word_count = len(messages[-1]["text"].split())
+                    reading_delay = min(max(3.0, word_count * 0.12), 10.0)
+                    print(f"Reading Oboe's response... Simulating human reading time for {reading_delay:.2f} seconds...")
+                    time.sleep(reading_delay)
+
+                # Log new skills and levels, and update memory
+                if obs.get("skills"):
+                    for skill, lv_str in obs["skills"].items():
+                        try:
+                            new_lv = int(lv_str.replace("LV", "").strip())
+                        except ValueError:
+                            new_lv = 0
+                        current_max = self.learned_skills.get(skill, 0)
+                        if new_lv > current_max:
+                            self.learned_skills[skill] = new_lv
+                            self.achieved_skills[skill] = f"LV {new_lv}"
+                            print(f"\n>>> [ACHIEVEMENT] Skill Level Up: {skill} -> LV {new_lv}! <<<\n")
+
+                print(f"\n[Agent Observe] State: {state.upper()} | Message count: {len(messages)}")
+                
+                # Check if Oboe has replied to our last turn yet
+                if messages and messages[-1]["role"] == "user":
+                    print("Last message was from user. Waiting for Oboe to reply...")
+                    time.sleep(3)
+                    continue
+
+                consecutive_loadings = 0
+
+                if state == "suggested_replies":
+                    print(f"Available options: {choices}")
+                    decision = self.llm.decide_action(state, messages, choices, self.learned_skills)
+                    selection = decision.get("selection")
+                    if selection in choices:
+                        self.browser.click_suggestion_by_text(selection)
+                    else:
+                        # Fallback click first
+                        print(f"Warning: Selected option '{selection}' not in choices. Clicking first choice.")
+                        self.browser.click_suggestion_by_text(choices[0])
+                    self.last_action_was_mcq = True
+
+                elif state == "free_text":
+                    decision = self.llm.decide_action(state, messages, choices, self.learned_skills)
+                    text = decision.get("text")
+                    if not text or str(text).strip() == "" or str(text).lower() == "none":
+                        text = "I'm interested to learn more about this."
+                    self.browser.type_and_submit(text)
+
+                else:
+                    # Unknown state (perhaps course completed or error)
+                    print("Unknown or finished state. Waiting 5 seconds to observe any changes...")
+                    time.sleep(5)
+                    # Check again, if still unknown, stop.
+                    new_state = self.browser.get_interaction_state()
+                    if new_state == "unknown":
+                        print("No interactive elements found. Task complete.")
+                        self.browser.take_screenshot("session_finished.png")
+                        break
+
+                # Sleep to prevent high-frequency loop and allow Oboe platform to render
+                time.sleep(2)
+
+        except KeyboardInterrupt:
+            print("\nAgent stopped by user.")
+        except Exception as e:
+            print(f"Error in agent execution: {e}")
+            self.browser.take_screenshot("error_state.png")
+        finally:
+            elapsed_time = time.time() - start_time
+            rolling_24h_sec, today_ist_sec = self.update_time_tracker(elapsed_time)
+            
+            rolling_h, rolling_m = rolling_24h_sec // 3600, (rolling_24h_sec % 3600) // 60
+            today_h, today_m = today_ist_sec // 3600, (today_ist_sec % 3600) // 60
+            
+            try:
+                self.browser.close()
+            except Exception as close_err:
+                print(f"[INFO] Browser close status: {close_err}")
+            except KeyboardInterrupt:
+                print("\n[INFO] Browser shutdown interrupted.")
+                
+            # Clean up PID
+            if pid_path.exists():
+                try: pid_path.unlink()
+                except Exception: pass
+                
+            # Update state file
+            state_data = {
+                "status": "STOPPED",
+                "topic": None,
+                "started_at": None,
+                "last_session": {
+                    "topic": self.topic,
+                    "elapsed_seconds": int(elapsed_time),
+                    "mcqs_total": self.total_mcqs_count,
+                    "mcqs_wrong": self.wrong_mcqs_count,
+                    "achieved_skills": self.achieved_skills,
+                    "total_24h_seconds": rolling_24h_sec,
+                    "total_today_ist_seconds": today_ist_sec
+                }
+            }
+            try:
+                state_path.write_text(json.dumps(state_data, indent=4))
+            except Exception:
+                pass
+
+            # Save updated skill levels
+            try:
+                self.learned_skills_path.write_text(json.dumps(self.learned_skills, indent=4))
+                print(f"[INFO] Saved skill levels to {self.learned_skills_path.name}")
+            except Exception as se:
+                print(f"[WARNING] Failed to save learned_skills.json: {se}")
+
+            # Generate related topics if skills were achieved/leveled up
+            if self.achieved_skills:
+                print("\n[INFO] Skills leveled up. Querying LLM to generate related topics...")
+                try:
+                    new_topics = self.llm.generate_related_topics(self.topic, self.learned_skills)
+                    if new_topics:
+                        # Append new topics to topics.json
+                        try:
+                            with open(topics_path, "r") as f:
+                                current_topics_data = json.load(f)
+                        except Exception:
+                            current_topics_data = {"new_topics": [], "level_up_topics": []}
+                            
+                        if "level_up_topics" not in current_topics_data:
+                            current_topics_data["level_up_topics"] = []
+                            
+                        added_count = 0
+                        for entry in new_topics:
+                            if isinstance(entry, dict) and "topic" in entry:
+                                t_name = entry["topic"].strip()
+                                exists = (t_name in current_topics_data.get("new_topics", [])) or \
+                                         any(isinstance(x, dict) and x.get("topic") == t_name for x in current_topics_data["level_up_topics"])
+                                         
+                                if not exists:
+                                    current_topics_data["level_up_topics"].append({
+                                        "topic": t_name,
+                                        "associated_skill": entry.get("associated_skill", "Skill"),
+                                        "level_target": entry.get("level_target", 1)
+                                    })
+                                    added_count += 1
+                        
+                        if added_count > 0:
+                            with open(topics_path, "w") as f:
+                                json.dump(current_topics_data, f, indent=4)
+                            print(f"[INFO] Appended {added_count} new structured related topics to topics.json.")
+                except Exception as gte:
+                    print(f"[WARNING] Failed to generate related topics: {gte}")
+
+            elapsed_time = time.time() - start_time
+            minutes = int(elapsed_time // 60)
+            seconds = int(elapsed_time % 60)
+            
+            print("\n==================================================")
+            print(f"Session ended. Total time spent on Oboe: {minutes}m {seconds}s")
+            print(f"MCQ Stats: Total={self.total_mcqs_count} | Correct={self.total_mcqs_count - self.wrong_mcqs_count} | Incorrect={self.wrong_mcqs_count}")
+            print(f"⏱️ Oboe Time Spent Today (IST): {today_h}h {today_m}m")
+            if self.achieved_skills:
+                print("\nSkills Achieved / Leveled Up during this session:")
+                for skill, lv in self.achieved_skills.items():
+                    print(f"  - {skill}: {lv}")
+            else:
+                print("\nNo skill level-ups were recorded in this session.")
+            print("==================================================")

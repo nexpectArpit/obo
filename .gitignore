@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Sessions & Credentials
+.user_data/
+.env.local
+*.pem
+*.key
+
+# Logs & Screenshots
+*.log
+*.png
+
+# Runtime Status & Dynamic Trackers
+agent_state.json
+agent.pid
