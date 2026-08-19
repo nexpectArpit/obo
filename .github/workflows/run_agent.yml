@@ -136,7 +136,8 @@ jobs:
                   msg += "\n<b>📈 Skills Leveled Up:</b>\n"
                   for sk, lv in skills.items():
                       safe_sk = html.escape(str(sk))
-                      msg += f"  • {safe_sk}: Level {lv}\n"
+                      msg += f"  • {safe_sk}: {lv}\n"
+
               else:
                   msg += "\nNo skill level-ups this session."
 

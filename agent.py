@@ -299,10 +299,13 @@ class OboeAgent:
                     removed = True
                 else:
                     for entry in list(lvl_list):
-                        if isinstance(entry, dict) and entry.get("topic") == self.topic:
-                            lvl_list.remove(entry)
-                            removed = True
-                            break
+                        if isinstance(entry, dict):
+                            entry_top = entry.get("topic", "")
+                            # Remove exact topic match or any duplicate entry targeting the same skill level
+                            if entry_top == self.topic or (self.target_skill and entry.get("associated_skill") == self.target_skill and entry.get("level_target") == self.target_level):
+                                lvl_list.remove(entry)
+                                removed = True
+
                             
                 RANDOM_TOPICS["new_topics"] = new_list
                 RANDOM_TOPICS["level_up_topics"] = lvl_list
