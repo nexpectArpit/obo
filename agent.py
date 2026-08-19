@@ -462,3 +462,21 @@ class OboeAgent:
             else:
                 print("\nNo skill level-ups were recorded in this session.")
             print("==================================================")
+
+            # Write final session summary to agent_state.json for Telegram notification
+            state_path = Path(__file__).resolve().parent / "agent_state.json"
+            try:
+                summary = {
+                    "status": "COMPLETED",
+                    "topic": self.topic or "Unknown",
+                    "elapsed_seconds": int(elapsed_time),
+                    "mcqs_total": self.total_mcqs_count,
+                    "mcqs_correct": self.total_mcqs_count - self.wrong_mcqs_count,
+                    "mcqs_wrong": self.wrong_mcqs_count,
+                    "today_ist_hours": today_h,
+                    "today_ist_minutes": today_m,
+                    "achieved_skills": self.achieved_skills or {}
+                }
+                state_path.write_text(json.dumps(summary, indent=4))
+            except Exception as se:
+                print(f"[WARNING] Failed to write final state: {se}")
