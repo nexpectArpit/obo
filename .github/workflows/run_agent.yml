@@ -42,9 +42,11 @@ jobs:
         run: |
           echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" > .env.local
           echo "GROQ_API_KEY2=${{ secrets.GROQ_API_KEY2 }}" >> .env.local
+          echo "MISTRAL_API_KEY=${{ secrets.MISTRAL_API_KEY }}" >> .env.local
           echo "NVIDIA_API_KEY=${{ secrets.NVIDIA_API_KEY }}" >> .env.local
           echo "OBOE_URL=https://oboe.com" >> .env.local
           echo '${{ secrets.OBOE_STORAGE_STATE }}' > state.json
+
 
       - name: Run Agent
         run: |
@@ -117,6 +119,17 @@ jobs:
               if mcqs_wrong > 0:
                   msg += f" ({mcqs_wrong} wrong)"
               msg += f"\n⏱️ <b>Today (IST):</b> {today_h}h {today_m}m\n"
+
+              telemetry = s.get("telemetry", {})
+              tot_calls = telemetry.get("total_api_calls", 0)
+              tot_toks = telemetry.get("total_tokens", 0)
+              providers_map = telemetry.get("providers", {})
+              if tot_calls > 0:
+                  msg += f"🧠 <b>LLM Calls:</b> {tot_calls} ({tot_toks} tokens)\n"
+                  if providers_map:
+                      prov_str = ", ".join([f"{p.upper()}: {d['calls']}" for p, d in providers_map.items()])
+                      msg += f"⚡ <b>Providers:</b> {prov_str}\n"
+
 
               if skills:
                   msg += "\n<b>📈 Skills Leveled Up:</b>\n"

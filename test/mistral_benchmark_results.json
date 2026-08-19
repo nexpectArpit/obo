@@ -1,0 +1,9 @@
+{
+  "model": "mistral-small-latest",
+  "mcq_acc": "100.0%",
+  "tf_acc": "100.0%",
+  "ftext_acc": "100.0%",
+  "json_acc": "100.0%",
+  "avg_latency": "1726ms",
+  "failures": 0
+}

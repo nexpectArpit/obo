@@ -1,0 +1,242 @@
+{
+  "baseline": {
+    "pacing_config": "1-9s",
+    "num_calls": 12,
+    "session_duration_sec": 89.3,
+    "calls_per_minute": 8.06,
+    "tokens_per_minute": 13970.66,
+    "avg_tokens_per_req": 1732.75,
+    "total_tokens_session": 20793,
+    "errors_429": 0,
+    "telemetry_logs": [
+      {
+        "call_index": 1,
+        "timestamp": "01:10:02",
+        "delay_before_req_sec": 0,
+        "latency_ms": 11891,
+        "tokens": 1701,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 2,
+        "timestamp": "01:10:16",
+        "delay_before_req_sec": 2.13,
+        "latency_ms": 11138,
+        "tokens": 1700,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 3,
+        "timestamp": "01:10:33",
+        "delay_before_req_sec": 6.56,
+        "latency_ms": 603,
+        "tokens": 1728,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 4,
+        "timestamp": "01:10:38",
+        "delay_before_req_sec": 3.54,
+        "latency_ms": 766,
+        "tokens": 1727,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 5,
+        "timestamp": "01:10:41",
+        "delay_before_req_sec": 2.96,
+        "latency_ms": 916,
+        "tokens": 1777,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 6,
+        "timestamp": "01:10:50",
+        "delay_before_req_sec": 7.8,
+        "latency_ms": 705,
+        "tokens": 1724,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 7,
+        "timestamp": "01:10:58",
+        "delay_before_req_sec": 7.06,
+        "latency_ms": 719,
+        "tokens": 1709,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 8,
+        "timestamp": "01:11:02",
+        "delay_before_req_sec": 3.2,
+        "latency_ms": 620,
+        "tokens": 1720,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 9,
+        "timestamp": "01:11:03",
+        "delay_before_req_sec": 1.06,
+        "latency_ms": 739,
+        "tokens": 1779,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 10,
+        "timestamp": "01:11:12",
+        "delay_before_req_sec": 7.63,
+        "latency_ms": 678,
+        "tokens": 1752,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 11,
+        "timestamp": "01:11:20",
+        "delay_before_req_sec": 8.02,
+        "latency_ms": 610,
+        "tokens": 1720,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 12,
+        "timestamp": "01:11:30",
+        "delay_before_req_sec": 8.94,
+        "latency_ms": 959,
+        "tokens": 1756,
+        "status_code": 200,
+        "error": null
+      }
+    ]
+  },
+  "experiment": {
+    "pacing_config": "7-20s",
+    "num_calls": 12,
+    "session_duration_sec": 140.82,
+    "calls_per_minute": 5.11,
+    "tokens_per_minute": 8835.11,
+    "avg_tokens_per_req": 1728.0,
+    "total_tokens_session": 20736,
+    "errors_429": 0,
+    "telemetry_logs": [
+      {
+        "call_index": 1,
+        "timestamp": "01:11:31",
+        "delay_before_req_sec": 0,
+        "latency_ms": 6689,
+        "tokens": 1685,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 2,
+        "timestamp": "01:11:54",
+        "delay_before_req_sec": 16.43,
+        "latency_ms": 677,
+        "tokens": 1722,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 3,
+        "timestamp": "01:12:02",
+        "delay_before_req_sec": 7.24,
+        "latency_ms": 437,
+        "tokens": 1728,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 4,
+        "timestamp": "01:12:11",
+        "delay_before_req_sec": 8.12,
+        "latency_ms": 727,
+        "tokens": 1692,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 5,
+        "timestamp": "01:12:26",
+        "delay_before_req_sec": 14.17,
+        "latency_ms": 823,
+        "tokens": 1730,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 6,
+        "timestamp": "01:12:35",
+        "delay_before_req_sec": 8.69,
+        "latency_ms": 871,
+        "tokens": 1776,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 7,
+        "timestamp": "01:12:50",
+        "delay_before_req_sec": 13.68,
+        "latency_ms": 836,
+        "tokens": 1761,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 8,
+        "timestamp": "01:12:57",
+        "delay_before_req_sec": 7.01,
+        "latency_ms": 623,
+        "tokens": 1702,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 9,
+        "timestamp": "01:13:11",
+        "delay_before_req_sec": 13.13,
+        "latency_ms": 707,
+        "tokens": 1721,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 10,
+        "timestamp": "01:13:32",
+        "delay_before_req_sec": 19.94,
+        "latency_ms": 657,
+        "tokens": 1731,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 11,
+        "timestamp": "01:13:40",
+        "delay_before_req_sec": 7.29,
+        "latency_ms": 671,
+        "tokens": 1776,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "call_index": 12,
+        "timestamp": "01:13:51",
+        "delay_before_req_sec": 10.73,
+        "latency_ms": 632,
+        "tokens": 1712,
+        "status_code": 200,
+        "error": null
+      }
+    ]
+  }
+}

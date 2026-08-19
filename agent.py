@@ -133,7 +133,8 @@ class OboeAgent:
                 "mcqs_wrong": self.wrong_mcqs_count,
                 "today_ist_hours": today_h,
                 "today_ist_minutes": today_m,
-                "achieved_skills": self.achieved_skills or {}
+                "achieved_skills": self.achieved_skills or {},
+                "telemetry": getattr(self.llm, "telemetry", {})
             }
             state_path.write_text(json.dumps(summary, indent=4))
         except Exception as se:
@@ -404,12 +405,12 @@ class OboeAgent:
                             print(f"\n>>> [STATS Update] MCQ Answer: CORRECT! <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
                     self.last_action_was_mcq = False
 
-                # Simulating human reading time based on length of last message (approx. 200 WPM)
+                # Configured human reading & rate-limit pacing delay (7-20 seconds)
                 if messages and messages[-1]["role"] == "assistant":
-                    word_count = len(messages[-1]["text"].split())
-                    reading_delay = min(max(3.0, word_count * 0.12), 10.0)
-                    print(f"Reading Oboe's response... Simulating human reading time for {reading_delay:.2f} seconds...")
+                    reading_delay = round(random.uniform(config.MIN_DELAY, config.MAX_DELAY), 2)
+                    print(f"Reading Oboe's response... Simulating human delay for {reading_delay:.2f} seconds (Configured Range: {config.MIN_DELAY}-{config.MAX_DELAY}s)...")
                     time.sleep(reading_delay)
+
 
                 # Log new skills and levels, and update memory
                 if obs.get("skills"):
@@ -532,42 +533,8 @@ class OboeAgent:
             except Exception as se:
                 print(f"[WARNING] Failed to save learned_skills.json: {se}")
 
-            # Generate related topics if skills were achieved/leveled up
+            # Note: generate_related_topics() is deferred to preserve LLM token quotas
             if self.achieved_skills:
-                print("\n[INFO] Skills leveled up. Querying LLM to generate related topics...")
-                try:
-                    new_topics = self.llm.generate_related_topics(self.topic, self.learned_skills)
-                    if new_topics:
-                        # Append new topics to topics.json
-                        try:
-                            with open(topics_path, "r") as f:
-                                current_topics_data = json.load(f)
-                        except Exception:
-                            current_topics_data = {"new_topics": [], "level_up_topics": []}
-                            
-                        if "level_up_topics" not in current_topics_data:
-                            current_topics_data["level_up_topics"] = []
-                            
-                        added_count = 0
-                        for entry in new_topics:
-                            if isinstance(entry, dict) and "topic" in entry:
-                                t_name = entry["topic"].strip()
-                                exists = (t_name in current_topics_data.get("new_topics", [])) or \
-                                         any(isinstance(x, dict) and x.get("topic") == t_name for x in current_topics_data["level_up_topics"])
-                                         
-                                if not exists:
-                                    current_topics_data["level_up_topics"].append({
-                                        "topic": t_name,
-                                        "associated_skill": entry.get("associated_skill", "Skill"),
-                                        "level_target": entry.get("level_target", 1)
-                                    })
-                                    added_count += 1
-                        
-                        if added_count > 0:
-                            with open(topics_path, "w") as f:
-                                json.dump(current_topics_data, f, indent=4)
-                            print(f"[INFO] Appended {added_count} new structured related topics to topics.json.")
-                except Exception as gte:
-                    print(f"[WARNING] Failed to generate related topics: {gte}")
+                print(f"[INFO] Skills leveled up: {self.achieved_skills}. Topic generation deferred.")
 
             self.save_summary(status=self._final_status, start_time=start_time)

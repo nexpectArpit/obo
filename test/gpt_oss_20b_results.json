@@ -1,0 +1,13 @@
+{
+  "mcq_acc": "100.0%",
+  "tf_acc": "100.0%",
+  "ftext_acc": "100.0%",
+  "json_acc": "100.0%",
+  "avg_lat": "10295ms",
+  "tot_tokens": 89638,
+  "est_in_tokens": 80674,
+  "est_out_tokens": 8963,
+  "avg_tokens_per_req": 1792,
+  "failures": 0,
+  "bench_time": 514.81
+}

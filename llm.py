@@ -7,31 +7,46 @@ import config
 
 class OboeLLM:
     def __init__(self):
-        # Build the unified provider pool
+        # Build the unified provider pool with failover: Groq -> NVIDIA -> Mistral
         self.providers = []
         
-        # Load Groq keys
+        # 1. Primary: Groq (GPT-OSS-20B)
         for key in config.GROQ_API_KEYS:
             self.providers.append({
                 "type": "groq",
                 "api_key": key,
-                "complex_model": "groq/compound-mini",
-                "simple_model": "groq/compound-mini"
+                "complex_model": "openai/gpt-oss-20b",
+                "simple_model": "openai/gpt-oss-20b"
             })
-            
-        # Load Nvidia keys
+
+        # 2. Secondary: Nvidia
         for key in config.NVIDIA_API_KEYS:
             self.providers.append({
                 "type": "nvidia",
                 "api_key": key,
-                "complex_model": "nvidia/nemotron-3-super-120b-a12b",
+                "complex_model": "meta/llama-3.1-8b-instruct",
                 "simple_model": "meta/llama-3.1-8b-instruct"
+            })
+
+        # 3. Fallback: Mistral (mistral-small-latest)
+        for key in config.MISTRAL_API_KEYS:
+            self.providers.append({
+                "type": "mistral",
+                "api_key": key,
+                "complex_model": "mistral-small-latest",
+                "simple_model": "mistral-small-latest"
             })
             
         self.current_provider_idx = 0
         if not self.providers:
-            print("[WARNING] No Groq or Nvidia API Keys configured.")
+            print("[WARNING] No Groq, Nvidia, or Mistral API Keys configured.")
             
+        # Telemetry tracking (compact aggregate counters)
+        self.telemetry = {
+            "total_api_calls": 0,
+            "total_tokens": 0,
+            "providers": {}
+        }
         self.rules = self._load_rules()
 
     def _load_rules(self):
@@ -43,13 +58,23 @@ class OboeLLM:
         return "Always act like a human learner. Never reveal you are an AI/bot."
 
     def _get_client_for_provider(self, provider):
-        """Returns the appropriate client instance for a given provider."""
-        if provider["type"] == "groq":
-            return Groq(api_key=provider["api_key"])
-        elif provider["type"] == "nvidia":
+        """Returns the appropriate client instance for a given provider with configurable timeout."""
+        ptype = provider["type"]
+        timeout_val = config.PROVIDER_TIMEOUTS.get(ptype, 15.0)
+        
+        if ptype == "groq":
+            return Groq(api_key=provider["api_key"], timeout=timeout_val)
+        elif ptype == "mistral":
+            return OpenAI(
+                base_url="https://api.mistral.ai/v1",
+                api_key=provider["api_key"],
+                timeout=timeout_val
+            )
+        elif ptype == "nvidia":
             return OpenAI(
                 base_url="https://integrate.api.nvidia.com/v1",
-                api_key=provider["api_key"]
+                api_key=provider["api_key"],
+                timeout=timeout_val
             )
         return None
 
@@ -156,15 +181,18 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
             print(f"[LLM] Selecting provider: '{provider['type']}' with model: '{selected_model}' for state: '{state}'")
 
             try:
-                if provider["type"] == "groq":
-                    response = client.chat.completions.create(
-                        model=selected_model,
-                        messages=prompt_messages,
-                        response_format={"type": "json_object"},
-                        temperature=0.7
-                    )
+                if provider["type"] in ["groq", "mistral"]:
+                    kwargs = {
+                        "model": selected_model,
+                        "messages": prompt_messages,
+                        "temperature": 0.7
+                    }
+                    if provider["type"] == "groq":
+                        kwargs["response_format"] = {"type": "json_object"}
+                    
+                    response = client.chat.completions.create(**kwargs)
                     raw_content = response.choices[0].message.content
-                    result = json.loads(raw_content)
+                    result = self._parse_json_response(raw_content)
                 elif provider["type"] == "nvidia":
                     # Pass thinking traces arguments only for the Nemotron 120B model
                     extra_kwargs = {}
@@ -187,6 +215,17 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                     if reasoning:
                         print(f"\n[NVIDIA Thinking Trace]\n{reasoning}\n")
                     result = self._parse_json_response(raw_content)
+
+                # Record compact aggregate telemetry
+                usage = getattr(response, "usage", None)
+                tot_toks = getattr(usage, "total_tokens", 0) if usage else 0
+                ptype = provider["type"]
+                self.telemetry["total_api_calls"] += 1
+                self.telemetry["total_tokens"] += tot_toks
+                if ptype not in self.telemetry["providers"]:
+                    self.telemetry["providers"][ptype] = {"calls": 0, "tokens": 0}
+                self.telemetry["providers"][ptype]["calls"] += 1
+                self.telemetry["providers"][ptype]["tokens"] += tot_toks
                 
                 print(f"\n[LLM Decision] {result.get('thought')}")
                 return result
@@ -195,15 +234,16 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                 err_str = str(e)
                 print(f"[WARNING] Provider '{provider['type']}' failed: {e}")
                 
-                # Check for rate limit or similar error to trigger rotation
-                if "rate_limit" in err_str.lower() or "429" in err_str or "limit exceeded" in err_str.lower():
+                # Check for rate limit, timeout, 503, 401 auth error, or server error to trigger rotation
+                if any(k in err_str.lower() for k in ["rate_limit", "429", "limit exceeded", "timeout", "timed out", "503", "504", "500", "401", "auth", "invalid_api_key", "unauthorized"]):
                     attempts += 1
                     if attempts < max_attempts:
                         self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
                         next_prov = self.providers[self.current_provider_idx]
                         masked_key = next_prov["api_key"][:8] + "..." + next_prov["api_key"][-4:] if len(next_prov["api_key"]) > 12 else "..."
-                        print(f"[INFO] Rotating to provider: '{next_prov['type']}' with Key ({masked_key})...")
+                        print(f"[INFO] Failover triggered! Rotating to provider: '{next_prov['type']}' ({next_prov['complex_model']}) with Key ({masked_key})...")
                         continue
+
                 break
 
         # If all attempts are exhausted, raise an exception to stop the agent

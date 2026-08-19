@@ -20,6 +20,17 @@ for i in range(2, 10):
     if key:
         GROQ_API_KEYS.append(key)
 
+# Load all keys matching MISTRAL_API_KEY, MISTRAL_API_KEY2, etc.
+MISTRAL_API_KEYS = []
+mistral_base_key = os.getenv("MISTRAL_API_KEY", "").strip()
+if mistral_base_key:
+    MISTRAL_API_KEYS.append(mistral_base_key)
+
+for i in range(2, 10):
+    key = os.getenv(f"MISTRAL_API_KEY{i}", "").strip()
+    if key:
+        MISTRAL_API_KEYS.append(key)
+
 # Load all keys matching NVIDIA_API_KEY, NVIDIA_API_KEY2, etc.
 NVIDIA_API_KEYS = []
 nvidia_base_key = os.getenv("NVIDIA_API_KEY", "").strip()
@@ -31,13 +42,25 @@ for i in range(2, 10):
     if key:
         NVIDIA_API_KEYS.append(key)
 
+# Configurable per-provider timeouts (in seconds)
+PROVIDER_TIMEOUTS = {
+    "groq": float(os.getenv("GROQ_TIMEOUT", "15.0")),
+    "mistral": float(os.getenv("MISTRAL_TIMEOUT", "15.0")),
+    "nvidia": float(os.getenv("NVIDIA_TIMEOUT", "20.0"))
+}
+
+# Pacing parameters (Quota & Rate-Limit Management)
+MIN_DELAY = float(os.getenv("MIN_DELAY", "7.0"))
+MAX_DELAY = float(os.getenv("MAX_DELAY", "20.0"))
+
 GROQ_API_KEY = GROQ_API_KEYS[0] if GROQ_API_KEYS else ""
 OBOE_URL = os.getenv("OBOE_URL", "https://oboe.com")
 USER_DATA_DIR = BASE_DIR / ".user_data"
 
 def validate_config():
     """Verify that vital environment variables are set."""
-    if not GROQ_API_KEYS and not NVIDIA_API_KEYS:
-        print("[WARNING] No Groq or Nvidia API keys found in .env.local.")
+    if not GROQ_API_KEYS and not NVIDIA_API_KEYS and not MISTRAL_API_KEYS:
+        print("[WARNING] No Groq, Nvidia, or Mistral API keys found in .env.local.")
         return False
     return True
+
