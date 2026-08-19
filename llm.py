@@ -201,10 +201,8 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                         continue
                 break
 
-        # Safe fallback response
-        if state == "suggested_replies" and choices:
-            return {"action": "click", "selection": choices[0], "thought": "Fallback to first choice due to API error"}
-        return {"action": "type", "text": "I'm interested to learn more about this.", "thought": "Fallback response"}
+        # If all attempts are exhausted, raise an exception to stop the agent
+        raise RuntimeError("All configured API keys / providers are exhausted or rate-limited.")
 
     def generate_related_topics(self, topic, skills):
         """Generates 3 new, related, advanced topics to add to topics.json."""

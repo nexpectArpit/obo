@@ -14,17 +14,19 @@ class OboeBrowser:
 
     def start(self):
         """Start the persistent browser context."""
-        print(f"Launching persistent Chrome context from: {config.USER_DATA_DIR}")
-        
-        # Ensure user data directory exists
-        config.USER_DATA_DIR.mkdir(parents=True, exist_ok=True)
-        
+        # Check if portable state.json exists
+        state_path = Path(__file__).resolve().parent / "state.json"
+        storage_state = str(state_path) if state_path.exists() else None
+        if storage_state:
+            print(f"[INFO] Seeding browser context with storage state from: {state_path.name}")
+
         self.playwright = sync_playwright().start()
         
         # Launch persistent context
         self.context = self.playwright.chromium.launch_persistent_context(
             user_data_dir=str(config.USER_DATA_DIR),
             headless=self.headless,
+            storage_state=storage_state,
             slow_mo=100,  # Slight delay to look more human-like
             viewport={"width": 1280, "height": 800},
             args=[

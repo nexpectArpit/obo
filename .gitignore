@@ -6,6 +6,7 @@ __pycache__/
 # Sessions & Credentials
 .user_data/
 .env.local
+state.json
 *.pem
 *.key
 
