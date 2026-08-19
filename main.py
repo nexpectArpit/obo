@@ -23,7 +23,11 @@ def setup_session():
         browser.close()
 
 def is_setup_complete():
-    """Check if the user data directory exists and is not empty."""
+    """Check if the user data directory exists and is not empty, or if state.json exists."""
+    from pathlib import Path
+    state_path = Path(__file__).resolve().parent / "state.json"
+    if state_path.exists():
+        return True
     if not config.USER_DATA_DIR.exists():
         return False
     # Check if there is any file or directory inside .user_data

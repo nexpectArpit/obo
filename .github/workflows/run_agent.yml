@@ -53,7 +53,7 @@ jobs:
             CMD="$CMD --topic random"
           fi
           echo "Executing: $CMD"
-          eval $CMD
+          exec $CMD
 
 
 
