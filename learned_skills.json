@@ -1,9 +1,9 @@
 {
     "AI Hardware Acceleration": 2,
-    "Computer Architecture": 2,
+    "Computer Architecture": 3,
     "Fault-Tolerant Systems": 1,
     "Hardware Engineering": 1,
-    "Memory Systems": 2,
+    "Memory Systems": 5,
     "API Integration": 1,
     "Topology": 3,
     "Differential Topology": 1,
@@ -22,5 +22,12 @@
     "Data Structures": 1,
     "Algebra": 1,
     "Algorithm Analysis": 1,
-    "Python": 1
+    "Python": 1,
+    "Cache Hierarchy": 2,
+    "Memory Hierarchy": 2,
+    "Cache Coherence": 1,
+    "Interconnect Design": 1,
+    "Network-on-Chip": 1,
+    "Quality of Service (QoS)": 1,
+    "CXL Protocol": 1
 }

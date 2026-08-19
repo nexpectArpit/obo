@@ -79,6 +79,16 @@
             "timestamp": 1787158955.2095954,
             "duration_seconds": 440,
             "topic": "floyed cycle detection?"
+        },
+        {
+            "timestamp": 1787159915.0246925,
+            "duration_seconds": 719,
+            "topic": "Optimizing HBM3e cache hierarchies for concurrent access in large-scale memory systems"
+        },
+        {
+            "timestamp": 1787159917.389809,
+            "duration_seconds": 721,
+            "topic": "Optimizing HBM3e cache hierarchies for concurrent access in large-scale memory systems"
         }
     ]
 }
