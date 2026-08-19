@@ -540,7 +540,6 @@
         "The logic of golden ratio geometry",
         "Unraveling Hurricane cyclone rotation forces",
         "Deconstructing Song Dynasty gunpowder paper",
-        "How aqueduct construction gravity water works",
         "Reviewing DNS query routing",
         "Reviewing String theory dualities",
         "Modeling Scientific Revolution heliocentric theory",
@@ -1004,11 +1003,6 @@
             "topic": "Implementing Fault-Tolerant Distributed Systems on Heterogeneous Architectures",
             "associated_skill": "Fault-Tolerant Systems",
             "level_target": 3
-        },
-        {
-            "topic": "Fault-Tolerant Distributed Systems Design",
-            "associated_skill": "Fault-Tolerant Systems",
-            "level_target": 4
         },
         {
             "topic": "Specialized Memory Hierarchy Optimization for AI Accelerators",
