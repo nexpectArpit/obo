@@ -112,6 +112,8 @@ def format_run_status(run):
         steps = job.get("steps", [])
         for step in steps:
             name = step["name"]
+            if name.startswith("Post ") or name in ["Get Playwright Version", "Cache Playwright Browsers"]:
+                continue
             status = step["status"]
             conclusion = step.get("conclusion")
             
@@ -238,6 +240,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     steps = jobs[0].get("steps", [])
                     for step in steps:
                         name = step["name"]
+                        if name.startswith("Post ") or name in ["Get Playwright Version", "Cache Playwright Browsers"]:
+                            continue
                         conc = step.get("conclusion", "skipped")
                         icon = {"success": "✅", "failure": "❌", "cancelled": "🟡", "skipped": "⏭️"}.get(conc, "⬜")
                         msg += f"{icon} {name}\n"

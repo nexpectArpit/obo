@@ -87,7 +87,7 @@ jobs:
         if: always()
         run: |
           python -u -c '
-          import json, urllib.request, urllib.parse, os, sys
+          import json, urllib.request, urllib.parse, os, sys, html
 
           token = os.environ.get("TG_TOKEN", "")
           chat_id = os.environ.get("TG_CHAT", "")
@@ -102,7 +102,8 @@ jobs:
           except Exception:
               s = {}
 
-          topic = s.get("topic", "Unknown")
+          raw_topic = s.get("topic", "Unknown")
+          topic = html.escape(str(raw_topic))
           elapsed = s.get("elapsed_seconds", 0)
           mcqs_total = s.get("mcqs_total", 0)
           mcqs_correct = s.get("mcqs_correct", 0)
@@ -128,17 +129,26 @@ jobs:
           if skills:
               msg += "\n<b>📈 Skills Leveled Up:</b>\n"
               for sk, lv in skills.items():
-                  msg += f"  • {sk}: Level {lv}\n"
+                  safe_sk = html.escape(str(sk))
+                  msg += f"  • {safe_sk}: Level {lv}\n"
           else:
               msg += "\nNo skill level-ups this session."
 
+          url = f"https://api.telegram.org/bot{token}/sendMessage"
+
           try:
-              url = f"https://api.telegram.org/bot{token}/sendMessage"
               data = urllib.parse.urlencode({"chat_id": chat_id, "text": msg, "parse_mode": "HTML"}).encode()
               urllib.request.urlopen(url, data=data)
-              print("Telegram notification sent.")
+              print("Telegram notification sent successfully (HTML).")
           except Exception as e:
-              print(f"Telegram notification failed: {e}")
+              print(f"HTML notification failed: {e}. Trying plain text fallback...")
+              try:
+                  plain_msg = msg.replace("<b>", "").replace("</b>", "")
+                  data_plain = urllib.parse.urlencode({"chat_id": chat_id, "text": plain_msg}).encode()
+                  urllib.request.urlopen(url, data=data_plain)
+                  print("Telegram notification sent successfully (Plain Text).")
+              except Exception as fe:
+                  print(f"Plain text fallback also failed: {fe}")
           '
         env:
           TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
