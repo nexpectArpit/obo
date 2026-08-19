@@ -14,9 +14,10 @@ export default {
     }
 
     // 1. Verify Telegram Webhook Secret Token
-    const incomingSecret = request.headers.get("X-Telegram-Bot-Api-Secret-Token") || "";
-    if (env.TELEGRAM_SECRET_TOKEN && incomingSecret !== env.TELEGRAM_SECRET_TOKEN) {
-      console.warn("Unauthorized webhook request: secret token mismatch");
+    const incomingSecret = (request.headers.get("X-Telegram-Bot-Api-Secret-Token") || "").trim();
+    const secretToken = (env.TELEGRAM_SECRET_TOKEN || "").trim();
+    if (secretToken && incomingSecret !== secretToken) {
+      console.warn(`Unauthorized webhook request: secret token mismatch (got '${incomingSecret}', expected '${secretToken}')`);
       return new Response("Forbidden", { status: 403 });
     }
 
@@ -32,11 +33,11 @@ export default {
 };
 
 async function handleUpdate(update, env) {
-  const token = env.TELEGRAM_BOT_TOKEN;
-  const allowedUser = String(env.ALLOWED_TELEGRAM_USER_ID || "");
-  const repo = env.GH_REPO || "nexpectArpit/obo";
-  const workflow = env.GH_WORKFLOW || "run_agent.yml";
-  const pat = env.GH_PAT;
+  const token = env.TELEGRAM_BOT_TOKEN ? env.TELEGRAM_BOT_TOKEN.trim() : "";
+  const allowedUser = env.ALLOWED_TELEGRAM_USER_ID ? String(env.ALLOWED_TELEGRAM_USER_ID).trim() : "";
+  const repo = (env.GH_REPO || "nexpectArpit/obo").trim();
+  const workflow = (env.GH_WORKFLOW || "run_agent.yml").trim();
+  const pat = env.GH_PAT ? env.GH_PAT.trim() : "";
 
   let chatId = null;
   let userId = null;
@@ -46,21 +47,22 @@ async function handleUpdate(update, env) {
 
   if (update.message) {
     chatId = update.message.chat.id;
-    userId = String(update.message.from.id);
+    userId = String(update.message.from.id).trim();
     text = update.message.text;
   } else if (update.callback_query) {
     chatId = update.callback_query.message.chat.id;
-    userId = String(update.callback_query.from.id);
+    userId = String(update.callback_query.from.id).trim();
     callbackQueryId = update.callback_query.id;
     callbackData = update.callback_query.data;
   }
 
   // 2. Validate Telegram User Authorization
   if (userId && allowedUser && userId !== allowedUser) {
+    console.warn(`Unauthorized user ID: '${userId}' (expected '${allowedUser}')`);
     if (chatId) {
       await sendTelegram(token, "sendMessage", {
         chat_id: chatId,
-        text: "⛔ Unauthorized user."
+        text: `⛔ Unauthorized user (ID: ${userId}).`
       });
     }
     return;
