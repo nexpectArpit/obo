@@ -21,9 +21,9 @@ headers = {
     "User-Agent": "obo-workflow-tester"
 }
 
-def trigger_run(level_up="false"):
+def trigger_run(topic="random", level_up="false"):
     url = f"https://api.github.com/repos/{repo}/actions/workflows/{workflow}/dispatches"
-    payload = {"ref": "main", "inputs": {"topic": "random", "resume": "false", "level_up": level_up}}
+    payload = {"ref": "main", "inputs": {"topic": topic, "resume": "false", "level_up": level_up}}
     r = requests.post(url, headers=headers, json=payload)
     if r.status_code == 204:
         print("[INFO] Workflow triggered successfully!")
@@ -73,7 +73,10 @@ def fetch_job_logs(run_id):
     job_id = r.json()["jobs"][0]["id"]
     print(f"[INFO] Fetching logs for Job ID {job_id}...")
     log_url = f"https://api.github.com/repos/{repo}/actions/jobs/{job_id}/logs"
-    log_r = requests.get(log_url, headers=headers)
+    log_r = requests.get(log_url, headers=headers, allow_redirects=False)
+    if log_r.status_code == 302:
+        redirect_url = log_r.headers.get("Location")
+        log_r = requests.get(redirect_url)
     if log_r.status_code == 200:
         return log_r.text
     print(f"[ERROR] Failed to download logs: {log_r.status_code}")
@@ -81,7 +84,8 @@ def fetch_job_logs(run_id):
 
 def main():
     level_up = "true" if "--level-up" in sys.argv else "false"
-    if not trigger_run(level_up=level_up):
+    topic = "random" if level_up == "true" else "Multi Word Space Test Topic"
+    if not trigger_run(topic=topic, level_up=level_up):
         return
     
     # Wait for GitHub Actions to register the run
@@ -119,6 +123,12 @@ def main():
     if not logs:
         return
         
+    # Check argument parsing crash (spaces in topic)
+    if "unrecognized arguments" in logs or "Process completed with exit code 2" in logs:
+        print("[FAIL] Unrecognized arguments / multi-word topic string quote parsing crash!")
+    else:
+        print("[PASS] Multi-word topic string with spaces was parsed successfully.")
+
     # Check setup crash fix (should not contain headed crash error)
     if "Looks like you launched a headed browser without having a XServer running." in logs:
         print("[FAIL] Headed Setup Crash occurred in the logs!")

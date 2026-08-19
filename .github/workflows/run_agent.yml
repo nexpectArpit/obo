@@ -48,19 +48,19 @@ jobs:
 
       - name: Run Agent
         run: |
-          CMD="python -u main.py learn --headless"
+          ARGS=("-u" "main.py" "learn" "--headless")
           if [ "${{ github.event.inputs.resume }}" = "true" ]; then
-            CMD="$CMD --resume"
+            ARGS+=("--resume")
           elif [ -n "${{ github.event.inputs.topic }}" ] && [ "${{ github.event.inputs.topic }}" != "random" ]; then
-            CMD="$CMD --topic \"${{ github.event.inputs.topic }}\""
+            ARGS+=("--topic" "${{ github.event.inputs.topic }}")
           else
-            CMD="$CMD --topic random"
+            ARGS+=("--topic" "random")
           fi
           if [ "${{ github.event.inputs.level_up }}" = "true" ]; then
-            CMD="$CMD --level-up"
+            ARGS+=("--level-up")
           fi
-          echo "Executing: $CMD"
-          exec $CMD
+          echo "Executing: python ${ARGS[*]}"
+          exec python "${ARGS[@]}"
 
 
 
