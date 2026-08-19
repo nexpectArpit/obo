@@ -24,6 +24,7 @@ class OboeAgent:
         self.level_up = level_up
         self.target_skill = None
         self.target_level = None
+        self.active_chat_start_time = None
         
         # Load learned skills history
         self.learned_skills_path = Path(__file__).resolve().parent / "learned_skills.json"
@@ -101,9 +102,13 @@ class OboeAgent:
     def save_summary(self, status="COMPLETED", start_time=None):
         """Save state and write agent_state.json summary for Telegram notifications."""
         if start_time is None:
-            start_time = getattr(self, "start_time", time.time())
+            start_time = getattr(self, "active_chat_start_time", None) or getattr(self, "start_time", time.time())
         
-        elapsed_time = time.time() - start_time
+        if getattr(self, "active_chat_start_time", None) is None and status == "CANCELLED":
+            elapsed_time = 0
+        else:
+            elapsed_time = max(0, int(time.time() - start_time))
+            
         rolling_24h_sec, today_ist_sec = self.update_time_tracker(elapsed_time)
         today_h = int(today_ist_sec // 3600)
         today_m = int((today_ist_sec % 3600) // 60)
@@ -336,12 +341,16 @@ class OboeAgent:
 
                         print(f"Starting new chat with prompt: '{initial_prompt}'")
                         self.browser.type_and_submit(initial_prompt)
+                        self.active_chat_start_time = time.time()
                         # Allow generation to kick off
                         time.sleep(5)
             
             # Run the interaction loop
             consecutive_loadings = 0
             while True:
+                if self.active_chat_start_time is None:
+                    self.active_chat_start_time = time.time()
+
                 # First observation
                 obs1 = self.browser.observe_page()
                 state1 = obs1["state"]

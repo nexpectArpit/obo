@@ -100,13 +100,23 @@ def format_run_status(run):
     """Build a detailed status message for a run, including step-by-step progress."""
     run_id = run["id"]
     run_num = run["run_number"]
-    started = run.get("run_started_at", "")
-    elapsed = format_elapsed(started) if started else "starting..."
 
     # Get step-level details
     jobs = get_run_jobs(run_id)
     
-    msg = f"🟢 *Run #{run_num}* — Running for {elapsed}\n\n"
+    run_agent_started = None
+    if jobs:
+        steps = jobs[0].get("steps", [])
+        for step in steps:
+            if step["name"] == "Run Agent" and step.get("started_at"):
+                run_agent_started = step["started_at"]
+                break
+
+    if run_agent_started:
+        elapsed = format_elapsed(run_agent_started)
+        msg = f"🟢 *Run #{run_num}* — Learning for {elapsed}\n\n"
+    else:
+        msg = f"⚙️ *Run #{run_num}* — Setting up environment...\n\n"
     
     if jobs:
         job = jobs[0]  # We only have one job
