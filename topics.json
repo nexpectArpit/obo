@@ -771,7 +771,6 @@
         "Why sql database normalization works",
         "Simulating Double-slit experiment",
         "Unraveling Load balancing strategies",
-        "Investigating Machu Picchu mountain construction",
         "Decoding Dijkstra's algorithm shortest path",
         "Modeling Game theory in biology",
         "The mechanism of mimicry camouflage defenses",
@@ -1073,6 +1072,21 @@
             "topic": "Analyzing the effects of topological insulators on quantum transport in condensed matter physics",
             "associated_skill": "Condensed Matter Physics",
             "level_target": 4
+        },
+        {
+            "topic": "Designing scalable systolic arrays for real-time AI inference",
+            "associated_skill": "AI Hardware Acceleration",
+            "level_target": 5
+        },
+        {
+            "topic": "Optimizing HBM3e cache hierarchies for high-performance computing clusters",
+            "associated_skill": "Memory Systems",
+            "level_target": 6
+        },
+        {
+            "topic": "Implementing byzantine fault tolerance in distributed systems using consensus protocols",
+            "associated_skill": "Fault-Tolerant Systems",
+            "level_target": 5
         }
     ]
 }
