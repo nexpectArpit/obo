@@ -92,12 +92,12 @@ async function handleUpdate(update, env) {
     return;
   }
 
-  // Handle Command /clear or clear (Deletes up to 25 previous messages from chat screen)
+  // Handle Command /clear or clear (Deletes up to 75 previous messages from chat screen)
   if (cleanText === "/clear" || cleanText === "clear") {
     const currentId = update.message ? update.message.message_id : null;
     if (currentId) {
       const deletePromises = [];
-      for (let i = 0; i <= 25; i++) {
+      for (let i = 0; i <= 75; i++) {
         deletePromises.push(deleteTelegramMessage(token, chatId, currentId - i));
       }
       await Promise.all(deletePromises);
