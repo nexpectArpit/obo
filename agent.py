@@ -137,9 +137,11 @@ class OboeAgent:
         print("Starting obo agent...")
         start_time = time.time()
         self.start_time = start_time
+        self._final_status = "COMPLETED"
 
         def handle_signal(sig, frame):
             print(f"\n[INFO] Received signal {sig}. Interrupted/Cancelled. Saving session state...")
+            self._final_status = "CANCELLED"
             self.save_summary(status="CANCELLED", start_time=start_time)
             try:
                 self.browser.close()
@@ -500,4 +502,4 @@ class OboeAgent:
                 except Exception as gte:
                     print(f"[WARNING] Failed to generate related topics: {gte}")
 
-            self.save_summary(status="COMPLETED", start_time=start_time)
+            self.save_summary(status=self._final_status, start_time=start_time)
