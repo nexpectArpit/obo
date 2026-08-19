@@ -127,8 +127,9 @@ jobs:
               if tot_calls > 0:
                   msg += f"🧠 <b>LLM Calls:</b> {tot_calls} ({tot_toks} tokens)\n"
                   if providers_map:
-                      prov_str = ", ".join([f"{p.upper()}: {d['calls']}" for p, d in providers_map.items()])
+                      prov_str = ", ".join([p.upper() + ": " + str(d.get("calls", 0)) for p, d in providers_map.items()])
                       msg += f"⚡ <b>Providers:</b> {prov_str}\n"
+
 
 
               if skills:

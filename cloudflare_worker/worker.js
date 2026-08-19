@@ -100,7 +100,8 @@ async function handleUpdate(update, env) {
       for (let i = 0; i <= 300; i++) {
         deletePromises.push(deleteTelegramMessage(token, chatId, currentId - i));
       }
-      await Promise.all(deletePromises);
+      await Promise.allSettled(deletePromises);
+
     }
     await sendTelegram(token, "sendMessage", {
       chat_id: chatId,

@@ -5,6 +5,8 @@ import time
 from pathlib import Path
 from browser import OboeBrowser
 from llm import OboeLLM
+import config
+
 
 # Load topics from topics.json
 topics_path = Path(__file__).resolve().parent / "topics.json"
