@@ -21,16 +21,22 @@ class OboeBrowser:
         
         self.playwright = sync_playwright().start()
         
+        # On GitHub Actions, use pre-installed Chrome to avoid downloading browser binaries
+        is_github_actions = os.environ.get("GITHUB_ACTIONS") == "true"
+        
         if storage_state:
             print(f"[INFO] Seeding browser context with storage state from: {state_path.name}")
-            # Launch standard browser + context for storage_state compatibility
-            self.browser = self.playwright.chromium.launch(
-                headless=self.headless,
-                args=[
+            launch_args = {
+                "headless": self.headless,
+                "args": [
                     "--disable-blink-features=AutomationControlled",
                     "--no-sandbox"
                 ]
-            )
+            }
+            if is_github_actions:
+                launch_args["channel"] = "chrome"
+                
+            self.browser = self.playwright.chromium.launch(**launch_args)
             self.context = self.browser.new_context(
                 storage_state=storage_state,
                 viewport={"width": 1280, "height": 800}
@@ -38,16 +44,21 @@ class OboeBrowser:
         else:
             print(f"Launching persistent Chrome context from: {config.USER_DATA_DIR}")
             config.USER_DATA_DIR.mkdir(parents=True, exist_ok=True)
-            # Launch persistent context
-            self.context = self.playwright.chromium.launch_persistent_context(
-                user_data_dir=str(config.USER_DATA_DIR),
-                headless=self.headless,
-                slow_mo=100,  # Slight delay to look more human-like
-                viewport={"width": 1280, "height": 800},
-                args=[
+            launch_args = {
+                "headless": self.headless,
+                "slow_mo": 100,  # Slight delay to look more human-like
+                "viewport": {"width": 1280, "height": 800},
+                "args": [
                     "--disable-blink-features=AutomationControlled",
                     "--no-sandbox"
                 ]
+            }
+            if is_github_actions:
+                launch_args["channel"] = "chrome"
+                
+            self.context = self.playwright.chromium.launch_persistent_context(
+                str(config.USER_DATA_DIR),
+                **launch_args
             )
         
         # Get or create page
