@@ -92,6 +92,58 @@ async function handleUpdate(update, env) {
     return;
   }
 
+  // Handle Command /clear or clear
+  if (cleanText === "/clear" || cleanText === "clear") {
+    if (update.message && update.message.message_id) {
+      await deleteTelegramMessage(token, chatId, update.message.message_id);
+    }
+    await sendTelegram(token, "sendMessage", {
+      chat_id: chatId,
+      text: "🧹 *Dashboard Cleared!*\n\nChoose an action:",
+      parse_mode: "Markdown",
+      reply_markup: menuKeyboard
+    });
+    return;
+  }
+
+  // Handle Command /topic <topic_name>
+  if (cleanText.startsWith("/topic")) {
+    const customTopic = text.substring(6).trim();
+    if (!customTopic) {
+      await sendTelegram(token, "sendMessage", {
+        chat_id: chatId,
+        text: "📚 *Please specify a topic name.*\n\n*Usage:* `/topic Quantum Computing`\n*Example:* `/topic Neural Networks`",
+        parse_mode: "Markdown",
+        reply_markup: menuKeyboard
+      });
+      return;
+    }
+
+    const ok = await triggerGitHubWorkflow(pat, repo, workflow, customTopic, false, false);
+    const replyText = ok
+      ? `📚 *Started Topic Session:* _${customTopic}_\n\nGitHub Actions runner is booting up.`
+      : "❌ *Failed to trigger workflow on GitHub.*";
+
+    await sendTelegram(token, "sendMessage", {
+      chat_id: chatId,
+      text: replyText,
+      parse_mode: "Markdown",
+      reply_markup: menuKeyboard
+    });
+    return;
+  }
+
+  // Handle "📚 Start Topic" button
+  if (callbackData === "start_topic") {
+    await sendTelegram(token, "sendMessage", {
+      chat_id: chatId,
+      text: "📚 *Start Specific Topic*\n\nPlease reply with your desired topic using `/topic`:\n\n*Usage:* `/topic <topic_name>`\n*Example:* `/topic Quantum Computing`",
+      parse_mode: "Markdown",
+      reply_markup: menuKeyboard
+    });
+    return;
+  }
+
   // Handle "🚀 Start Random" button
   if (callbackData === "start_random") {
     const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, false);
@@ -299,5 +351,19 @@ async function sendTelegram(token, method, payload) {
   if (!res.ok) {
     const errText = await res.text();
     console.error(`[ERROR] Telegram API (${method}) failed status ${res.status}: ${errText}`);
+  }
+}
+
+async function deleteTelegramMessage(token, chatId, messageId) {
+  if (!token || !chatId || !messageId) return;
+  const url = `https://api.telegram.org/bot${token}/deleteMessage`;
+  try {
+    await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, message_id: messageId })
+    });
+  } catch (err) {
+    console.error("[WARNING] Failed to delete Telegram message:", err);
   }
 }
