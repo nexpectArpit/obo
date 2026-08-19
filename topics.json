@@ -994,11 +994,6 @@
     ],
     "level_up_topics": [
         {
-            "topic": "Designing Scalable AI Inference Pipelines with Custom LPU Accelerators",
-            "associated_skill": "AI Hardware Acceleration",
-            "level_target": 3
-        },
-        {
             "topic": "Implementing Fault-Tolerant Distributed Systems on Heterogeneous Architectures",
             "associated_skill": "Fault-Tolerant Systems",
             "level_target": 3

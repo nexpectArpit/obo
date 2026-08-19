@@ -124,6 +124,16 @@
             "timestamp": 1787166463.4363897,
             "duration_seconds": 1841,
             "topic": "about webhook"
+        },
+        {
+            "timestamp": 1787170263.024744,
+            "duration_seconds": 57,
+            "topic": "Designing Scalable AI Inference Pipelines with Custom LPU Accelerators"
+        },
+        {
+            "timestamp": 1787170263.352146,
+            "duration_seconds": 57,
+            "topic": "Designing Scalable AI Inference Pipelines with Custom LPU Accelerators"
         }
     ]
 }
