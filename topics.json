@@ -1054,11 +1054,6 @@
             "topic": "Implementing byzantine fault tolerance in high-performance memory systems with HBM3e cache hierarchies",
             "associated_skill": "Fault-Tolerant Systems",
             "level_target": 5
-        },
-        {
-            "topic": "Analyzing the cohomology groups of topological insulators with applications to condensed matter physics",
-            "associated_skill": "Topology",
-            "level_target": 5
         }
     ]
 }
