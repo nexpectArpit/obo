@@ -9,31 +9,46 @@ class OboeBrowser:
     def __init__(self, headless=False):
         self.headless = headless
         self.playwright = None
+        self.browser = None
         self.context = None
         self.page = None
 
     def start(self):
-        """Start the persistent browser context."""
+        """Start the browser context."""
         # Check if portable state.json exists
         state_path = Path(__file__).resolve().parent / "state.json"
         storage_state = str(state_path) if state_path.exists() else None
-        if storage_state:
-            print(f"[INFO] Seeding browser context with storage state from: {state_path.name}")
-
+        
         self.playwright = sync_playwright().start()
         
-        # Launch persistent context
-        self.context = self.playwright.chromium.launch_persistent_context(
-            user_data_dir=str(config.USER_DATA_DIR),
-            headless=self.headless,
-            storage_state=storage_state,
-            slow_mo=100,  # Slight delay to look more human-like
-            viewport={"width": 1280, "height": 800},
-            args=[
-                "--disable-blink-features=AutomationControlled",
-                "--no-sandbox"
-            ]
-        )
+        if storage_state:
+            print(f"[INFO] Seeding browser context with storage state from: {state_path.name}")
+            # Launch standard browser + context for storage_state compatibility
+            self.browser = self.playwright.chromium.launch(
+                headless=self.headless,
+                args=[
+                    "--disable-blink-features=AutomationControlled",
+                    "--no-sandbox"
+                ]
+            )
+            self.context = self.browser.new_context(
+                storage_state=storage_state,
+                viewport={"width": 1280, "height": 800}
+            )
+        else:
+            print(f"Launching persistent Chrome context from: {config.USER_DATA_DIR}")
+            config.USER_DATA_DIR.mkdir(parents=True, exist_ok=True)
+            # Launch persistent context
+            self.context = self.playwright.chromium.launch_persistent_context(
+                user_data_dir=str(config.USER_DATA_DIR),
+                headless=self.headless,
+                slow_mo=100,  # Slight delay to look more human-like
+                viewport={"width": 1280, "height": 800},
+                args=[
+                    "--disable-blink-features=AutomationControlled",
+                    "--no-sandbox"
+                ]
+            )
         
         # Get or create page
         if self.context.pages:
@@ -63,9 +78,14 @@ class OboeBrowser:
     def close(self):
         """Close browser resources."""
         if self.context:
-            self.context.close()
+            try: self.context.close()
+            except Exception: pass
+        if self.browser:
+            try: self.browser.close()
+            except Exception: pass
         if self.playwright:
-            self.playwright.stop()
+            try: self.playwright.stop()
+            except Exception: pass
         print("Browser stopped.")
 
     def get_interaction_state(self):
