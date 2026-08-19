@@ -38,14 +38,15 @@ def gh_headers():
         "X-GitHub-Api-Version": "2022-11-28"
     }
 
-def trigger_workflow(topic="random", resume=False):
+def trigger_workflow(topic="random", resume=False, level_up=False):
     """Trigger the GitHub Actions workflow."""
     url = f"{GH_API}/actions/workflows/{GH_WORKFLOW}/dispatches"
     payload = {
         "ref": "main",
         "inputs": {
             "topic": topic,
-            "resume": str(resume).lower()
+            "resume": str(resume).lower(),
+            "level_up": str(level_up).lower()
         }
     }
     r = requests.post(url, headers=gh_headers(), json=payload)
@@ -139,10 +140,11 @@ def format_run_status(run):
 def main_menu_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🚀 Start Random", callback_data="start_random"),
-         InlineKeyboardButton("🔄 Resume Last", callback_data="resume")],
+         InlineKeyboardButton("📈 Focus Level Up", callback_data="level_up")],
         [InlineKeyboardButton("📚 Start Topic", callback_data="start_topic"),
-         InlineKeyboardButton("🛑 Stop Agent", callback_data="stop")],
-        [InlineKeyboardButton("📊 Status", callback_data="status")]
+         InlineKeyboardButton("🔄 Resume Last", callback_data="resume")],
+        [InlineKeyboardButton("🛑 Stop Agent", callback_data="stop"),
+         InlineKeyboardButton("📊 Status", callback_data="status")]
     ])
 
 # ─── Handlers ────────────────────────────────────────────────────
@@ -167,6 +169,20 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "🚀 *Random topic started!*\n\n"
                 "The agent is booting up on GitHub Actions.\n"
                 "It will take ~2 minutes to set up, then begin learning.\n\n"
+                "Tap 📊 Status to track progress.",
+                parse_mode="Markdown",
+                reply_markup=main_menu_keyboard()
+            )
+        else:
+            await query.message.reply_text("❌ Failed to trigger workflow. Check your GH\\_PAT permissions.",
+                                           reply_markup=main_menu_keyboard())
+
+    elif action == "level_up":
+        success = trigger_workflow(topic="random", resume=False, level_up=True)
+        if success:
+            await query.message.reply_text(
+                "📈 *Focus Level Up started!*\n\n"
+                "The agent will target your existing skills to level them up.\n\n"
                 "Tap 📊 Status to track progress.",
                 parse_mode="Markdown",
                 reply_markup=main_menu_keyboard()

@@ -11,6 +11,10 @@ on:
         description: 'Resume last active chat (true/false)'
         required: false
         default: 'false'
+      level_up:
+        description: 'Target only level-up topics (true/false)'
+        required: false
+        default: 'false'
 
 jobs:
   run-agent:
@@ -51,6 +55,9 @@ jobs:
             CMD="$CMD --topic \"${{ github.event.inputs.topic }}\""
           else
             CMD="$CMD --topic random"
+          fi
+          if [ "${{ github.event.inputs.level_up }}" = "true" ]; then
+            CMD="$CMD --level-up"
           fi
           echo "Executing: $CMD"
           exec $CMD

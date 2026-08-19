@@ -21,9 +21,9 @@ headers = {
     "User-Agent": "obo-workflow-tester"
 }
 
-def trigger_run():
+def trigger_run(level_up="false"):
     url = f"https://api.github.com/repos/{repo}/actions/workflows/{workflow}/dispatches"
-    payload = {"ref": "main", "inputs": {"topic": "random", "resume": "false"}}
+    payload = {"ref": "main", "inputs": {"topic": "random", "resume": "false", "level_up": level_up}}
     r = requests.post(url, headers=headers, json=payload)
     if r.status_code == 204:
         print("[INFO] Workflow triggered successfully!")
@@ -80,7 +80,8 @@ def fetch_job_logs(run_id):
     return ""
 
 def main():
-    if not trigger_run():
+    level_up = "true" if "--level-up" in sys.argv else "false"
+    if not trigger_run(level_up=level_up):
         return
     
     # Wait for GitHub Actions to register the run

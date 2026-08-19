@@ -16,11 +16,14 @@ except Exception:
 
 
 class OboeAgent:
-    def __init__(self, topic="random", headless=False, resume=False):
+    def __init__(self, topic="random", headless=False, resume=False, level_up=False):
         self.topic = topic
         self.browser = OboeBrowser(headless=headless)
         self.llm = OboeLLM()
         self.resume = resume
+        self.level_up = level_up
+        self.target_skill = None
+        self.target_level = None
         
         # Load learned skills history
         self.learned_skills_path = Path(__file__).resolve().parent / "learned_skills.json"
@@ -233,20 +236,50 @@ class OboeAgent:
                 if self.topic == "random":
                     new_list = RANDOM_TOPICS.get("new_topics", [])
                     lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
-                    combined = []
-                    for t in new_list:
-                        combined.append(("new", t))
-                    for entry in lvl_list:
-                        if isinstance(entry, dict) and "topic" in entry:
-                            combined.append(("level_up", entry["topic"]))
-                            
-                    if combined:
-                        choice_type, chosen_topic = random.choice(combined)
-                        self.topic = chosen_topic
-                        print(f"[INFO] Selected random learning topic: '{self.topic}' (type: {choice_type})")
+                    
+                    if self.level_up:
+                        # Target level up list specifically
+                        combined = []
+                        for entry in lvl_list:
+                            if isinstance(entry, dict) and "topic" in entry:
+                                combined.append(("level_up", entry))
+                        
+                        if combined:
+                            choice_type, entry = random.choice(combined)
+                            self.topic = entry["topic"]
+                            self.target_skill = entry.get("associated_skill")
+                            self.target_level = entry.get("level_target")
+                            print(f"[INFO] Selected level-up learning topic: '{self.topic}' targeting skill '{self.target_skill}' to LV {self.target_level}")
+                        else:
+                            # Fallback if no level-up topics are available
+                            print("[WARNING] level_up_topics list is empty! Falling back to new_topics.")
+                            if new_list:
+                                chosen_topic = random.choice(new_list)
+                                self.topic = chosen_topic
+                                print(f"[INFO] Selected random fallback topic: '{self.topic}'")
+                            else:
+                                self.topic = "Quantum computing basics"
+                                print("[WARNING] topics.json is empty! Defaulting to 'Quantum computing basics'")
                     else:
-                        self.topic = "Quantum computing basics"
-                        print("[WARNING] topics.json is empty! Defaulting to 'Quantum computing basics'")
+                        combined = []
+                        for t in new_list:
+                            combined.append(("new", t))
+                        for entry in lvl_list:
+                            if isinstance(entry, dict) and "topic" in entry:
+                                combined.append(("level_up", entry))
+                                
+                        if combined:
+                            choice_type, entry = random.choice(combined)
+                            if choice_type == "level_up":
+                                self.topic = entry["topic"]
+                                self.target_skill = entry.get("associated_skill")
+                                self.target_level = entry.get("level_target")
+                            else:
+                                self.topic = entry
+                            print(f"[INFO] Selected random learning topic: '{self.topic}' (type: {choice_type})")
+                        else:
+                            self.topic = "Quantum computing basics"
+                            print("[WARNING] topics.json is empty! Defaulting to 'Quantum computing basics'")
 
                 # Remove the topic from topics.json if it is present (including explicit CLI topics)
                 new_list = RANDOM_TOPICS.get("new_topics", [])
@@ -289,8 +322,20 @@ class OboeAgent:
                     textarea = self.browser.page.locator('textarea[name="prompt"]')
                     placeholder = textarea.get_attribute("placeholder") or ""
                     if "I want to learn" in placeholder:
-                        print(f"Starting new chat on topic: '{self.topic}'")
-                        self.browser.type_and_submit(self.topic)
+                        # Determine prompt based on target skill and level
+                        if self.target_skill:
+                            current_lv = self.learned_skills.get(self.target_skill, 0)
+                            if current_lv >= 4:
+                                initial_prompt = f"I'm already very familiar with the basics of {self.topic}. Can we skip the introductory stuff and dive straight into the advanced concepts/complex math? I'd love to challenge myself with some tough questions."
+                            elif current_lv == 3:
+                                initial_prompt = f"I understand the basic overview of {self.topic} already. Let's look at the intermediate concepts and the math behind them."
+                            else:
+                                initial_prompt = f"I want to learn about {self.topic}. Can we start with the core concepts?"
+                        else:
+                            initial_prompt = self.topic
+
+                        print(f"Starting new chat with prompt: '{initial_prompt}'")
+                        self.browser.type_and_submit(initial_prompt)
                         # Allow generation to kick off
                         time.sleep(5)
             
@@ -382,7 +427,14 @@ class OboeAgent:
 
                 if state == "suggested_replies":
                     print(f"Available options: {choices}")
-                    decision = self.llm.decide_action(state, messages, choices, self.learned_skills)
+                    decision = self.llm.decide_action(
+                        state, 
+                        messages, 
+                        choices, 
+                        self.learned_skills, 
+                        target_skill=self.target_skill, 
+                        target_level=self.target_level
+                    )
                     selection = decision.get("selection")
                     if selection in choices:
                         self.browser.click_suggestion_by_text(selection)
@@ -393,7 +445,14 @@ class OboeAgent:
                     self.last_action_was_mcq = True
 
                 elif state == "free_text":
-                    decision = self.llm.decide_action(state, messages, choices, self.learned_skills)
+                    decision = self.llm.decide_action(
+                        state, 
+                        messages, 
+                        choices, 
+                        self.learned_skills, 
+                        target_skill=self.target_skill, 
+                        target_level=self.target_level
+                    )
                     text = decision.get("text")
                     if not text or str(text).strip() == "" or str(text).lower() == "none":
                         text = "I'm interested to learn more about this."
