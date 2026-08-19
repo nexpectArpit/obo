@@ -89,6 +89,16 @@
             "timestamp": 1787159917.389809,
             "duration_seconds": 721,
             "topic": "Optimizing HBM3e cache hierarchies for concurrent access in large-scale memory systems"
+        },
+        {
+            "timestamp": 1787161575.7294333,
+            "duration_seconds": 435,
+            "topic": "German"
+        },
+        {
+            "timestamp": 1787161583.2336574,
+            "duration_seconds": 443,
+            "topic": "German"
         }
     ]
 }
