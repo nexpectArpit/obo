@@ -112,8 +112,12 @@ jobs:
           skills = s.get("achieved_skills", {})
 
           mins, secs = elapsed // 60, elapsed % 60
+          status = s.get("status", "COMPLETED")
 
-          msg = "🎉 <b>Oboe Session Complete!</b>\n\n"
+          if status == "CANCELLED":
+              msg = "🛑 <b>Oboe Session Stopped!</b>\n\n"
+          else:
+              msg = "🎉 <b>Oboe Session Complete!</b>\n\n"
           msg += f"📚 <b>Topic:</b> {topic}\n"
           msg += f"⏱️ <b>Session Time:</b> {mins}m {secs}s\n"
           msg += f"📊 <b>MCQs:</b> {mcqs_correct}/{mcqs_total} correct"

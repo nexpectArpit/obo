@@ -95,10 +95,63 @@ class OboeAgent:
                 
         return rolling_24h_seconds, today_ist_seconds
 
+    def save_summary(self, status="COMPLETED", start_time=None):
+        """Save state and write agent_state.json summary for Telegram notifications."""
+        if start_time is None:
+            start_time = getattr(self, "start_time", time.time())
+        
+        elapsed_time = time.time() - start_time
+        rolling_24h_sec, today_ist_sec = self.update_time_tracker(elapsed_time)
+        today_h = int(today_ist_sec // 3600)
+        today_m = int((today_ist_sec % 3600) // 60)
+
+        # Save learned skills to disk
+        if self.achieved_skills:
+            try:
+                self.learned_skills_path.write_text(json.dumps(self.learned_skills, indent=4))
+                print(f"[INFO] Saved skill levels to {self.learned_skills_path.name}")
+            except Exception as e:
+                print(f"[WARNING] Failed to save learned_skills.json: {e}")
+
+        # Write final session summary to agent_state.json for Telegram notification
+        state_path = Path(__file__).resolve().parent / "agent_state.json"
+        try:
+            summary = {
+                "status": status,
+                "topic": self.topic or "Unknown",
+                "elapsed_seconds": int(elapsed_time),
+                "mcqs_total": self.total_mcqs_count,
+                "mcqs_correct": self.total_mcqs_count - self.wrong_mcqs_count,
+                "mcqs_wrong": self.wrong_mcqs_count,
+                "today_ist_hours": today_h,
+                "today_ist_minutes": today_m,
+                "achieved_skills": self.achieved_skills or {}
+            }
+            state_path.write_text(json.dumps(summary, indent=4))
+        except Exception as se:
+            print(f"[WARNING] Failed to write state file: {se}")
+
     def run(self):
         """Run the main observe-reason-act loop."""
+        import signal, sys
         print("Starting obo agent...")
         start_time = time.time()
+        self.start_time = start_time
+
+        def handle_signal(sig, frame):
+            print(f"\n[INFO] Received signal {sig}. Interrupted/Cancelled. Saving session state...")
+            self.save_summary(status="CANCELLED", start_time=start_time)
+            try:
+                self.browser.close()
+            except Exception:
+                pass
+            sys.exit(0)
+
+        try:
+            signal.signal(signal.SIGTERM, handle_signal)
+            signal.signal(signal.SIGINT, handle_signal)
+        except Exception:
+            pass
         
         # Write PID file
         pid_path = Path(__file__).resolve().parent / "agent.pid"
@@ -447,36 +500,4 @@ class OboeAgent:
                 except Exception as gte:
                     print(f"[WARNING] Failed to generate related topics: {gte}")
 
-            elapsed_time = time.time() - start_time
-            minutes = int(elapsed_time // 60)
-            seconds = int(elapsed_time % 60)
-            
-            print("\n==================================================")
-            print(f"Session ended. Total time spent on Oboe: {minutes}m {seconds}s")
-            print(f"MCQ Stats: Total={self.total_mcqs_count} | Correct={self.total_mcqs_count - self.wrong_mcqs_count} | Incorrect={self.wrong_mcqs_count}")
-            print(f"⏱️ Oboe Time Spent Today (IST): {today_h}h {today_m}m")
-            if self.achieved_skills:
-                print("\nSkills Achieved / Leveled Up during this session:")
-                for skill, lv in self.achieved_skills.items():
-                    print(f"  - {skill}: {lv}")
-            else:
-                print("\nNo skill level-ups were recorded in this session.")
-            print("==================================================")
-
-            # Write final session summary to agent_state.json for Telegram notification
-            state_path = Path(__file__).resolve().parent / "agent_state.json"
-            try:
-                summary = {
-                    "status": "COMPLETED",
-                    "topic": self.topic or "Unknown",
-                    "elapsed_seconds": int(elapsed_time),
-                    "mcqs_total": self.total_mcqs_count,
-                    "mcqs_correct": self.total_mcqs_count - self.wrong_mcqs_count,
-                    "mcqs_wrong": self.wrong_mcqs_count,
-                    "today_ist_hours": today_h,
-                    "today_ist_minutes": today_m,
-                    "achieved_skills": self.achieved_skills or {}
-                }
-                state_path.write_text(json.dumps(summary, indent=4))
-            except Exception as se:
-                print(f"[WARNING] Failed to write final state: {se}")
+            self.save_summary(status="COMPLETED", start_time=start_time)

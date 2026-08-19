@@ -116,7 +116,14 @@ def format_run_status(run):
             conclusion = step.get("conclusion")
             
             if status == "completed":
-                icon = "✅" if conclusion == "success" else "❌"
+                if conclusion == "success":
+                    icon = "✅"
+                elif conclusion == "skipped":
+                    icon = "⏭️"
+                elif conclusion == "cancelled":
+                    icon = "🟡"
+                else:
+                    icon = "❌"
             elif status == "in_progress":
                 icon = "⏳"
             else:
