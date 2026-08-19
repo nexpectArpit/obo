@@ -78,11 +78,12 @@ async function handleUpdate(update, env) {
     ]
   };
 
-  // Handle Command /start or /menu
-  if (text === "/start" || text === "/menu") {
+  // Handle Command /start, /menu, menu, start
+  const cleanText = text ? text.trim().toLowerCase() : "";
+  if (cleanText === "/start" || cleanText === "/menu" || cleanText === "menu" || cleanText === "start") {
     await sendTelegram(token, "sendMessage", {
       chat_id: chatId,
-      text: "🎵 *Oboe Cloud Agent Controller*\n\nTap *🚀 Start Random* to launch a cloud session on GitHub Actions:",
+      text: "🎵 *Oboe Cloud Agent Controller*\n\nChoose an action:",
       parse_mode: "Markdown",
       reply_markup: menuKeyboard
     });
@@ -283,10 +284,18 @@ async function formatRunStatus(pat, repo, run) {
 }
 
 async function sendTelegram(token, method, payload) {
+  if (!token) {
+    console.error("[ERROR] TELEGRAM_BOT_TOKEN is missing in Cloudflare environment variables!");
+    return;
+  }
   const url = `https://api.telegram.org/bot${token}/${method}`;
-  await fetch(url, {
+  const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   });
+  if (!res.ok) {
+    const errText = await res.text();
+    console.error(`[ERROR] Telegram API (${method}) failed status ${res.status}: ${errText}`);
+  }
 }
