@@ -17,8 +17,8 @@
     "Electrodynamics": 1,
     "Hydrogeology": 1,
     "Hydrology": 1,
-    "Algorithms": 2,
-    "Code Tracing": 1,
+    "Algorithms": 3,
+    "Code Tracing": 2,
     "Data Structures": 1,
     "Algebra": 1,
     "Algorithm Analysis": 1,
@@ -46,5 +46,6 @@
     "Calling Conventions": 1,
     "Context Switching": 1,
     "Interrupt Handling": 1,
-    "Symmetric Multiprocessing": 1
+    "Symmetric Multiprocessing": 1,
+    "Dynamic Programming": 1
 }
