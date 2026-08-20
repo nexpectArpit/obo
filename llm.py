@@ -253,17 +253,16 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                 err_str = str(e)
                 print(f"[WARNING] Provider '{provider['type']}' failed: {e}")
                 
-                # Check for rate limit, timeout, 503, 401 auth error, or server error to trigger rotation
-                if any(k in err_str.lower() for k in ["rate_limit", "429", "limit exceeded", "timeout", "timed out", "503", "504", "500", "401", "auth", "invalid_api_key", "unauthorized"]):
-                    attempts += 1
-                    if attempts < max_attempts:
-                        self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
-                        next_prov = self.providers[self.current_provider_idx]
-                        masked_key = next_prov["api_key"][:8] + "..." + next_prov["api_key"][-4:] if len(next_prov["api_key"]) > 12 else "..."
-                        print(f"[INFO] Failover triggered! Rotating to provider: '{next_prov['type']}' ({next_prov['complex_model']}) with Key ({masked_key})...")
-                        continue
-
+                # Trigger failover on ANY exception to guarantee session continuation
+                attempts += 1
+                if attempts < max_attempts:
+                    self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                    next_prov = self.providers[self.current_provider_idx]
+                    masked_key = next_prov["api_key"][:8] + "..." + next_prov["api_key"][-4:] if len(next_prov["api_key"]) > 12 else "..."
+                    print(f"[INFO] Failover triggered! Rotating to provider: '{next_prov['type']}' ({next_prov['complex_model']}) with Key ({masked_key})...")
+                    continue
                 break
+
 
         # If all attempts are exhausted, raise an exception to stop the agent
         raise RuntimeError("All configured API keys / providers are exhausted or rate-limited.")
