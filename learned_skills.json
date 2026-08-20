@@ -47,5 +47,7 @@
     "Context Switching": 1,
     "Interrupt Handling": 1,
     "Symmetric Multiprocessing": 1,
-    "Dynamic Programming": 1
+    "Dynamic Programming": 4,
+    "Space Complexity Optimization": 1,
+    "String Algorithms": 2
 }

@@ -94,6 +94,11 @@
             "timestamp": 1787223651.5997384,
             "duration_seconds": 72,
             "topic": "what is kadane algorithm?"
+        },
+        {
+            "timestamp": 1787250353.8045092,
+            "duration_seconds": 1498,
+            "topic": "about dp in strings, i want to learn dp from scratch"
         }
     ]
 }
