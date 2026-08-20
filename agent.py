@@ -70,6 +70,26 @@ class OboeAgent:
             "topic": self.topic
         })
         
+        # Deduplicate concurrent/redundant sessions (same topic within 5 mins, or close timestamps within 5s)
+        deduplicated = []
+        for s in data["sessions"]:
+            is_dup = False
+            s_ts = s.get("timestamp", 0)
+            s_topic = s.get("topic", "")
+            for existing in deduplicated:
+                e_ts = existing.get("timestamp", 0)
+                e_topic = existing.get("topic", "")
+                if abs(s_ts - e_ts) < 300 and (s_topic == e_topic or abs(s_ts - e_ts) < 5):
+                    is_dup = True
+                    # Retain the session record with the longer duration
+                    if s.get("duration_seconds", 0) > existing.get("duration_seconds", 0):
+                        existing["duration_seconds"] = s["duration_seconds"]
+                        existing["timestamp"] = s_ts
+                    break
+            if not is_dup:
+                deduplicated.append(s)
+        data["sessions"] = deduplicated
+
         # Filter sessions to keep only the last 7 days (to prevent file growing indefinitely)
         one_week_ago = current_ts - (7 * 86400)
         data["sessions"] = [s for s in data["sessions"] if s.get("timestamp", 0) > one_week_ago]
@@ -79,6 +99,7 @@ class OboeAgent:
             tracker_path.write_text(json.dumps(data, indent=4))
         except Exception as e:
             print(f"[WARNING] Failed to write time_tracker.json: {e}")
+
             
         # 1. Calculate rolling 24h total
         twenty_four_hours_ago = current_ts - 86400
