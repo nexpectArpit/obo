@@ -189,6 +189,16 @@
             "timestamp": 1787223505.6562493,
             "duration_seconds": 1842,
             "topic": "i want to learn about the call interface mechanics and context switching overhead and will gain some skills to strengthen my understanding,lets go"
+        },
+        {
+            "timestamp": 1787223651.5997384,
+            "duration_seconds": 72,
+            "topic": "what is kadane algorithm?"
+        },
+        {
+            "timestamp": 1787223651.836764,
+            "duration_seconds": 72,
+            "topic": "what is kadane algorithm?"
         }
     ]
 }
