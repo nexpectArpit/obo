@@ -35,5 +35,8 @@
     "Military Engineering": 1,
     "World History": 2,
     "Consensus Protocols": 1,
-    "Fault-Tolerant Design": 1
+    "Fault-Tolerant Design": 1,
+    "Operating Systems": 1,
+    "System Calls": 1,
+    "System Programming": 1
 }
