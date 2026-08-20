@@ -5,6 +5,7 @@ import time
 from pathlib import Path
 from browser import OboeBrowser
 from llm import OboeLLM
+from skill_dag_engine import SkillDAGEngine
 import config
 
 
@@ -22,11 +23,15 @@ class OboeAgent:
         self.topic = topic
         self.browser = OboeBrowser(headless=headless)
         self.llm = OboeLLM()
+        self.dag_engine = SkillDAGEngine()
         self.resume = resume
         self.level_up = level_up
         self.target_skill = None
         self.target_level = None
+        self.active_pillar = None
+        self.active_node = None
         self.active_chat_start_time = None
+
         
         # Load learned skills history
         self.learned_skills_path = Path(__file__).resolve().parent / "learned_skills.json"
@@ -246,28 +251,15 @@ class OboeAgent:
                     lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
                     
                     if self.level_up:
-                        # Target level up list specifically
-                        combined = []
-                        for entry in lvl_list:
-                            if isinstance(entry, dict) and "topic" in entry:
-                                combined.append(("level_up", entry))
-                        
-                        if combined:
-                            choice_type, entry = random.choice(combined)
-                            self.topic = entry["topic"]
-                            self.target_skill = entry.get("associated_skill")
-                            self.target_level = entry.get("level_target")
-                            print(f"[INFO] Selected level-up learning topic: '{self.topic}' targeting skill '{self.target_skill}' to LV {self.target_level}")
-                        else:
-                            # Fallback if no level-up topics are available
-                            print("[WARNING] level_up_topics list is empty! Falling back to new_topics.")
-                            if new_list:
-                                chosen_topic = random.choice(new_list)
-                                self.topic = chosen_topic
-                                print(f"[INFO] Selected random fallback topic: '{self.topic}'")
-                            else:
-                                self.topic = "Quantum computing basics"
-                                print("[WARNING] topics.json is empty! Defaulting to 'Quantum computing basics'")
+                        # Use zero-LLM deterministic DAG Curriculum Manager
+                        resolved = self.dag_engine.resolve_next_topic()
+                        self.topic = resolved["topic"]
+                        self.target_skill = resolved.get("target_skill")
+                        self.target_level = resolved.get("target_level")
+                        self.active_pillar = resolved.get("pillar")
+                        self.active_node = resolved.get("node")
+                        print(f"[INFO] Selected DAG curriculum topic: '{self.topic}' (Pillar: '{resolved.get('pillar_name', self.active_pillar)}') targeting '{self.target_skill}' to LV {self.target_level}")
+
                     else:
                         combined = []
                         for t in new_list:
@@ -538,8 +530,14 @@ class OboeAgent:
             except Exception as se:
                 print(f"[WARNING] Failed to save learned_skills.json: {se}")
 
-            # Note: generate_related_topics() is deferred to preserve LLM token quotas
+            # Update DAG Curriculum Engine graph state based on actual achieved levels
+            if getattr(self, "active_pillar", None) and getattr(self, "active_node", None):
+                target_skill_name = self.target_skill or self.active_node.replace("_", " ")
+                achieved_lv = self.learned_skills.get(target_skill_name, 1)
+                self.dag_engine.update_skill_level(self.active_pillar, self.active_node, achieved_lv)
+
             if self.achieved_skills:
-                print(f"[INFO] Skills leveled up: {self.achieved_skills}. Topic generation deferred.")
+                print(f"[INFO] Skills leveled up: {self.achieved_skills}.")
 
             self.save_summary(status=self._final_status, start_time=start_time)
+

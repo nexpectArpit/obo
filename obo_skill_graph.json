@@ -1,0 +1,352 @@
+{
+  "version": "1.0",
+  "target_mastery_level": 25,
+  "pillars": {
+    "Computer_Architecture": {
+      "name": "Computer Architecture & Memory Systems",
+      "nodes": {
+        "Cache_Hierarchy": {
+          "topic": "Cache Hierarchies and Line Allocation Mechanics",
+          "level": 2,
+          "target_level": 3,
+          "status": "in_progress",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Cache Hierarchy",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Cache Hierarchy",
+            "alternative_tradeoffs": "Comparing Cache Hierarchy against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Virtual_Memory": {
+          "topic": "Virtual Memory Paging and TLB Management",
+          "level": 1,
+          "target_level": 2,
+          "status": "available",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Virtual Memory",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Virtual Memory",
+            "alternative_tradeoffs": "Comparing Virtual Memory against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Cache_Coherence": {
+          "topic": "Directory-Based MESI and MOESI Cache Coherence Protocols",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "Cache_Hierarchy"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Cache Coherence",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Cache Coherence",
+            "alternative_tradeoffs": "Comparing Cache Coherence against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "NUMA_Architecture": {
+          "topic": "Non-Uniform Memory Access (NUMA) Topology and Balancing",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "Virtual_Memory",
+            "Cache_Coherence"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind NUMA Architecture",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for NUMA Architecture",
+            "alternative_tradeoffs": "Comparing NUMA Architecture against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "CXL_Protocol": {
+          "topic": "Compute Express Link (CXL 3.0) Cache-Coherent Memory Fabrics",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "NUMA_Architecture"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind CXL Protocol",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for CXL Protocol",
+            "alternative_tradeoffs": "Comparing CXL Protocol against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "HBM3e_Optimization": {
+          "topic": "HBM3e Bank Conflict Mitigation and High-Bandwidth Interfaces",
+          "level": 5,
+          "target_level": 6,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "CXL_Protocol"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind HBM3e Optimization",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for HBM3e Optimization",
+            "alternative_tradeoffs": "Comparing HBM3e Optimization against competing approaches and time/space/complexity trade-offs"
+          }
+        }
+      }
+    },
+    "Algorithms_DSA": {
+      "name": "Algorithms & Data Structures",
+      "nodes": {
+        "Basic_Data_Structures": {
+          "topic": "Fundamental Data Structures and Hash Table Mechanics",
+          "level": 1,
+          "target_level": 2,
+          "status": "available",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Basic Data Structures",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Basic Data Structures",
+            "alternative_tradeoffs": "Comparing Basic Data Structures against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Sorting_Algorithms": {
+          "topic": "Sorting Algorithm Complexities and In-Place Tradeoffs",
+          "level": 1,
+          "target_level": 2,
+          "status": "available",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Sorting Algorithms",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Sorting Algorithms",
+            "alternative_tradeoffs": "Comparing Sorting Algorithms against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Shortest_Path": {
+          "topic": "Shortest Path Algorithms in Weighted Graphs (Dijkstra and Bellman-Ford)",
+          "level": 2,
+          "target_level": 3,
+          "status": "in_progress",
+          "attempts": 0,
+          "prerequisites": [
+            "Basic_Data_Structures"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Shortest Path",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Shortest Path",
+            "alternative_tradeoffs": "Comparing Shortest Path against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Dynamic_Programming": {
+          "topic": "Dynamic Programming Subproblem State Transitions and Memoization",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "Shortest_Path"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Dynamic Programming",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Dynamic Programming",
+            "alternative_tradeoffs": "Comparing Dynamic Programming against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Advanced_Graph_Theory": {
+          "topic": "Tarjan's Strongly Connected Components and Heavy-Light Decomposition",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "Dynamic_Programming"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Advanced Graph Theory",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Advanced Graph Theory",
+            "alternative_tradeoffs": "Comparing Advanced Graph Theory against competing approaches and time/space/complexity trade-offs"
+          }
+        }
+      }
+    },
+    "Operating_Systems": {
+      "name": "Operating Systems & Systems Programming",
+      "nodes": {
+        "System_Calls": {
+          "topic": "System Call Interface Mechanics and Context Switching Overhead",
+          "level": 1,
+          "target_level": 2,
+          "status": "available",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind System Calls",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for System Calls",
+            "alternative_tradeoffs": "Comparing System Calls against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Thread_Synchronization": {
+          "topic": "Thread Synchronization Mutexes Semaphores and Futexes",
+          "level": 1,
+          "target_level": 2,
+          "status": "available",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Thread Synchronization",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Thread Synchronization",
+            "alternative_tradeoffs": "Comparing Thread Synchronization against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Concurrency_Primitives": {
+          "topic": "Lock-Free Concurrency Primitives and Atomic Memory Barriers",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "Thread_Synchronization"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Concurrency Primitives",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Concurrency Primitives",
+            "alternative_tradeoffs": "Comparing Concurrency Primitives against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Kernel_Subsystems": {
+          "topic": "Linux Kernel CFS Scheduler and eBPF Tracing",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "System_Calls",
+            "Concurrency_Primitives"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Kernel Subsystems",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Kernel Subsystems",
+            "alternative_tradeoffs": "Comparing Kernel Subsystems against competing approaches and time/space/complexity trade-offs"
+          }
+        }
+      }
+    },
+    "Computer_Networking": {
+      "name": "Computer Networking & Distributed Protocols",
+      "nodes": {
+        "TCP_IP_Fundamentals": {
+          "topic": "TCP IP 3-Way Handshake Congestion Control and Flow Control",
+          "level": 1,
+          "target_level": 2,
+          "status": "available",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind TCP IP Fundamentals",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for TCP IP Fundamentals",
+            "alternative_tradeoffs": "Comparing TCP IP Fundamentals against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Consensus_Protocols": {
+          "topic": "Distributed Consensus Protocols Raft Paxos and PBFT",
+          "level": 1,
+          "target_level": 2,
+          "status": "available",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Consensus Protocols",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Consensus Protocols",
+            "alternative_tradeoffs": "Comparing Consensus Protocols against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "RDMA_Networking": {
+          "topic": "Remote Direct Memory Access over Converged Ethernet RoCEv2",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "TCP_IP_Fundamentals",
+            "Consensus_Protocols"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind RDMA Networking",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for RDMA Networking",
+            "alternative_tradeoffs": "Comparing RDMA Networking against competing approaches and time/space/complexity trade-offs"
+          }
+        }
+      }
+    },
+    "Deep_Learning_AI": {
+      "name": "Deep Learning & Artificial Intelligence",
+      "nodes": {
+        "Neural_Network_Basics": {
+          "topic": "Neural Network Forward Pass Backpropagation and Gradient Descent",
+          "level": 1,
+          "target_level": 2,
+          "status": "available",
+          "attempts": 0,
+          "prerequisites": [],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Neural Network Basics",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Neural Network Basics",
+            "alternative_tradeoffs": "Comparing Neural Network Basics against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "CNN_Architecture": {
+          "topic": "Convolutional Neural Networks Convolutions Pooling and Feature Maps",
+          "level": 2,
+          "target_level": 3,
+          "status": "in_progress",
+          "attempts": 0,
+          "prerequisites": [
+            "Neural_Network_Basics"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind CNN Architecture",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for CNN Architecture",
+            "alternative_tradeoffs": "Comparing CNN Architecture against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Transformer_Attention": {
+          "topic": "Transformer Multi-Head Self-Attention and FlashAttention Mechanics",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "CNN_Architecture"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Transformer Attention",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Transformer Attention",
+            "alternative_tradeoffs": "Comparing Transformer Attention against competing approaches and time/space/complexity trade-offs"
+          }
+        },
+        "Distributed_AI_Training": {
+          "topic": "Distributed AI Training Tensor Parallelism Pipeline Parallelism and ZeRO",
+          "level": 1,
+          "target_level": 2,
+          "status": "blocked",
+          "attempts": 0,
+          "prerequisites": [
+            "Transformer_Attention"
+          ],
+          "deep_anchors": {
+            "creator_motivation": "Historical design problem and motivation behind Distributed AI Training",
+            "edge_cases_and_test_cases": "Boundary failure modes, worst-case inputs, and edge test cases for Distributed AI Training",
+            "alternative_tradeoffs": "Comparing Distributed AI Training against competing approaches and time/space/complexity trade-offs"
+          }
+        }
+      }
+    }
+  },
+  "general_knowledge_topics": [
+    "The physics of hawking radiation and black hole thermodynamics",
+    "Understanding Kepler's laws of planetary motion",
+    "Analyzing desertification and soil wind erosion mechanics",
+    "Reviewing the history of silk road ancient trade routes"
+  ]
+}

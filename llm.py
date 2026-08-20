@@ -78,6 +78,12 @@ class OboeLLM:
             )
         return None
 
+    def _sanitize_human_text(self, text):
+        if not isinstance(text, str):
+            return text
+        # Replace em-dashes, en-dashes, and double hyphens with simple natural commas/periods
+        return text.replace("—", ", ").replace("–", ", ").replace("--", ", ")
+
     def _parse_json_response(self, text):
         """Safely extracts and parses JSON block from plain text response."""
         text = text.strip()
@@ -93,7 +99,11 @@ class OboeLLM:
                 text = parts[0].strip()
             except Exception:
                 pass
-        return json.loads(text)
+        parsed = json.loads(text)
+        if isinstance(parsed, dict) and "text" in parsed and isinstance(parsed["text"], str):
+            parsed["text"] = self._sanitize_human_text(parsed["text"])
+        return parsed
+
 
     def decide_action(self, state, messages, choices, learned_skills=None, target_skill=None, target_level=None):
         """Phase 5: LLM Integration.
@@ -127,11 +137,16 @@ INSTRUCTIONS FOR SELECTING THE CORRECT OPTION (suggested_replies):
 4. **Step-by-Step Reasoning:** In the "thought" field, write down your step-by-step reasoning explaining why you eliminated the incorrect choices and why your selected choice is the scientifically and contextually correct one.
 
 INSTRUCTIONS FOR WRITING FREE TEXT RESPONSES (free_text):
-1. **Demonstrate Comprehension via Rephrasing/Summary:** Look at Oboe's latest message in the dialogue history. Summarize/rephrase the core technical concept Oboe explained in simple, intuitive, human-like terms (using simplified analogies or conceptual terms). This triggers Oboe's understanding check and awards immediate skill points and levels.
-2. **Context-Aware Follow-Up:** 
-   - If Oboe's latest message ALREADY ends with a question or test prompt, answer/rephrase it directly. Do NOT append "can you ask me a question to test me?" when Oboe has already asked one.
-   - If Oboe's latest message did NOT ask a question, add a natural follow-up asking Oboe to test your understanding (e.g., "makes total sense! can you test me on this?").
+1. **Deep Conceptual Summary (Triggers Oboe's High-Value Points)**:
+   Do NOT give a superficial summary. Briefly demonstrate deep understanding by touching upon:
+   - Creator Motivation / Problem Intuition (Why was this approach invented? What original flaw did it solve?)
+   - Edge Cases & Failure Modes (Where does it break or run into edge test cases?)
+   - Alternative Trade-offs (Why choose this over competing approaches?)
+2. **Context-Aware Follow-Up**: 
+   - If Oboe's latest message ALREADY ends with a question or test prompt, answer/rephrase it directly with technical precision. Do NOT append "can you ask me a question to test me?" when Oboe has already asked one.
+   - If Oboe's latest message did NOT ask a question, ask Oboe to test you on a specific edge case or trade-off (e.g., "makes total sense... can you test me on how this handles edge test cases?").
 3. **Conversational Styling, Pauses & Typos:** Maintain your student persona. Write informally with casual lowercase/plain text, brief sentences, natural pauses (`...`), and occasional realistic minor typos (e.g., "realy", "so basicly...", "got it..."). NEVER use em-dashes (`—` or `--`), bullet points, or AI-style formal punctuation. Write like a real student quickly typing in a chat window.
+
 
 
 
