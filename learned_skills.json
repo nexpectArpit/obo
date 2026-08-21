@@ -53,7 +53,7 @@
     "Combinatorics": 1,
     "Search Algorithms": 1,
     "Deep Learning": 4,
-    "Machine Learning": 4,
+    "Machine Learning": 5,
     "Neural Networks": 4,
     "Gradient Descent": 1,
     "Convolutional Neural Networks": 2,
@@ -62,5 +62,8 @@
     "Attention Mechanisms": 4,
     "Transformers": 3,
     "Neural Network Optimization": 1,
-    "Optimization": 1
+    "Optimization": 1,
+    "Gradient Boosting": 2,
+    "Hyperparameter Tuning": 1,
+    "Model Deployment": 1
 }
