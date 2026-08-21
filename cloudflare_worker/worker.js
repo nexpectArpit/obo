@@ -82,7 +82,7 @@ async function handleUpdate(update, env) {
 
   const tracksKeyboard = {
     inline_keyboard: [
-      [{ text: "1. C++", callback_data: "pin_cpp" }, { text: "2. Computer Arch & Net", callback_data: "pin_arch" }],
+      [{ text: "1. CP / DSA", callback_data: "pin_cpp" }, { text: "2. Computer Arch & Net", callback_data: "pin_arch" }],
       [{ text: "3. OS", callback_data: "pin_os" }, { text: "4. Data Science", callback_data: "pin_ds" }],
       [{ text: "5. DL", callback_data: "pin_dl" }, { text: "6. Maths for DS", callback_data: "pin_maths" }],
       [{ text: "⬅️ Back to Menu", callback_data: "back_to_menu" }]
@@ -202,7 +202,7 @@ async function handleUpdate(update, env) {
   if (callbackData && callbackData.startsWith("pin_")) {
     const trackName = callbackData.replace("pin_", "");
     const trackDisplay = {
-      cpp: "1. C++",
+      cpp: "1. CP / DSA",
       arch: "2. Computer Arch & Net",
       os: "3. OS",
       ds: "4. Data Science",

@@ -160,7 +160,7 @@ def main_menu_keyboard():
 
 def tracks_menu_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("1. C++", callback_data="pin_cpp"),
+        [InlineKeyboardButton("1. CP / DSA", callback_data="pin_cpp"),
          InlineKeyboardButton("2. Computer Arch & Net", callback_data="pin_arch")],
         [InlineKeyboardButton("3. OS", callback_data="pin_os"),
          InlineKeyboardButton("4. Data Science", callback_data="pin_ds")],
@@ -216,7 +216,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif action.startswith("pin_"):
         track_name = action.replace("pin_", "")
         track_display = {
-            "cpp": "1. C++",
+            "cpp": "1. CP / DSA",
             "arch": "2. Computer Arch & Net",
             "os": "3. OS",
             "ds": "4. Data Science",
