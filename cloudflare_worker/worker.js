@@ -32,6 +32,57 @@ export default {
   }
 };
 
+const trackSkillMap = {
+  "cpp": [["DP", "Dynamic Programming"], ["Algo", "Algorithms"]],
+  "arch": [["Mem", "Memory Systems"], ["Arch", "Computer Architecture"]],
+  "os": [["SysCall", "System Calls"], ["OS", "Operating Systems"]],
+  "ds": [["ML", "Machine Learning"], ["Hyp", "Hypothesis Testing"]],
+  "dl": [["DL", "Deep Learning"], ["NN", "Neural Networks"]],
+  "maths": [["Alg", "Algebra"], ["Opt", "Optimization"]]
+};
+
+async function getDynamicTracksKeyboard(pat, repo) {
+  let skills = {};
+  try {
+    const r = await fetch(`https://api.github.com/repos/${repo}/contents/learned_skills.json`, {
+      headers: {
+        "Authorization": `Bearer ${pat}`,
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "cloudflare-worker-obo"
+      }
+    });
+    if (r.ok) {
+      const fileData = await r.json();
+      const decoded = atob(fileData.content.replace(/\s/g, ""));
+      skills = JSON.parse(decoded);
+    }
+  } catch (err) {
+    console.error("Failed to load dynamic skill levels from GitHub:", err);
+  }
+
+  function getBtnText(label, trackKey) {
+    const mappings = trackSkillMap[trackKey] || [];
+    const levels = [];
+    for (const [shortName, longName] of mappings) {
+      const lvl = skills[longName] !== undefined ? skills[longName] : 1;
+      levels.push(String(lvl));
+    }
+    if (levels.length > 0) {
+      return `${label} (${levels.join(", ")})`;
+    }
+    return label;
+  }
+
+  return {
+    inline_keyboard: [
+      [{ text: getBtnText("1. CP / DSA", "cpp"), callback_data: "pin_cpp" }, { text: getBtnText("2. Arch & Net", "arch"), callback_data: "pin_arch" }],
+      [{ text: getBtnText("3. OS", "os"), callback_data: "pin_os" }, { text: getBtnText("4. Data Science", "ds"), callback_data: "pin_ds" }],
+      [{ text: getBtnText("5. DL", "dl"), callback_data: "pin_dl" }, { text: getBtnText("6. Maths for DS", "maths"), callback_data: "pin_maths" }],
+      [{ text: "⬅️ Back to Menu", callback_data: "back_to_menu" }]
+    ]
+  };
+}
+
 async function handleUpdate(update, env) {
   const token = env.TELEGRAM_BOT_TOKEN ? env.TELEGRAM_BOT_TOKEN.trim() : "";
   const allowedUser = env.ALLOWED_TELEGRAM_USER_ID ? String(env.ALLOWED_TELEGRAM_USER_ID).trim() : "";
@@ -189,11 +240,12 @@ async function handleUpdate(update, env) {
 
   // Handle "📈 Focus Pinned Track" button
   if (callbackData === "level_up") {
+    const dynamicKeyboard = await getDynamicTracksKeyboard(pat, repo);
     await sendTelegram(token, "sendMessage", {
       chat_id: chatId,
       text: "📈 *Select Pinned Track to Focus:*\n\nChoose one of the 6 pinned tracks to run and progress in Oboe continuous chats:",
       parse_mode: "Markdown",
-      reply_markup: tracksKeyboard
+      reply_markup: dynamicKeyboard
     });
     return;
   }
