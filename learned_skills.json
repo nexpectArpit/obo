@@ -17,7 +17,7 @@
     "Electrodynamics": 1,
     "Hydrogeology": 1,
     "Hydrology": 1,
-    "Algorithms": 9,
+    "Algorithms": 11,
     "Code Tracing": 2,
     "Data Structures": 1,
     "Algebra": 1,
@@ -47,7 +47,7 @@
     "Context Switching": 1,
     "Interrupt Handling": 1,
     "Symmetric Multiprocessing": 1,
-    "Dynamic Programming": 9,
+    "Dynamic Programming": 11,
     "Space Complexity Optimization": 2,
     "String Algorithms": 2,
     "Combinatorics": 1,
@@ -65,5 +65,7 @@
     "Optimization": 1,
     "Gradient Boosting": 2,
     "Hyperparameter Tuning": 1,
-    "Model Deployment": 1
+    "Model Deployment": 1,
+    "Two Pointers Technique": 1,
+    "Tree Algorithms": 1
 }
