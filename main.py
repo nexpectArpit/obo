@@ -49,6 +49,8 @@ def main():
     learn_parser.add_argument("--headless", action="store_true", help="Run browser in headless mode")
     learn_parser.add_argument("--resume", action="store_true", help="Resume the most recent chat session from history")
     learn_parser.add_argument("--level-up", action="store_true", help="Only select level-up topics from topics.json")
+    learn_parser.add_argument("--pin", type=str, default=None, choices=["cpp", "arch", "os", "ds", "dl", "maths"],
+                              help="Pin a specific curriculum track (navigates to pinned Oboe chat)")
 
     args = parser.parse_args()
 
@@ -68,7 +70,7 @@ def main():
         else:
             print(f"Starting agent learning loop for topic: {args.topic}")
         
-        agent = OboeAgent(topic=args.topic, headless=args.headless, resume=args.resume, level_up=args.level_up)
+        agent = OboeAgent(topic=args.topic, headless=args.headless, resume=args.resume, level_up=args.level_up, pin=args.pin)
         agent.run()
 
 

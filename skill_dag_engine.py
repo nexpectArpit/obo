@@ -17,6 +17,17 @@ BASE_DIR = Path(__file__).resolve().parent
 GRAPH_PATH = BASE_DIR / "obo_skill_graph.json"
 LEARNED_SKILLS_PATH = BASE_DIR / "learned_skills.json"
 
+# Pinned Track Mastery: Maps short CLI names to track JSON filenames and pinned chat titles
+TRACK_FILES = {
+    "cpp":   "1_cpp.json",
+    "arch":  "2_computer_architecture_and_networking.json",
+    "os":    "3_os.json",
+    "ds":    "4_data_science.json",
+    "dl":    "5_dl.json",
+    "maths": "6_maths.json",
+}
+
+
 class SkillDAGEngine:
     def __init__(self, graph_path=None, learned_skills_path=None):
         self.graph_path = Path(graph_path) if graph_path else GRAPH_PATH
@@ -229,3 +240,99 @@ class SkillDAGEngine:
 
         self.update_prerequisite_statuses()
         self.save_graph()
+
+    # ─── PINNED TRACK MASTERY METHODS ─────────────────────────────
+
+    @staticmethod
+    def get_track_path(track_name):
+        """Resolve track JSON file path from short name."""
+        filename = TRACK_FILES.get(track_name)
+        if not filename:
+            raise ValueError(f"Unknown track '{track_name}'. Valid: {list(TRACK_FILES.keys())}")
+        return BASE_DIR / "tracks" / filename
+
+    @staticmethod
+    def load_track(track_name):
+        """Load a track JSON file."""
+        path = SkillDAGEngine.get_track_path(track_name)
+        if not path.exists():
+            raise FileNotFoundError(f"Track file not found: {path}")
+        with open(path, "r") as f:
+            return json.load(f)
+
+    @staticmethod
+    def save_track(track_name, data):
+        """Save updated track JSON file."""
+        path = SkillDAGEngine.get_track_path(track_name)
+        with open(path, "w") as f:
+            json.dump(data, f, indent=2)
+
+    @staticmethod
+    def resolve_next_track_topic(track_name):
+        """
+        Return the first uncovered sub-topic from the track.
+        Returns dict with: track_name, pinned_chat_title, topic_index, topic_name, prompt
+        Returns None if all topics are covered.
+        """
+        data = SkillDAGEngine.load_track(track_name)
+        pinned_chat_title = data.get("pinned_chat_title", "")
+
+        for idx, topic in enumerate(data.get("topics", [])):
+            if not topic.get("covered", False):
+                return {
+                    "track_name": track_name,
+                    "pinned_chat_title": pinned_chat_title,
+                    "topic_index": idx,
+                    "topic_name": topic["name"],
+                    "prompt": topic["prompt"],
+                }
+
+        # All topics covered — wrap around to first topic
+        print(f"[DAG ENGINE] All {len(data.get('topics', []))} topics in track '{track_name}' covered! Wrapping around.")
+        for topic in data.get("topics", []):
+            topic["covered"] = False
+        SkillDAGEngine.save_track(track_name, data)
+        first = data["topics"][0]
+        return {
+            "track_name": track_name,
+            "pinned_chat_title": pinned_chat_title,
+            "topic_index": 0,
+            "topic_name": first["name"],
+            "prompt": first["prompt"],
+        }
+
+    @staticmethod
+    def mark_topic_covered(track_name, topic_index, achieved_level=0):
+        """Mark a sub-topic as covered and record the level achieved."""
+        data = SkillDAGEngine.load_track(track_name)
+        topics = data.get("topics", [])
+        if 0 <= topic_index < len(topics):
+            topics[topic_index]["covered"] = True
+            topics[topic_index]["level_at_cover"] = achieved_level
+            SkillDAGEngine.save_track(track_name, data)
+            print(f"[DAG ENGINE] Track '{track_name}' topic #{topic_index} '{topics[topic_index]['name']}' marked covered (LV {achieved_level}).")
+
+    @staticmethod
+    def get_track_progress(track_name):
+        """Return progress stats for a track."""
+        data = SkillDAGEngine.load_track(track_name)
+        topics = data.get("topics", [])
+        covered = sum(1 for t in topics if t.get("covered", False))
+        return {
+            "total": len(topics),
+            "covered": covered,
+            "remaining": len(topics) - covered,
+            "percent": round(100 * covered / len(topics), 1) if topics else 0
+        }
+
+    @staticmethod
+    def get_all_tracks_progress():
+        """Return progress for all 6 tracks."""
+        result = {}
+        for track_name in TRACK_FILES:
+            try:
+                result[track_name] = SkillDAGEngine.get_track_progress(track_name)
+            except Exception:
+                result[track_name] = {"total": 0, "covered": 0, "remaining": 0, "percent": 0}
+        return result
+

@@ -38,7 +38,7 @@ def gh_headers():
         "X-GitHub-Api-Version": "2022-11-28"
     }
 
-def trigger_workflow(topic="random", resume=False, level_up=False):
+def trigger_workflow(topic="random", resume=False, level_up=False, pin="none"):
     """Trigger the GitHub Actions workflow."""
     url = f"{GH_API}/actions/workflows/{GH_WORKFLOW}/dispatches"
     payload = {
@@ -46,7 +46,8 @@ def trigger_workflow(topic="random", resume=False, level_up=False):
         "inputs": {
             "topic": topic,
             "resume": str(resume).lower(),
-            "level_up": str(level_up).lower()
+            "level_up": str(level_up).lower(),
+            "pin": str(pin)
         }
     }
     r = requests.post(url, headers=gh_headers(), json=payload)
@@ -150,11 +151,22 @@ def format_run_status(run):
 def main_menu_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🚀 Start Random", callback_data="start_random"),
-         InlineKeyboardButton("📈 Focus Level Up", callback_data="level_up")],
+         InlineKeyboardButton("📈 Focus Pinned Track", callback_data="level_up")],
         [InlineKeyboardButton("📚 Start Topic", callback_data="start_topic"),
          InlineKeyboardButton("🔄 Resume Last", callback_data="resume")],
         [InlineKeyboardButton("🛑 Stop Agent", callback_data="stop"),
          InlineKeyboardButton("📊 Status", callback_data="status")]
+    ])
+
+def tracks_menu_keyboard():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("1. C++", callback_data="pin_cpp"),
+         InlineKeyboardButton("2. Computer Arch & Net", callback_data="pin_arch")],
+        [InlineKeyboardButton("3. OS", callback_data="pin_os"),
+         InlineKeyboardButton("4. Data Science", callback_data="pin_ds")],
+        [InlineKeyboardButton("5. DL", callback_data="pin_dl"),
+         InlineKeyboardButton("6. Maths for DS", callback_data="pin_maths")],
+        [InlineKeyboardButton("⬅️ Back to Menu", callback_data="back_to_menu")]
     ])
 
 # ─── Handlers ────────────────────────────────────────────────────
@@ -172,7 +184,14 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     action = query.data
 
-    if action == "start_random":
+    if action == "back_to_menu":
+        await query.message.edit_text(
+            "🎵 *Oboe Learning Agent*\n\nChoose an action:",
+            parse_mode="Markdown",
+            reply_markup=main_menu_keyboard()
+        )
+
+    elif action == "start_random":
         success = trigger_workflow(topic="random", resume=False)
         if success:
             await query.message.reply_text(
@@ -188,17 +207,34 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                            reply_markup=main_menu_keyboard())
 
     elif action == "level_up":
-        success = trigger_workflow(topic="random", resume=False, level_up=True)
+        await query.message.edit_text(
+            "📈 *Select Pinned Track to Focus:*\n\nChoose one of the 6 pinned tracks to run and progress in Oboe continuous chats:",
+            parse_mode="Markdown",
+            reply_markup=tracks_menu_keyboard()
+        )
+
+    elif action.startswith("pin_"):
+        track_name = action.replace("pin_", "")
+        track_display = {
+            "cpp": "1. C++",
+            "arch": "2. Computer Arch & Net",
+            "os": "3. OS",
+            "ds": "4. Data Science",
+            "dl": "5. DL",
+            "maths": "6. Maths for DS"
+        }.get(track_name, track_name.upper())
+
+        success = trigger_workflow(topic="random", resume=False, pin=track_name)
         if success:
             await query.message.reply_text(
-                "📈 *Focus Level Up started!*\n\n"
-                "The agent will target your existing skills to level them up.\n\n"
+                f"🎯 *Focus Mode active on Pinned Track: {track_display}*\n\n"
+                "The agent will open the corresponding pinned chat in the sidebar and process the next sub-topic.\n\n"
                 "Tap 📊 Status to track progress.",
                 parse_mode="Markdown",
                 reply_markup=main_menu_keyboard()
             )
         else:
-            await query.message.reply_text("❌ Failed to trigger workflow. Check your GH\\_PAT permissions.",
+            await query.message.reply_text(f"❌ Failed to trigger workflow for {track_display}.",
                                            reply_markup=main_menu_keyboard())
 
     elif action == "resume":

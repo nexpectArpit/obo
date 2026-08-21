@@ -1,0 +1,595 @@
+{
+  "track_name": "cpp",
+  "pinned_chat_title": "cpp",
+  "description": "C++ Programming \u2014 From fundamentals to compiler internals",
+  "topics": [
+    {
+      "name": "Fundamental Data Types",
+      "prompt": "lets talk about all fundamental data types in cpp, int, float, double, char, bool, void, wchar_t, size_t, their sizes, ranges, and when to use each one",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Type Casting",
+      "prompt": "explain static_cast, dynamic_cast, const_cast, reinterpret_cast in cpp with examples of when each is needed and pitfalls",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Auto and Decltype",
+      "prompt": "how does auto type deduction work in cpp, what about decltype, trailing return types, and auto with references and const",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Type Traits",
+      "prompt": "explain type traits in cpp like is_integral, is_floating_point, is_same, enable_if, how SFINAE uses them for template metaprogramming",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Control Flow Statements",
+      "prompt": "lets go deep into cpp control flow, if else, switch with fallthrough, for while do-while loops, range-based for, goto and when its actually used, ternary operator edge cases",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Functions and Overloading",
+      "prompt": "explain pass by value vs reference vs pointer in cpp, default arguments, function overloading resolution rules, inline functions, and why the compiler sometimes ignores inline",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Lambda Expressions",
+      "prompt": "deep dive into cpp lambdas, capture by value vs reference, mutable lambdas, generic lambdas, immediately invoked lambdas, and lambda vs std::function performance",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Variadic Functions and Templates",
+      "prompt": "explain variadic functions with va_list in c-style and variadic templates in modern cpp, parameter packs, fold expressions, recursive template expansion",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Raw Pointers",
+      "prompt": "explain raw pointers in cpp, pointer arithmetic, pointer to pointer, void pointers, function pointers, dangling pointers, and common pointer bugs",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Smart Pointers",
+      "prompt": "deep dive into unique_ptr, shared_ptr, weak_ptr in cpp, control block internals, custom deleters, make_shared vs new, circular reference problem and how weak_ptr solves it",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "RAII Pattern",
+      "prompt": "what is RAII in cpp, how constructors and destructors manage resources, examples with file handles, mutex locks, database connections, and why RAII is cpp's answer to garbage collection",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Memory Management",
+      "prompt": "new vs malloc in cpp, placement new, memory alignment, memory leaks detection, valgrind, address sanitizer, and custom allocators",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Classes and Constructors",
+      "prompt": "explain cpp classes, default constructor, parameterized, copy constructor deep vs shallow copy, move constructor, delegating constructors, and explicit keyword",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Destructors and Rule of 3/5/0",
+      "prompt": "cpp destructors, virtual destructors, rule of three, rule of five, rule of zero, when you need each, and what happens if you violate these rules",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Inheritance",
+      "prompt": "single inheritance, multiple inheritance, virtual inheritance, diamond problem in cpp, how vtable resolves virtual dispatch, and access specifiers with inheritance",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Polymorphism",
+      "prompt": "compile time vs runtime polymorphism in cpp, function overloading, operator overloading, virtual functions, pure virtual functions, abstract classes, vtable and vptr internals",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Operator Overloading",
+      "prompt": "operator overloading in cpp, arithmetic operators, comparison, stream insertion extraction, assignment, subscript, function call operator, and rules about which can be overloaded",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Friend Functions and Classes",
+      "prompt": "friend functions and friend classes in cpp, when and why to use them, how they break encapsulation, and alternatives to friend",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Static Members",
+      "prompt": "static member variables and static member functions in cpp, static initialization order fiasco, meyers singleton pattern, and thread safety of static locals",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Function Templates",
+      "prompt": "function templates in cpp, template argument deduction, explicit specialization, partial ordering rules, and how the compiler generates code from templates",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Class Templates",
+      "prompt": "class templates in cpp, template parameters (type, non-type, template template), default template arguments, and dependent names with typename keyword",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Template Specialization",
+      "prompt": "full specialization vs partial specialization of templates in cpp, when to use each, how the compiler selects specializations, and common patterns like type traits",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "SFINAE",
+      "prompt": "what is SFINAE in cpp, substitution failure is not an error, how enable_if works, void_t pattern, detection idiom, and how concepts replaced SFINAE in cpp20",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Concepts C++20",
+      "prompt": "cpp20 concepts, requires clauses, requires expressions, standard concepts like integral and floating_point, how to write custom concepts, and how they improve error messages vs SFINAE",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Vector",
+      "prompt": "std::vector internals in cpp, dynamic array growth strategy, capacity vs size, reserve vs resize, emplace_back vs push_back, iterator invalidation rules, and memory layout",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Deque and List",
+      "prompt": "std::deque internal block structure vs std::list doubly linked list in cpp, when to choose each, performance comparison, iterator stability, and memory overhead",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Set and Map",
+      "prompt": "std::set and std::map red-black tree internals in cpp, insert find erase complexity, custom comparators, std::multiset, std::multimap, and lower_bound upper_bound usage",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Unordered Containers",
+      "prompt": "unordered_set and unordered_map hash table internals in cpp, bucket arrays, load factor, rehashing, custom hash functions, and collision resolution chaining",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Stack Queue Priority Queue",
+      "prompt": "std::stack, std::queue, std::priority_queue as container adapters in cpp, underlying containers, custom comparators for priority queue, and when to use each",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Array Bitset Pair Tuple",
+      "prompt": "std::array vs c-style array, std::bitset operations, std::pair and std::tuple, structured bindings, std::tie, and std::get with compile time indexing",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Algorithms Sorting",
+      "prompt": "std::sort introsort, stable_sort merge sort, partial_sort heap, nth_element in cpp, complexity guarantees, custom comparators, and when to pick each",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Algorithms Searching",
+      "prompt": "binary_search, lower_bound, upper_bound, equal_range, find, find_if, count, count_if in cpp, preconditions for binary search algorithms, and linear vs logarithmic complexity",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Algorithms Transformations",
+      "prompt": "transform, accumulate, reduce, inner_product, partial_sum, adjacent_difference in cpp, and parallel execution policies from cpp17",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "STL Algorithms Permutations",
+      "prompt": "next_permutation, prev_permutation, partition, stable_partition, partition_point, rotate, reverse, unique, remove_if erase idiom in cpp",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Iterators Deep Dive",
+      "prompt": "iterator categories in cpp, input output forward bidirectional random access, iterator traits, reverse iterators, insert iterators back_inserter front_inserter, stream iterators, and custom iterator implementation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Linked List Implementation",
+      "prompt": "implement singly linked list, doubly linked list, circular linked list from scratch in cpp, insert delete search reverse operations, and edge cases",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stack and Queue Implementation",
+      "prompt": "implement stack using array and linked list, queue using array and linked list, circular queue, double ended queue from scratch in cpp",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Binary Tree and BST",
+      "prompt": "implement binary tree, binary search tree in cpp, insert search delete, inorder preorder postorder level-order traversal, height balanced check, and lowest common ancestor",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "AVL Tree",
+      "prompt": "AVL tree implementation in cpp, rotations left right left-right right-left, balance factor, insert and delete with rebalancing, and time complexity analysis",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Red-Black Tree",
+      "prompt": "red-black tree properties and implementation in cpp, insertion cases, deletion cases, color flips and rotations, comparison with AVL tree, and why stl map uses it",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "B-Tree and B+ Tree",
+      "prompt": "B-tree and B+ tree structure in cpp, why they are used in databases and file systems, insertion splitting, deletion merging, minimum degree, and disk access optimization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Trie Data Structure",
+      "prompt": "trie prefix tree implementation in cpp, insert search delete, space optimization with compressed trie, applications in autocomplete, spell check, and IP routing",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Segment Tree",
+      "prompt": "segment tree for range queries in cpp, build query update operations, lazy propagation, persistent segment tree, and applications like range min max sum",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Fenwick Tree BIT",
+      "prompt": "binary indexed tree Fenwick tree in cpp, point update and prefix sum query, 2D BIT, comparison with segment tree, and when to prefer BIT over segment tree",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Disjoint Set Union-Find",
+      "prompt": "union-find disjoint set data structure in cpp, union by rank, path compression, inverse Ackermann amortized complexity, and applications in Kruskal and connected components",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hash Table Implementation",
+      "prompt": "hash table from scratch in cpp, hash functions, chaining vs open addressing linear probing quadratic probing double hashing, load factor, rehashing, and Robin Hood hashing",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Heap and Priority Queue Impl",
+      "prompt": "min-heap and max-heap implementation using array in cpp, heapify, insert extract, build heap in O(n), heap sort, and d-ary heaps",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Skip List",
+      "prompt": "skip list probabilistic data structure in cpp, multi-level linked list, insert search delete with expected O(log n), comparison with balanced BSTs, and randomized algorithms",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bloom Filter",
+      "prompt": "bloom filter probabilistic data structure in cpp, false positive rate calculation, multiple hash functions, bit array, applications in caching and databases, and counting bloom filters",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bubble Selection Insertion Sort",
+      "prompt": "implement bubble sort, selection sort, insertion sort in cpp, time complexity best average worst case, space complexity, stability, and adaptive behavior of insertion sort",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Merge Sort",
+      "prompt": "merge sort implementation in cpp, divide and conquer, merge procedure, time complexity O(n log n) guaranteed, space complexity O(n), stability, and bottom-up iterative version",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quick Sort",
+      "prompt": "quick sort implementation in cpp, partition schemes Lomuto vs Hoare, pivot selection strategies random median-of-three, worst case, tail call optimization, and 3-way partitioning for duplicates",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Heap Sort",
+      "prompt": "heap sort using max-heap in cpp, in-place sorting, build heap O(n), overall O(n log n), not stable, and comparison with merge sort and quick sort",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Counting Radix Bucket Sort",
+      "prompt": "non-comparison based sorting in cpp, counting sort O(n+k), radix sort LSD vs MSD, bucket sort, when each is applicable, and their stability properties",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Binary Search Variations",
+      "prompt": "binary search and its variations in cpp, first occurrence, last occurrence, lower bound, upper bound, search in rotated sorted array, peak element, and square root using binary search",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Representation",
+      "prompt": "graph representation in cpp, adjacency matrix vs adjacency list, edge list, weighted graphs, directed vs undirected, and space-time tradeoffs of each representation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "BFS and DFS",
+      "prompt": "breadth-first search and depth-first search implementation in cpp, iterative vs recursive DFS, BFS for shortest path in unweighted graph, DFS for cycle detection, and connected components",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dijkstra Algorithm",
+      "prompt": "Dijkstra shortest path algorithm in cpp, using priority queue, relaxation, why it fails with negative edges, time complexity with binary heap vs fibonacci heap, and path reconstruction",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bellman-Ford Algorithm",
+      "prompt": "Bellman-Ford algorithm in cpp, handles negative edges, V-1 relaxations, negative cycle detection, comparison with Dijkstra, and SPFA optimization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Floyd-Warshall Algorithm",
+      "prompt": "Floyd-Warshall all-pairs shortest path in cpp, dynamic programming approach, O(V^3) complexity, path reconstruction, transitive closure, and detecting negative cycles",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "A* Search Algorithm",
+      "prompt": "A star pathfinding algorithm in cpp, heuristic functions Manhattan Euclidean Chebyshev, admissibility and consistency, comparison with Dijkstra, and applications in game AI and robotics",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Minimum Spanning Tree",
+      "prompt": "Kruskal and Prim MST algorithms in cpp, Kruskal with union-find, Prim with priority queue, cut property, comparison of both, and Boruvka's algorithm",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Topological Sort",
+      "prompt": "topological sort in cpp using DFS and BFS Kahn's algorithm, DAG detection, applications in build systems task scheduling dependency resolution, and lexicographic ordering",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Strongly Connected Components",
+      "prompt": "Tarjan's and Kosaraju's algorithms for SCC in cpp, condensation graph, 2-SAT reduction to SCC, and applications in compiler optimization and social networks",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Network Flow",
+      "prompt": "max flow problem in cpp, Ford-Fulkerson method, Edmonds-Karp BFS implementation, min-cut max-flow theorem, bipartite matching via flow, and Dinic's algorithm",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kadane's Algorithm",
+      "prompt": "Kadane's algorithm for maximum subarray sum in cpp, handling all negative arrays, tracking start and end indices, circular maximum subarray, and 2D maximum submatrix extension",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "KMP String Matching",
+      "prompt": "KMP pattern matching algorithm in cpp, failure function prefix function construction, why it achieves O(n+m), comparison with brute force, and applications in text search",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Rabin-Karp and Z-Algorithm",
+      "prompt": "Rabin-Karp rolling hash string matching in cpp, hash collision handling, Z-algorithm for pattern matching, Z-array construction, and comparison with KMP",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming Fundamentals",
+      "prompt": "dynamic programming in cpp, overlapping subproblems, optimal substructure, memoization vs tabulation, fibonacci example, and how to identify DP problems",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "DP Classic Problems 1",
+      "prompt": "solve longest common subsequence, longest increasing subsequence, edit distance in cpp with full DP table construction, space optimization techniques, and backtracking the solution",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "DP Classic Problems 2",
+      "prompt": "solve 0/1 knapsack, unbounded knapsack, coin change min coins and number of ways, rod cutting in cpp with DP tables and space optimization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "DP Classic Problems 3",
+      "prompt": "matrix chain multiplication, palindrome partitioning, word break, egg drop problem in cpp using dynamic programming with complexity analysis",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "DP on Trees and Graphs",
+      "prompt": "dynamic programming on trees in cpp, tree diameter, tree DP for independent set, rerooting technique, and DP on DAGs with topological ordering",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "DP with Bitmask",
+      "prompt": "bitmask DP in cpp, traveling salesman problem, assignment problem, subset enumeration, Gosper's hack, and state compression techniques",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Greedy Algorithms",
+      "prompt": "greedy algorithms in cpp, activity selection, fractional knapsack, Huffman coding, job scheduling with deadlines, and proving greedy correctness with exchange argument",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Backtracking",
+      "prompt": "backtracking in cpp, N-queens problem, sudoku solver, permutations and combinations generation, subset sum, and pruning strategies to optimize backtracking",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Divide and Conquer",
+      "prompt": "divide and conquer paradigm in cpp beyond merge sort, closest pair of points, Strassen matrix multiplication, convex hull, and master theorem for recurrences",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Computational Geometry",
+      "prompt": "computational geometry in cpp, convex hull Graham scan Jarvis march, line intersection, point in polygon, closest pair of points, and sweep line algorithms",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Number Theory for CP",
+      "prompt": "number theory in cpp for competitive programming, sieve of Eratosthenes, GCD Euclidean algorithm, modular exponentiation, modular inverse, Chinese remainder theorem, and Euler's totient",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multithreading std::thread",
+      "prompt": "cpp multithreading with std::thread, creating and joining threads, passing arguments, detach vs join, thread id, hardware_concurrency, and data races",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Mutex and Lock Guards",
+      "prompt": "std::mutex, std::lock_guard, std::unique_lock, std::scoped_lock in cpp, deadlock prevention with lock ordering, try_lock, and timed_mutex",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Condition Variables",
+      "prompt": "std::condition_variable in cpp, producer-consumer pattern, wait with predicate, notify_one vs notify_all, spurious wakeups, and implementing bounded buffer",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Atomic Operations",
+      "prompt": "std::atomic in cpp, memory ordering relaxed acquire release seq_cst, compare_exchange_strong vs weak, lock-free programming basics, and ABA problem",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Future Promise Async",
+      "prompt": "std::future, std::promise, std::async in cpp, launch policies async vs deferred, shared_future, and implementing thread pool with futures",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Lock-Free Data Structures",
+      "prompt": "lock-free stack and queue in cpp using atomics, CAS loops, memory reclamation hazard pointers epoch-based, and why lock-free is hard to get right",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Move Semantics Deep Dive",
+      "prompt": "move semantics in cpp, rvalue references, std::move, perfect forwarding with std::forward, universal references, and how move semantics optimize performance",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Copy and Move Elision",
+      "prompt": "copy elision and RVO NRVO in cpp, guaranteed copy elision in cpp17, when the compiler can and cannot elide copies, and prvalue materialization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "constexpr and Compile-Time",
+      "prompt": "constexpr functions and variables in cpp, consteval, constinit, compile-time evaluation, constexpr if, and using constexpr for lookup tables and compile-time checks",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Exception Handling",
+      "prompt": "exception handling in cpp, try catch throw, exception hierarchy, noexcept specification, stack unwinding, RAII and exception safety guarantees basic strong nothrow, and why not to throw in destructors",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Custom Allocators",
+      "prompt": "custom memory allocators in cpp, arena allocator, pool allocator, stack allocator, std::allocator_traits, pmr polymorphic memory resources, and when custom allocators improve performance",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Design Patterns in C++",
+      "prompt": "common design patterns implemented in cpp, singleton, factory, observer, strategy, CRTP curiously recurring template pattern, pimpl idiom, and type erasure",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Ranges Library C++20",
+      "prompt": "cpp20 ranges library, views and actions, pipe operator, lazy evaluation, range adaptors filter transform take drop reverse zip, and composing range pipelines",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Coroutines C++20",
+      "prompt": "cpp20 coroutines deep dive, co_await co_yield co_return, promise_type, coroutine_handle, coroutine frame, generator implementation, and async task implementation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Undefined Behavior",
+      "prompt": "undefined behavior in cpp, common UB examples signed overflow null deref dangling reference strict aliasing, how compilers exploit UB for optimization, and sanitizers to detect UB",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Compiler Optimizations",
+      "prompt": "compiler optimizations in cpp, inlining, loop unrolling, vectorization SIMD auto-vectorization, dead code elimination, constant folding, devirtualization, and how to write optimization-friendly code",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Name Mangling and Linkage",
+      "prompt": "name mangling in cpp, extern C for C compatibility, internal vs external linkage, static in namespace scope, anonymous namespaces, and ODR one definition rule",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "C++17 Features",
+      "prompt": "cpp17 features overview, structured bindings, if constexpr, std::optional, std::variant, std::any, std::filesystem, string_view, fold expressions, and parallel algorithms",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "C++20 Features",
+      "prompt": "cpp20 features overview, concepts and constraints, ranges library, coroutines, modules, three-way comparison spaceship operator, std::span, and std::format",
+      "covered": false,
+      "level_at_cover": 0
+    }
+  ]
+}

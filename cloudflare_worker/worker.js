@@ -74,9 +74,18 @@ async function handleUpdate(update, env) {
 
   const menuKeyboard = {
     inline_keyboard: [
-      [{ text: "🚀 Start Random", callback_data: "start_random" }, { text: "📈 Focus Level Up", callback_data: "level_up" }],
+      [{ text: "🚀 Start Random", callback_data: "start_random" }, { text: "📈 Focus Pinned Track", callback_data: "level_up" }],
       [{ text: "📚 Start Topic", callback_data: "start_topic" }, { text: "🔄 Resume Last", callback_data: "resume" }],
       [{ text: "🛑 Stop Agent", callback_data: "stop" }, { text: "📊 Status", callback_data: "status" }]
+    ]
+  };
+
+  const tracksKeyboard = {
+    inline_keyboard: [
+      [{ text: "1. C++", callback_data: "pin_cpp" }, { text: "2. Computer Arch & Net", callback_data: "pin_arch" }],
+      [{ text: "3. OS", callback_data: "pin_os" }, { text: "4. Data Science", callback_data: "pin_ds" }],
+      [{ text: "5. DL", callback_data: "pin_dl" }, { text: "6. Maths for DS", callback_data: "pin_maths" }],
+      [{ text: "⬅️ Back to Menu", callback_data: "back_to_menu" }]
     ]
   };
 
@@ -125,7 +134,7 @@ async function handleUpdate(update, env) {
       return;
     }
 
-    const ok = await triggerGitHubWorkflow(pat, repo, workflow, customTopic, false, false);
+    const ok = await triggerGitHubWorkflow(pat, repo, workflow, customTopic, false, false, "none");
     const replyText = ok
       ? `📚 *Started Topic Session:* _${customTopic}_\n\nGitHub Actions runner is booting up.`
       : "❌ *Failed to trigger workflow on GitHub.*";
@@ -133,6 +142,17 @@ async function handleUpdate(update, env) {
     await sendTelegram(token, "sendMessage", {
       chat_id: chatId,
       text: replyText,
+      parse_mode: "Markdown",
+      reply_markup: menuKeyboard
+    });
+    return;
+  }
+
+  // Handle "back_to_menu" button
+  if (callbackData === "back_to_menu") {
+    await sendTelegram(token, "sendMessage", {
+      chat_id: chatId,
+      text: "🎵 *Oboe Cloud Agent Controller*\n\nChoose an action:",
       parse_mode: "Markdown",
       reply_markup: menuKeyboard
     });
@@ -152,7 +172,7 @@ async function handleUpdate(update, env) {
 
   // Handle "🚀 Start Random" button
   if (callbackData === "start_random") {
-    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, false);
+    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, false, "none");
     
     const replyText = ok
       ? "🚀 *Random Learning Session Triggered!*\n\nGitHub Actions runner is booting up.\nYou will receive session summary when complete."
@@ -167,13 +187,33 @@ async function handleUpdate(update, env) {
     return;
   }
 
-  // Handle "📈 Focus Level Up" button
+  // Handle "📈 Focus Pinned Track" button
   if (callbackData === "level_up") {
-    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, true);
-    
+    await sendTelegram(token, "sendMessage", {
+      chat_id: chatId,
+      text: "📈 *Select Pinned Track to Focus:*\n\nChoose one of the 6 pinned tracks to run and progress in Oboe continuous chats:",
+      parse_mode: "Markdown",
+      reply_markup: tracksKeyboard
+    });
+    return;
+  }
+
+  // Handle "pin_*" callbacks
+  if (callbackData && callbackData.startsWith("pin_")) {
+    const trackName = callbackData.replace("pin_", "");
+    const trackDisplay = {
+      cpp: "1. C++",
+      arch: "2. Computer Arch & Net",
+      os: "3. OS",
+      ds: "4. Data Science",
+      dl: "5. DL",
+      maths: "6. Maths for DS"
+    }[trackName] || trackName.toUpperCase();
+
+    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, false, trackName);
     const replyText = ok
-      ? "📈 *Focus Level Up Session Triggered!*\n\nGitHub Actions runner is booting up in Level-Up mode."
-      : "❌ *Failed to trigger workflow on GitHub.*";
+      ? `🎯 *Focus Mode active on Pinned Track: ${trackDisplay}*\n\nThe agent will open the corresponding pinned chat in the sidebar and process the next sub-topic.`
+      : `❌ *Failed to trigger workflow on GitHub for ${trackDisplay}.*`;
 
     await sendTelegram(token, "sendMessage", {
       chat_id: chatId,
@@ -186,7 +226,7 @@ async function handleUpdate(update, env) {
 
   // Handle "🔄 Resume Last" button
   if (callbackData === "resume") {
-    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", true, false);
+    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", true, false, "none");
     
     const replyText = ok
       ? "🔄 *Resume Last Session Triggered!*\n\nGitHub Actions runner is resuming your previous chat."
@@ -247,7 +287,7 @@ async function handleUpdate(update, env) {
 }
 
 // GitHub REST API Integration
-async function triggerGitHubWorkflow(pat, repo, workflow, topic, resume, levelUp) {
+async function triggerGitHubWorkflow(pat, repo, workflow, topic, resume, levelUp, pin = "none") {
   const url = `https://api.github.com/repos/${repo}/actions/workflows/${workflow}/dispatches`;
   const r = await fetch(url, {
     method: "POST",
@@ -261,7 +301,8 @@ async function triggerGitHubWorkflow(pat, repo, workflow, topic, resume, levelUp
       inputs: {
         topic: topic,
         resume: String(resume),
-        level_up: String(levelUp)
+        level_up: String(levelUp),
+        pin: String(pin)
       }
     })
   });

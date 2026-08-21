@@ -19,18 +19,23 @@ except Exception:
 
 
 class OboeAgent:
-    def __init__(self, topic="random", headless=False, resume=False, level_up=False):
+    def __init__(self, topic="random", headless=False, resume=False, level_up=False, pin=None):
         self.topic = topic
         self.browser = OboeBrowser(headless=headless)
         self.llm = OboeLLM()
         self.dag_engine = SkillDAGEngine()
         self.resume = resume
         self.level_up = level_up
+        self.pin = pin  # Pinned track name (e.g. "cpp", "os", "dl")
         self.target_skill = None
         self.target_level = None
         self.active_pillar = None
         self.active_node = None
         self.active_chat_start_time = None
+        # Pinned track session state
+        self.active_track_name = None
+        self.active_track_topic_index = None
+        self.active_track_chat_title = None
 
         
         # Load learned skills history
@@ -168,6 +173,69 @@ class OboeAgent:
         except Exception as se:
             print(f"[WARNING] Failed to write state file: {se}")
 
+    def _setup_pinned_track_session(self, state_data, state_path):
+        """Helper to resolve next topic for pinned track and navigate to its sidebar chat."""
+        from skill_dag_engine import SkillDAGEngine
+        resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
+        self.active_track_name = resolved["track_name"]
+        self.active_track_topic_index = resolved["topic_index"]
+        self.active_track_chat_title = resolved["pinned_chat_title"]
+        self.topic = resolved["topic_name"]
+        track_prompt = resolved["prompt"]
+
+        print(f"\n{'='*60}")
+        print(f"[PINNED TRACK] Track: {self.pin}")
+        print(f"[PINNED TRACK] Chat: '{self.active_track_chat_title}'")
+        print(f"[PINNED TRACK] Topic #{resolved['topic_index']}: {self.topic}")
+        print(f"[PINNED TRACK] Prompt: {track_prompt[:100]}...")
+        print(f"{'='*60}\n")
+
+        # Navigate to the pinned chat in the sidebar
+        # Open sidebar if needed
+        trigger = self.browser.page.locator('[data-sidebar="trigger"]')
+        if trigger.count() > 0 and trigger.first.is_visible():
+            trigger.first.click()
+            time.sleep(2)
+
+        # Look for the pinned chat link in the PINNED section
+        pinned_title = self.active_track_chat_title
+        # Try matching by partial text in sidebar links
+        all_links = self.browser.page.locator('a[href*="/chat/"]').all()
+        target_link = None
+        for link in all_links:
+            link_text = (link.text_content() or "").strip()
+            if pinned_title.lower() in link_text.lower() or link_text.lower() in pinned_title.lower():
+                target_link = link
+                break
+
+        if target_link:
+            chat_href = target_link.get_attribute("href") or ""
+            print(f"[PINNED TRACK] Found pinned chat: '{pinned_title}' -> {chat_href}")
+            target_link.click()
+            time.sleep(5)
+            # Type the sub-topic prompt into the existing chat
+            self.browser.type_and_submit(track_prompt)
+            self.active_chat_start_time = time.time()
+            time.sleep(5)
+        else:
+            print(f"[WARNING] Could not find pinned chat '{pinned_title}' in sidebar. Falling back to new chat.")
+            # Fallback: start a new chat with the topic
+            new_chat_btn = self.browser.page.locator('button').filter(has_text="New Chat")
+            if new_chat_btn.count() > 0:
+                new_chat_btn.first.click()
+                time.sleep(3)
+            self.browser.type_and_submit(track_prompt)
+            self.active_chat_start_time = time.time()
+            time.sleep(5)
+
+        # Update state file
+        state_data["topic"] = self.topic
+        state_data["pinned_track"] = self.pin
+        try:
+            state_path.write_text(json.dumps(state_data, indent=4))
+        except Exception:
+            pass
+
     def run(self):
         """Run the main observe-reason-act loop."""
         import signal, sys
@@ -250,119 +318,125 @@ class OboeAgent:
                     self.resume = False
 
             if not self.resume:
-                # If the browser defaults to an active chat page, force a fresh session
-                current_url = self.browser.page.url
-                if "/chat/" in current_url:
-                    print("[INFO] Active chat page detected on startup. Navigating to New Chat dashboard...")
-                    # Toggle sidebar trigger to ensure New Chat button is clickable
-                    trigger = self.browser.page.locator('[data-sidebar="trigger"]')
-                    if trigger.count() > 0:
-                        trigger.first.click()
-                        time.sleep(1.5)
-                    
-                    new_chat_btn = self.browser.page.locator('button').filter(has_text="New Chat")
-                    if new_chat_btn.count() > 0:
-                        new_chat_btn.first.click()
-                        print("[INFO] Clicked 'New Chat' button successfully.")
-                        time.sleep(3)
+                # ──── PINNED TRACK MODE ────────────────────────────────
+                if self.pin:
+                    self._setup_pinned_track_session(state_data, state_path)
 
-                # If topic is random, select one from the list
-                if self.topic == "random":
+                # ──── NORMAL MODE (Random / Level-Up / Custom Topic) ───
+                else:
+                    # If the browser defaults to an active chat page, force a fresh session
+                    current_url = self.browser.page.url
+                    if "/chat/" in current_url:
+                        print("[INFO] Active chat page detected on startup. Navigating to New Chat dashboard...")
+                        # Toggle sidebar trigger to ensure New Chat button is clickable
+                        trigger = self.browser.page.locator('[data-sidebar="trigger"]')
+                        if trigger.count() > 0:
+                            trigger.first.click()
+                            time.sleep(1.5)
+                        
+                        new_chat_btn = self.browser.page.locator('button').filter(has_text="New Chat")
+                        if new_chat_btn.count() > 0:
+                            new_chat_btn.first.click()
+                            print("[INFO] Clicked 'New Chat' button successfully.")
+                            time.sleep(3)
+
+                    # If topic is random, select one from the list
+                    if self.topic == "random":
+                        new_list = RANDOM_TOPICS.get("new_topics", [])
+                        lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
+                        
+                        if self.level_up:
+                            # Use zero-LLM deterministic DAG Curriculum Manager
+                            resolved = self.dag_engine.resolve_next_topic()
+                            self.topic = resolved["topic"]
+                            self.target_skill = resolved.get("target_skill")
+                            self.target_level = resolved.get("target_level")
+                            self.active_pillar = resolved.get("pillar")
+                            self.active_node = resolved.get("node")
+                            print(f"[INFO] Selected DAG curriculum topic: '{self.topic}' (Pillar: '{resolved.get('pillar_name', self.active_pillar)}') targeting '{self.target_skill}' to LV {self.target_level}")
+
+                        else:
+                            combined = []
+                            for t in new_list:
+                                combined.append(("new", t))
+                            for entry in lvl_list:
+                                if isinstance(entry, dict) and "topic" in entry:
+                                    combined.append(("level_up", entry))
+                                    
+                            if combined:
+                                choice_type, entry = random.choice(combined)
+                                if choice_type == "level_up":
+                                    self.topic = entry["topic"]
+                                    self.target_skill = entry.get("associated_skill")
+                                    self.target_level = entry.get("level_target")
+                                else:
+                                    self.topic = entry
+                                print(f"[INFO] Selected random learning topic: '{self.topic}' (type: {choice_type})")
+                            else:
+                                self.topic = "Quantum computing basics"
+                                print("[WARNING] topics.json is empty! Defaulting to 'Quantum computing basics'")
+
+                    # Remove the topic from topics.json if it is present (including explicit CLI topics)
                     new_list = RANDOM_TOPICS.get("new_topics", [])
                     lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
                     
-                    if self.level_up:
-                        # Use zero-LLM deterministic DAG Curriculum Manager
-                        resolved = self.dag_engine.resolve_next_topic()
-                        self.topic = resolved["topic"]
-                        self.target_skill = resolved.get("target_skill")
-                        self.target_level = resolved.get("target_level")
-                        self.active_pillar = resolved.get("pillar")
-                        self.active_node = resolved.get("node")
-                        print(f"[INFO] Selected DAG curriculum topic: '{self.topic}' (Pillar: '{resolved.get('pillar_name', self.active_pillar)}') targeting '{self.target_skill}' to LV {self.target_level}")
-
+                    removed = False
+                    if self.topic in new_list:
+                        new_list.remove(self.topic)
+                        removed = True
                     else:
-                        combined = []
-                        for t in new_list:
-                            combined.append(("new", t))
-                        for entry in lvl_list:
-                            if isinstance(entry, dict) and "topic" in entry:
-                                combined.append(("level_up", entry))
+                        for entry in list(lvl_list):
+                            if isinstance(entry, dict):
+                                entry_top = entry.get("topic", "")
+                                # Remove exact topic match or any duplicate entry targeting the same skill level
+                                if entry_top == self.topic or (self.target_skill and entry.get("associated_skill") == self.target_skill and entry.get("level_target") == self.target_level):
+                                    lvl_list.remove(entry)
+                                    removed = True
+
                                 
-                        if combined:
-                            choice_type, entry = random.choice(combined)
-                            if choice_type == "level_up":
-                                self.topic = entry["topic"]
-                                self.target_skill = entry.get("associated_skill")
-                                self.target_level = entry.get("level_target")
+                    RANDOM_TOPICS["new_topics"] = new_list
+                    RANDOM_TOPICS["level_up_topics"] = lvl_list
+
+                    # Save updated list back to topics.json
+                    try:
+                        with open(topics_path, "w") as f:
+                            json.dump(RANDOM_TOPICS, f, indent=4)
+                        if removed:
+                            print(f"[INFO] Removed '{self.topic}' from topics.json to prevent repeats.")
+                    except Exception as e:
+                        print(f"[WARNING] Failed to save updated topics.json: {e}")
+
+                    # Update state file with the actual selected topic
+                    state_data["topic"] = self.topic
+                    try:
+                        state_path.write_text(json.dumps(state_data, indent=4))
+                    except Exception:
+                        pass
+
+                    # If a new topic is specified and we are on the dashboard, start it
+                    state = self.browser.get_interaction_state()
+                    if self.topic and state == "free_text":
+                        # Check if the page is the new chat dashboard (placeholder exists)
+                        textarea = self.browser.page.locator('textarea[name="prompt"]')
+                        placeholder = textarea.get_attribute("placeholder") or ""
+                        if "I want to learn" in placeholder:
+                            # Determine prompt based on target skill and level
+                            if self.target_skill:
+                                current_lv = self.learned_skills.get(self.target_skill, 0)
+                                if current_lv >= 4:
+                                    initial_prompt = f"I'm already very familiar with the basics of {self.topic}. Can we skip the introductory stuff and dive straight into the advanced concepts/complex math? I'd love to challenge myself with some tough questions."
+                                elif current_lv == 3:
+                                    initial_prompt = f"I understand the basic overview of {self.topic} already. Let's look at the intermediate concepts and the math behind them."
+                                else:
+                                    initial_prompt = f"I want to learn about {self.topic}. Can we start with the core concepts?"
                             else:
-                                self.topic = entry
-                            print(f"[INFO] Selected random learning topic: '{self.topic}' (type: {choice_type})")
-                        else:
-                            self.topic = "Quantum computing basics"
-                            print("[WARNING] topics.json is empty! Defaulting to 'Quantum computing basics'")
+                                initial_prompt = self.topic
 
-                # Remove the topic from topics.json if it is present (including explicit CLI topics)
-                new_list = RANDOM_TOPICS.get("new_topics", [])
-                lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
-                
-                removed = False
-                if self.topic in new_list:
-                    new_list.remove(self.topic)
-                    removed = True
-                else:
-                    for entry in list(lvl_list):
-                        if isinstance(entry, dict):
-                            entry_top = entry.get("topic", "")
-                            # Remove exact topic match or any duplicate entry targeting the same skill level
-                            if entry_top == self.topic or (self.target_skill and entry.get("associated_skill") == self.target_skill and entry.get("level_target") == self.target_level):
-                                lvl_list.remove(entry)
-                                removed = True
-
-                            
-                RANDOM_TOPICS["new_topics"] = new_list
-                RANDOM_TOPICS["level_up_topics"] = lvl_list
-
-                # Save updated list back to topics.json
-                try:
-                    with open(topics_path, "w") as f:
-                        json.dump(RANDOM_TOPICS, f, indent=4)
-                    if removed:
-                        print(f"[INFO] Removed '{self.topic}' from topics.json to prevent repeats.")
-                except Exception as e:
-                    print(f"[WARNING] Failed to save updated topics.json: {e}")
-
-                # Update state file with the actual selected topic
-                state_data["topic"] = self.topic
-                try:
-                    state_path.write_text(json.dumps(state_data, indent=4))
-                except Exception:
-                    pass
-
-                # If a new topic is specified and we are on the dashboard, start it
-                state = self.browser.get_interaction_state()
-                if self.topic and state == "free_text":
-                    # Check if the page is the new chat dashboard (placeholder exists)
-                    textarea = self.browser.page.locator('textarea[name="prompt"]')
-                    placeholder = textarea.get_attribute("placeholder") or ""
-                    if "I want to learn" in placeholder:
-                        # Determine prompt based on target skill and level
-                        if self.target_skill:
-                            current_lv = self.learned_skills.get(self.target_skill, 0)
-                            if current_lv >= 4:
-                                initial_prompt = f"I'm already very familiar with the basics of {self.topic}. Can we skip the introductory stuff and dive straight into the advanced concepts/complex math? I'd love to challenge myself with some tough questions."
-                            elif current_lv == 3:
-                                initial_prompt = f"I understand the basic overview of {self.topic} already. Let's look at the intermediate concepts and the math behind them."
-                            else:
-                                initial_prompt = f"I want to learn about {self.topic}. Can we start with the core concepts?"
-                        else:
-                            initial_prompt = self.topic
-
-                        print(f"Starting new chat with prompt: '{initial_prompt}'")
-                        self.browser.type_and_submit(initial_prompt)
-                        self.active_chat_start_time = time.time()
-                        # Allow generation to kick off
-                        time.sleep(5)
+                            print(f"Starting new chat with prompt: '{initial_prompt}'")
+                            self.browser.type_and_submit(initial_prompt)
+                            self.active_chat_start_time = time.time()
+                            # Allow generation to kick off
+                            time.sleep(5)
             
             # Run the interaction loop
             consecutive_loadings = 0
@@ -556,6 +630,13 @@ class OboeAgent:
                 target_skill_name = self.target_skill or self.active_node.replace("_", " ")
                 achieved_lv = self.learned_skills.get(target_skill_name, 1)
                 self.dag_engine.update_skill_level(self.active_pillar, self.active_node, achieved_lv)
+
+            # Mark pinned track topic as covered
+            if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_topic_index", None) is not None:
+                from skill_dag_engine import SkillDAGEngine
+                # Find the highest achieved level across all skills this session
+                max_achieved = max(self.achieved_skills.values()) if self.achieved_skills else 0
+                SkillDAGEngine.mark_topic_covered(self.active_track_name, self.active_track_topic_index, max_achieved)
 
             if self.achieved_skills:
                 print(f"[INFO] Skills leveled up: {self.achieved_skills}.")
