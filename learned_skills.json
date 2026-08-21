@@ -51,5 +51,16 @@
     "Space Complexity Optimization": 2,
     "String Algorithms": 2,
     "Combinatorics": 1,
-    "Search Algorithms": 1
+    "Search Algorithms": 1,
+    "Deep Learning": 4,
+    "Machine Learning": 4,
+    "Neural Networks": 4,
+    "Gradient Descent": 1,
+    "Convolutional Neural Networks": 2,
+    "Recurrent Neural Networks": 2,
+    "Sequence Modeling": 2,
+    "Attention Mechanisms": 4,
+    "Transformers": 3,
+    "Neural Network Optimization": 1,
+    "Optimization": 1
 }

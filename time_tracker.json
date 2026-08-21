@@ -104,6 +104,11 @@
             "timestamp": 1787339523.9526157,
             "duration_seconds": 2808,
             "topic": "array subsequnce problem"
+        },
+        {
+            "timestamp": 1787342544.8372393,
+            "duration_seconds": 2682,
+            "topic": "deep learning perceptron"
         }
     ]
 }
