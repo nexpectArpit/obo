@@ -271,11 +271,12 @@ class SkillDAGEngine:
     def resolve_next_track_topic(track_name):
         """
         Return the first uncovered sub-topic from the track.
-        Returns dict with: track_name, pinned_chat_title, topic_index, topic_name, prompt
+        Returns dict with: track_name, pinned_chat_title, topic_index, topic_name, prompt, target_skills
         Returns None if all topics are covered.
         """
         data = SkillDAGEngine.load_track(track_name)
         pinned_chat_title = data.get("pinned_chat_title", "")
+        target_skills = data.get("target_skills", [])
 
         for idx, topic in enumerate(data.get("topics", [])):
             if not topic.get("covered", False):
@@ -285,6 +286,7 @@ class SkillDAGEngine:
                     "topic_index": idx,
                     "topic_name": topic["name"],
                     "prompt": topic["prompt"],
+                    "target_skills": target_skills,
                 }
 
         # All topics covered — wrap around to first topic
@@ -299,6 +301,7 @@ class SkillDAGEngine:
             "topic_index": 0,
             "topic_name": first["name"],
             "prompt": first["prompt"],
+            "target_skills": target_skills,
         }
 
     @staticmethod

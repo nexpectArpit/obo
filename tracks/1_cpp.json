@@ -423,5 +423,9 @@
       "covered": false,
       "level_at_cover": 0
     }
+  ],
+  "target_skills": [
+    "Dynamic Programming",
+    "Algorithms"
   ]
 }

@@ -36,6 +36,7 @@ class OboeAgent:
         self.active_track_name = None
         self.active_track_topic_index = None
         self.active_track_chat_title = None
+        self.active_track_target_skills = None
 
         
         # Load learned skills history
@@ -181,6 +182,7 @@ class OboeAgent:
         self.active_track_topic_index = resolved["topic_index"]
         self.active_track_chat_title = resolved["pinned_chat_title"]
         self.topic = resolved["topic_name"]
+        self.active_track_target_skills = resolved.get("target_skills", [])
         track_prompt = resolved["prompt"]
 
         print(f"\n{'='*60}")
@@ -535,7 +537,8 @@ class OboeAgent:
                         choices, 
                         self.learned_skills, 
                         target_skill=self.target_skill, 
-                        target_level=self.target_level
+                        target_level=self.target_level,
+                        target_skills=self.active_track_target_skills
                     )
                     selection = decision.get("selection")
                     if selection in choices:
@@ -553,7 +556,8 @@ class OboeAgent:
                         choices, 
                         self.learned_skills, 
                         target_skill=self.target_skill, 
-                        target_level=self.target_level
+                        target_level=self.target_level,
+                        target_skills=self.active_track_target_skills
                     )
                     text = decision.get("text")
                     if not text or str(text).strip() == "" or str(text).lower() == "none":

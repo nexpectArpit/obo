@@ -105,7 +105,7 @@ class OboeLLM:
         return parsed
 
 
-    def decide_action(self, state, messages, choices, learned_skills=None, target_skill=None, target_level=None):
+    def decide_action(self, state, messages, choices, learned_skills=None, target_skill=None, target_level=None, target_skills=None):
         """Phase 5: LLM Integration.
         Makes a structured decision on how to respond based on the conversation state.
         Supports automatic rotation across all configured Groq & Nvidia API keys on rate limit.
@@ -120,6 +120,9 @@ class OboeLLM:
         target_context = ""
         if target_skill and target_level:
             target_context = f"\nPRIMARY DIRECTIVE: Your objective for this session is to demonstrate mastery of the '{target_skill}' skill at Level {target_level}.\nSteer the conversation and formulate responses that show your depth of knowledge in this area. If writing free_text, make sure to request/prompt for advanced concepts or complex math related to this topic in a natural, curious human way.\n"
+
+        if target_skills:
+            target_context += f"\nSEMANTIC FOCUS DIRECTIVE: Shape the vocabulary, mathematical concepts, and reasoning style of your response to implicitly demonstrate depth in the following target areas: {', '.join(target_skills)}.\nDo NOT explicitly mention the names of these target skills in your response. Instead, naturally steer explanations to cover domains, trade-offs, and complexities characteristic of these skills.\n"
 
         system_prompt = f"""You are a human user participating in an interactive learning course on the website Oboe.com.
 Your goal is to learn the topic, answer questions correctly, and gain skill points.

@@ -8,7 +8,6 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
 load_dotenv(".env.local")
-
 # ─── Configuration ───────────────────────────────────────────────
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 ALLOWED_USER_ID = int(os.environ["ALLOWED_TELEGRAM_USER_ID"])
@@ -148,6 +147,17 @@ def format_run_status(run):
     return msg
 
 # ─── Main Menu ───────────────────────────────────────────────────
+from pathlib import Path
+
+TRACK_SKILL_MAP = {
+    "cpp": [("DP", "Dynamic Programming"), ("Algo", "Algorithms")],
+    "arch": [("Mem", "Memory Systems"), ("Arch", "Computer Architecture")],
+    "os": [("SysCall", "System Calls"), ("OS", "Operating Systems")],
+    "ds": [("ML", "Machine Learning"), ("Hyp", "Hypothesis Testing")],
+    "dl": [("DL", "Deep Learning"), ("NN", "Neural Networks")],
+    "maths": [("Alg", "Algebra"), ("Opt", "Optimization")]
+}
+
 def main_menu_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🚀 Start Random", callback_data="start_random"),
@@ -159,13 +169,33 @@ def main_menu_keyboard():
     ])
 
 def tracks_menu_keyboard():
+    # Load current skill levels
+    skills = {}
+    skills_path = Path(__file__).resolve().parent / "learned_skills.json"
+    if skills_path.exists():
+        try:
+            with open(skills_path, "r") as f:
+                skills = json.load(f)
+        except Exception:
+            pass
+
+    def btn_text(label, track_key):
+        mappings = TRACK_SKILL_MAP.get(track_key, [])
+        levels = []
+        for short_name, long_name in mappings:
+            lvl = skills.get(long_name, 1)
+            levels.append(str(lvl))
+        if levels:
+            return f"{label} ({', '.join(levels)})"
+        return label
+
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("1. CP / DSA", callback_data="pin_cpp"),
-         InlineKeyboardButton("2. Computer Arch & Net", callback_data="pin_arch")],
-        [InlineKeyboardButton("3. OS", callback_data="pin_os"),
-         InlineKeyboardButton("4. Data Science", callback_data="pin_ds")],
-        [InlineKeyboardButton("5. DL", callback_data="pin_dl"),
-         InlineKeyboardButton("6. Maths for DS", callback_data="pin_maths")],
+        [InlineKeyboardButton(btn_text("1. CP / DSA", "cpp"), callback_data="pin_cpp"),
+         InlineKeyboardButton(btn_text("2. Arch & Net", "arch"), callback_data="pin_arch")],
+        [InlineKeyboardButton(btn_text("3. OS", "os"), callback_data="pin_os"),
+         InlineKeyboardButton(btn_text("4. Data Science", "ds"), callback_data="pin_ds")],
+        [InlineKeyboardButton(btn_text("5. DL", "dl"), callback_data="pin_dl"),
+         InlineKeyboardButton(btn_text("6. Maths for DS", "maths"), callback_data="pin_maths")],
         [InlineKeyboardButton("⬅️ Back to Menu", callback_data="back_to_menu")]
     ])
 

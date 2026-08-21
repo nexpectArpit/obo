@@ -1,59 +1,323 @@
 {
   "track_name": "ds",
   "pinned_chat_title": "Data Science",
-  "description": "Data Science — From data wrangling to production ML systems",
+  "description": "Data Science \u2014 From data wrangling to production ML systems",
   "topics": [
-    {"name": "Data Types and Structures", "prompt": "lets discuss structured vs unstructured vs semi-structured data, tabular data, JSON XML, data types numeric categorical ordinal, and how data type determines analysis approach", "covered": false, "level_at_cover": 0},
-    {"name": "Data Cleaning", "prompt": "data cleaning techniques, handling missing values listwise deletion pairwise, outlier detection IQR z-score, duplicate removal, inconsistent formats, and data quality assessment", "covered": false, "level_at_cover": 0},
-    {"name": "Imputation Techniques", "prompt": "imputation for missing data, mean median mode imputation, KNN imputation, MICE multiple imputation by chained equations, and when each method is appropriate", "covered": false, "level_at_cover": 0},
-    {"name": "Data Normalization", "prompt": "data normalization and scaling, min-max scaling, z-score standardization, robust scaler, MaxAbs scaler, when to normalize vs standardize, and effect on ML algorithms", "covered": false, "level_at_cover": 0},
-    {"name": "Data Encoding", "prompt": "categorical variable encoding, one-hot encoding, label encoding, ordinal encoding, target encoding, frequency encoding, binary encoding, and when to use each", "covered": false, "level_at_cover": 0},
-    {"name": "Data Sampling", "prompt": "sampling methods, simple random sampling, stratified sampling, systematic sampling, cluster sampling, oversampling undersampling SMOTE for imbalanced data, and sampling bias", "covered": false, "level_at_cover": 0},
-    {"name": "Descriptive Statistics", "prompt": "descriptive statistics in depth, measures of central tendency mean median mode, measures of dispersion variance std-dev range IQR, skewness, kurtosis, and coefficient of variation", "covered": false, "level_at_cover": 0},
-    {"name": "Correlation Analysis", "prompt": "correlation measures, Pearson correlation coefficient, Spearman rank correlation, Kendall tau, point-biserial correlation, partial correlation, and correlation vs causation", "covered": false, "level_at_cover": 0},
-    {"name": "Data Visualization", "prompt": "data visualization, histogram, box plot, violin plot, scatter plot, heatmap, pair plot, bar chart, density plot, QQ plot, and choosing the right visualization for data type", "covered": false, "level_at_cover": 0},
-    {"name": "Probability Distributions", "prompt": "probability distributions for data science, Bernoulli, binomial, Poisson, uniform, normal Gaussian, exponential, gamma, beta, chi-squared, Student's t, F-distribution, and fitting distributions to data", "covered": false, "level_at_cover": 0},
-    {"name": "Hypothesis Testing Framework", "prompt": "hypothesis testing, null vs alternative hypothesis, p-value interpretation, significance level alpha, type I error false positive, type II error false negative, power analysis, and effect size", "covered": false, "level_at_cover": 0},
-    {"name": "Z-Test and T-Test", "prompt": "z-test for proportions, one-sample t-test, two-sample independent t-test, paired t-test, assumptions of t-test, degrees of freedom, and when to use z-test vs t-test", "covered": false, "level_at_cover": 0},
-    {"name": "Chi-Square Test", "prompt": "chi-square test, goodness-of-fit test, test of independence, contingency tables, expected frequencies, degrees of freedom, and Cramers V for effect size", "covered": false, "level_at_cover": 0},
-    {"name": "ANOVA", "prompt": "ANOVA analysis of variance, one-way ANOVA, two-way ANOVA, repeated measures ANOVA, MANOVA, F-statistic, sum of squares, post-hoc tests Tukey HSD Bonferroni, and assumptions", "covered": false, "level_at_cover": 0},
-    {"name": "Non-Parametric Tests", "prompt": "non-parametric statistical tests, Mann-Whitney U test, Wilcoxon signed-rank test, Kruskal-Wallis test, Friedman test, when to use non-parametric vs parametric, and rank-based methods", "covered": false, "level_at_cover": 0},
-    {"name": "Multiple Testing Correction", "prompt": "multiple testing problem, family-wise error rate, Bonferroni correction, Holm-Bonferroni, false discovery rate FDR, Benjamini-Hochberg procedure, and when each correction is appropriate", "covered": false, "level_at_cover": 0},
-    {"name": "Simple Linear Regression", "prompt": "simple linear regression, least squares estimation, coefficient interpretation slope intercept, R-squared, residual analysis, assumptions linearity independence normality homoscedasticity", "covered": false, "level_at_cover": 0},
-    {"name": "Multiple Linear Regression", "prompt": "multiple linear regression, coefficient interpretation, multicollinearity, VIF variance inflation factor, adjusted R-squared, F-test for overall significance, and feature importance", "covered": false, "level_at_cover": 0},
-    {"name": "Polynomial Regression", "prompt": "polynomial regression, degree selection, overfitting with high degree, cross-validation for degree selection, and comparison with linear regression", "covered": false, "level_at_cover": 0},
-    {"name": "Ridge Lasso ElasticNet", "prompt": "regularized regression, ridge regression L2, lasso regression L1, elastic net combining L1 L2, regularization path, shrinkage effect, and feature selection with lasso", "covered": false, "level_at_cover": 0},
-    {"name": "Logistic Regression", "prompt": "logistic regression, sigmoid function, log odds interpretation, binary logistic, multinomial logistic, ordinal logistic, maximum likelihood estimation, and decision boundary", "covered": false, "level_at_cover": 0},
-    {"name": "Regression Diagnostics", "prompt": "regression diagnostics, residual plots, QQ plot for normality, heteroscedasticity detection Breusch-Pagan, autocorrelation Durbin-Watson, influence points Cook's distance, leverage", "covered": false, "level_at_cover": 0},
-    {"name": "KNN Classifier", "prompt": "K-nearest neighbors algorithm, distance metrics euclidean manhattan minkowski, choosing K, curse of dimensionality, KNN for regression, and weighted KNN", "covered": false, "level_at_cover": 0},
-    {"name": "Decision Trees", "prompt": "decision trees, splitting criteria Gini impurity information gain entropy, ID3 C4.5 CART algorithms, pruning pre-pruning post-pruning, and interpretability advantage", "covered": false, "level_at_cover": 0},
-    {"name": "Random Forest", "prompt": "random forest ensemble, bagging bootstrap aggregating, feature randomness at each split, out-of-bag OOB error, feature importance, and hyperparameter tuning n_estimators max_depth", "covered": false, "level_at_cover": 0},
-    {"name": "Gradient Boosting", "prompt": "gradient boosting machines, sequential ensemble, learning from residuals, shrinkage learning rate, XGBoost optimizations, LightGBM histogram-based, CatBoost categorical features, and comparison", "covered": false, "level_at_cover": 0},
-    {"name": "AdaBoost", "prompt": "AdaBoost adaptive boosting, sample weighting, weak learner combination, exponential loss, and comparison with gradient boosting", "covered": false, "level_at_cover": 0},
-    {"name": "Support Vector Machines", "prompt": "SVM support vector machines, maximum margin classifier, support vectors, soft margin C parameter, kernel trick RBF polynomial linear, and SVM for multi-class classification", "covered": false, "level_at_cover": 0},
-    {"name": "Naive Bayes", "prompt": "naive Bayes classifier, conditional independence assumption, Gaussian naive Bayes, multinomial naive Bayes for text, Bernoulli naive Bayes, Laplace smoothing, and when naive Bayes works well", "covered": false, "level_at_cover": 0},
-    {"name": "Classification Metrics", "prompt": "classification metrics, accuracy, precision, recall, F1-score, confusion matrix, ROC curve, AUC-ROC, precision-recall curve, PR-AUC, Cohen's kappa, log-loss, and Matthews correlation coefficient", "covered": false, "level_at_cover": 0},
-    {"name": "K-Means Clustering", "prompt": "K-means clustering, initialization K-means++, elbow method, silhouette score, mini-batch K-means, convergence, and limitations with non-spherical clusters", "covered": false, "level_at_cover": 0},
-    {"name": "Hierarchical Clustering", "prompt": "hierarchical clustering, agglomerative bottom-up, divisive top-down, linkage methods single complete average Ward, dendrogram, and cutting dendrogram for cluster assignment", "covered": false, "level_at_cover": 0},
-    {"name": "DBSCAN and HDBSCAN", "prompt": "DBSCAN density-based clustering, eps and minPts parameters, core border noise points, HDBSCAN hierarchical DBSCAN, OPTICS, and advantages for arbitrary-shaped clusters", "covered": false, "level_at_cover": 0},
-    {"name": "Gaussian Mixture Models", "prompt": "Gaussian mixture models GMM, expectation-maximization EM algorithm, E-step M-step, BIC AIC for model selection, soft clustering, and comparison with K-means", "covered": false, "level_at_cover": 0},
-    {"name": "Cluster Evaluation Metrics", "prompt": "cluster evaluation, silhouette score, Davies-Bouldin index, Calinski-Harabasz index, adjusted Rand index, normalized mutual information, and internal vs external evaluation", "covered": false, "level_at_cover": 0},
-    {"name": "PCA", "prompt": "principal component analysis PCA, eigenvectors of covariance matrix, explained variance ratio, scree plot, choosing number of components, PCA for visualization, and PCA limitations", "covered": false, "level_at_cover": 0},
-    {"name": "SVD and Matrix Factorization", "prompt": "singular value decomposition SVD, relationship with PCA, truncated SVD for sparse data, applications in recommendation systems, and non-negative matrix factorization NMF", "covered": false, "level_at_cover": 0},
-    {"name": "t-SNE and UMAP", "prompt": "t-SNE for visualization, perplexity parameter, crowding problem, UMAP uniform manifold approximation, comparison t-SNE vs UMAP, and when to use each for dimensionality reduction", "covered": false, "level_at_cover": 0},
-    {"name": "Feature Selection", "prompt": "feature selection methods, filter methods variance threshold mutual information chi-square, wrapper methods forward backward recursive, embedded methods lasso importance, and comparison", "covered": false, "level_at_cover": 0},
-    {"name": "Feature Engineering", "prompt": "feature engineering, polynomial features, interaction features, log and sqrt transforms, box-cox yeo-johnson, date-time features, text features TF-IDF, lag features, rolling statistics", "covered": false, "level_at_cover": 0},
-    {"name": "Cross-Validation", "prompt": "cross-validation, k-fold, stratified k-fold, leave-one-out LOOCV, time series cross-validation, nested cross-validation, and bias-variance tradeoff in validation", "covered": false, "level_at_cover": 0},
-    {"name": "Hyperparameter Tuning", "prompt": "hyperparameter tuning, grid search, random search, Bayesian optimization with Gaussian processes, Optuna, Hyperopt, learning curves, validation curves, and early stopping", "covered": false, "level_at_cover": 0},
-    {"name": "Ensemble Methods", "prompt": "ensemble methods, bagging, boosting, stacking, blending, voting classifier hard vs soft, and how ensemble diversity improves generalization", "covered": false, "level_at_cover": 0},
-    {"name": "Bias-Variance Tradeoff", "prompt": "bias-variance tradeoff, underfitting high bias, overfitting high variance, bias-variance decomposition of MSE, model complexity curve, and regularization as variance reduction", "covered": false, "level_at_cover": 0},
-    {"name": "Time Series Fundamentals", "prompt": "time series analysis, stationarity, ADF test, KPSS test, decomposition trend seasonality residual, autocorrelation ACF, partial autocorrelation PACF, and differencing", "covered": false, "level_at_cover": 0},
-    {"name": "ARIMA and SARIMA", "prompt": "ARIMA autoregressive integrated moving average, AR MA components, order selection p d q, SARIMA for seasonal data, model diagnostics Ljung-Box test, and forecasting", "covered": false, "level_at_cover": 0},
-    {"name": "Exponential Smoothing", "prompt": "exponential smoothing, simple exponential smoothing, Holt's linear trend, Holt-Winters seasonal method, additive vs multiplicative, and ETS error trend seasonality framework", "covered": false, "level_at_cover": 0},
-    {"name": "Advanced Time Series", "prompt": "advanced time series, Prophet by Meta, VAR vector autoregression, GARCH for volatility, change-point detection, anomaly detection, dynamic time warping, and Fourier for seasonality", "covered": false, "level_at_cover": 0},
-    {"name": "A/B Testing", "prompt": "A/B testing, experiment design, sample size calculation, statistical significance, practical significance, sequential testing, multi-armed bandits, and common pitfalls in A/B tests", "covered": false, "level_at_cover": 0},
-    {"name": "Pandas Advanced", "prompt": "advanced pandas, groupby with multiple aggregations, window functions rolling expanding ewm, multi-index, merge join concatenate, pivot tables, apply with custom functions, and method chaining", "covered": false, "level_at_cover": 0},
-    {"name": "SQL for Analytics", "prompt": "SQL for data science, window functions ROW_NUMBER RANK DENSE_RANK LAG LEAD, CTEs common table expressions, recursive queries, CASE statements, and query optimization", "covered": false, "level_at_cover": 0},
-    {"name": "NumPy Advanced", "prompt": "advanced NumPy, broadcasting rules, vectorization, einsum for tensor operations, structured arrays, memory layout C vs Fortran order, and performance optimization tips", "covered": false, "level_at_cover": 0}
+    {
+      "name": "Data Types and Structures",
+      "prompt": "lets discuss structured vs unstructured vs semi-structured data, tabular data, JSON XML, data types numeric categorical ordinal, and how data type determines analysis approach",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Data Cleaning",
+      "prompt": "data cleaning techniques, handling missing values listwise deletion pairwise, outlier detection IQR z-score, duplicate removal, inconsistent formats, and data quality assessment",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Imputation Techniques",
+      "prompt": "imputation for missing data, mean median mode imputation, KNN imputation, MICE multiple imputation by chained equations, and when each method is appropriate",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Data Normalization",
+      "prompt": "data normalization and scaling, min-max scaling, z-score standardization, robust scaler, MaxAbs scaler, when to normalize vs standardize, and effect on ML algorithms",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Data Encoding",
+      "prompt": "categorical variable encoding, one-hot encoding, label encoding, ordinal encoding, target encoding, frequency encoding, binary encoding, and when to use each",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Data Sampling",
+      "prompt": "sampling methods, simple random sampling, stratified sampling, systematic sampling, cluster sampling, oversampling undersampling SMOTE for imbalanced data, and sampling bias",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Descriptive Statistics",
+      "prompt": "descriptive statistics in depth, measures of central tendency mean median mode, measures of dispersion variance std-dev range IQR, skewness, kurtosis, and coefficient of variation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Correlation Analysis",
+      "prompt": "correlation measures, Pearson correlation coefficient, Spearman rank correlation, Kendall tau, point-biserial correlation, partial correlation, and correlation vs causation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Data Visualization",
+      "prompt": "data visualization, histogram, box plot, violin plot, scatter plot, heatmap, pair plot, bar chart, density plot, QQ plot, and choosing the right visualization for data type",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Probability Distributions",
+      "prompt": "probability distributions for data science, Bernoulli, binomial, Poisson, uniform, normal Gaussian, exponential, gamma, beta, chi-squared, Student's t, F-distribution, and fitting distributions to data",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hypothesis Testing Framework",
+      "prompt": "hypothesis testing, null vs alternative hypothesis, p-value interpretation, significance level alpha, type I error false positive, type II error false negative, power analysis, and effect size",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Z-Test and T-Test",
+      "prompt": "z-test for proportions, one-sample t-test, two-sample independent t-test, paired t-test, assumptions of t-test, degrees of freedom, and when to use z-test vs t-test",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Chi-Square Test",
+      "prompt": "chi-square test, goodness-of-fit test, test of independence, contingency tables, expected frequencies, degrees of freedom, and Cramers V for effect size",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "ANOVA",
+      "prompt": "ANOVA analysis of variance, one-way ANOVA, two-way ANOVA, repeated measures ANOVA, MANOVA, F-statistic, sum of squares, post-hoc tests Tukey HSD Bonferroni, and assumptions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Non-Parametric Tests",
+      "prompt": "non-parametric statistical tests, Mann-Whitney U test, Wilcoxon signed-rank test, Kruskal-Wallis test, Friedman test, when to use non-parametric vs parametric, and rank-based methods",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multiple Testing Correction",
+      "prompt": "multiple testing problem, family-wise error rate, Bonferroni correction, Holm-Bonferroni, false discovery rate FDR, Benjamini-Hochberg procedure, and when each correction is appropriate",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Simple Linear Regression",
+      "prompt": "simple linear regression, least squares estimation, coefficient interpretation slope intercept, R-squared, residual analysis, assumptions linearity independence normality homoscedasticity",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multiple Linear Regression",
+      "prompt": "multiple linear regression, coefficient interpretation, multicollinearity, VIF variance inflation factor, adjusted R-squared, F-test for overall significance, and feature importance",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Polynomial Regression",
+      "prompt": "polynomial regression, degree selection, overfitting with high degree, cross-validation for degree selection, and comparison with linear regression",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Ridge Lasso ElasticNet",
+      "prompt": "regularized regression, ridge regression L2, lasso regression L1, elastic net combining L1 L2, regularization path, shrinkage effect, and feature selection with lasso",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Logistic Regression",
+      "prompt": "logistic regression, sigmoid function, log odds interpretation, binary logistic, multinomial logistic, ordinal logistic, maximum likelihood estimation, and decision boundary",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Regression Diagnostics",
+      "prompt": "regression diagnostics, residual plots, QQ plot for normality, heteroscedasticity detection Breusch-Pagan, autocorrelation Durbin-Watson, influence points Cook's distance, leverage",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "KNN Classifier",
+      "prompt": "K-nearest neighbors algorithm, distance metrics euclidean manhattan minkowski, choosing K, curse of dimensionality, KNN for regression, and weighted KNN",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Decision Trees",
+      "prompt": "decision trees, splitting criteria Gini impurity information gain entropy, ID3 C4.5 CART algorithms, pruning pre-pruning post-pruning, and interpretability advantage",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Random Forest",
+      "prompt": "random forest ensemble, bagging bootstrap aggregating, feature randomness at each split, out-of-bag OOB error, feature importance, and hyperparameter tuning n_estimators max_depth",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Gradient Boosting",
+      "prompt": "gradient boosting machines, sequential ensemble, learning from residuals, shrinkage learning rate, XGBoost optimizations, LightGBM histogram-based, CatBoost categorical features, and comparison",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "AdaBoost",
+      "prompt": "AdaBoost adaptive boosting, sample weighting, weak learner combination, exponential loss, and comparison with gradient boosting",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Support Vector Machines",
+      "prompt": "SVM support vector machines, maximum margin classifier, support vectors, soft margin C parameter, kernel trick RBF polynomial linear, and SVM for multi-class classification",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Naive Bayes",
+      "prompt": "naive Bayes classifier, conditional independence assumption, Gaussian naive Bayes, multinomial naive Bayes for text, Bernoulli naive Bayes, Laplace smoothing, and when naive Bayes works well",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Classification Metrics",
+      "prompt": "classification metrics, accuracy, precision, recall, F1-score, confusion matrix, ROC curve, AUC-ROC, precision-recall curve, PR-AUC, Cohen's kappa, log-loss, and Matthews correlation coefficient",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "K-Means Clustering",
+      "prompt": "K-means clustering, initialization K-means++, elbow method, silhouette score, mini-batch K-means, convergence, and limitations with non-spherical clusters",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hierarchical Clustering",
+      "prompt": "hierarchical clustering, agglomerative bottom-up, divisive top-down, linkage methods single complete average Ward, dendrogram, and cutting dendrogram for cluster assignment",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "DBSCAN and HDBSCAN",
+      "prompt": "DBSCAN density-based clustering, eps and minPts parameters, core border noise points, HDBSCAN hierarchical DBSCAN, OPTICS, and advantages for arbitrary-shaped clusters",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Gaussian Mixture Models",
+      "prompt": "Gaussian mixture models GMM, expectation-maximization EM algorithm, E-step M-step, BIC AIC for model selection, soft clustering, and comparison with K-means",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Cluster Evaluation Metrics",
+      "prompt": "cluster evaluation, silhouette score, Davies-Bouldin index, Calinski-Harabasz index, adjusted Rand index, normalized mutual information, and internal vs external evaluation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "PCA",
+      "prompt": "principal component analysis PCA, eigenvectors of covariance matrix, explained variance ratio, scree plot, choosing number of components, PCA for visualization, and PCA limitations",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "SVD and Matrix Factorization",
+      "prompt": "singular value decomposition SVD, relationship with PCA, truncated SVD for sparse data, applications in recommendation systems, and non-negative matrix factorization NMF",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "t-SNE and UMAP",
+      "prompt": "t-SNE for visualization, perplexity parameter, crowding problem, UMAP uniform manifold approximation, comparison t-SNE vs UMAP, and when to use each for dimensionality reduction",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Feature Selection",
+      "prompt": "feature selection methods, filter methods variance threshold mutual information chi-square, wrapper methods forward backward recursive, embedded methods lasso importance, and comparison",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Feature Engineering",
+      "prompt": "feature engineering, polynomial features, interaction features, log and sqrt transforms, box-cox yeo-johnson, date-time features, text features TF-IDF, lag features, rolling statistics",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Cross-Validation",
+      "prompt": "cross-validation, k-fold, stratified k-fold, leave-one-out LOOCV, time series cross-validation, nested cross-validation, and bias-variance tradeoff in validation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hyperparameter Tuning",
+      "prompt": "hyperparameter tuning, grid search, random search, Bayesian optimization with Gaussian processes, Optuna, Hyperopt, learning curves, validation curves, and early stopping",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Ensemble Methods",
+      "prompt": "ensemble methods, bagging, boosting, stacking, blending, voting classifier hard vs soft, and how ensemble diversity improves generalization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bias-Variance Tradeoff",
+      "prompt": "bias-variance tradeoff, underfitting high bias, overfitting high variance, bias-variance decomposition of MSE, model complexity curve, and regularization as variance reduction",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Time Series Fundamentals",
+      "prompt": "time series analysis, stationarity, ADF test, KPSS test, decomposition trend seasonality residual, autocorrelation ACF, partial autocorrelation PACF, and differencing",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "ARIMA and SARIMA",
+      "prompt": "ARIMA autoregressive integrated moving average, AR MA components, order selection p d q, SARIMA for seasonal data, model diagnostics Ljung-Box test, and forecasting",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Exponential Smoothing",
+      "prompt": "exponential smoothing, simple exponential smoothing, Holt's linear trend, Holt-Winters seasonal method, additive vs multiplicative, and ETS error trend seasonality framework",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Advanced Time Series",
+      "prompt": "advanced time series, Prophet by Meta, VAR vector autoregression, GARCH for volatility, change-point detection, anomaly detection, dynamic time warping, and Fourier for seasonality",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "A/B Testing",
+      "prompt": "A/B testing, experiment design, sample size calculation, statistical significance, practical significance, sequential testing, multi-armed bandits, and common pitfalls in A/B tests",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Pandas Advanced",
+      "prompt": "advanced pandas, groupby with multiple aggregations, window functions rolling expanding ewm, multi-index, merge join concatenate, pivot tables, apply with custom functions, and method chaining",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "SQL for Analytics",
+      "prompt": "SQL for data science, window functions ROW_NUMBER RANK DENSE_RANK LAG LEAD, CTEs common table expressions, recursive queries, CASE statements, and query optimization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "NumPy Advanced",
+      "prompt": "advanced NumPy, broadcasting rules, vectorization, einsum for tensor operations, structured arrays, memory layout C vs Fortran order, and performance optimization tips",
+      "covered": false,
+      "level_at_cover": 0
+    }
+  ],
+  "target_skills": [
+    "Machine Learning",
+    "Hypothesis Testing"
   ]
 }

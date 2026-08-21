@@ -1,77 +1,431 @@
 {
   "track_name": "maths",
   "pinned_chat_title": "maths(for data Science)",
-  "description": "Mathematics for Data Science — Algebra to optimization theory",
+  "description": "Mathematics for Data Science \u2014 Algebra to optimization theory",
   "topics": [
-    {"name": "Number Systems", "prompt": "lets talk about number systems, natural integers rational irrational real complex numbers, properties closure commutativity associativity distributivity, and how they form algebraic structures", "covered": false, "level_at_cover": 0},
-    {"name": "Prime Numbers and Divisibility", "prompt": "prime numbers, fundamental theorem of arithmetic, GCD LCM Euclidean algorithm, modular arithmetic, Fermat's little theorem, and Euler's totient function", "covered": false, "level_at_cover": 0},
-    {"name": "Linear Equations and Systems", "prompt": "linear equations, systems of linear equations, substitution elimination method, Cramer's rule, consistent vs inconsistent systems, and geometric interpretation of solutions", "covered": false, "level_at_cover": 0},
-    {"name": "Quadratic and Polynomial Equations", "prompt": "quadratic equations, factoring, completing the square, quadratic formula, discriminant, polynomial equations, Vieta's formulas, and fundamental theorem of algebra", "covered": false, "level_at_cover": 0},
-    {"name": "Inequalities and Absolute Value", "prompt": "inequalities, linear inequalities, quadratic inequalities, absolute value equations and inequalities, triangle inequality, AM-GM inequality, and Cauchy-Schwarz inequality", "covered": false, "level_at_cover": 0},
-    {"name": "Logarithms and Exponents", "prompt": "logarithms, log properties product quotient power rule, change of base formula, natural log ln, exponential functions, exponential growth decay, and logarithmic scales", "covered": false, "level_at_cover": 0},
-    {"name": "Sequences and Series", "prompt": "arithmetic sequences and series, geometric sequences and series, harmonic series, convergence tests for infinite series, telescoping series, and power series", "covered": false, "level_at_cover": 0},
-    {"name": "Binomial Theorem", "prompt": "binomial theorem, binomial coefficients, Pascal's triangle, combinatorial interpretation, multinomial theorem, and generating functions", "covered": false, "level_at_cover": 0},
-    {"name": "Combinatorics", "prompt": "combinatorics, permutations and combinations, circular permutations, combinations with repetition, inclusion-exclusion principle, pigeonhole principle, and derangements", "covered": false, "level_at_cover": 0},
-    {"name": "Vectors", "prompt": "vectors in 2D and 3D, vector operations addition scalar multiplication, dot product, cross product, vector projection, magnitude direction, unit vectors, and geometric interpretations", "covered": false, "level_at_cover": 0},
-    {"name": "Vector Spaces", "prompt": "vector spaces, axioms of vector space, subspaces, span of vectors, linear independence, basis, dimension, and examples of vector spaces beyond R^n like function spaces", "covered": false, "level_at_cover": 0},
-    {"name": "Linear Transformations", "prompt": "linear transformations, transformation matrix, kernel null space, image range, rank-nullity theorem, composition of transformations, and geometric transformations rotation scaling shear", "covered": false, "level_at_cover": 0},
-    {"name": "Matrix Operations", "prompt": "matrix operations, addition, scalar multiplication, matrix multiplication, transpose, trace, block matrices, and computational complexity of matrix multiplication", "covered": false, "level_at_cover": 0},
-    {"name": "Matrix Types", "prompt": "special matrix types, identity diagonal symmetric skew-symmetric orthogonal unitary Hermitian, upper lower triangular, sparse matrices, and their properties", "covered": false, "level_at_cover": 0},
-    {"name": "Determinants", "prompt": "determinants, cofactor expansion, properties of determinants, row operations effect, determinant and invertibility, determinant of product, and geometric interpretation as volume", "covered": false, "level_at_cover": 0},
-    {"name": "Matrix Inverse", "prompt": "matrix inverse, conditions for invertibility, computing inverse via row reduction, adjugate method, properties of inverse, and computational complexity", "covered": false, "level_at_cover": 0},
-    {"name": "Rank and Null Space", "prompt": "matrix rank, column space, row space, null space, rank-nullity theorem, computing rank via row echelon form, and applications in solving linear systems", "covered": false, "level_at_cover": 0},
-    {"name": "Gaussian Elimination", "prompt": "Gaussian elimination, row echelon form, reduced row echelon form, pivot columns, free variables, LU decomposition, and computational complexity", "covered": false, "level_at_cover": 0},
-    {"name": "Eigenvalues and Eigenvectors", "prompt": "eigenvalues and eigenvectors, characteristic polynomial, computing eigenvalues, eigenspaces, algebraic vs geometric multiplicity, and eigendecomposition", "covered": false, "level_at_cover": 0},
-    {"name": "Diagonalization", "prompt": "matrix diagonalization, conditions for diagonalizability, spectral theorem for symmetric matrices, matrix powers via diagonalization, and applications in dynamical systems", "covered": false, "level_at_cover": 0},
-    {"name": "SVD", "prompt": "singular value decomposition SVD, computing SVD, relationship with eigendecomposition, geometric interpretation, truncated SVD, pseudo-inverse Moore-Penrose, and applications in data science PCA", "covered": false, "level_at_cover": 0},
-    {"name": "Matrix Norms", "prompt": "matrix norms, Frobenius norm, spectral norm operator norm, nuclear norm trace norm, vector norms L1 L2 Linf, and how norms are used in regularization", "covered": false, "level_at_cover": 0},
-    {"name": "Positive Definite Matrices", "prompt": "positive definite matrices, positive semi-definite, tests for positive definiteness eigenvalues leading minors Cholesky, Cholesky decomposition, and role in optimization", "covered": false, "level_at_cover": 0},
-    {"name": "QR Decomposition", "prompt": "QR decomposition, Gram-Schmidt orthogonalization process, Householder reflections, Givens rotations, applications in least squares, and QR algorithm for eigenvalues", "covered": false, "level_at_cover": 0},
-    {"name": "Least Squares", "prompt": "least squares problem, normal equations, geometric interpretation projection, weighted least squares, ridge regression as regularized least squares, and iterative methods", "covered": false, "level_at_cover": 0},
-    {"name": "Tensor Operations", "prompt": "tensors, tensor order and shape, tensor contraction, Einstein summation convention einsum, outer product, Kronecker product, and tensor decompositions CP Tucker", "covered": false, "level_at_cover": 0},
-    {"name": "Limits", "prompt": "limits, epsilon-delta definition, limit laws, one-sided limits, limits at infinity, infinite limits, squeeze theorem, and L'Hopital's rule", "covered": false, "level_at_cover": 0},
-    {"name": "Continuity", "prompt": "continuity, definition at a point and on interval, types of discontinuity removable jump essential, intermediate value theorem, extreme value theorem, and uniform continuity", "covered": false, "level_at_cover": 0},
-    {"name": "Derivatives", "prompt": "derivatives, power rule, product rule, quotient rule, chain rule, implicit differentiation, logarithmic differentiation, higher-order derivatives, and derivative as rate of change", "covered": false, "level_at_cover": 0},
-    {"name": "Applications of Derivatives", "prompt": "applications of derivatives, finding maxima minima, first and second derivative tests, optimization problems, related rates, curve sketching, mean value theorem, Rolle's theorem", "covered": false, "level_at_cover": 0},
-    {"name": "Taylor and Maclaurin Series", "prompt": "Taylor series, Maclaurin series, Taylor polynomial approximation, remainder term, convergence radius, common Taylor expansions e^x sin cos ln, and applications in numerical methods", "covered": false, "level_at_cover": 0},
-    {"name": "Integration Techniques", "prompt": "integration, Riemann sums, fundamental theorem of calculus, substitution method, integration by parts, partial fractions, trigonometric substitution, and numerical integration", "covered": false, "level_at_cover": 0},
-    {"name": "Improper Integrals", "prompt": "improper integrals, infinite limits of integration, unbounded integrands, convergence tests comparison test limit comparison, and Gamma function Beta function", "covered": false, "level_at_cover": 0},
-    {"name": "Applications of Integration", "prompt": "applications of integration, area between curves, volume of revolution disk washer shell methods, arc length, surface area, and probability density functions", "covered": false, "level_at_cover": 0},
-    {"name": "Partial Derivatives", "prompt": "partial derivatives, geometric interpretation, notation, higher-order partial derivatives, Clairaut's theorem mixed partials equality, and partial derivatives in machine learning", "covered": false, "level_at_cover": 0},
-    {"name": "Gradient and Directional Derivative", "prompt": "gradient vector, directional derivative, gradient as direction of steepest ascent, gradient descent intuition, level curves and gradient perpendicularity, and nabla operator", "covered": false, "level_at_cover": 0},
-    {"name": "Jacobian and Hessian", "prompt": "Jacobian matrix for vector-valued functions, Hessian matrix of second partial derivatives, Hessian in optimization second-order conditions, and Newton's method using Hessian", "covered": false, "level_at_cover": 0},
-    {"name": "Multivariable Chain Rule", "prompt": "multivariable chain rule, total derivative, implicit function theorem, backpropagation as chain rule application, and computational graph for automatic differentiation", "covered": false, "level_at_cover": 0},
-    {"name": "Lagrange Multipliers", "prompt": "constrained optimization, Lagrange multipliers method, equality constraints, geometric interpretation, multiple constraints, and connection to KKT conditions", "covered": false, "level_at_cover": 0},
-    {"name": "Multiple Integrals", "prompt": "double integrals, triple integrals, iterated integrals, Fubini's theorem, change of variables polar cylindrical spherical coordinates, and Jacobian determinant for substitution", "covered": false, "level_at_cover": 0},
-    {"name": "Vector Calculus", "prompt": "vector calculus, line integrals, surface integrals, Green's theorem, Stokes' theorem, divergence theorem, curl divergence gradient of vector fields, and conservative fields", "covered": false, "level_at_cover": 0},
-    {"name": "First-Order ODEs", "prompt": "ordinary differential equations, first-order ODEs, separable equations, exact equations, integrating factors, linear first-order ODEs, Bernoulli equations, and existence uniqueness theorem", "covered": false, "level_at_cover": 0},
-    {"name": "Second-Order Linear ODEs", "prompt": "second-order linear ODEs, homogeneous with constant coefficients, characteristic equation, undetermined coefficients, variation of parameters, and applications spring-mass systems", "covered": false, "level_at_cover": 0},
-    {"name": "Laplace Transforms", "prompt": "Laplace transforms, definition and properties, inverse Laplace transform, solving ODEs with Laplace transforms, transfer functions, and convolution theorem", "covered": false, "level_at_cover": 0},
-    {"name": "Sample Space and Events", "prompt": "probability fundamentals, sample space, events, axioms of probability Kolmogorov, addition rule, complement rule, and counting methods for probability", "covered": false, "level_at_cover": 0},
-    {"name": "Conditional Probability and Bayes", "prompt": "conditional probability, multiplication rule, law of total probability, Bayes' theorem derivation and intuition, prior posterior likelihood, and Bayesian reasoning examples", "covered": false, "level_at_cover": 0},
-    {"name": "Random Variables", "prompt": "random variables, discrete vs continuous, PMF probability mass function, PDF probability density function, CDF cumulative distribution function, and expected value variance", "covered": false, "level_at_cover": 0},
-    {"name": "Expectation and Variance", "prompt": "expectation properties linearity, variance and standard deviation, covariance, correlation coefficient, independence, and moment generating functions", "covered": false, "level_at_cover": 0},
-    {"name": "Common Discrete Distributions", "prompt": "discrete distributions, Bernoulli, binomial, Poisson, geometric, negative binomial, hypergeometric, and their PMFs means variances and applications", "covered": false, "level_at_cover": 0},
-    {"name": "Common Continuous Distributions", "prompt": "continuous distributions, uniform, normal Gaussian, exponential, gamma, beta, chi-squared, Student's t, F-distribution, Weibull, log-normal, and their PDFs means variances", "covered": false, "level_at_cover": 0},
-    {"name": "Joint Distributions", "prompt": "joint distributions, joint PMF PDF, marginal distributions, conditional distributions, independence of random variables, joint CDF, and transformation of random variables", "covered": false, "level_at_cover": 0},
-    {"name": "Multivariate Normal", "prompt": "multivariate normal distribution, mean vector, covariance matrix, marginal and conditional distributions, Mahalanobis distance, and applications in ML", "covered": false, "level_at_cover": 0},
-    {"name": "Law of Large Numbers", "prompt": "law of large numbers weak and strong versions, convergence in probability vs almost sure convergence, Monte Carlo estimation, and practical implications for sampling", "covered": false, "level_at_cover": 0},
-    {"name": "Central Limit Theorem", "prompt": "central limit theorem statement and proof sketch, convergence to normal distribution, sampling distribution of mean, confidence interval derivation, and CLT applications", "covered": false, "level_at_cover": 0},
-    {"name": "Concentration Inequalities", "prompt": "concentration inequalities, Markov's inequality, Chebyshev's inequality, Chernoff bounds, Hoeffding's inequality, and applications in learning theory PAC bounds", "covered": false, "level_at_cover": 0},
-    {"name": "Maximum Likelihood Estimation", "prompt": "MLE maximum likelihood estimation, likelihood function, log-likelihood, MLE for normal distribution, MLE for Bernoulli, consistency asymptotic normality, and Fisher information", "covered": false, "level_at_cover": 0},
-    {"name": "MAP and Bayesian Estimation", "prompt": "MAP maximum a posteriori estimation, relationship with MLE, prior as regularization, Bayesian estimation posterior mean, and comparison MLE vs MAP vs Bayesian", "covered": false, "level_at_cover": 0},
-    {"name": "Confidence Intervals", "prompt": "confidence intervals, z-interval, t-interval, interpretation of confidence level, confidence interval for proportion, sample size determination, and bootstrap confidence intervals", "covered": false, "level_at_cover": 0},
-    {"name": "Bayesian Inference", "prompt": "Bayesian inference, prior distributions informative non-informative Jeffrey's, conjugate priors, posterior computation, Bayesian updating, and credible intervals vs confidence intervals", "covered": false, "level_at_cover": 0},
-    {"name": "MCMC Methods", "prompt": "MCMC Markov chain Monte Carlo, Metropolis-Hastings algorithm, Gibbs sampling, convergence diagnostics, burn-in, thinning, and applications in Bayesian posterior sampling", "covered": false, "level_at_cover": 0},
-    {"name": "EM Algorithm", "prompt": "EM expectation-maximization algorithm, E-step and M-step, convergence to local maximum, applications GMM parameter estimation, missing data, and variational EM", "covered": false, "level_at_cover": 0},
-    {"name": "Entropy and Information Theory", "prompt": "Shannon entropy, cross-entropy, KL divergence asymmetry, mutual information, joint entropy, conditional entropy, data processing inequality, and connections to ML loss functions", "covered": false, "level_at_cover": 0},
-    {"name": "Convex Sets and Functions", "prompt": "convex sets, convex functions, concave functions, Jensen's inequality, epigraph, sublevel sets, operations preserving convexity, and identifying convex optimization problems", "covered": false, "level_at_cover": 0},
-    {"name": "Gradient Descent Convergence", "prompt": "gradient descent algorithm, convergence analysis, step size selection, Lipschitz continuity, strong convexity, convergence rates O(1/t) vs O(e^-t), and gradient descent variants", "covered": false, "level_at_cover": 0},
-    {"name": "KKT Conditions and Duality", "prompt": "KKT Karush-Kuhn-Tucker conditions, Lagrangian function with inequality constraints, primal and dual problems, strong duality Slater's condition, and complementary slackness", "covered": false, "level_at_cover": 0},
-    {"name": "Linear Programming", "prompt": "linear programming, standard form, simplex method, interior point methods, LP duality, sensitivity analysis, and applications in resource allocation", "covered": false, "level_at_cover": 0},
-    {"name": "Newton and Quasi-Newton Methods", "prompt": "Newton's method for optimization, quadratic convergence, Hessian computation cost, quasi-Newton methods BFGS L-BFGS, secant condition, and line search methods", "covered": false, "level_at_cover": 0},
-    {"name": "Proximal and ADMM Methods", "prompt": "proximal gradient methods, proximal operator, ISTA FISTA for L1 regularization, ADMM alternating direction method of multipliers, and applications in distributed optimization", "covered": false, "level_at_cover": 0},
-    {"name": "Graph Theory Fundamentals", "prompt": "graph theory, graphs directed undirected weighted, adjacency matrix adjacency list, degree, paths cycles, connectivity, BFS DFS traversals, and graph properties", "covered": false, "level_at_cover": 0},
-    {"name": "Graph Algorithms", "prompt": "graph algorithms, shortest paths Dijkstra Bellman-Ford, minimum spanning tree Kruskal Prim, topological sort, graph coloring, bipartite matching, and network flow max-flow min-cut", "covered": false, "level_at_cover": 0}
+    {
+      "name": "Number Systems",
+      "prompt": "lets talk about number systems, natural integers rational irrational real complex numbers, properties closure commutativity associativity distributivity, and how they form algebraic structures",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Prime Numbers and Divisibility",
+      "prompt": "prime numbers, fundamental theorem of arithmetic, GCD LCM Euclidean algorithm, modular arithmetic, Fermat's little theorem, and Euler's totient function",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Linear Equations and Systems",
+      "prompt": "linear equations, systems of linear equations, substitution elimination method, Cramer's rule, consistent vs inconsistent systems, and geometric interpretation of solutions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quadratic and Polynomial Equations",
+      "prompt": "quadratic equations, factoring, completing the square, quadratic formula, discriminant, polynomial equations, Vieta's formulas, and fundamental theorem of algebra",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Inequalities and Absolute Value",
+      "prompt": "inequalities, linear inequalities, quadratic inequalities, absolute value equations and inequalities, triangle inequality, AM-GM inequality, and Cauchy-Schwarz inequality",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Logarithms and Exponents",
+      "prompt": "logarithms, log properties product quotient power rule, change of base formula, natural log ln, exponential functions, exponential growth decay, and logarithmic scales",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Sequences and Series",
+      "prompt": "arithmetic sequences and series, geometric sequences and series, harmonic series, convergence tests for infinite series, telescoping series, and power series",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Binomial Theorem",
+      "prompt": "binomial theorem, binomial coefficients, Pascal's triangle, combinatorial interpretation, multinomial theorem, and generating functions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Combinatorics",
+      "prompt": "combinatorics, permutations and combinations, circular permutations, combinations with repetition, inclusion-exclusion principle, pigeonhole principle, and derangements",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Vectors",
+      "prompt": "vectors in 2D and 3D, vector operations addition scalar multiplication, dot product, cross product, vector projection, magnitude direction, unit vectors, and geometric interpretations",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Vector Spaces",
+      "prompt": "vector spaces, axioms of vector space, subspaces, span of vectors, linear independence, basis, dimension, and examples of vector spaces beyond R^n like function spaces",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Linear Transformations",
+      "prompt": "linear transformations, transformation matrix, kernel null space, image range, rank-nullity theorem, composition of transformations, and geometric transformations rotation scaling shear",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Matrix Operations",
+      "prompt": "matrix operations, addition, scalar multiplication, matrix multiplication, transpose, trace, block matrices, and computational complexity of matrix multiplication",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Matrix Types",
+      "prompt": "special matrix types, identity diagonal symmetric skew-symmetric orthogonal unitary Hermitian, upper lower triangular, sparse matrices, and their properties",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Determinants",
+      "prompt": "determinants, cofactor expansion, properties of determinants, row operations effect, determinant and invertibility, determinant of product, and geometric interpretation as volume",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Matrix Inverse",
+      "prompt": "matrix inverse, conditions for invertibility, computing inverse via row reduction, adjugate method, properties of inverse, and computational complexity",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Rank and Null Space",
+      "prompt": "matrix rank, column space, row space, null space, rank-nullity theorem, computing rank via row echelon form, and applications in solving linear systems",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Gaussian Elimination",
+      "prompt": "Gaussian elimination, row echelon form, reduced row echelon form, pivot columns, free variables, LU decomposition, and computational complexity",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Eigenvalues and Eigenvectors",
+      "prompt": "eigenvalues and eigenvectors, characteristic polynomial, computing eigenvalues, eigenspaces, algebraic vs geometric multiplicity, and eigendecomposition",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Diagonalization",
+      "prompt": "matrix diagonalization, conditions for diagonalizability, spectral theorem for symmetric matrices, matrix powers via diagonalization, and applications in dynamical systems",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "SVD",
+      "prompt": "singular value decomposition SVD, computing SVD, relationship with eigendecomposition, geometric interpretation, truncated SVD, pseudo-inverse Moore-Penrose, and applications in data science PCA",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Matrix Norms",
+      "prompt": "matrix norms, Frobenius norm, spectral norm operator norm, nuclear norm trace norm, vector norms L1 L2 Linf, and how norms are used in regularization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Positive Definite Matrices",
+      "prompt": "positive definite matrices, positive semi-definite, tests for positive definiteness eigenvalues leading minors Cholesky, Cholesky decomposition, and role in optimization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "QR Decomposition",
+      "prompt": "QR decomposition, Gram-Schmidt orthogonalization process, Householder reflections, Givens rotations, applications in least squares, and QR algorithm for eigenvalues",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Least Squares",
+      "prompt": "least squares problem, normal equations, geometric interpretation projection, weighted least squares, ridge regression as regularized least squares, and iterative methods",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Tensor Operations",
+      "prompt": "tensors, tensor order and shape, tensor contraction, Einstein summation convention einsum, outer product, Kronecker product, and tensor decompositions CP Tucker",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Limits",
+      "prompt": "limits, epsilon-delta definition, limit laws, one-sided limits, limits at infinity, infinite limits, squeeze theorem, and L'Hopital's rule",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Continuity",
+      "prompt": "continuity, definition at a point and on interval, types of discontinuity removable jump essential, intermediate value theorem, extreme value theorem, and uniform continuity",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Derivatives",
+      "prompt": "derivatives, power rule, product rule, quotient rule, chain rule, implicit differentiation, logarithmic differentiation, higher-order derivatives, and derivative as rate of change",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Applications of Derivatives",
+      "prompt": "applications of derivatives, finding maxima minima, first and second derivative tests, optimization problems, related rates, curve sketching, mean value theorem, Rolle's theorem",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Taylor and Maclaurin Series",
+      "prompt": "Taylor series, Maclaurin series, Taylor polynomial approximation, remainder term, convergence radius, common Taylor expansions e^x sin cos ln, and applications in numerical methods",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Integration Techniques",
+      "prompt": "integration, Riemann sums, fundamental theorem of calculus, substitution method, integration by parts, partial fractions, trigonometric substitution, and numerical integration",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Improper Integrals",
+      "prompt": "improper integrals, infinite limits of integration, unbounded integrands, convergence tests comparison test limit comparison, and Gamma function Beta function",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Applications of Integration",
+      "prompt": "applications of integration, area between curves, volume of revolution disk washer shell methods, arc length, surface area, and probability density functions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Partial Derivatives",
+      "prompt": "partial derivatives, geometric interpretation, notation, higher-order partial derivatives, Clairaut's theorem mixed partials equality, and partial derivatives in machine learning",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Gradient and Directional Derivative",
+      "prompt": "gradient vector, directional derivative, gradient as direction of steepest ascent, gradient descent intuition, level curves and gradient perpendicularity, and nabla operator",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Jacobian and Hessian",
+      "prompt": "Jacobian matrix for vector-valued functions, Hessian matrix of second partial derivatives, Hessian in optimization second-order conditions, and Newton's method using Hessian",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multivariable Chain Rule",
+      "prompt": "multivariable chain rule, total derivative, implicit function theorem, backpropagation as chain rule application, and computational graph for automatic differentiation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Lagrange Multipliers",
+      "prompt": "constrained optimization, Lagrange multipliers method, equality constraints, geometric interpretation, multiple constraints, and connection to KKT conditions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multiple Integrals",
+      "prompt": "double integrals, triple integrals, iterated integrals, Fubini's theorem, change of variables polar cylindrical spherical coordinates, and Jacobian determinant for substitution",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Vector Calculus",
+      "prompt": "vector calculus, line integrals, surface integrals, Green's theorem, Stokes' theorem, divergence theorem, curl divergence gradient of vector fields, and conservative fields",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "First-Order ODEs",
+      "prompt": "ordinary differential equations, first-order ODEs, separable equations, exact equations, integrating factors, linear first-order ODEs, Bernoulli equations, and existence uniqueness theorem",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Second-Order Linear ODEs",
+      "prompt": "second-order linear ODEs, homogeneous with constant coefficients, characteristic equation, undetermined coefficients, variation of parameters, and applications spring-mass systems",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Laplace Transforms",
+      "prompt": "Laplace transforms, definition and properties, inverse Laplace transform, solving ODEs with Laplace transforms, transfer functions, and convolution theorem",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Sample Space and Events",
+      "prompt": "probability fundamentals, sample space, events, axioms of probability Kolmogorov, addition rule, complement rule, and counting methods for probability",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Conditional Probability and Bayes",
+      "prompt": "conditional probability, multiplication rule, law of total probability, Bayes' theorem derivation and intuition, prior posterior likelihood, and Bayesian reasoning examples",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Random Variables",
+      "prompt": "random variables, discrete vs continuous, PMF probability mass function, PDF probability density function, CDF cumulative distribution function, and expected value variance",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Expectation and Variance",
+      "prompt": "expectation properties linearity, variance and standard deviation, covariance, correlation coefficient, independence, and moment generating functions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Common Discrete Distributions",
+      "prompt": "discrete distributions, Bernoulli, binomial, Poisson, geometric, negative binomial, hypergeometric, and their PMFs means variances and applications",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Common Continuous Distributions",
+      "prompt": "continuous distributions, uniform, normal Gaussian, exponential, gamma, beta, chi-squared, Student's t, F-distribution, Weibull, log-normal, and their PDFs means variances",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Joint Distributions",
+      "prompt": "joint distributions, joint PMF PDF, marginal distributions, conditional distributions, independence of random variables, joint CDF, and transformation of random variables",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multivariate Normal",
+      "prompt": "multivariate normal distribution, mean vector, covariance matrix, marginal and conditional distributions, Mahalanobis distance, and applications in ML",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Law of Large Numbers",
+      "prompt": "law of large numbers weak and strong versions, convergence in probability vs almost sure convergence, Monte Carlo estimation, and practical implications for sampling",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Central Limit Theorem",
+      "prompt": "central limit theorem statement and proof sketch, convergence to normal distribution, sampling distribution of mean, confidence interval derivation, and CLT applications",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Concentration Inequalities",
+      "prompt": "concentration inequalities, Markov's inequality, Chebyshev's inequality, Chernoff bounds, Hoeffding's inequality, and applications in learning theory PAC bounds",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Maximum Likelihood Estimation",
+      "prompt": "MLE maximum likelihood estimation, likelihood function, log-likelihood, MLE for normal distribution, MLE for Bernoulli, consistency asymptotic normality, and Fisher information",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "MAP and Bayesian Estimation",
+      "prompt": "MAP maximum a posteriori estimation, relationship with MLE, prior as regularization, Bayesian estimation posterior mean, and comparison MLE vs MAP vs Bayesian",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Confidence Intervals",
+      "prompt": "confidence intervals, z-interval, t-interval, interpretation of confidence level, confidence interval for proportion, sample size determination, and bootstrap confidence intervals",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Inference",
+      "prompt": "Bayesian inference, prior distributions informative non-informative Jeffrey's, conjugate priors, posterior computation, Bayesian updating, and credible intervals vs confidence intervals",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "MCMC Methods",
+      "prompt": "MCMC Markov chain Monte Carlo, Metropolis-Hastings algorithm, Gibbs sampling, convergence diagnostics, burn-in, thinning, and applications in Bayesian posterior sampling",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "EM Algorithm",
+      "prompt": "EM expectation-maximization algorithm, E-step and M-step, convergence to local maximum, applications GMM parameter estimation, missing data, and variational EM",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Entropy and Information Theory",
+      "prompt": "Shannon entropy, cross-entropy, KL divergence asymmetry, mutual information, joint entropy, conditional entropy, data processing inequality, and connections to ML loss functions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Convex Sets and Functions",
+      "prompt": "convex sets, convex functions, concave functions, Jensen's inequality, epigraph, sublevel sets, operations preserving convexity, and identifying convex optimization problems",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Gradient Descent Convergence",
+      "prompt": "gradient descent algorithm, convergence analysis, step size selection, Lipschitz continuity, strong convexity, convergence rates O(1/t) vs O(e^-t), and gradient descent variants",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "KKT Conditions and Duality",
+      "prompt": "KKT Karush-Kuhn-Tucker conditions, Lagrangian function with inequality constraints, primal and dual problems, strong duality Slater's condition, and complementary slackness",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Linear Programming",
+      "prompt": "linear programming, standard form, simplex method, interior point methods, LP duality, sensitivity analysis, and applications in resource allocation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Newton and Quasi-Newton Methods",
+      "prompt": "Newton's method for optimization, quadratic convergence, Hessian computation cost, quasi-Newton methods BFGS L-BFGS, secant condition, and line search methods",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Proximal and ADMM Methods",
+      "prompt": "proximal gradient methods, proximal operator, ISTA FISTA for L1 regularization, ADMM alternating direction method of multipliers, and applications in distributed optimization",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Theory Fundamentals",
+      "prompt": "graph theory, graphs directed undirected weighted, adjacency matrix adjacency list, degree, paths cycles, connectivity, BFS DFS traversals, and graph properties",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Algorithms",
+      "prompt": "graph algorithms, shortest paths Dijkstra Bellman-Ford, minimum spanning tree Kruskal Prim, topological sort, graph coloring, bipartite matching, and network flow max-flow min-cut",
+      "covered": false,
+      "level_at_cover": 0
+    }
+  ],
+  "target_skills": [
+    "Algebra",
+    "Optimization"
   ]
 }
