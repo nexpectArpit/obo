@@ -219,6 +219,11 @@
             "timestamp": 1787433296.4932978,
             "duration_seconds": 519,
             "topic": "Algorithms: Ternary Search"
+        },
+        {
+            "timestamp": 1787439551.2988324,
+            "duration_seconds": 5319,
+            "topic": "Computer Architecture: Von Neumann vs Harvard Architecture"
         }
     ]
 }
