@@ -1,5 +1,5 @@
 /**
- * Cloudflare Worker: Scheduler Logic Module
+ * Cloudflare Worker: Scheduler Logic Module (Fully Dynamic State-Driven)
  */
 import { trackSkillMap, trackDisplayNames } from "./config.js";
 import { sendTelegram } from "./telegram.js";
@@ -12,17 +12,12 @@ export async function handleScheduled(env) {
     const workflow = (env.GH_WORKFLOW || "run_agent.yml").trim();
     const pat = env.GH_PAT ? env.GH_PAT.trim() : "";
     const allowedUserChatId = (env.ALLOWED_TELEGRAM_CHAT_ID || env.ALLOWED_TELEGRAM_USER_ID || "").trim();
-    console.log("[AUTO-LOOP] env keys:", Object.keys(env));
-    console.log("[AUTO-LOOP] allowedUserChatId resolved to:", allowedUserChatId);
 
     // 1. Get current IST time (UTC + 5:30)
     const now = new Date();
     const istOffset = 5.5 * 60 * 60 * 1000;
     const nowIst = new Date(now.getTime() + istOffset);
     const hour = nowIst.getUTCHours();
-    
-    // Gating window: 3:00 AM - 8:00 AM IST (Set to true for testing mode)
-    const withinWindow = true;
     
     // 2. Fetch scheduler_state.json from GitHub Content API
     let state = null;
@@ -54,6 +49,13 @@ export async function handleScheduled(env) {
       console.log("[AUTO-LOOP] Scheduler is disabled in state.");
       return;
     }
+
+    // Dynamic config parsing
+    const config = state.config || {};
+    const startHour = config.start_hour_ist !== undefined ? config.start_hour_ist : 3;
+    const endHour = config.end_hour_ist !== undefined ? config.end_hour_ist : 8;
+    const testMode = config.test_mode === true || !!state.override;
+    const withinWindow = testMode || (hour >= startHour && hour < endHour);
     
     // 3. Query GitHub Actions to check active run (Authoritative check)
     const activeRuns = await getRunningRuns(pat, repo, workflow);
@@ -100,8 +102,10 @@ export async function handleScheduled(env) {
               }
             }
             
-            // Clear active run ID and set cooldown
-            const coolingMins = Math.floor(Math.random() * (18 - 10 + 1)) + 10; // 10 to 18 minutes random
+            // Dynamic cooldown calculation (Default 10 to 17 mins)
+            const minCool = config.min_cooldown_mins !== undefined ? config.min_cooldown_mins : 10;
+            const maxCool = config.max_cooldown_mins !== undefined ? config.max_cooldown_mins : 17;
+            const coolingMins = Math.floor(Math.random() * (maxCool - minCool + 1)) + minCool;
             const nextAllowed = Date.now() + coolingMins * 60 * 1000;
             
             try {
@@ -157,52 +161,63 @@ export async function handleScheduled(env) {
     }
     
     // 4. Cooldown and Time Window Gating Check
-    if (Date.now() < state.next_run_allowed_epoch) {
+    if (Date.now() < (state.next_run_allowed_epoch || 0) && !state.override) {
       console.log("[AUTO-LOOP] Cooldown period active.");
       return;
     }
     
     if (!withinWindow) {
-      console.log("[AUTO-LOOP] Outside active 3:00 AM - 8:00 AM IST window.");
+      console.log(`[AUTO-LOOP] Outside active ${startHour}:00 - ${endHour}:00 IST window.`);
       return;
     }
     
-    // 5. Select Track using Top 3 Priority Filter
-    let skills = {};
-    try {
-      const skillRes = await fetch(`https://api.github.com/repos/${repo}/contents/data/learned_skills.json`, {
-        headers: {
-          "Authorization": `Bearer ${pat}`,
-          "Accept": "application/vnd.github+json",
-          "User-Agent": "cloudflare-worker-obo"
+    // 5. Select Track (Check Override vs Dynamic Mastery Ranking)
+    let selectedTrack = state.override && state.override.track && state.override.track !== "auto" ? state.override.track : null;
+
+    if (!selectedTrack) {
+      let skills = {};
+      try {
+        const skillRes = await fetch(`https://api.github.com/repos/${repo}/contents/data/learned_skills.json`, {
+          headers: {
+            "Authorization": `Bearer ${pat}`,
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "cloudflare-worker-obo"
+          }
+        });
+        if (skillRes.ok) {
+          const fileData = await skillRes.json();
+          const decoded = atob(fileData.content.replace(/\s/g, ""));
+          skills = JSON.parse(decoded);
         }
-      });
-      if (skillRes.ok) {
-        const fileData = await skillRes.json();
-        const decoded = atob(fileData.content.replace(/\s/g, ""));
-        skills = JSON.parse(decoded);
+      } catch (err) {
+        console.error("[AUTO-LOOP] Failed to fetch learned_skills.json:", err);
       }
-    } catch (err) {
-      console.error("[AUTO-LOOP] Failed to fetch learned_skills.json:", err);
-    }
-    
-    const trackLevels = [];
-    for (const [trackKey, mappings] of Object.entries(trackSkillMap)) {
-      let sum = 0;
-      for (const [shortName, longName] of mappings) {
-        sum += skills[longName] !== undefined ? skills[longName] : 1;
+      
+      const trackLevels = [];
+      for (const [trackKey, mappings] of Object.entries(trackSkillMap)) {
+        let sum = 0;
+        for (const [shortName, longName] of mappings) {
+          sum += skills[longName] !== undefined ? skills[longName] : 1;
+        }
+        const avg = sum / mappings.length;
+        trackLevels.push({ key: trackKey, avg: avg });
       }
-      const avg = sum / mappings.length;
-      trackLevels.push({ key: trackKey, avg: avg });
+      
+      trackLevels.sort((a, b) => b.avg - a.avg);
+      const top3 = trackLevels.slice(0, 3);
+      const selectedTrackObj = top3[Math.floor(Math.random() * top3.length)];
+      selectedTrack = selectedTrackObj ? selectedTrackObj.key : "cpp";
     }
+
+    const trackDisplay = trackDisplayNames[selectedTrack] || selectedTrack;
     
-    trackLevels.sort((a, b) => b.avg - a.avg);
-    const top3 = trackLevels.slice(0, 3);
-    const selectedTrack = "cpp";
-    const trackDisplay = "1. CP / DSA";
-    
-    // 6. Generate dynamic session duration (Temporarily set to 3 mins for testing)
-    let durationMins = 3;
+    // 6. Generate dynamic session duration (Check Override vs Random Range)
+    let durationMins = state.override && state.override.duration ? parseInt(state.override.duration) : null;
+    if (!durationMins || isNaN(durationMins)) {
+      const minDur = config.min_duration !== undefined ? config.min_duration : 50;
+      const maxDur = config.max_duration !== undefined ? config.max_duration : 85;
+      durationMins = Math.floor(Math.random() * (maxDur - minDur + 1)) + minDur;
+    }
     
     // 7. Dispatch GHA run
     const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, true, selectedTrack, durationMins);
@@ -215,6 +230,10 @@ export async function handleScheduled(env) {
         await updateSchedulerState(pat, repo, (s) => {
           s.active_run_id = newRunId;
           s.active_run_started_at = Date.now();
+          // Clear one-time override once triggered
+          if (s.override) {
+            s.override = null;
+          }
           return s;
         });
       } catch (err) {

@@ -1,9 +1,19 @@
 {
-    "enabled": true,
-    "consecutive_failures": 0,
-    "active_run_id": null,
-    "active_run_started_at": null,
-    "last_run_status": "success",
-    "last_run_finished_at": null,
-    "next_run_allowed_epoch": 0
+  "enabled": true,
+  "consecutive_failures": 0,
+  "active_run_id": null,
+  "active_run_started_at": null,
+  "last_run_status": "success",
+  "last_run_finished_at": null,
+  "next_run_allowed_epoch": 0,
+  "config": {
+    "test_mode": true,
+    "start_hour_ist": 3,
+    "end_hour_ist": 8,
+    "min_duration": 50,
+    "max_duration": 85,
+    "min_cooldown_mins": 10,
+    "max_cooldown_mins": 17
+  },
+  "override": null
 }
