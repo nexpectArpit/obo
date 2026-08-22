@@ -1,9 +1,9 @@
 /**
- * Cloudflare Worker: Scheduler Logic Module (Fully Dynamic State-Driven)
+ * Cloudflare Worker: Scheduler Logic Module (Authoritative GHA Cooldown Engine)
  */
 import { trackSkillMap, trackDisplayNames } from "./config.js";
 import { sendTelegram } from "./telegram.js";
-import { triggerGitHubWorkflow, getRunningRuns, updateSchedulerState } from "./github.js";
+import { triggerGitHubWorkflow, getLatestRun } from "./github.js";
 
 export async function handleScheduled(env) {
   try {
@@ -20,7 +20,7 @@ export async function handleScheduled(env) {
     const hour = nowIst.getUTCHours();
     
     // 2. Fetch scheduler_state.json from GitHub Content API
-    let state = null;
+    let state = { enabled: true, config: {}, override: null };
     try {
       const r = await fetch(`https://api.github.com/repos/${repo}/contents/data/scheduler_state.json`, {
         headers: {
@@ -33,19 +33,12 @@ export async function handleScheduled(env) {
         const fileData = await r.json();
         const decoded = atob(fileData.content.replace(/\s/g, ""));
         state = JSON.parse(decoded);
-      } else {
-        console.error(`[AUTO-LOOP] Failed to fetch scheduler_state.json. HTTP status: ${r.status}`);
       }
     } catch (err) {
-      console.error("[AUTO-LOOP] Failed to fetch scheduler_state.json:", err);
-      return;
+      console.warn("[AUTO-LOOP] Non-fatal: Failed to fetch state from GitHub, using defaults:", err);
     }
     
-    if (!state) {
-      console.error("[AUTO-LOOP] State is null or fetch failed.");
-      return;
-    }
-    if (state.enabled !== true) {
+    if (state.enabled === false) {
       console.log("[AUTO-LOOP] Scheduler is disabled in state.");
       return;
     }
@@ -57,115 +50,32 @@ export async function handleScheduled(env) {
     const testMode = config.test_mode === true || !!state.override;
     const withinWindow = testMode || (hour >= startHour && hour < endHour);
     
-    // 3. Query GitHub Actions to check active run (Authoritative check)
-    const activeRuns = await getRunningRuns(pat, repo, workflow);
-    const hasActiveRun = (activeRuns && activeRuns.length > 0);
+    // 3. Authoritative check on GitHub Actions (Zero file persistence needed!)
+    const latestRun = await getLatestRun(pat, repo, workflow);
     
-    // Check if we have an active run tracked in state
-    if (state.active_run_id) {
-      try {
-        const checkRes = await fetch(`https://api.github.com/repos/${repo}/actions/runs/${state.active_run_id}`, {
-          headers: {
-            "Authorization": `Bearer ${pat}`,
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "cloudflare-worker-obo"
-          }
-        });
-        if (checkRes.ok) {
-          const runInfo = await checkRes.json();
-          const status = runInfo.status;
-          const conclusion = runInfo.conclusion;
-          
-          if (status === "completed") {
-            console.log(`[AUTO-LOOP] Run ${state.active_run_id} completed with conclusion: ${conclusion}`);
-            
-            let consecutive_failures = state.consecutive_failures || 0;
-            let enabled = state.enabled;
-            let last_run_status = conclusion;
-            
-            if (conclusion === "success") {
-              consecutive_failures = 0;
-            } else if (conclusion === "cancelled") {
-              // User stopped or manual cancellation, don't increment failure counter
-            } else {
-              // Infrastructure error or timeout
-              consecutive_failures += 1;
-              if (consecutive_failures >= 2) {
-                enabled = false;
-                if (allowedUserChatId) {
-                  await sendTelegram(token, "sendMessage", {
-                    chat_id: allowedUserChatId,
-                    text: `⚠️ <b>[AUTO-LOOP] Emergency Stop!</b>\n\n2 consecutive infrastructure failures detected (last run: ${conclusion}).\nAuto-Loop has been disabled.`,
-                    parse_mode: "HTML"
-                  });
-                }
-              }
-            }
-            
-            // Dynamic cooldown calculation (Default 10 to 17 mins)
-            const minCool = config.min_cooldown_mins !== undefined ? config.min_cooldown_mins : 10;
-            const maxCool = config.max_cooldown_mins !== undefined ? config.max_cooldown_mins : 17;
-            const coolingMins = Math.floor(Math.random() * (maxCool - minCool + 1)) + minCool;
-            const nextAllowed = Date.now() + coolingMins * 60 * 1000;
-            
-            try {
-              await updateSchedulerState(pat, repo, (s) => {
-                s.active_run_id = null;
-                s.active_run_started_at = null;
-                s.consecutive_failures = consecutive_failures;
-                s.enabled = enabled;
-                s.last_run_status = last_run_status;
-                s.last_run_finished_at = Date.now();
-                s.next_run_allowed_epoch = nextAllowed;
-                return s;
-              });
-            } catch (err) {
-              console.error("[AUTO-LOOP] Failed to write scheduler state (completion check):", err);
-            }
-            
-            if (allowedUserChatId) {
-              await sendTelegram(token, "sendMessage", {
-                chat_id: allowedUserChatId,
-                text: `✅ <b>[AUTO-LOOP] Session finished: ${conclusion}</b>\n\nCooling down for ${coolingMins} minutes before checking next window.`,
-                parse_mode: "HTML"
-              });
-            }
-            return;
-          } else {
-            console.log(`[AUTO-LOOP] Run ${state.active_run_id} is still in status: ${status}`);
-            return;
-          }
-        } else if (checkRes.status === 404) {
-          console.warn(`[AUTO-LOOP] Run ${state.active_run_id} not found. Reconciling state.`);
-          try {
-            await updateSchedulerState(pat, repo, (s) => {
-              s.active_run_id = null;
-              s.active_run_started_at = null;
-              s.next_run_allowed_epoch = Date.now() + 5 * 60 * 1000; // 5 min cooldown
-              return s;
-            });
-          } catch (err) {
-            console.error("[AUTO-LOOP] Failed to write scheduler state (reconcile check):", err);
-          }
-          return;
-        }
-      } catch (e) {
-        console.error("[AUTO-LOOP] Error checking GHA active run:", e);
+    if (latestRun) {
+      const status = latestRun.status;
+      const conclusion = latestRun.conclusion;
+
+      // Gating A: If a run is currently active, WAIT!
+      if (status === "in_progress" || status === "queued") {
+        console.log(`[AUTO-LOOP] Run #${latestRun.run_number} is currently ${status}. Waiting...`);
+        return;
+      }
+
+      // Gating B: Authoritative Cooldown Check (Based on real GHA completion timestamp)
+      const finishedTimestamp = Date.parse(latestRun.updated_at || latestRun.created_at);
+      const elapsedMins = (Date.now() - finishedTimestamp) / (60 * 1000);
+      
+      const minCool = config.min_cooldown_mins !== undefined ? config.min_cooldown_mins : 10;
+      
+      if (elapsedMins < minCool && !state.override) {
+        console.log(`[AUTO-LOOP] Cooldown active: Run #${latestRun.run_number} finished ${elapsedMins.toFixed(1)} mins ago. Minimum cooldown is ${minCool} mins. Waiting...`);
         return;
       }
     }
     
-    if (hasActiveRun) {
-      console.log("[AUTO-LOOP] An active run is running on GHA, waiting...");
-      return;
-    }
-    
-    // 4. Cooldown and Time Window Gating Check
-    if (Date.now() < (state.next_run_allowed_epoch || 0) && !state.override) {
-      console.log("[AUTO-LOOP] Cooldown period active.");
-      return;
-    }
-    
+    // 4. Time Window Gating Check
     if (!withinWindow) {
       console.log(`[AUTO-LOOP] Outside active ${startHour}:00 - ${endHour}:00 IST window.`);
       return;
@@ -190,7 +100,7 @@ export async function handleScheduled(env) {
           skills = JSON.parse(decoded);
         }
       } catch (err) {
-        console.error("[AUTO-LOOP] Failed to fetch learned_skills.json:", err);
+        console.warn("[AUTO-LOOP] Non-fatal: Failed to fetch learned_skills.json:", err);
       }
       
       const trackLevels = [];
@@ -222,23 +132,7 @@ export async function handleScheduled(env) {
     // 7. Dispatch GHA run
     const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, true, selectedTrack, durationMins);
     if (ok) {
-      await new Promise(r => setTimeout(r, 10000));
-      const runs = await getRunningRuns(pat, repo, workflow);
-      const newRunId = (runs && runs.length > 0) ? runs[0].id : null;
-      
-      try {
-        await updateSchedulerState(pat, repo, (s) => {
-          s.active_run_id = newRunId;
-          s.active_run_started_at = Date.now();
-          // Clear one-time override once triggered
-          if (s.override) {
-            s.override = null;
-          }
-          return s;
-        });
-      } catch (err) {
-        console.error("[AUTO-LOOP] Failed to write scheduler state (dispatch update):", err);
-      }
+      console.log(`[AUTO-LOOP] Successfully dispatched session for track '${selectedTrack}' with duration ${durationMins}m`);
       
       if (allowedUserChatId) {
         await sendTelegram(token, "sendMessage", {

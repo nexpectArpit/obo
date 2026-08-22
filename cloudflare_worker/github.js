@@ -54,6 +54,26 @@ export async function getRunningRuns(pat, repo, workflow) {
   return runs;
 }
 
+
+export async function getLatestRun(pat, repo, workflow) {
+  const url = `https://api.github.com/repos/${repo}/actions/workflows/${workflow}/runs?per_page=1`;
+  const r = await fetch(url, {
+    headers: {
+      "Authorization": `Bearer ${pat}`,
+      "Accept": "application/vnd.github+json",
+      "User-Agent": "cloudflare-worker-obo"
+    }
+  });
+  if (r.ok) {
+    const data = await r.json();
+    if (data.workflow_runs && data.workflow_runs.length > 0) {
+      return data.workflow_runs[0];
+    }
+  }
+  return null;
+}
+
+
 export async function cancelRun(pat, repo, runId) {
   const url = `https://api.github.com/repos/${repo}/actions/runs/${runId}/cancel`;
   const r = await fetch(url, {
