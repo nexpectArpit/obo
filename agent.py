@@ -6,16 +6,9 @@ from pathlib import Path
 from browser import OboeBrowser
 from llm import OboeLLM
 from skill_dag_engine import SkillDAGEngine
+from time_tracker import update_time_tracker
+from topic_selector import select_topic, remove_topic_from_pool
 import config
-
-
-# Load topics from topics.json
-topics_path = Path(__file__).resolve().parent / "data" / "topics.json"
-try:
-    with open(topics_path, "r") as f:
-        RANDOM_TOPICS = json.load(f)
-except Exception:
-    RANDOM_TOPICS = {"new_topics": ["Quantum computing basics"], "level_up_topics": []}
 
 
 class OboeAgent:
@@ -54,86 +47,6 @@ class OboeAgent:
         self.wrong_mcqs_count = 0
         self.last_action_was_mcq = False
 
-    def update_time_tracker(self, elapsed_time):
-        """Track sessions and calculate rolling 24h & calendar day (IST) totals."""
-        tracker_path = Path(__file__).resolve().parent / "data" / "time_tracker.json"
-        
-        # Load existing sessions
-        data = {"sessions": []}
-        if tracker_path.exists():
-            try:
-                data = json.loads(tracker_path.read_text())
-            except Exception:
-                pass
-                
-        if "sessions" not in data:
-            data["sessions"] = []
-            
-        # Append current session
-        current_ts = time.time()
-        data["sessions"].append({
-            "timestamp": current_ts,
-            "duration_seconds": int(elapsed_time),
-            "topic": self.topic
-        })
-        
-        # Deduplicate concurrent/redundant sessions (same topic within 5 mins, or close timestamps within 5s)
-        deduplicated = []
-        for s in data["sessions"]:
-            is_dup = False
-            s_ts = s.get("timestamp", 0)
-            s_topic = s.get("topic", "")
-            for existing in deduplicated:
-                e_ts = existing.get("timestamp", 0)
-                e_topic = existing.get("topic", "")
-                if abs(s_ts - e_ts) < 300 and (s_topic == e_topic or abs(s_ts - e_ts) < 5):
-                    is_dup = True
-                    # Retain the session record with the longer duration
-                    if s.get("duration_seconds", 0) > existing.get("duration_seconds", 0):
-                        existing["duration_seconds"] = s["duration_seconds"]
-                        existing["timestamp"] = s_ts
-                    break
-            if not is_dup:
-                deduplicated.append(s)
-        data["sessions"] = deduplicated
-
-        # Filter sessions to keep only the last 7 days (to prevent file growing indefinitely)
-        one_week_ago = current_ts - (7 * 86400)
-        data["sessions"] = [s for s in data["sessions"] if s.get("timestamp", 0) > one_week_ago]
-        
-        # Save tracker file
-        try:
-            tracker_path.write_text(json.dumps(data, indent=4))
-        except Exception as e:
-            print(f"[WARNING] Failed to write time_tracker.json: {e}")
-
-            
-        # 1. Calculate rolling 24h total
-        twenty_four_hours_ago = current_ts - 86400
-        rolling_24h_seconds = sum(
-            s.get("duration_seconds", 0) 
-            for s in data["sessions"] 
-            if s.get("timestamp", 0) > twenty_four_hours_ago
-        )
-        
-        # 2. Calculate calendar day (IST) total
-        from datetime import datetime, timezone, timedelta
-        ist_tz = timezone(timedelta(hours=5, minutes=30))
-        ist_now = datetime.now(timezone.utc).astimezone(ist_tz)
-        current_date_ist = ist_now.date()
-        
-        today_ist_seconds = 0
-        for s in data["sessions"]:
-            s_ts = s.get("timestamp", 0)
-            try:
-                s_dt_ist = datetime.fromtimestamp(s_ts, timezone.utc).astimezone(ist_tz)
-                if s_dt_ist.date() == current_date_ist:
-                    today_ist_seconds += s.get("duration_seconds", 0)
-            except Exception:
-                pass
-                
-        return rolling_24h_seconds, today_ist_seconds
-
     def save_summary(self, status="COMPLETED", start_time=None):
         """Save state and write agent_state.json summary for Telegram notifications."""
         if start_time is None:
@@ -144,7 +57,7 @@ class OboeAgent:
         else:
             elapsed_time = max(0, int(time.time() - start_time))
             
-        rolling_24h_sec, today_ist_sec = self.update_time_tracker(elapsed_time)
+        rolling_24h_sec, today_ist_sec = update_time_tracker(elapsed_time, self.topic)
         today_h = int(today_ist_sec // 3600)
         today_m = int((today_ist_sec % 3600) // 60)
 
@@ -239,6 +152,281 @@ class OboeAgent:
         except Exception:
             pass
 
+    def _setup_normal_session(self, state_data, state_path):
+        """Handle normal mode topic selection, navigation, and initial prompt submission."""
+        current_url = self.browser.page.url
+        if "/chat/" in current_url:
+            print("[INFO] Active chat page detected on startup. Navigating to New Chat dashboard...")
+            trigger = self.browser.page.locator('[data-sidebar="trigger"]')
+            if trigger.count() > 0:
+                trigger.first.click()
+                time.sleep(1.5)
+            
+            new_chat_btn = self.browser.page.locator('button').filter(has_text="New Chat")
+            if new_chat_btn.count() > 0:
+                new_chat_btn.first.click()
+                print("[INFO] Clicked 'New Chat' button successfully.")
+                time.sleep(3)
+
+        # If topic is random, select one from the list
+        if self.topic == "random":
+            result = select_topic(self.level_up, self.dag_engine, self.learned_skills)
+            self.topic = result["topic"]
+            self.target_skill = result["target_skill"]
+            self.target_level = result["target_level"]
+            self.active_pillar = result["active_pillar"]
+            self.active_node = result["active_node"]
+
+        # Remove the topic from topics.json if it is present (including explicit CLI topics)
+        remove_topic_from_pool(self.topic, self.target_skill, self.target_level)
+
+        # Update state file with the actual selected topic
+        state_data["topic"] = self.topic
+        try:
+            state_path.write_text(json.dumps(state_data, indent=4))
+        except Exception:
+            pass
+
+        # If a new topic is specified and we are on the dashboard, start it
+        state = self.browser.get_interaction_state()
+        if self.topic and state == "free_text":
+            # Check if the page is the new chat dashboard (placeholder exists)
+            textarea = self.browser.page.locator('textarea[name="prompt"]')
+            placeholder = textarea.get_attribute("placeholder") or ""
+            if "I want to learn" in placeholder:
+                # Determine prompt based on target skill and level
+                if self.target_skill:
+                    current_lv = self.learned_skills.get(self.target_skill, 0)
+                    if current_lv >= 4:
+                        initial_prompt = f"I'm already very familiar with the basics of {self.topic}. Can we skip the introductory stuff and dive straight into the advanced concepts/complex math? I'd love to challenge myself with some tough questions."
+                    elif current_lv == 3:
+                        initial_prompt = f"I understand the basic overview of {self.topic} already. Let's look at the intermediate concepts and the math behind them."
+                    else:
+                        initial_prompt = f"I want to learn about {self.topic}. Can we start with the core concepts?"
+                else:
+                    initial_prompt = self.topic
+
+                print(f"Starting new chat with prompt: '{initial_prompt}'")
+                self.browser.type_and_submit(initial_prompt)
+                self.active_chat_start_time = time.time()
+                # Allow generation to kick off
+                time.sleep(5)
+
+    def _run_interaction_loop(self, start_time):
+        """Core observe-reason-act loop. Returns when session ends."""
+        consecutive_loadings = 0
+        while True:
+            if self.max_duration and (time.time() - start_time) > (self.max_duration * 60):
+                print(f"\n[DURATION LIMIT] Session has reached the maximum duration of {self.max_duration} minutes. Exiting loop cleanly.")
+                break
+
+            if self.active_chat_start_time is None:
+                self.active_chat_start_time = time.time()
+
+            # First observation
+            obs1 = self.browser.observe_page()
+            state1 = obs1["state"]
+
+            if state1 == "loading":
+                consecutive_loadings += 1
+                if consecutive_loadings > 30:
+                    print("Page stuck in loading state for too long. Exiting.")
+                    break
+                print("Oboe is thinking/generating... waiting 3 seconds...")
+                time.sleep(3)
+                continue
+
+            # Ensure page is stable (Oboe finished typing)
+            print("Waiting 5 seconds to verify page stability...")
+            time.sleep(5)
+            obs2 = self.browser.observe_page()
+            state2 = obs2["state"]
+
+            if state1 != state2:
+                print("Page state changed during wait. Retrying observation...")
+                continue
+            if len(obs1["messages"]) != len(obs2["messages"]):
+                print("New messages arrived. Oboe is still writing...")
+                continue
+            if obs1["messages"] and obs2["messages"]:
+                last_msg_1 = obs1["messages"][-1]
+                last_msg_2 = obs2["messages"][-1]
+                if last_msg_1["role"] == last_msg_2["role"] and last_msg_1["text"] != last_msg_2["text"]:
+                    print("Message text is updating. Oboe is still typing...")
+                    continue
+
+            # Page is stable, proceed with decision
+            obs = obs2
+            state = state2
+            choices = obs["choices"]
+            messages = obs["messages"]
+
+            # Evaluate last MCQ action result if applicable
+            if self.last_action_was_mcq and messages:
+                assistant_msgs = [m for m in messages if m["role"] == "assistant"]
+                if assistant_msgs:
+                    oboe_reply = assistant_msgs[-1]["text"].lower()
+                    self.total_mcqs_count += 1
+                    wrong_indicators = ["actually", "incorrect", "wrong", "snag", "correct answer is", "close, but", "consequence of", "different"]
+                    if any(ind in oboe_reply for ind in wrong_indicators):
+                        self.wrong_mcqs_count += 1
+                        print(f"\n>>> [STATS Update] MCQ Answer: INCORRECT <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
+                    else:
+                        print(f"\n>>> [STATS Update] MCQ Answer: CORRECT! <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
+                self.last_action_was_mcq = False
+
+            # Configured human reading & rate-limit pacing delay (7-20 seconds)
+            if messages and messages[-1]["role"] == "assistant":
+                reading_delay = round(random.uniform(config.MIN_DELAY, config.MAX_DELAY), 2)
+                print(f"Reading Oboe's response... Simulating human delay for {reading_delay:.2f} seconds (Configured Range: {config.MIN_DELAY}-{config.MAX_DELAY}s)...")
+                time.sleep(reading_delay)
+
+
+            # Log new skills and levels, and update memory
+            if obs.get("skills"):
+                for skill, lv_str in obs["skills"].items():
+                    try:
+                        new_lv = int(lv_str.replace("LV", "").strip())
+                    except ValueError:
+                        new_lv = 0
+                    current_max = self.learned_skills.get(skill, 0)
+                    if new_lv > current_max:
+                        self.learned_skills[skill] = new_lv
+                        self.achieved_skills[skill] = f"LV {new_lv}"
+                        print(f"\n>>> [ACHIEVEMENT] Skill Level Up: {skill} -> LV {new_lv}! <<<\n")
+
+            print(f"\n[Agent Observe] State: {state.upper()} | Message count: {len(messages)}")
+            
+            # Check if Oboe has replied to our last turn yet
+            if messages and messages[-1]["role"] == "user":
+                print("Last message was from user. Waiting for Oboe to reply...")
+                time.sleep(3)
+                continue
+
+            consecutive_loadings = 0
+
+            if state == "suggested_replies":
+                print(f"Available options: {choices}")
+                decision = self.llm.decide_action(
+                    state, 
+                    messages, 
+                    choices, 
+                    self.learned_skills, 
+                    target_skill=self.target_skill, 
+                    target_level=self.target_level,
+                    target_skills=self.active_track_target_skills
+                )
+                selection = decision.get("selection")
+                if selection in choices:
+                    self.browser.click_suggestion_by_text(selection)
+                else:
+                    # Fallback click first
+                    print(f"Warning: Selected option '{selection}' not in choices. Clicking first choice.")
+                    self.browser.click_suggestion_by_text(choices[0])
+                self.last_action_was_mcq = True
+
+            elif state == "free_text":
+                decision = self.llm.decide_action(
+                    state, 
+                    messages, 
+                    choices, 
+                    self.learned_skills, 
+                    target_skill=self.target_skill, 
+                    target_level=self.target_level,
+                    target_skills=self.active_track_target_skills
+                )
+                text = decision.get("text")
+                if not text or str(text).strip() == "" or str(text).lower() == "none":
+                    text = "I'm interested to learn more about this."
+                self.browser.type_and_submit(text)
+
+            else:
+                # Unknown state (perhaps course completed or error)
+                print("Unknown or finished state. Waiting 5 seconds to observe any changes...")
+                time.sleep(5)
+                # Check again, if still unknown, stop.
+                new_state = self.browser.get_interaction_state()
+                if new_state == "unknown":
+                    print("No interactive elements found. Task complete.")
+                    self.browser.take_screenshot("session_finished.png")
+                    break
+
+            # Sleep to prevent high-frequency loop and allow Oboe platform to render
+            time.sleep(2)
+
+    def _finalize_session(self, start_time, state_path, pid_path):
+        """Cleanup: close browser, save skills, update DAG, write final state."""
+        elapsed_time = time.time() - start_time
+        rolling_24h_sec, today_ist_sec = update_time_tracker(elapsed_time, self.topic)
+        
+        try:
+            self.browser.close()
+        except Exception as close_err:
+            print(f"[INFO] Browser close status: {close_err}")
+        except KeyboardInterrupt:
+            print("\n[INFO] Browser shutdown interrupted.")
+            
+        # Clean up PID
+        if pid_path.exists():
+            try: pid_path.unlink()
+            except Exception: pass
+            
+        # Update state file
+        state_data = {
+            "status": "STOPPED",
+            "topic": None,
+            "started_at": None,
+            "last_session": {
+                "topic": self.topic,
+                "elapsed_seconds": int(elapsed_time),
+                "mcqs_total": self.total_mcqs_count,
+                "mcqs_wrong": self.wrong_mcqs_count,
+                "achieved_skills": self.achieved_skills,
+                "total_24h_seconds": rolling_24h_sec,
+                "total_today_ist_seconds": today_ist_sec
+            }
+        }
+        try:
+            state_path.write_text(json.dumps(state_data, indent=4))
+        except Exception:
+            pass
+
+        # Save updated skill levels
+        try:
+            self.learned_skills_path.write_text(json.dumps(self.learned_skills, indent=4))
+            print(f"[INFO] Saved skill levels to {self.learned_skills_path.name}")
+        except Exception as se:
+            print(f"[WARNING] Failed to save learned_skills.json: {se}")
+
+        # Update DAG Curriculum Engine graph state based on actual achieved levels
+        if getattr(self, "active_pillar", None) and getattr(self, "active_node", None):
+            target_skill_name = self.target_skill or self.active_node.replace("_", " ")
+            achieved_lv = self.learned_skills.get(target_skill_name, 1)
+            self.dag_engine.update_skill_level(self.active_pillar, self.active_node, achieved_lv)
+
+        # Dynamic Skill Adaptation Check for Pinned Tracks
+        if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_target_skills", None) is not None:
+            from skill_adapter import adapt_track_target_skills
+            adapt_track_target_skills(
+                self.active_track_name,
+                self.active_track_target_skills,
+                self.learned_skills,
+                self.achieved_skills,
+                self.dag_engine.get_track_path
+            )
+
+        # Mark pinned track topic as covered
+        if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_topic_index", None) is not None:
+            from skill_dag_engine import SkillDAGEngine
+            # Find the highest achieved level across all skills this session
+            max_achieved = max(self.achieved_skills.values()) if self.achieved_skills else 0
+            SkillDAGEngine.mark_topic_covered(self.active_track_name, self.active_track_topic_index, max_achieved)
+
+        if self.achieved_skills:
+            print(f"[INFO] Skills leveled up: {self.achieved_skills}.")
+
+        self.save_summary(status=self._final_status, start_time=start_time)
+
     def run(self):
         """Run the main observe-reason-act loop."""
         import signal, sys
@@ -324,264 +512,12 @@ class OboeAgent:
                 # ──── PINNED TRACK MODE ────────────────────────────────
                 if self.pin:
                     self._setup_pinned_track_session(state_data, state_path)
-
                 # ──── NORMAL MODE (Random / Level-Up / Custom Topic) ───
                 else:
-                    # If the browser defaults to an active chat page, force a fresh session
-                    current_url = self.browser.page.url
-                    if "/chat/" in current_url:
-                        print("[INFO] Active chat page detected on startup. Navigating to New Chat dashboard...")
-                        # Toggle sidebar trigger to ensure New Chat button is clickable
-                        trigger = self.browser.page.locator('[data-sidebar="trigger"]')
-                        if trigger.count() > 0:
-                            trigger.first.click()
-                            time.sleep(1.5)
-                        
-                        new_chat_btn = self.browser.page.locator('button').filter(has_text="New Chat")
-                        if new_chat_btn.count() > 0:
-                            new_chat_btn.first.click()
-                            print("[INFO] Clicked 'New Chat' button successfully.")
-                            time.sleep(3)
-
-                    # If topic is random, select one from the list
-                    if self.topic == "random":
-                        new_list = RANDOM_TOPICS.get("new_topics", [])
-                        lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
-                        
-                        if self.level_up:
-                            # Use zero-LLM deterministic DAG Curriculum Manager
-                            resolved = self.dag_engine.resolve_next_topic()
-                            self.topic = resolved["topic"]
-                            self.target_skill = resolved.get("target_skill")
-                            self.target_level = resolved.get("target_level")
-                            self.active_pillar = resolved.get("pillar")
-                            self.active_node = resolved.get("node")
-                            print(f"[INFO] Selected DAG curriculum topic: '{self.topic}' (Pillar: '{resolved.get('pillar_name', self.active_pillar)}') targeting '{self.target_skill}' to LV {self.target_level}")
-
-                        else:
-                            combined = []
-                            for t in new_list:
-                                combined.append(("new", t))
-                            for entry in lvl_list:
-                                if isinstance(entry, dict) and "topic" in entry:
-                                    combined.append(("level_up", entry))
-                                    
-                            if combined:
-                                choice_type, entry = random.choice(combined)
-                                if choice_type == "level_up":
-                                    self.topic = entry["topic"]
-                                    self.target_skill = entry.get("associated_skill")
-                                    self.target_level = entry.get("level_target")
-                                else:
-                                    self.topic = entry
-                                print(f"[INFO] Selected random learning topic: '{self.topic}' (type: {choice_type})")
-                            else:
-                                self.topic = "Quantum computing basics"
-                                print("[WARNING] topics.json is empty! Defaulting to 'Quantum computing basics'")
-
-                    # Remove the topic from topics.json if it is present (including explicit CLI topics)
-                    new_list = RANDOM_TOPICS.get("new_topics", [])
-                    lvl_list = RANDOM_TOPICS.get("level_up_topics", [])
-                    
-                    removed = False
-                    if self.topic in new_list:
-                        new_list.remove(self.topic)
-                        removed = True
-                    else:
-                        for entry in list(lvl_list):
-                            if isinstance(entry, dict):
-                                entry_top = entry.get("topic", "")
-                                # Remove exact topic match or any duplicate entry targeting the same skill level
-                                if entry_top == self.topic or (self.target_skill and entry.get("associated_skill") == self.target_skill and entry.get("level_target") == self.target_level):
-                                    lvl_list.remove(entry)
-                                    removed = True
-
-                                
-                    RANDOM_TOPICS["new_topics"] = new_list
-                    RANDOM_TOPICS["level_up_topics"] = lvl_list
-
-                    # Save updated list back to topics.json
-                    try:
-                        with open(topics_path, "w") as f:
-                            json.dump(RANDOM_TOPICS, f, indent=4)
-                        if removed:
-                            print(f"[INFO] Removed '{self.topic}' from topics.json to prevent repeats.")
-                    except Exception as e:
-                        print(f"[WARNING] Failed to save updated topics.json: {e}")
-
-                    # Update state file with the actual selected topic
-                    state_data["topic"] = self.topic
-                    try:
-                        state_path.write_text(json.dumps(state_data, indent=4))
-                    except Exception:
-                        pass
-
-                    # If a new topic is specified and we are on the dashboard, start it
-                    state = self.browser.get_interaction_state()
-                    if self.topic and state == "free_text":
-                        # Check if the page is the new chat dashboard (placeholder exists)
-                        textarea = self.browser.page.locator('textarea[name="prompt"]')
-                        placeholder = textarea.get_attribute("placeholder") or ""
-                        if "I want to learn" in placeholder:
-                            # Determine prompt based on target skill and level
-                            if self.target_skill:
-                                current_lv = self.learned_skills.get(self.target_skill, 0)
-                                if current_lv >= 4:
-                                    initial_prompt = f"I'm already very familiar with the basics of {self.topic}. Can we skip the introductory stuff and dive straight into the advanced concepts/complex math? I'd love to challenge myself with some tough questions."
-                                elif current_lv == 3:
-                                    initial_prompt = f"I understand the basic overview of {self.topic} already. Let's look at the intermediate concepts and the math behind them."
-                                else:
-                                    initial_prompt = f"I want to learn about {self.topic}. Can we start with the core concepts?"
-                            else:
-                                initial_prompt = self.topic
-
-                            print(f"Starting new chat with prompt: '{initial_prompt}'")
-                            self.browser.type_and_submit(initial_prompt)
-                            self.active_chat_start_time = time.time()
-                            # Allow generation to kick off
-                            time.sleep(5)
+                    self._setup_normal_session(state_data, state_path)
             
             # Run the interaction loop
-            consecutive_loadings = 0
-            while True:
-                if self.max_duration and (time.time() - start_time) > (self.max_duration * 60):
-                    print(f"\n[DURATION LIMIT] Session has reached the maximum duration of {self.max_duration} minutes. Exiting loop cleanly.")
-                    break
-
-                if self.active_chat_start_time is None:
-                    self.active_chat_start_time = time.time()
-
-                # First observation
-                obs1 = self.browser.observe_page()
-                state1 = obs1["state"]
-
-                if state1 == "loading":
-                    consecutive_loadings += 1
-                    if consecutive_loadings > 30:
-                        print("Page stuck in loading state for too long. Exiting.")
-                        break
-                    print("Oboe is thinking/generating... waiting 3 seconds...")
-                    time.sleep(3)
-                    continue
-
-                # Ensure page is stable (Oboe finished typing)
-                print("Waiting 5 seconds to verify page stability...")
-                time.sleep(5)
-                obs2 = self.browser.observe_page()
-                state2 = obs2["state"]
-
-                if state1 != state2:
-                    print("Page state changed during wait. Retrying observation...")
-                    continue
-                if len(obs1["messages"]) != len(obs2["messages"]):
-                    print("New messages arrived. Oboe is still writing...")
-                    continue
-                if obs1["messages"] and obs2["messages"]:
-                    last_msg_1 = obs1["messages"][-1]
-                    last_msg_2 = obs2["messages"][-1]
-                    if last_msg_1["role"] == last_msg_2["role"] and last_msg_1["text"] != last_msg_2["text"]:
-                        print("Message text is updating. Oboe is still typing...")
-                        continue
-
-                # Page is stable, proceed with decision
-                obs = obs2
-                state = state2
-                choices = obs["choices"]
-                messages = obs["messages"]
-
-                # Evaluate last MCQ action result if applicable
-                if self.last_action_was_mcq and messages:
-                    # Find the last assistant message (Oboe's reply to our choice selection)
-                    assistant_msgs = [m for m in messages if m["role"] == "assistant"]
-                    if assistant_msgs:
-                        oboe_reply = assistant_msgs[-1]["text"].lower()
-                        self.total_mcqs_count += 1
-                        wrong_indicators = ["actually", "incorrect", "wrong", "snag", "correct answer is", "close, but", "consequence of", "different"]
-                        if any(ind in oboe_reply for ind in wrong_indicators):
-                            self.wrong_mcqs_count += 1
-                            print(f"\n>>> [STATS Update] MCQ Answer: INCORRECT <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
-                        else:
-                            print(f"\n>>> [STATS Update] MCQ Answer: CORRECT! <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
-                    self.last_action_was_mcq = False
-
-                # Configured human reading & rate-limit pacing delay (7-20 seconds)
-                if messages and messages[-1]["role"] == "assistant":
-                    reading_delay = round(random.uniform(config.MIN_DELAY, config.MAX_DELAY), 2)
-                    print(f"Reading Oboe's response... Simulating human delay for {reading_delay:.2f} seconds (Configured Range: {config.MIN_DELAY}-{config.MAX_DELAY}s)...")
-                    time.sleep(reading_delay)
-
-
-                # Log new skills and levels, and update memory
-                if obs.get("skills"):
-                    for skill, lv_str in obs["skills"].items():
-                        try:
-                            new_lv = int(lv_str.replace("LV", "").strip())
-                        except ValueError:
-                            new_lv = 0
-                        current_max = self.learned_skills.get(skill, 0)
-                        if new_lv > current_max:
-                            self.learned_skills[skill] = new_lv
-                            self.achieved_skills[skill] = f"LV {new_lv}"
-                            print(f"\n>>> [ACHIEVEMENT] Skill Level Up: {skill} -> LV {new_lv}! <<<\n")
-
-                print(f"\n[Agent Observe] State: {state.upper()} | Message count: {len(messages)}")
-                
-                # Check if Oboe has replied to our last turn yet
-                if messages and messages[-1]["role"] == "user":
-                    print("Last message was from user. Waiting for Oboe to reply...")
-                    time.sleep(3)
-                    continue
-
-                consecutive_loadings = 0
-
-                if state == "suggested_replies":
-                    print(f"Available options: {choices}")
-                    decision = self.llm.decide_action(
-                        state, 
-                        messages, 
-                        choices, 
-                        self.learned_skills, 
-                        target_skill=self.target_skill, 
-                        target_level=self.target_level,
-                        target_skills=self.active_track_target_skills
-                    )
-                    selection = decision.get("selection")
-                    if selection in choices:
-                        self.browser.click_suggestion_by_text(selection)
-                    else:
-                        # Fallback click first
-                        print(f"Warning: Selected option '{selection}' not in choices. Clicking first choice.")
-                        self.browser.click_suggestion_by_text(choices[0])
-                    self.last_action_was_mcq = True
-
-                elif state == "free_text":
-                    decision = self.llm.decide_action(
-                        state, 
-                        messages, 
-                        choices, 
-                        self.learned_skills, 
-                        target_skill=self.target_skill, 
-                        target_level=self.target_level,
-                        target_skills=self.active_track_target_skills
-                    )
-                    text = decision.get("text")
-                    if not text or str(text).strip() == "" or str(text).lower() == "none":
-                        text = "I'm interested to learn more about this."
-                    self.browser.type_and_submit(text)
-
-                else:
-                    # Unknown state (perhaps course completed or error)
-                    print("Unknown or finished state. Waiting 5 seconds to observe any changes...")
-                    time.sleep(5)
-                    # Check again, if still unknown, stop.
-                    new_state = self.browser.get_interaction_state()
-                    if new_state == "unknown":
-                        print("No interactive elements found. Task complete.")
-                        self.browser.take_screenshot("session_finished.png")
-                        break
-
-                # Sleep to prevent high-frequency loop and allow Oboe platform to render
-                time.sleep(2)
+            self._run_interaction_loop(start_time)
 
         except KeyboardInterrupt:
             print("\nAgent stopped by user.")
@@ -589,101 +525,4 @@ class OboeAgent:
             print(f"Error in agent execution: {e}")
             self.browser.take_screenshot("error_state.png")
         finally:
-            elapsed_time = time.time() - start_time
-            rolling_24h_sec, today_ist_sec = self.update_time_tracker(elapsed_time)
-            
-            rolling_h, rolling_m = rolling_24h_sec // 3600, (rolling_24h_sec % 3600) // 60
-            today_h, today_m = today_ist_sec // 3600, (today_ist_sec % 3600) // 60
-            
-            try:
-                self.browser.close()
-            except Exception as close_err:
-                print(f"[INFO] Browser close status: {close_err}")
-            except KeyboardInterrupt:
-                print("\n[INFO] Browser shutdown interrupted.")
-                
-            # Clean up PID
-            if pid_path.exists():
-                try: pid_path.unlink()
-                except Exception: pass
-                
-            # Update state file
-            state_data = {
-                "status": "STOPPED",
-                "topic": None,
-                "started_at": None,
-                "last_session": {
-                    "topic": self.topic,
-                    "elapsed_seconds": int(elapsed_time),
-                    "mcqs_total": self.total_mcqs_count,
-                    "mcqs_wrong": self.wrong_mcqs_count,
-                    "achieved_skills": self.achieved_skills,
-                    "total_24h_seconds": rolling_24h_sec,
-                    "total_today_ist_seconds": today_ist_sec
-                }
-            }
-            try:
-                state_path.write_text(json.dumps(state_data, indent=4))
-            except Exception:
-                pass
-
-            # Save updated skill levels
-            try:
-                self.learned_skills_path.write_text(json.dumps(self.learned_skills, indent=4))
-                print(f"[INFO] Saved skill levels to {self.learned_skills_path.name}")
-            except Exception as se:
-                print(f"[WARNING] Failed to save learned_skills.json: {se}")
-
-            # Update DAG Curriculum Engine graph state based on actual achieved levels
-            if getattr(self, "active_pillar", None) and getattr(self, "active_node", None):
-                target_skill_name = self.target_skill or self.active_node.replace("_", " ")
-                achieved_lv = self.learned_skills.get(target_skill_name, 1)
-                self.dag_engine.update_skill_level(self.active_pillar, self.active_node, achieved_lv)
-
-            # Dynamic Skill Adaptation Check for Pinned Tracks
-            if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_target_skills", None) is not None:
-                try:
-                    track_path = self.dag_engine.get_track_path(self.active_track_name)
-                    if track_path.exists():
-                        with open(track_path, "r") as f:
-                            track_data = json.load(f)
-                        
-                        current_targets = track_data.get("target_skills", [])
-                        target_levels = {skill: self.learned_skills.get(skill, 1) for skill in current_targets}
-                        
-                        min_target_skill = min(target_levels, key=target_levels.get) if target_levels else None
-                        min_level = target_levels[min_target_skill] if min_target_skill else 0
-                        
-                        better_skill = None
-                        better_level = min_level
-                        for skill, lv_str in self.achieved_skills.items():
-                            if skill not in current_targets:
-                                try:
-                                    lvl = int(lv_str.replace("LV", "").strip())
-                                    if lvl > better_level:
-                                        better_skill = skill
-                                        better_level = lvl
-                                except ValueError:
-                                    pass
-                                    
-                        if better_skill and min_target_skill:
-                            print(f"\n>>> [DYNAMIC SKILL ADAPTATION] Replacing target skill '{min_target_skill}' (LV {min_level}) with '{better_skill}' (LV {better_level}) in track '{self.active_track_name}' <<<\n")
-                            new_targets = [better_skill if s == min_target_skill else s for s in current_targets]
-                            track_data["target_skills"] = new_targets
-                            with open(track_path, "w") as f:
-                                json.dump(track_data, f, indent=2)
-                except Exception as ex:
-                    print(f"[WARNING] Failed dynamic skill adaptation: {ex}")
-
-            # Mark pinned track topic as covered
-            if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_topic_index", None) is not None:
-                from skill_dag_engine import SkillDAGEngine
-                # Find the highest achieved level across all skills this session
-                max_achieved = max(self.achieved_skills.values()) if self.achieved_skills else 0
-                SkillDAGEngine.mark_topic_covered(self.active_track_name, self.active_track_topic_index, max_achieved)
-
-            if self.achieved_skills:
-                print(f"[INFO] Skills leveled up: {self.achieved_skills}.")
-
-            self.save_summary(status=self._final_status, start_time=start_time)
-
+            self._finalize_session(start_time, state_path, pid_path)

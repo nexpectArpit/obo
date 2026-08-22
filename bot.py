@@ -32,72 +32,10 @@ def authorized(func):
         return await func(update, context)
     return wrapper
 
-# ─── GitHub API Helpers ──────────────────────────────────────────
-def gh_headers():
-    return {
-        "Authorization": f"Bearer {GH_PAT}",
-        "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28"
-    }
-
-def trigger_workflow(topic="random", resume=False, level_up=False, pin="none"):
-    """Trigger the GitHub Actions workflow."""
-    url = f"{GH_API}/actions/workflows/{GH_WORKFLOW}/dispatches"
-    payload = {
-        "ref": "main",
-        "inputs": {
-            "topic": topic,
-            "resume": str(resume).lower(),
-            "level_up": str(level_up).lower(),
-            "pin": str(pin)
-        }
-    }
-    r = requests.post(url, headers=gh_headers(), json=payload)
-    return r.status_code == 204
-
-def get_running_runs():
-    """Get currently running or queued workflow runs."""
-    runs = []
-    for status in ["in_progress", "queued"]:
-        url = f"{GH_API}/actions/runs?status={status}&per_page=5"
-        r = requests.get(url, headers=gh_headers())
-        if r.status_code == 200:
-            runs.extend(r.json().get("workflow_runs", []))
-    return runs
-
-def get_latest_run():
-    """Get the most recent workflow run."""
-    url = f"{GH_API}/actions/runs?per_page=1"
-    r = requests.get(url, headers=gh_headers())
-    if r.status_code == 200:
-        runs = r.json().get("workflow_runs", [])
-        return runs[0] if runs else None
-    return None
-
-def get_run_jobs(run_id):
-    """Get the jobs and their steps for a specific run."""
-    url = f"{GH_API}/actions/runs/{run_id}/jobs"
-    r = requests.get(url, headers=gh_headers())
-    if r.status_code == 200:
-        return r.json().get("jobs", [])
-    return []
-
-def cancel_run(run_id):
-    """Cancel a running workflow."""
-    url = f"{GH_API}/actions/runs/{run_id}/cancel"
-    r = requests.post(url, headers=gh_headers())
-    return r.status_code == 202
-
-def format_elapsed(started_at_str):
-    """Calculate elapsed time from ISO timestamp."""
-    try:
-        started = datetime.fromisoformat(started_at_str.replace("Z", "+00:00"))
-        elapsed = datetime.now(timezone.utc) - started
-        mins = int(elapsed.total_seconds()) // 60
-        secs = int(elapsed.total_seconds()) % 60
-        return f"{mins}m {secs}s"
-    except Exception:
-        return "unknown"
+from bot_github import (
+    trigger_workflow, get_running_runs, cancel_run,
+    get_latest_run, get_run_jobs, format_elapsed
+)
 
 def format_run_status(run):
     """Build a detailed status message for a run, including step-by-step progress."""
@@ -334,7 +272,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 conclusion = latest.get("conclusion", "unknown")
                 status_emoji = {"success": "✅", "failure": "❌", "cancelled": "🟡"}.get(conclusion, "⏳")
                 started = latest.get("run_started_at", "")
-                elapsed = format_elapsed(started) if started else "N/A"
+                ended = latest.get("updated_at", "")
+                elapsed = format_elapsed(started, ended) if started and ended else "N/A"
                 
                 msg = f"{status_emoji} *Last run #{latest['run_number']}:* {conclusion}\n"
                 msg += f"⏱️ Duration: {elapsed}\n\n"
