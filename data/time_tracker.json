@@ -164,6 +164,11 @@
             "timestamp": 1787420191.1939013,
             "duration_seconds": 355,
             "topic": "Array Two Pointers Technique"
+        },
+        {
+            "timestamp": 1787420573.1247563,
+            "duration_seconds": 201,
+            "topic": "Prefix Sum and Difference Array"
         }
     ]
 }

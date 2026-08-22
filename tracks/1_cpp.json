@@ -12,8 +12,8 @@
     {
       "name": "Prefix Sum and Difference Array",
       "prompt": "explain prefix sums in 1D and 2D, range sum queries, difference arrays for range add updates in O(1), and handling static range queries",
-      "covered": false,
-      "level_at_cover": 0
+      "covered": true,
+      "level_at_cover": "LV 1"
     },
     {
       "name": "Sliding Window Maximum",
