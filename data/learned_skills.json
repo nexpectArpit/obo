@@ -25,7 +25,7 @@
     "Python": 1,
     "Cache Hierarchy": 2,
     "Memory Hierarchy": 2,
-    "Cache Coherence": 1,
+    "Cache Coherence": 2,
     "Interconnect Design": 1,
     "Network-on-Chip": 1,
     "Quality of Service (QoS)": 1,
@@ -69,5 +69,10 @@
     "Two Pointers Technique": 1,
     "Tree Algorithms": 1,
     "Photosynthesis": 1,
-    "Plant Physiology": 1
+    "Plant Physiology": 1,
+    "Boolean Algebra": 1,
+    "Digital Logic": 1,
+    "Logic Gates": 1,
+    "CMOS Design": 1,
+    "Transistor Level Design": 1
 }
