@@ -169,6 +169,11 @@
             "timestamp": 1787420573.1247563,
             "duration_seconds": 201,
             "topic": "Prefix Sum and Difference Array"
+        },
+        {
+            "timestamp": 1787420835.0166128,
+            "duration_seconds": 0,
+            "topic": "Sliding Window Maximum"
         }
     ]
 }
