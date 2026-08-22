@@ -6,8 +6,8 @@
     {
       "name": "Array Two Pointers Technique",
       "prompt": "lets discuss the two pointers approach in competitive programming, solving target sum, container with most water, and sliding window variants",
-      "covered": false,
-      "level_at_cover": 0
+      "covered": true,
+      "level_at_cover": "LV 1"
     },
     {
       "name": "Prefix Sum and Difference Array",

@@ -159,6 +159,11 @@
             "timestamp": 1787419256.7243907,
             "duration_seconds": 323,
             "topic": "Combinational Circuits"
+        },
+        {
+            "timestamp": 1787420191.1939013,
+            "duration_seconds": 355,
+            "topic": "Array Two Pointers Technique"
         }
     ]
 }
