@@ -91,8 +91,8 @@ export async function handleScheduled(env) {
                 if (allowedUserChatId) {
                   await sendTelegram(token, "sendMessage", {
                     chat_id: allowedUserChatId,
-                    text: `⚠️ *[AUTO-LOOP] Emergency Stop!*\n\n2 consecutive infrastructure failures detected (last run: ${conclusion}).\nAuto-Loop has been disabled.`,
-                    parse_mode: "Markdown"
+                    text: `⚠️ <b>[AUTO-LOOP] Emergency Stop!</b>\n\n2 consecutive infrastructure failures detected (last run: ${conclusion}).\nAuto-Loop has been disabled.`,
+                    parse_mode: "HTML"
                   });
                 }
               }
@@ -116,8 +116,8 @@ export async function handleScheduled(env) {
             if (allowedUserChatId) {
               await sendTelegram(token, "sendMessage", {
                 chat_id: allowedUserChatId,
-                text: `✅ *[AUTO-LOOP] Session finished: ${conclusion}*\n\nCooling down for ${coolingMins} minutes before checking next window.`,
-                parse_mode: "Markdown"
+                text: `✅ <b>[AUTO-LOOP] Session finished: ${conclusion}</b>\n\nCooling down for ${coolingMins} minutes before checking next window.`,
+                parse_mode: "HTML"
               });
             }
             return;
@@ -188,12 +188,11 @@ export async function handleScheduled(env) {
     
     trackLevels.sort((a, b) => b.avg - a.avg);
     const top3 = trackLevels.slice(0, 3);
-    const selectedTrackObj = top3[Math.floor(Math.random() * top3.length)];
-    const selectedTrack = selectedTrackObj.key;
-    const trackDisplay = trackDisplayNames[selectedTrack] || selectedTrack;
+    const selectedTrack = "cpp";
+    const trackDisplay = "1. CP / DSA";
     
-    // 6. Generate dynamic session duration
-    let durationMins = Math.floor(Math.random() * (92 - 22 + 1)) + 22; // 22 to 92 mins
+    // 6. Generate dynamic session duration (Temporarily set to 5 mins for testing)
+    let durationMins = 5;
     
     // 7. Dispatch GHA run
     const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, true, selectedTrack, durationMins);
@@ -211,8 +210,8 @@ export async function handleScheduled(env) {
       if (allowedUserChatId) {
         await sendTelegram(token, "sendMessage", {
           chat_id: allowedUserChatId,
-          text: `🎯 *[AUTO-LOOP] Triggered session:*\n• *Track:* ${trackDisplay}\n• *Duration:* ${durationMins} minutes\n\nGitHub Actions runner is booting up...`,
-          parse_mode: "Markdown"
+          text: `🎯 <b>[AUTO-LOOP] Triggered session:</b>\n• <b>Track:</b> ${trackDisplay}\n• <b>Duration:</b> ${durationMins} minutes\n\nGitHub Actions runner is booting up...`,
+          parse_mode: "HTML"
         });
       }
     } else {
