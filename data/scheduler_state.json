@@ -15,5 +15,8 @@
     "min_cooldown_mins": 10,
     "max_cooldown_mins": 17
   },
-  "override": null
+  "override": {
+    "track": "cpp",
+    "duration": 3
+  }
 }
