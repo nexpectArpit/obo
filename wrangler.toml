@@ -1,3 +1,6 @@
 name = "obo-telegram-bot"
 main = "cloudflare_worker/worker.js"
 compatibility_date = "2024-01-01"
+
+[triggers]
+crons = [ "*/5 * * * *" ]
