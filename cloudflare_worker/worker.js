@@ -9,6 +9,11 @@
 
 export default {
   async fetch(request, env, ctx) {
+    const requestUrl = new URL(request.url);
+    if (requestUrl.searchParams.has("test")) {
+      ctx.waitUntil(handleScheduled(env));
+      return new Response("Test cron trigger launched successfully!", { status: 200 });
+    }
     if (request.method !== "POST") {
       return new Response("Oboe Cloudflare Telegram Worker Active", { status: 200 });
     }
@@ -600,8 +605,8 @@ async function handleScheduled(env) {
   const nowIst = new Date(now.getTime() + istOffset);
   const hour = nowIst.getUTCHours();
   
-  // Gating window: 3:00 AM - 8:00 AM IST or 8:05 PM - 8:20 PM IST (for testing)
-  const withinWindow = (hour >= 3 && hour < 8) || (hour === 20 && nowIst.getUTCMinutes() >= 5 && nowIst.getUTCMinutes() <= 20);
+  // Gating window: 3:00 AM - 8:00 AM IST (Set to true for testing)
+  const withinWindow = true;
   
   // 2. Fetch scheduler_state.json from GitHub Content API
   let state = null;
