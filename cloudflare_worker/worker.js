@@ -600,8 +600,8 @@ async function handleScheduled(env) {
   const nowIst = new Date(now.getTime() + istOffset);
   const hour = nowIst.getUTCHours();
   
-  // Gating window: 3:00 AM - 8:00 AM IST or 8:05 PM - 8:15 PM IST (for testing)
-  const withinWindow = (hour >= 3 && hour < 8) || (hour === 20 && nowIst.getUTCMinutes() >= 5 && nowIst.getUTCMinutes() <= 15);
+  // Gating window: 3:00 AM - 8:00 AM IST or 8:05 PM - 8:20 PM IST (for testing)
+  const withinWindow = (hour >= 3 && hour < 8) || (hour === 20 && nowIst.getUTCMinutes() >= 5 && nowIst.getUTCMinutes() <= 20);
   
   // 2. Fetch scheduler_state.json from GitHub Content API
   let state = null;
