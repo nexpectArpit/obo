@@ -13,7 +13,7 @@ import json
 import random
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 GRAPH_PATH = BASE_DIR / "data" / "obo_skill_graph.json"
 LEARNED_SKILLS_PATH = BASE_DIR / "data" / "learned_skills.json"
 

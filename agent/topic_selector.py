@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 # Load topics from topics.json
-topics_path = Path(__file__).resolve().parent / "data" / "topics.json"
+topics_path = Path(__file__).resolve().parent.parent / "data" / "topics.json"
 try:
     with open(topics_path, "r") as f:
         RANDOM_TOPICS = json.load(f)

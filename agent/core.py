@@ -3,11 +3,11 @@ import json
 import random
 import time
 from pathlib import Path
-from browser import OboeBrowser
-from llm import OboeLLM
-from skill_dag_engine import SkillDAGEngine
-from time_tracker import update_time_tracker
-from topic_selector import select_topic, remove_topic_from_pool
+from agent.browser import OboeBrowser
+from agent.llm import OboeLLM
+from curriculum import SkillDAGEngine
+from agent.time_tracker import update_time_tracker
+from agent.topic_selector import select_topic, remove_topic_from_pool
 import config
 
 
@@ -34,7 +34,7 @@ class OboeAgent:
 
         
         # Load learned skills history
-        self.learned_skills_path = Path(__file__).resolve().parent / "data" / "learned_skills.json"
+        self.learned_skills_path = Path(__file__).resolve().parent.parent / "data" / "learned_skills.json"
         self.learned_skills = {}
         if self.learned_skills_path.exists():
             try:
@@ -70,7 +70,7 @@ class OboeAgent:
                 print(f"[WARNING] Failed to save learned_skills.json: {e}")
 
         # Write final session summary to agent_state.json for Telegram notification
-        state_path = Path(__file__).resolve().parent / "data" / "agent_state.json"
+        state_path = Path(__file__).resolve().parent.parent / "data" / "agent_state.json"
         try:
             summary = {
                 "status": status,
@@ -90,7 +90,7 @@ class OboeAgent:
 
     def _setup_pinned_track_session(self, state_data, state_path):
         """Helper to resolve next topic for pinned track and navigate to its sidebar chat."""
-        from skill_dag_engine import SkillDAGEngine
+        from curriculum import SkillDAGEngine
         resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
         self.active_track_name = resolved["track_name"]
         self.active_track_topic_index = resolved["topic_index"]
@@ -406,7 +406,7 @@ class OboeAgent:
 
         # Dynamic Skill Adaptation Check for Pinned Tracks
         if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_target_skills", None) is not None:
-            from skill_adapter import adapt_track_target_skills
+            from agent.skill_adapter import adapt_track_target_skills
             adapt_track_target_skills(
                 self.active_track_name,
                 self.active_track_target_skills,
@@ -417,7 +417,7 @@ class OboeAgent:
 
         # Mark pinned track topic as covered
         if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_topic_index", None) is not None:
-            from skill_dag_engine import SkillDAGEngine
+            from curriculum import SkillDAGEngine
             # Find the highest achieved level across all skills this session
             max_achieved = max(self.achieved_skills.values()) if self.achieved_skills else 0
             SkillDAGEngine.mark_topic_covered(self.active_track_name, self.active_track_topic_index, max_achieved)
@@ -452,14 +452,14 @@ class OboeAgent:
             pass
         
         # Write PID file
-        pid_path = Path(__file__).resolve().parent / "agent.pid"
+        pid_path = Path(__file__).resolve().parent.parent / "agent.pid"
         try:
             pid_path.write_text(str(os.getpid()))
         except Exception as pe:
             print(f"[WARNING] Failed to write PID file: {pe}")
 
         # Write initial state
-        state_path = Path(__file__).resolve().parent / "data" / "agent_state.json"
+        state_path = Path(__file__).resolve().parent.parent / "data" / "agent_state.json"
         state_data = {
             "status": "RUNNING",
             "topic": self.topic,

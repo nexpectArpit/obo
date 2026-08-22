@@ -17,7 +17,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from skill_dag_engine import SkillDAGEngine
+from curriculum import SkillDAGEngine
 
 class TestSkillDAGEngine(unittest.TestCase):
 
@@ -28,7 +28,7 @@ class TestSkillDAGEngine(unittest.TestCase):
         self.learned_skills_path = Path(self.test_dir) / "test_learned_skills.json"
 
         # Copy original graph schema to temp file
-        original_graph_path = Path(__file__).resolve().parent.parent / "obo_skill_graph.json"
+        original_graph_path = Path(__file__).resolve().parent.parent / "data" / "obo_skill_graph.json"
         shutil.copy(original_graph_path, self.graph_path)
 
         # Initialize engine with temp files

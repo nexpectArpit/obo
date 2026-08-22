@@ -3,8 +3,8 @@ from playwright.async_api import async_playwright
 from pathlib import Path
 
 async def main():
-    user_data_dir = Path(__file__).resolve().parent / ".user_data"
-    state_file = Path(__file__).resolve().parent / "data" / "state.json"
+    user_data_dir = Path(__file__).resolve().parent.parent / ".user_data"
+    state_file = Path(__file__).resolve().parent.parent / "data" / "state.json"
     
     if not user_data_dir.exists():
         print(f"Error: Local session folder '{user_data_dir}' not found. Please log in locally first.")

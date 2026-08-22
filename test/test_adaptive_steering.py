@@ -4,13 +4,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import unittest
 from unittest.mock import patch, MagicMock
-from llm import OboeLLM
+from agent.llm import OboeLLM
 
 class TestAdaptiveSteering(unittest.TestCase):
     def setUp(self):
         self.llm = OboeLLM()
 
-    @patch('llm.Groq')
+    @patch('agent.llm.Groq')
     def test_system_prompt_steering_injection(self, mock_groq):
         """Verify that system_prompt correctly injects the semantic focus directive for target_skills."""
         # Setup mock client and response

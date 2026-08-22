@@ -14,7 +14,7 @@ def update_time_tracker(elapsed_time, topic):
     Returns:
         tuple: (rolling_24h_seconds, today_ist_seconds)
     """
-    tracker_path = Path(__file__).resolve().parent / "data" / "time_tracker.json"
+    tracker_path = Path(__file__).resolve().parent.parent / "data" / "time_tracker.json"
     
     # Load existing sessions
     data = {"sessions": []}

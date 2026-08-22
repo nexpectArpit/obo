@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import OboeAgent
-from skill_dag_engine import SkillDAGEngine
+from curriculum import SkillDAGEngine
 
 class TestDynamicSkillAdaptation(unittest.TestCase):
     def setUp(self):
@@ -31,7 +31,7 @@ class TestDynamicSkillAdaptation(unittest.TestCase):
             ]
         }
         # Add test track mapping to engine
-        from skill_dag_engine import TRACK_FILES
+        from curriculum.dag_engine import TRACK_FILES
         TRACK_FILES["test_adaptation_track"] = "test_adaptation_track.json"
         
         with open(self.test_track_path, "w") as f:
@@ -39,7 +39,7 @@ class TestDynamicSkillAdaptation(unittest.TestCase):
 
     def tearDown(self):
         # Remove test track mapping from engine
-        from skill_dag_engine import TRACK_FILES
+        from curriculum.dag_engine import TRACK_FILES
         if "test_adaptation_track" in TRACK_FILES:
             del TRACK_FILES["test_adaptation_track"]
             

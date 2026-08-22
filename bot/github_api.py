@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from dotenv import load_dotenv
 
-env_path = Path(__file__).resolve().parent / ".env.local"
+env_path = Path(__file__).resolve().parent.parent / ".env.local"
 if env_path.exists():
     load_dotenv(dotenv_path=env_path)
 
@@ -20,15 +20,15 @@ def gh_headers():
         "X-GitHub-Api-Version": "2022-11-28",
     }
 
-def trigger_workflow(topic="random", resume=False, level_up=False, track="none"):
+def trigger_workflow(topic="random", resume=False, level_up=False, pin="none"):
     url = f"{GH_API}/actions/workflows/{GH_WORKFLOW}/dispatches"
     payload = {
         "ref": "main",
         "inputs": {
-            "mode": topic,
+            "topic": topic,
             "resume": "true" if resume else "false",
             "level_up": "true" if level_up else "false",
-            "track": track
+            "pin": pin
         }
     }
     r = requests.post(url, headers=gh_headers(), json=payload)

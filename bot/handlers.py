@@ -1,8 +1,6 @@
 import os
 import json
 import logging
-import requests
-from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
@@ -11,10 +9,6 @@ load_dotenv(".env.local")
 # ─── Configuration ───────────────────────────────────────────────
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 ALLOWED_USER_ID = int(os.environ["ALLOWED_TELEGRAM_USER_ID"])
-GH_PAT = os.environ["GH_PAT"]
-GH_REPO = os.environ.get("GH_REPO", "nexpectArpit/obo")
-GH_WORKFLOW = os.environ.get("GH_WORKFLOW", "run_agent.yml")
-GH_API = f"https://api.github.com/repos/{GH_REPO}"
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("obo-bot")
@@ -32,7 +26,7 @@ def authorized(func):
         return await func(update, context)
     return wrapper
 
-from bot_github import (
+from bot.github_api import (
     trigger_workflow, get_running_runs, cancel_run,
     get_latest_run, get_run_jobs, format_elapsed
 )
@@ -101,7 +95,7 @@ TRACK_SKILL_MAP = {
 
 def main_menu_keyboard():
     enabled = False
-    state_path = Path(__file__).resolve().parent / "data" / "scheduler_state.json"
+    state_path = Path(__file__).resolve().parent.parent / "data" / "scheduler_state.json"
     if state_path.exists():
         try:
             state = json.loads(state_path.read_text())
@@ -122,7 +116,7 @@ def main_menu_keyboard():
 def tracks_menu_keyboard():
     # Load current skill levels
     skills = {}
-    skills_path = Path(__file__).resolve().parent / "data" / "learned_skills.json"
+    skills_path = Path(__file__).resolve().parent.parent / "data" / "learned_skills.json"
     if skills_path.exists():
         try:
             with open(skills_path, "r") as f:
@@ -295,7 +289,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text(msg, parse_mode="Markdown", reply_markup=main_menu_keyboard())
 
     elif action == "toggle_auto_loop":
-        state_path = Path(__file__).resolve().parent / "data" / "scheduler_state.json"
+        state_path = Path(__file__).resolve().parent.parent / "data" / "scheduler_state.json"
         enabled = False
         state_data = {}
         if state_path.exists():

@@ -27,7 +27,7 @@ from groq import Groq
 # Ensure root directory in sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import config
-from llm import OboeLLM
+from agent.llm import OboeLLM
 
 # Load environment variables
 load_dotenv('.env.local')

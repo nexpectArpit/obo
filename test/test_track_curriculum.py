@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from skill_dag_engine import SkillDAGEngine, TRACK_FILES
+from curriculum.dag_engine import SkillDAGEngine, TRACK_FILES
 
 class TestTrackCurriculum(unittest.TestCase):
     def setUp(self):

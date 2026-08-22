@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import config
-from llm import OboeLLM
+from agent.llm import OboeLLM
 from validate_gpt_oss_20b import BENCHMARK_ITEMS
 
 load_dotenv('.env.local')

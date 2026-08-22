@@ -51,7 +51,7 @@ class OboeLLM:
 
     def _load_rules(self):
         """Load stealth and behavioral rules from agent_rules.txt."""
-        rules_path = Path(__file__).resolve().parent / "agent_rules.txt"
+        rules_path = Path(__file__).resolve().parent.parent / "agent_rules.txt"
         if rules_path.exists():
             with open(rules_path, "r") as f:
                 return f.read()

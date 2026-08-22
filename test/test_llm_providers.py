@@ -21,7 +21,7 @@ from dotenv import load_dotenv
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import config
-from llm import OboeLLM
+from agent.llm import OboeLLM
 
 # Sample real Oboe interaction context
 SAMPLE_STATE = "suggested_replies"

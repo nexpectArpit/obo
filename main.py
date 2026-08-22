@@ -1,7 +1,7 @@
 import sys
 import argparse
 import config
-from browser import OboeBrowser
+from agent.browser import OboeBrowser
 from agent import OboeAgent
 
 def setup_session():
