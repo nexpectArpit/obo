@@ -144,6 +144,11 @@
             "timestamp": 1787416358.7049549,
             "duration_seconds": 177,
             "topic": "algo techniques derivation for linkedlist cycle detection"
+        },
+        {
+            "timestamp": 1787418201.1306355,
+            "duration_seconds": 663,
+            "topic": "Perceptron and MLP"
         }
     ]
 }
