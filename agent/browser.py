@@ -158,27 +158,61 @@ class OboeBrowser:
                 if text:
                     choices.append(text)
 
-        # Extract active skills and levels (Robust regex supporting Lv, LV, Lv., Level)
-        import re
+        # Extract active skills and levels via in-page DOM evaluate
         skills = {}
-        lv_regex = re.compile(r"\b(L[vV]\.?\s*|Level\s*)(\d+)\b")
-        candidates = self.page.locator("span, div, p").filter(has_text=re.compile(r"\b(L[vV]|Level)\b")).all()
-        for lv_el in candidates:
-            try:
-                lv_text_raw = (lv_el.text_content() or "").strip()
-                match = lv_regex.search(lv_text_raw)
-                if match and len(lv_text_raw) < 25:
-                    lv_num = match.group(2)
-                    lv_text = f"LV {lv_num}"
-                    
-                    parent = lv_el.locator("xpath=..")
-                    parent_text = (parent.text_content() or "").strip()
-                    skill_name = parent_text.replace(lv_text_raw, "").replace("Skills", "").strip()
-                    skill_name = " ".join(skill_name.split())
-                    if skill_name and len(skill_name) < 60:
-                        skills[skill_name] = lv_text
-            except Exception:
-                continue
+        try:
+            dom_skills = self.page.evaluate(r'''() => {
+                const results = {};
+                // Strategy 1: Look for exact LV badges and resolve their skill names
+                const allElements = document.querySelectorAll('span, div, p, button, a');
+                for (const el of allElements) {
+                    if (el.children.length > 0) continue;
+                    const text = (el.textContent || '').trim();
+                    const match = text.match(/^(?:LV|Level)\.?\s*(\d+)$/i);
+                    if (match) {
+                        const levelNum = match[1];
+                        // Walk up through parent rows/containers to find the skill name
+                        let parent = el.parentElement;
+                        for (let depth = 0; depth < 5 && parent; depth++) {
+                            // Find leaf text nodes inside this container (excluding the badge itself and button labels)
+                            const innerTexts = Array.from(parent.querySelectorAll('*'))
+                                .filter(node => node.children.length === 0 && node !== el)
+                                .map(node => (node.textContent || '').trim())
+                                .filter(t => t && !t.match(/^(?:LV|Level)\.?\s*\d+$/i) && t !== 'Skills' && t.length > 2 && t.length < 60 && !t.includes('{') && !t.includes('}'));
+                            
+                            if (innerTexts.length > 0) {
+                                // The closest non-badge text in this row is the skill title
+                                const candidateTitle = innerTexts[0];
+                                if (candidateTitle && !candidateTitle.toLowerCase().includes('http')) {
+                                    results[candidateTitle] = `LV ${levelNum}`;
+                                    break;
+                                }
+                            }
+                            parent = parent.parentElement;
+                        }
+                    }
+                }
+
+                // Strategy 2: Check any skill bar elements with data attributes or classes
+                const skillBars = document.querySelectorAll('[class*="skill"], [data-test-id*="skill"]');
+                for (const bar of skillBars) {
+                    const fullText = (bar.textContent || '').trim();
+                    const barMatch = fullText.match(/([A-Za-z\s\+\-\#]{3,40})\s+(?:LV|Level)\.?\s*(\d+)/i);
+                    if (barMatch) {
+                        const name = barMatch[1].replace(/Skills/g, '').trim();
+                        const lv = barMatch[2];
+                        if (name && name.length > 2 && name.length < 50) {
+                            results[name] = `LV ${lv}`;
+                        }
+                    }
+                }
+
+                return results;
+            }''')
+            if isinstance(dom_skills, dict):
+                skills.update(dom_skills)
+        except Exception as eval_err:
+            print(f"[WARNING] Skill extraction notice: {eval_err}")
 
         return {
             "state": state,

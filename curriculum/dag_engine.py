@@ -280,12 +280,15 @@ class SkillDAGEngine:
 
         for idx, topic in enumerate(data.get("topics", [])):
             if not topic.get("covered", False):
+                prompt = topic["prompt"]
+                if target_skills:
+                    prompt += f". Specifically explore the core conceptual intuition, edge test cases, and deep applications to {', '.join(target_skills)}."
                 return {
                     "track_name": track_name,
                     "pinned_chat_title": pinned_chat_title,
                     "topic_index": idx,
                     "topic_name": topic["name"],
-                    "prompt": topic["prompt"],
+                    "prompt": prompt,
                     "target_skills": target_skills,
                 }
 

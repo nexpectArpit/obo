@@ -4,350 +4,350 @@
   "description": "Operating Systems & Systems Programming \u2014 Kernel internals to containerization",
   "topics": [
     {
-      "name": "Kernel Types",
-      "prompt": "lets talk about kernel types, monolithic kernel like Linux, microkernel like Minix L4, hybrid kernel like Windows NT macOS XNU, exokernel, and tradeoffs of each design",
+      "name": "Operating Systems: Kernel Types",
+      "prompt": "lets talk about kernel types, monolithic kernel like Linux, microkernel like Minix L4, hybrid kernel like Windows NT macOS XNU, exokernel, and tradeoffs of each design. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Boot Process",
-      "prompt": "boot process in detail, BIOS vs UEFI, POST, bootloader GRUB, kernel loading, initramfs, init process systemd, and runlevels vs systemd targets",
+      "name": "System Calls: Boot Process",
+      "prompt": "boot process in detail, BIOS vs UEFI, POST, bootloader GRUB, kernel loading, initramfs, init process systemd, and runlevels vs systemd targets. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "System Calls",
-      "prompt": "system calls, user mode vs kernel mode transition, syscall instruction, system call table, fork exec wait open read write close mmap ioctl, and how glibc wraps syscalls",
+      "name": "Operating Systems: System Calls",
+      "prompt": "system calls, user mode vs kernel mode transition, syscall instruction, system call table, fork exec wait open read write close mmap ioctl, and how glibc wraps syscalls. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Interrupt Handling",
-      "prompt": "interrupts in OS, hardware interrupts IRQ, software interrupts traps, interrupt vector table, ISR interrupt service routine, top-half vs bottom-half processing, and interrupt latency",
+      "name": "System Calls: Interrupt Handling",
+      "prompt": "interrupts in OS, hardware interrupts IRQ, software interrupts traps, interrupt vector table, ISR interrupt service routine, top-half vs bottom-half processing, and interrupt latency. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Process States and PCB",
-      "prompt": "process states new ready running waiting terminated, process control block PCB contents, process state transitions, and how the OS manages the process table",
+      "name": "Operating Systems: Process States and PCB",
+      "prompt": "process states new ready running waiting terminated, process control block PCB contents, process state transitions, and how the OS manages the process table. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Context Switching",
-      "prompt": "context switching mechanism, saving and restoring registers, PCB swap, context switch overhead measurement, hardware vs software context switch support, and reducing context switch cost",
+      "name": "System Calls: Context Switching",
+      "prompt": "context switching mechanism, saving and restoring registers, PCB swap, context switch overhead measurement, hardware vs software context switch support, and reducing context switch cost. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Process Creation",
-      "prompt": "process creation with fork, vfork, clone, posix_spawn, copy-on-write optimization in fork, exec family of functions, and how fork+exec pattern works in shells",
+      "name": "Operating Systems: Process Creation",
+      "prompt": "process creation with fork, vfork, clone, posix_spawn, copy-on-write optimization in fork, exec family of functions, and how fork+exec pattern works in shells. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Orphan and Zombie Processes",
-      "prompt": "orphan processes adopted by init, zombie processes, wait and waitpid to reap children, SIGCHLD signal, process groups, sessions, and daemon process creation",
+      "name": "System Calls: Orphan and Zombie Processes",
+      "prompt": "orphan processes adopted by init, zombie processes, wait and waitpid to reap children, SIGCHLD signal, process groups, sessions, and daemon process creation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "CPU Scheduling FCFS SJF RR",
-      "prompt": "CPU scheduling algorithms, FCFS first come first served, SJF shortest job first, SRTF shortest remaining time first, Round Robin with time quantum, and their comparison",
+      "name": "Operating Systems: CPU Scheduling FCFS SJF RR",
+      "prompt": "CPU scheduling algorithms, FCFS first come first served, SJF shortest job first, SRTF shortest remaining time first, Round Robin with time quantum, and their comparison. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Priority and Multilevel Scheduling",
-      "prompt": "priority scheduling, aging to prevent starvation, multilevel queue scheduling, multilevel feedback queue, and how modern OS combine multiple scheduling strategies",
+      "name": "System Calls: Priority and Multilevel Scheduling",
+      "prompt": "priority scheduling, aging to prevent starvation, multilevel queue scheduling, multilevel feedback queue, and how modern OS combine multiple scheduling strategies. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "CFS Linux Scheduler",
-      "prompt": "Linux CFS completely fair scheduler, virtual runtime vruntime, red-black tree of tasks, nice values, scheduling latency, min_granularity, and how CFS achieves fairness",
+      "name": "Operating Systems: CFS Linux Scheduler",
+      "prompt": "Linux CFS completely fair scheduler, virtual runtime vruntime, red-black tree of tasks, nice values, scheduling latency, min_granularity, and how CFS achieves fairness. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Real-Time Scheduling",
-      "prompt": "real-time scheduling, hard vs soft real-time, EDF earliest deadline first, RM rate monotonic, priority inversion problem, priority inheritance protocol, and PREEMPT_RT patch",
+      "name": "System Calls: Real-Time Scheduling",
+      "prompt": "real-time scheduling, hard vs soft real-time, EDF earliest deadline first, RM rate monotonic, priority inversion problem, priority inheritance protocol, and PREEMPT_RT patch. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "User Threads vs Kernel Threads",
-      "prompt": "user-level threads vs kernel-level threads, many-to-one one-to-one many-to-many threading models, POSIX threads pthreads API, and thread creation overhead comparison",
+      "name": "Operating Systems: User Threads vs Kernel Threads",
+      "prompt": "user-level threads vs kernel-level threads, many-to-one one-to-one many-to-many threading models, POSIX threads pthreads API, and thread creation overhead comparison. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Thread Pools and Green Threads",
-      "prompt": "thread pools, worker threads, task queues, green threads, fibers, coroutines as lightweight threading, Go goroutines, and M:N threading model",
+      "name": "System Calls: Thread Pools and Green Threads",
+      "prompt": "thread pools, worker threads, task queues, green threads, fibers, coroutines as lightweight threading, Go goroutines, and M:N threading model. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Mutex and Semaphore",
-      "prompt": "mutex mutual exclusion, binary semaphore vs counting semaphore, mutex vs semaphore differences, ownership, priority inheritance, and implementation using atomic operations",
+      "name": "Operating Systems: Mutex and Semaphore",
+      "prompt": "mutex mutual exclusion, binary semaphore vs counting semaphore, mutex vs semaphore differences, ownership, priority inheritance, and implementation using atomic operations. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Spinlock and Read-Write Lock",
-      "prompt": "spinlocks, when to use spinlock vs mutex, ticket locks, MCS locks, read-write locks readers-writer lock, and performance implications of lock granularity",
+      "name": "System Calls: Spinlock and Read-Write Lock",
+      "prompt": "spinlocks, when to use spinlock vs mutex, ticket locks, MCS locks, read-write locks readers-writer lock, and performance implications of lock granularity. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Condition Variables and Monitors",
-      "prompt": "condition variables, wait signal broadcast, monitors as synchronization construct, Mesa vs Hoare semantics, spurious wakeups, and producer-consumer with condition variables",
+      "name": "Operating Systems: Condition Variables and Monitors",
+      "prompt": "condition variables, wait signal broadcast, monitors as synchronization construct, Mesa vs Hoare semantics, spurious wakeups, and producer-consumer with condition variables. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Futex",
-      "prompt": "futex fast userspace mutex in Linux, combining userspace atomic and kernel wait queue, futex_wait futex_wake, how pthreads mutex is built on futex, and PI-futex for priority inheritance",
+      "name": "System Calls: Futex",
+      "prompt": "futex fast userspace mutex in Linux, combining userspace atomic and kernel wait queue, futex_wait futex_wake, how pthreads mutex is built on futex, and PI-futex for priority inheritance. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "RCU Read-Copy-Update",
-      "prompt": "RCU read-copy-update synchronization in Linux kernel, read-side critical sections without locks, grace periods, synchronize_rcu, call_rcu, and applications in kernel data structures",
+      "name": "Operating Systems: RCU Read-Copy-Update",
+      "prompt": "RCU read-copy-update synchronization in Linux kernel, read-side critical sections without locks, grace periods, synchronize_rcu, call_rcu, and applications in kernel data structures. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Lock-Free and Wait-Free",
-      "prompt": "lock-free algorithms, CAS compare-and-swap, LL/SC load-linked store-conditional, ABA problem, Michael-Scott lock-free queue, wait-free algorithms, and progress guarantees",
+      "name": "System Calls: Lock-Free and Wait-Free",
+      "prompt": "lock-free algorithms, CAS compare-and-swap, LL/SC load-linked store-conditional, ABA problem, Michael-Scott lock-free queue, wait-free algorithms, and progress guarantees. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Deadlock Conditions",
-      "prompt": "deadlock, four necessary conditions mutual exclusion hold-and-wait no-preemption circular-wait, resource allocation graph, and deadlock examples in real systems",
+      "name": "Operating Systems: Deadlock Conditions",
+      "prompt": "deadlock, four necessary conditions mutual exclusion hold-and-wait no-preemption circular-wait, resource allocation graph, and deadlock examples in real systems. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Deadlock Prevention and Avoidance",
-      "prompt": "deadlock prevention by breaking one of four conditions, deadlock avoidance with Banker's algorithm, safe and unsafe states, and why Banker's algorithm is impractical for large systems",
+      "name": "System Calls: Deadlock Prevention and Avoidance",
+      "prompt": "deadlock prevention by breaking one of four conditions, deadlock avoidance with Banker's algorithm, safe and unsafe states, and why Banker's algorithm is impractical for large systems. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Deadlock Detection and Recovery",
-      "prompt": "deadlock detection using wait-for graph, cycle detection, deadlock recovery by process termination or resource preemption, and livelock vs starvation",
+      "name": "Operating Systems: Deadlock Detection and Recovery",
+      "prompt": "deadlock detection using wait-for graph, cycle detection, deadlock recovery by process termination or resource preemption, and livelock vs starvation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Priority Inversion",
-      "prompt": "priority inversion problem, Mars Pathfinder incident, priority inheritance protocol, priority ceiling protocol, and how real-time OS handle priority inversion",
+      "name": "System Calls: Priority Inversion",
+      "prompt": "priority inversion problem, Mars Pathfinder incident, priority inheritance protocol, priority ceiling protocol, and how real-time OS handle priority inversion. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Contiguous Memory Allocation",
-      "prompt": "contiguous memory allocation, fixed vs variable partitioning, first-fit best-fit worst-fit algorithms, external fragmentation, internal fragmentation, and compaction",
+      "name": "Operating Systems: Contiguous Memory Allocation",
+      "prompt": "contiguous memory allocation, fixed vs variable partitioning, first-fit best-fit worst-fit algorithms, external fragmentation, internal fragmentation, and compaction. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Paging",
-      "prompt": "paging, logical vs physical address, page number and offset, page table, page table base register, valid/invalid bit, and how paging eliminates external fragmentation",
+      "name": "System Calls: Paging",
+      "prompt": "paging, logical vs physical address, page number and offset, page table, page table base register, valid/invalid bit, and how paging eliminates external fragmentation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Segmentation",
-      "prompt": "segmentation, segment table, base and limit registers, segmentation with paging, segmentation fault, and comparison of paging vs segmentation",
+      "name": "Operating Systems: Segmentation",
+      "prompt": "segmentation, segment table, base and limit registers, segmentation with paging, segmentation fault, and comparison of paging vs segmentation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Page Replacement Algorithms",
-      "prompt": "page replacement algorithms, FIFO, optimal (Belady's), LRU, clock algorithm second-chance, NRU not recently used, LFU, MFU, and Belady's anomaly with FIFO",
+      "name": "System Calls: Page Replacement Algorithms",
+      "prompt": "page replacement algorithms, FIFO, optimal (Belady's), LRU, clock algorithm second-chance, NRU not recently used, LFU, MFU, and Belady's anomaly with FIFO. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Thrashing and Working Set",
-      "prompt": "thrashing, causes of thrashing, working set model, working set window, page fault frequency approach, and how OS detect and recover from thrashing",
+      "name": "Operating Systems: Thrashing and Working Set",
+      "prompt": "thrashing, causes of thrashing, working set model, working set window, page fault frequency approach, and how OS detect and recover from thrashing. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Demand Paging and Copy-on-Write",
-      "prompt": "demand paging, page fault handling steps, effective access time with page faults, copy-on-write fork optimization, and prepaging strategies",
+      "name": "System Calls: Demand Paging and Copy-on-Write",
+      "prompt": "demand paging, page fault handling steps, effective access time with page faults, copy-on-write fork optimization, and prepaging strategies. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Virtual Memory Deep Dive",
-      "prompt": "virtual memory implementation, multi-level page tables, inverted page tables, TLB fully-associative set-associative, ASID PCID, TLB shootdown in multiprocessor, and swapping",
+      "name": "Operating Systems: Virtual Memory Deep Dive",
+      "prompt": "virtual memory implementation, multi-level page tables, inverted page tables, TLB fully-associative set-associative, ASID PCID, TLB shootdown in multiprocessor, and swapping. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Memory-Mapped Files",
-      "prompt": "memory-mapped files with mmap, private vs shared mapping, MAP_ANONYMOUS, msync, munmap, and how databases use mmap for file I/O optimization",
+      "name": "System Calls: Memory-Mapped Files",
+      "prompt": "memory-mapped files with mmap, private vs shared mapping, MAP_ANONYMOUS, msync, munmap, and how databases use mmap for file I/O optimization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "OOM Killer",
-      "prompt": "Linux OOM out of memory killer, oom_score calculation, oom_score_adj, overcommit settings vm.overcommit_memory, and strategies to prevent OOM killing critical processes",
+      "name": "Operating Systems: OOM Killer",
+      "prompt": "Linux OOM out of memory killer, oom_score calculation, oom_score_adj, overcommit settings vm.overcommit_memory, and strategies to prevent OOM killing critical processes. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "ASLR and Memory Protection",
-      "prompt": "ASLR address space layout randomization, KASLR kernel ASLR, stack canaries, NX no-execute bit, W^X write XOR execute, and how these protect against buffer overflow exploits",
+      "name": "System Calls: ASLR and Memory Protection",
+      "prompt": "ASLR address space layout randomization, KASLR kernel ASLR, stack canaries, NX no-execute bit, W^X write XOR execute, and how these protect against buffer overflow exploits. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "VFS Virtual File System",
-      "prompt": "virtual file system VFS layer in Linux, superblock inode dentry file objects, VFS operations, how VFS abstracts multiple filesystems, and mounting",
+      "name": "Operating Systems: VFS Virtual File System",
+      "prompt": "virtual file system VFS layer in Linux, superblock inode dentry file objects, VFS operations, how VFS abstracts multiple filesystems, and mounting. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Inode and Directory Structure",
-      "prompt": "inode structure, direct indirect double-indirect triple-indirect blocks, directory entries, hard links vs soft links symbolic links, and inode number",
+      "name": "System Calls: Inode and Directory Structure",
+      "prompt": "inode structure, direct indirect double-indirect triple-indirect blocks, directory entries, hard links vs soft links symbolic links, and inode number. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "File Allocation Methods",
-      "prompt": "file allocation methods, contiguous allocation, linked allocation, indexed allocation FAT, comparison of each method, and how real file systems combine approaches",
+      "name": "Operating Systems: File Allocation Methods",
+      "prompt": "file allocation methods, contiguous allocation, linked allocation, indexed allocation FAT, comparison of each method, and how real file systems combine approaches. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "ext4 File System",
-      "prompt": "ext4 filesystem, extents vs block mapping, journaling journal write-ahead log, delayed allocation, multiblock allocation, online defragmentation, and ext4 vs ext3 improvements",
+      "name": "System Calls: ext4 File System",
+      "prompt": "ext4 filesystem, extents vs block mapping, journaling journal write-ahead log, delayed allocation, multiblock allocation, online defragmentation, and ext4 vs ext3 improvements. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "ZFS and Btrfs",
-      "prompt": "ZFS filesystem, copy-on-write, checksumming, snapshots, RAID-Z levels, ZFS ARC cache, deduplication, Btrfs comparison, subvolumes, and when to use each",
+      "name": "Operating Systems: ZFS and Btrfs",
+      "prompt": "ZFS filesystem, copy-on-write, checksumming, snapshots, RAID-Z levels, ZFS ARC cache, deduplication, Btrfs comparison, subvolumes, and when to use each. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Journaling File Systems",
-      "prompt": "journaling in file systems, write-ahead logging, journal modes ordered writeback journal, crash recovery, log-structured file systems LFS, and WAFL",
+      "name": "System Calls: Journaling File Systems",
+      "prompt": "journaling in file systems, write-ahead logging, journal modes ordered writeback journal, crash recovery, log-structured file systems LFS, and WAFL. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "I/O Multiplexing select poll epoll",
-      "prompt": "I/O multiplexing, select limitations, poll improvements, epoll in Linux edge-triggered vs level-triggered, kqueue in BSD/macOS, and scalability comparison",
+      "name": "Operating Systems: I/O Multiplexing select poll epoll",
+      "prompt": "I/O multiplexing, select limitations, poll improvements, epoll in Linux edge-triggered vs level-triggered, kqueue in BSD/macOS, and scalability comparison. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "io_uring",
-      "prompt": "io_uring async I/O in Linux, submission queue and completion queue, SQE CQE, io_uring_setup, kernel-side polling SQPOLL, registered buffers, and comparison with epoll and aio",
+      "name": "System Calls: io_uring",
+      "prompt": "io_uring async I/O in Linux, submission queue and completion queue, SQE CQE, io_uring_setup, kernel-side polling SQPOLL, registered buffers, and comparison with epoll and aio. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "I/O Schedulers",
-      "prompt": "block I/O layer, I/O schedulers in Linux, CFQ completely fair queuing, deadline scheduler, BFQ budget fair queuing, mq-deadline, none for NVMe, and choosing the right scheduler",
+      "name": "Operating Systems: I/O Schedulers",
+      "prompt": "block I/O layer, I/O schedulers in Linux, CFQ completely fair queuing, deadline scheduler, BFQ budget fair queuing, mq-deadline, none for NVMe, and choosing the right scheduler. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Pipes and FIFOs",
-      "prompt": "pipes in Unix, pipe syscall, unnamed pipes, named pipes FIFOs, pipe capacity, pipe atomicity guarantees, and implementing shell pipelines",
+      "name": "System Calls: Pipes and FIFOs",
+      "prompt": "pipes in Unix, pipe syscall, unnamed pipes, named pipes FIFOs, pipe capacity, pipe atomicity guarantees, and implementing shell pipelines. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Message Queues",
-      "prompt": "IPC message queues, System V message queues msgget msgsnd msgrcv, POSIX message queues mq_open mq_send mq_receive, comparison, and when to use message queues vs pipes",
+      "name": "Operating Systems: Message Queues",
+      "prompt": "IPC message queues, System V message queues msgget msgsnd msgrcv, POSIX message queues mq_open mq_send mq_receive, comparison, and when to use message queues vs pipes. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Shared Memory",
-      "prompt": "shared memory IPC, System V shmget shmat shmdt, POSIX shm_open mmap, synchronization requirements, and performance advantage of shared memory over other IPC",
+      "name": "System Calls: Shared Memory",
+      "prompt": "shared memory IPC, System V shmget shmat shmdt, POSIX shm_open mmap, synchronization requirements, and performance advantage of shared memory over other IPC. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Sockets IPC",
-      "prompt": "sockets for IPC, Unix domain sockets AF_UNIX vs network sockets AF_INET, socket types SOCK_STREAM SOCK_DGRAM, socketpair, and performance comparison with pipes",
+      "name": "Operating Systems: Sockets IPC",
+      "prompt": "sockets for IPC, Unix domain sockets AF_UNIX vs network sockets AF_INET, socket types SOCK_STREAM SOCK_DGRAM, socketpair, and performance comparison with pipes. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Signals",
-      "prompt": "Unix signals, signal types SIGTERM SIGKILL SIGINT SIGSEGV SIGCHLD, signal handling sigaction, signal masks, async-signal-safe functions, and real-time signals",
+      "name": "System Calls: Signals",
+      "prompt": "Unix signals, signal types SIGTERM SIGKILL SIGINT SIGSEGV SIGCHLD, signal handling sigaction, signal masks, async-signal-safe functions, and real-time signals. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Linux Namespaces",
-      "prompt": "Linux namespaces, PID namespace, mount namespace, network namespace, user namespace, UTS namespace, IPC namespace, cgroup namespace, and how containers use namespaces",
+      "name": "Operating Systems: Linux Namespaces",
+      "prompt": "Linux namespaces, PID namespace, mount namespace, network namespace, user namespace, UTS namespace, IPC namespace, cgroup namespace, and how containers use namespaces. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Cgroups",
-      "prompt": "cgroups control groups v1 and v2, resource limiting CPU memory I/O, cgroup hierarchy, systemd integration, and how Docker and Kubernetes use cgroups",
+      "name": "System Calls: Cgroups",
+      "prompt": "cgroups control groups v1 and v2, resource limiting CPU memory I/O, cgroup hierarchy, systemd integration, and how Docker and Kubernetes use cgroups. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Containers and Docker",
-      "prompt": "container technology, how Docker works using namespaces cgroups overlayfs, container images, layers, union filesystems, runc containerd, and containers vs virtual machines",
+      "name": "Operating Systems: Containers and Docker",
+      "prompt": "container technology, how Docker works using namespaces cgroups overlayfs, container images, layers, union filesystems, runc containerd, and containers vs virtual machines. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "SELinux and AppArmor",
-      "prompt": "mandatory access control MAC, SELinux security-enhanced Linux, SELinux modes enforcing permissive disabled, AppArmor profile-based, and comparison of SELinux vs AppArmor",
+      "name": "System Calls: SELinux and AppArmor",
+      "prompt": "mandatory access control MAC, SELinux security-enhanced Linux, SELinux modes enforcing permissive disabled, AppArmor profile-based, and comparison of SELinux vs AppArmor. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "seccomp",
-      "prompt": "seccomp secure computing mode in Linux, seccomp-bpf filter mode, restricting system calls, how Docker and Chrome use seccomp, and writing seccomp filters",
+      "name": "Operating Systems: seccomp",
+      "prompt": "seccomp secure computing mode in Linux, seccomp-bpf filter mode, restricting system calls, how Docker and Chrome use seccomp, and writing seccomp filters. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "eBPF",
-      "prompt": "eBPF extended Berkeley Packet Filter, eBPF programs for tracing networking security, BPF verifier, BPF maps, bpftrace, BCC tools, and how eBPF enables observability without kernel modules",
+      "name": "System Calls: eBPF",
+      "prompt": "eBPF extended Berkeley Packet Filter, eBPF programs for tracing networking security, BPF verifier, BPF maps, bpftrace, BCC tools, and how eBPF enables observability without kernel modules. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Kernel Modules",
-      "prompt": "Linux kernel modules, insmod rmmod modprobe, module_init module_exit, kernel space programming, printk, and how device drivers are implemented as kernel modules",
+      "name": "Operating Systems: Kernel Modules",
+      "prompt": "Linux kernel modules, insmod rmmod modprobe, module_init module_exit, kernel space programming, printk, and how device drivers are implemented as kernel modules. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "proc and sys Filesystems",
-      "prompt": "proc filesystem, process information in /proc/pid, /proc/cpuinfo meminfo, sysfs /sys, sysctl for kernel parameters, and tuning kernel via proc and sys",
+      "name": "System Calls: proc and sys Filesystems",
+      "prompt": "proc filesystem, process information in /proc/pid, /proc/cpuinfo meminfo, sysfs /sys, sysctl for kernel parameters, and tuning kernel via proc and sys. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Tracing and Profiling",
-      "prompt": "Linux tracing and profiling tools, strace for syscall tracing, ltrace for library calls, perf for performance profiling, ftrace, and flame graphs for CPU profiling",
+      "name": "Operating Systems: Tracing and Profiling",
+      "prompt": "Linux tracing and profiling tools, strace for syscall tracing, ltrace for library calls, perf for performance profiling, ftrace, and flame graphs for CPU profiling. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Operating Systems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Kernel Crash Analysis",
-      "prompt": "kernel crash analysis, kdump mechanism, crash utility, analyzing kernel oops and panics, core dumps, dmesg, and kernel debugging with KGDB",
+      "name": "System Calls: Kernel Crash Analysis",
+      "prompt": "kernel crash analysis, kdump mechanism, crash utility, analyzing kernel oops and panics, core dumps, dmesg, and kernel debugging with KGDB. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of System Calls.",
       "covered": false,
       "level_at_cover": 0
     }

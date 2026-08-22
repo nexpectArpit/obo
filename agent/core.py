@@ -77,12 +77,25 @@ class OboeAgent:
                 "topic": self.topic or "Unknown",
                 "elapsed_seconds": int(elapsed_time),
                 "mcqs_total": self.total_mcqs_count,
-                "mcqs_correct": self.total_mcqs_count - self.wrong_mcqs_count,
+                "mcqs_correct": max(0, self.total_mcqs_count - self.wrong_mcqs_count),
                 "mcqs_wrong": self.wrong_mcqs_count,
                 "today_ist_hours": today_h,
                 "today_ist_minutes": today_m,
+                "total_today_ist_seconds": int(today_ist_sec),
                 "achieved_skills": self.achieved_skills or {},
-                "telemetry": getattr(self.llm, "telemetry", {})
+                "telemetry": getattr(self.llm, "telemetry", {}),
+                "last_session": {
+                    "topic": self.topic or "Unknown",
+                    "elapsed_seconds": int(elapsed_time),
+                    "mcqs_total": self.total_mcqs_count,
+                    "mcqs_correct": max(0, self.total_mcqs_count - self.wrong_mcqs_count),
+                    "mcqs_wrong": self.wrong_mcqs_count,
+                    "today_ist_hours": today_h,
+                    "today_ist_minutes": today_m,
+                    "total_today_ist_seconds": int(today_ist_sec),
+                    "achieved_skills": self.achieved_skills or {},
+                    "telemetry": getattr(self.llm, "telemetry", {})
+                }
             }
             state_path.write_text(json.dumps(summary, indent=4))
         except Exception as se:
@@ -261,19 +274,23 @@ class OboeAgent:
             choices = obs["choices"]
             messages = obs["messages"]
 
-            # Evaluate last MCQ action result if applicable
-            if self.last_action_was_mcq and messages:
+            # Evaluate last action (MCQ or conceptual free-text answer)
+            if (getattr(self, "last_action_was_mcq", False) or getattr(self, "last_action_was_q_answer", False)) and messages:
                 assistant_msgs = [m for m in messages if m["role"] == "assistant"]
                 if assistant_msgs:
                     oboe_reply = assistant_msgs[-1]["text"].lower()
-                    self.total_mcqs_count += 1
-                    wrong_indicators = ["actually", "incorrect", "wrong", "snag", "correct answer is", "close, but", "consequence of", "different"]
-                    if any(ind in oboe_reply for ind in wrong_indicators):
-                        self.wrong_mcqs_count += 1
-                        print(f"\n>>> [STATS Update] MCQ Answer: INCORRECT <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
+                    wrong_indicators = ["actually", "incorrect", "wrong", "snag", "correct answer is", "close, but", "consequence of", "different", "not quite"]
+                    correct_indicators = ["spot on", "correct", "perfect", "flawless", "exactly", "well done", "right", "great job", "accurate", "precisely"]
+                    
+                    if any(ind in oboe_reply for ind in correct_indicators) or not any(ind in oboe_reply for ind in wrong_indicators):
+                        self.total_mcqs_count += 1
+                        print(f"\n>>> [STATS Update] Question Answer: CORRECT! <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
                     else:
-                        print(f"\n>>> [STATS Update] MCQ Answer: CORRECT! <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
+                        self.total_mcqs_count += 1
+                        self.wrong_mcqs_count += 1
+                        print(f"\n>>> [STATS Update] Question Answer: INCORRECT <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
                 self.last_action_was_mcq = False
+                self.last_action_was_q_answer = False
 
             # Configured human reading & rate-limit pacing delay (7-20 seconds)
             if messages and messages[-1]["role"] == "assistant":
@@ -339,6 +356,7 @@ class OboeAgent:
                 if not text or str(text).strip() == "" or str(text).lower() == "none":
                     text = "I'm interested to learn more about this."
                 self.browser.type_and_submit(text)
+                self.last_action_was_q_answer = True
 
             else:
                 # Unknown state (perhaps course completed or error)
@@ -358,7 +376,23 @@ class OboeAgent:
         """Cleanup: close browser, save skills, update DAG, write final state."""
         elapsed_time = time.time() - start_time
         rolling_24h_sec, today_ist_sec = update_time_tracker(elapsed_time, self.topic)
-        
+        # Final observation of page to capture any last-second skill badges/level-ups
+        try:
+            final_obs = self.browser.observe_page()
+            if final_obs.get("skills"):
+                for skill, lv_str in final_obs["skills"].items():
+                    try:
+                        new_lv = int(lv_str.replace("LV", "").strip())
+                    except ValueError:
+                        new_lv = 0
+                    current_max = self.learned_skills.get(skill, 0)
+                    if new_lv > current_max:
+                        self.learned_skills[skill] = new_lv
+                        self.achieved_skills[skill] = f"LV {new_lv}"
+                        print(f"[FINAL CHECK] Captured Skill Level Up: {skill} -> LV {new_lv}!")
+        except Exception as e:
+            print(f"[INFO] Final skill observation status: {e}")
+
         try:
             self.browser.close()
         except Exception as close_err:

@@ -99,9 +99,9 @@
       "nodes": {
         "Basic_Data_Structures": {
           "topic": "Fundamental Data Structures and Hash Table Mechanics",
-          "level": 1,
-          "target_level": 2,
-          "status": "available",
+          "level": 2,
+          "target_level": 3,
+          "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
           "deep_anchors": {
@@ -127,7 +127,7 @@
           "topic": "Shortest Path Algorithms in Weighted Graphs (Dijkstra and Bellman-Ford)",
           "level": 2,
           "target_level": 3,
-          "status": "blocked",
+          "status": "available",
           "attempts": 0,
           "prerequisites": [
             "Basic_Data_Structures"

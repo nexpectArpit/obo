@@ -1,5 +1,6 @@
 {
   "enabled": true,
+  "track": "auto",
   "start_time_ist": "03:00",
   "end_time_ist": "08:00",
   "min_duration_mins": 22,

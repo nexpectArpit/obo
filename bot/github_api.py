@@ -20,7 +20,7 @@ def gh_headers():
         "X-GitHub-Api-Version": "2022-11-28",
     }
 
-def trigger_workflow(topic="random", resume=False, level_up=False, pin="none"):
+def trigger_workflow(topic="random", resume=False, level_up=False, pin="none", duration=None):
     url = f"{GH_API}/actions/workflows/{GH_WORKFLOW}/dispatches"
     payload = {
         "ref": "main",
@@ -28,7 +28,8 @@ def trigger_workflow(topic="random", resume=False, level_up=False, pin="none"):
             "topic": topic,
             "resume": "true" if resume else "false",
             "level_up": "true" if level_up else "false",
-            "pin": pin
+            "pin": pin,
+            "duration": str(duration) if duration else "none"
         }
     }
     r = requests.post(url, headers=gh_headers(), json=payload)

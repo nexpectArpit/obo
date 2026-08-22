@@ -179,6 +179,41 @@
             "timestamp": 1787421585.309667,
             "duration_seconds": 194,
             "topic": "Kadane's Algorithm"
+        },
+        {
+            "timestamp": 1787423206.8336806,
+            "duration_seconds": 131,
+            "topic": "Perceptron and MLP"
+        },
+        {
+            "timestamp": 1787423797.1766047,
+            "duration_seconds": 183,
+            "topic": "Monotonic Stack"
+        },
+        {
+            "timestamp": 1787424277.6485655,
+            "duration_seconds": 125,
+            "topic": "Activation Functions"
+        },
+        {
+            "timestamp": 1787429254.5111418,
+            "duration_seconds": 175,
+            "topic": "Monotonic Queue"
+        },
+        {
+            "timestamp": 1787429590.674016,
+            "duration_seconds": 146,
+            "topic": "Binary Search on Answer"
+        },
+        {
+            "timestamp": 1787429924.316535,
+            "duration_seconds": 185,
+            "topic": "Sequential Circuits"
+        },
+        {
+            "timestamp": 1787431910.5193431,
+            "duration_seconds": 1027,
+            "topic": "Algorithms: Ternary Search"
         }
     ]
 }

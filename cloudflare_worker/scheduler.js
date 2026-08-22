@@ -73,16 +73,36 @@ export async function handleScheduled(env) {
       return;
     }
 
-    // 3. Time Window Gating Check
-    const startMinutes = parseTimeToMinutes(state.start_time_ist, 3 * 60);
-    const endMinutes = parseTimeToMinutes(state.end_time_ist, 8 * 60);
-    
+    // 3. Multi-Window and Single-Window Gating Check
     let withinWindow = false;
-    if (startMinutes <= endMinutes) {
-      withinWindow = (currentIstMinutes >= startMinutes && currentIstMinutes < endMinutes);
+    let activeWindowConfig = null;
+    if (Array.isArray(state.windows) && state.windows.length > 0) {
+      for (const win of state.windows) {
+        const sMin = parseTimeToMinutes(win.start, 0);
+        const eMin = parseTimeToMinutes(win.end, 1440);
+        if (sMin <= eMin) {
+          if (currentIstMinutes >= sMin && currentIstMinutes < eMin) {
+            withinWindow = true;
+            activeWindowConfig = win;
+            break;
+          }
+        } else {
+          // Overnight window (e.g. 23:00 to 04:00)
+          if (currentIstMinutes >= sMin || currentIstMinutes < eMin) {
+            withinWindow = true;
+            activeWindowConfig = win;
+            break;
+          }
+        }
+      }
     } else {
-      // Overnight window (e.g. 23:00 to 04:00)
-      withinWindow = (currentIstMinutes >= startMinutes || currentIstMinutes < endMinutes);
+      const startMinutes = parseTimeToMinutes(state.start_time_ist, 3 * 60);
+      const endMinutes = parseTimeToMinutes(state.end_time_ist, 8 * 60);
+      if (startMinutes <= endMinutes) {
+        withinWindow = (currentIstMinutes >= startMinutes && currentIstMinutes < endMinutes);
+      } else {
+        withinWindow = (currentIstMinutes >= startMinutes || currentIstMinutes < endMinutes);
+      }
     }
 
     const isAllowedToRun = state.test_mode === true || withinWindow;
@@ -103,7 +123,17 @@ export async function handleScheduled(env) {
       const finishedTimestamp = Date.parse(latestRun.updated_at || latestRun.created_at);
       const elapsedMins = (Date.now() - finishedTimestamp) / (60 * 1000);
       
-      const minCool = state.min_cooldown_mins !== undefined ? state.min_cooldown_mins : 10;
+      let minCool = state.min_cooldown_mins !== undefined ? state.min_cooldown_mins : 10;
+      
+      // If a specific window has an explicit start time that has arrived, allow it to trigger
+      if (activeWindowConfig && activeWindowConfig.start) {
+        const winStartMins = parseTimeToMinutes(activeWindowConfig.start, 0);
+        if (currentIstMinutes >= winStartMins && elapsedMins >= 1.0) {
+          minCool = Math.min(minCool, elapsedMins);
+        }
+      } else if (activeWindowConfig && activeWindowConfig.cooldown_mins !== undefined) {
+        minCool = activeWindowConfig.cooldown_mins;
+      }
       
       if (elapsedMins < minCool) {
         const remaining = (minCool - elapsedMins).toFixed(1);
@@ -114,12 +144,12 @@ export async function handleScheduled(env) {
     
     // 5. If outside window, wait
     if (!isAllowedToRun) {
-      console.log(`[AUTO-CRON] Outside active window (${currentIstTimeStr} IST). Scheduled: ${state.start_time_ist} - ${state.end_time_ist} IST.`);
+      console.log(`[AUTO-CRON] Outside active window (${currentIstTimeStr} IST). Scheduled: ${state.start_time_ist || 'Custom'} - ${state.end_time_ist || 'Custom'} IST.`);
       return;
     }
     
     // 6. Select Track
-    let selectedTrack = state.track && state.track !== "auto" ? state.track : null;
+    let selectedTrack = (activeWindowConfig && activeWindowConfig.track) || (state.track && state.track !== "auto" ? state.track : null);
 
     if (!selectedTrack) {
       let skills = {};
@@ -158,9 +188,20 @@ export async function handleScheduled(env) {
 
     const trackDisplay = trackDisplayNames[selectedTrack] || selectedTrack;
     
-    // 7. Calculate Duration (Random range or fixed)
-    const minDur = state.min_duration_mins !== undefined ? state.min_duration_mins : 22;
-    const maxDur = state.max_duration_mins !== undefined ? state.max_duration_mins : 92;
+    // 7. Calculate Duration (Per-window or global)
+    let minDur = state.min_duration_mins !== undefined ? state.min_duration_mins : 22;
+    let maxDur = state.max_duration_mins !== undefined ? state.max_duration_mins : 92;
+    
+    if (activeWindowConfig) {
+      if (activeWindowConfig.duration_mins !== undefined) {
+        minDur = activeWindowConfig.duration_mins;
+        maxDur = activeWindowConfig.duration_mins;
+      } else if (activeWindowConfig.duration !== undefined) {
+        minDur = activeWindowConfig.duration;
+        maxDur = activeWindowConfig.duration;
+      }
+    }
+    
     const durationMins = minDur === maxDur ? minDur : Math.floor(Math.random() * (maxDur - minDur + 1)) + minDur;
     
     // 8. Trigger Session on GitHub Actions
@@ -171,7 +212,7 @@ export async function handleScheduled(env) {
       if (allowedUserChatId) {
         await sendTelegram(token, "sendMessage", {
           chat_id: allowedUserChatId,
-          text: `🎯 <b>[AUTO-LOOP] Session Started:</b>\n• <b>Track:</b> ${trackDisplay}\n• <b>Duration:</b> ${durationMins} minutes\n• <b>Window:</b> ${state.start_time_ist} - ${state.end_time_ist} IST\n\nGitHub Actions runner is running. Will stop automatically.`,
+          text: `🎯 <b>[AUTO-LOOP] Session Started:</b>\n• <b>Track:</b> ${trackDisplay}\n• <b>Duration:</b> ${durationMins} minutes\n• <b>Window:</b> ${activeWindowConfig ? `${activeWindowConfig.start} - ${activeWindowConfig.end}` : `${state.start_time_ist} - ${state.end_time_ist}`} IST\n\nGitHub Actions runner is running. Will stop automatically.`,
           parse_mode: "HTML"
         });
       }

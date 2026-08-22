@@ -145,9 +145,9 @@ INSTRUCTIONS FOR WRITING FREE TEXT RESPONSES (free_text):
    - Creator Motivation / Problem Intuition (Why was this approach invented? What original flaw did it solve?)
    - Edge Cases & Failure Modes (Where does it break or run into edge test cases?)
    - Alternative Trade-offs (Why choose this over competing approaches?)
-2. **Context-Aware Follow-Up**: 
+2. **Context-Aware Follow-Up & Target Skill Probing**: 
    - If Oboe's latest message ALREADY ends with a question or test prompt, answer/rephrase it directly with technical precision. Do NOT append "can you ask me a question to test me?" when Oboe has already asked one.
-   - If Oboe's latest message did NOT ask a question, ask Oboe to test you on a specific edge case or trade-off (e.g., "makes total sense... can you test me on how this handles edge test cases?").
+   - If Oboe's latest message did NOT ask a question, ask Oboe to test you on a challenging scenario specifically probing the target skills (e.g., "got it, that makes sense... can you challenge me with a tough problem testing the {', '.join(target_skills) if target_skills else 'core problem solving'} aspects of this?").
 3. **Conversational Styling, Pauses & Typos:** Maintain your student persona. Write informally with casual lowercase/plain text, brief sentences, natural pauses (`...`), and occasional realistic minor typos (e.g., "realy", "so basicly...", "got it..."). NEVER use em-dashes (`—` or `--`), bullet points, or AI-style formal punctuation. Write like a real student quickly typing in a chat window.
 
 

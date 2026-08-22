@@ -4,422 +4,422 @@
   "description": "Mathematics for Data Science \u2014 Algebra to optimization theory",
   "topics": [
     {
-      "name": "Number Systems",
-      "prompt": "lets talk about number systems, natural integers rational irrational real complex numbers, properties closure commutativity associativity distributivity, and how they form algebraic structures",
+      "name": "Algebra: Number Systems",
+      "prompt": "lets talk about number systems, natural integers rational irrational real complex numbers, properties closure commutativity associativity distributivity, and how they form algebraic structures. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Prime Numbers and Divisibility",
-      "prompt": "prime numbers, fundamental theorem of arithmetic, GCD LCM Euclidean algorithm, modular arithmetic, Fermat's little theorem, and Euler's totient function",
+      "name": "Optimization: Prime Numbers and Divisibility",
+      "prompt": "prime numbers, fundamental theorem of arithmetic, GCD LCM Euclidean algorithm, modular arithmetic, Fermat's little theorem, and Euler's totient function. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Linear Equations and Systems",
-      "prompt": "linear equations, systems of linear equations, substitution elimination method, Cramer's rule, consistent vs inconsistent systems, and geometric interpretation of solutions",
+      "name": "Algebra: Linear Equations and Systems",
+      "prompt": "linear equations, systems of linear equations, substitution elimination method, Cramer's rule, consistent vs inconsistent systems, and geometric interpretation of solutions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Quadratic and Polynomial Equations",
-      "prompt": "quadratic equations, factoring, completing the square, quadratic formula, discriminant, polynomial equations, Vieta's formulas, and fundamental theorem of algebra",
+      "name": "Optimization: Quadratic and Polynomial Equations",
+      "prompt": "quadratic equations, factoring, completing the square, quadratic formula, discriminant, polynomial equations, Vieta's formulas, and fundamental theorem of algebra. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Inequalities and Absolute Value",
-      "prompt": "inequalities, linear inequalities, quadratic inequalities, absolute value equations and inequalities, triangle inequality, AM-GM inequality, and Cauchy-Schwarz inequality",
+      "name": "Algebra: Inequalities and Absolute Value",
+      "prompt": "inequalities, linear inequalities, quadratic inequalities, absolute value equations and inequalities, triangle inequality, AM-GM inequality, and Cauchy-Schwarz inequality. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Logarithms and Exponents",
-      "prompt": "logarithms, log properties product quotient power rule, change of base formula, natural log ln, exponential functions, exponential growth decay, and logarithmic scales",
+      "name": "Optimization: Logarithms and Exponents",
+      "prompt": "logarithms, log properties product quotient power rule, change of base formula, natural log ln, exponential functions, exponential growth decay, and logarithmic scales. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Sequences and Series",
-      "prompt": "arithmetic sequences and series, geometric sequences and series, harmonic series, convergence tests for infinite series, telescoping series, and power series",
+      "name": "Algebra: Sequences and Series",
+      "prompt": "arithmetic sequences and series, geometric sequences and series, harmonic series, convergence tests for infinite series, telescoping series, and power series. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Binomial Theorem",
-      "prompt": "binomial theorem, binomial coefficients, Pascal's triangle, combinatorial interpretation, multinomial theorem, and generating functions",
+      "name": "Optimization: Binomial Theorem",
+      "prompt": "binomial theorem, binomial coefficients, Pascal's triangle, combinatorial interpretation, multinomial theorem, and generating functions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Combinatorics",
-      "prompt": "combinatorics, permutations and combinations, circular permutations, combinations with repetition, inclusion-exclusion principle, pigeonhole principle, and derangements",
+      "name": "Algebra: Combinatorics",
+      "prompt": "combinatorics, permutations and combinations, circular permutations, combinations with repetition, inclusion-exclusion principle, pigeonhole principle, and derangements. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Vectors",
-      "prompt": "vectors in 2D and 3D, vector operations addition scalar multiplication, dot product, cross product, vector projection, magnitude direction, unit vectors, and geometric interpretations",
+      "name": "Optimization: Vectors",
+      "prompt": "vectors in 2D and 3D, vector operations addition scalar multiplication, dot product, cross product, vector projection, magnitude direction, unit vectors, and geometric interpretations. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Vector Spaces",
-      "prompt": "vector spaces, axioms of vector space, subspaces, span of vectors, linear independence, basis, dimension, and examples of vector spaces beyond R^n like function spaces",
+      "name": "Algebra: Vector Spaces",
+      "prompt": "vector spaces, axioms of vector space, subspaces, span of vectors, linear independence, basis, dimension, and examples of vector spaces beyond R^n like function spaces. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Linear Transformations",
-      "prompt": "linear transformations, transformation matrix, kernel null space, image range, rank-nullity theorem, composition of transformations, and geometric transformations rotation scaling shear",
+      "name": "Optimization: Linear Transformations",
+      "prompt": "linear transformations, transformation matrix, kernel null space, image range, rank-nullity theorem, composition of transformations, and geometric transformations rotation scaling shear. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Matrix Operations",
-      "prompt": "matrix operations, addition, scalar multiplication, matrix multiplication, transpose, trace, block matrices, and computational complexity of matrix multiplication",
+      "name": "Algebra: Matrix Operations",
+      "prompt": "matrix operations, addition, scalar multiplication, matrix multiplication, transpose, trace, block matrices, and computational complexity of matrix multiplication. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Matrix Types",
-      "prompt": "special matrix types, identity diagonal symmetric skew-symmetric orthogonal unitary Hermitian, upper lower triangular, sparse matrices, and their properties",
+      "name": "Optimization: Matrix Types",
+      "prompt": "special matrix types, identity diagonal symmetric skew-symmetric orthogonal unitary Hermitian, upper lower triangular, sparse matrices, and their properties. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Determinants",
-      "prompt": "determinants, cofactor expansion, properties of determinants, row operations effect, determinant and invertibility, determinant of product, and geometric interpretation as volume",
+      "name": "Algebra: Determinants",
+      "prompt": "determinants, cofactor expansion, properties of determinants, row operations effect, determinant and invertibility, determinant of product, and geometric interpretation as volume. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Matrix Inverse",
-      "prompt": "matrix inverse, conditions for invertibility, computing inverse via row reduction, adjugate method, properties of inverse, and computational complexity",
+      "name": "Optimization: Matrix Inverse",
+      "prompt": "matrix inverse, conditions for invertibility, computing inverse via row reduction, adjugate method, properties of inverse, and computational complexity. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Rank and Null Space",
-      "prompt": "matrix rank, column space, row space, null space, rank-nullity theorem, computing rank via row echelon form, and applications in solving linear systems",
+      "name": "Algebra: Rank and Null Space",
+      "prompt": "matrix rank, column space, row space, null space, rank-nullity theorem, computing rank via row echelon form, and applications in solving linear systems. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Gaussian Elimination",
-      "prompt": "Gaussian elimination, row echelon form, reduced row echelon form, pivot columns, free variables, LU decomposition, and computational complexity",
+      "name": "Optimization: Gaussian Elimination",
+      "prompt": "Gaussian elimination, row echelon form, reduced row echelon form, pivot columns, free variables, LU decomposition, and computational complexity. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Eigenvalues and Eigenvectors",
-      "prompt": "eigenvalues and eigenvectors, characteristic polynomial, computing eigenvalues, eigenspaces, algebraic vs geometric multiplicity, and eigendecomposition",
+      "name": "Algebra: Eigenvalues and Eigenvectors",
+      "prompt": "eigenvalues and eigenvectors, characteristic polynomial, computing eigenvalues, eigenspaces, algebraic vs geometric multiplicity, and eigendecomposition. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Diagonalization",
-      "prompt": "matrix diagonalization, conditions for diagonalizability, spectral theorem for symmetric matrices, matrix powers via diagonalization, and applications in dynamical systems",
+      "name": "Optimization: Diagonalization",
+      "prompt": "matrix diagonalization, conditions for diagonalizability, spectral theorem for symmetric matrices, matrix powers via diagonalization, and applications in dynamical systems. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "SVD",
-      "prompt": "singular value decomposition SVD, computing SVD, relationship with eigendecomposition, geometric interpretation, truncated SVD, pseudo-inverse Moore-Penrose, and applications in data science PCA",
+      "name": "Algebra: SVD",
+      "prompt": "singular value decomposition SVD, computing SVD, relationship with eigendecomposition, geometric interpretation, truncated SVD, pseudo-inverse Moore-Penrose, and applications in data science PCA. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Matrix Norms",
-      "prompt": "matrix norms, Frobenius norm, spectral norm operator norm, nuclear norm trace norm, vector norms L1 L2 Linf, and how norms are used in regularization",
+      "name": "Optimization: Matrix Norms",
+      "prompt": "matrix norms, Frobenius norm, spectral norm operator norm, nuclear norm trace norm, vector norms L1 L2 Linf, and how norms are used in regularization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Positive Definite Matrices",
-      "prompt": "positive definite matrices, positive semi-definite, tests for positive definiteness eigenvalues leading minors Cholesky, Cholesky decomposition, and role in optimization",
+      "name": "Algebra: Positive Definite Matrices",
+      "prompt": "positive definite matrices, positive semi-definite, tests for positive definiteness eigenvalues leading minors Cholesky, Cholesky decomposition, and role in optimization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "QR Decomposition",
-      "prompt": "QR decomposition, Gram-Schmidt orthogonalization process, Householder reflections, Givens rotations, applications in least squares, and QR algorithm for eigenvalues",
+      "name": "Optimization: QR Decomposition",
+      "prompt": "QR decomposition, Gram-Schmidt orthogonalization process, Householder reflections, Givens rotations, applications in least squares, and QR algorithm for eigenvalues. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Least Squares",
-      "prompt": "least squares problem, normal equations, geometric interpretation projection, weighted least squares, ridge regression as regularized least squares, and iterative methods",
+      "name": "Algebra: Least Squares",
+      "prompt": "least squares problem, normal equations, geometric interpretation projection, weighted least squares, ridge regression as regularized least squares, and iterative methods. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Tensor Operations",
-      "prompt": "tensors, tensor order and shape, tensor contraction, Einstein summation convention einsum, outer product, Kronecker product, and tensor decompositions CP Tucker",
+      "name": "Optimization: Tensor Operations",
+      "prompt": "tensors, tensor order and shape, tensor contraction, Einstein summation convention einsum, outer product, Kronecker product, and tensor decompositions CP Tucker. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Limits",
-      "prompt": "limits, epsilon-delta definition, limit laws, one-sided limits, limits at infinity, infinite limits, squeeze theorem, and L'Hopital's rule",
+      "name": "Algebra: Limits",
+      "prompt": "limits, epsilon-delta definition, limit laws, one-sided limits, limits at infinity, infinite limits, squeeze theorem, and L'Hopital's rule. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Continuity",
-      "prompt": "continuity, definition at a point and on interval, types of discontinuity removable jump essential, intermediate value theorem, extreme value theorem, and uniform continuity",
+      "name": "Optimization: Continuity",
+      "prompt": "continuity, definition at a point and on interval, types of discontinuity removable jump essential, intermediate value theorem, extreme value theorem, and uniform continuity. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Derivatives",
-      "prompt": "derivatives, power rule, product rule, quotient rule, chain rule, implicit differentiation, logarithmic differentiation, higher-order derivatives, and derivative as rate of change",
+      "name": "Algebra: Derivatives",
+      "prompt": "derivatives, power rule, product rule, quotient rule, chain rule, implicit differentiation, logarithmic differentiation, higher-order derivatives, and derivative as rate of change. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Applications of Derivatives",
-      "prompt": "applications of derivatives, finding maxima minima, first and second derivative tests, optimization problems, related rates, curve sketching, mean value theorem, Rolle's theorem",
+      "name": "Optimization: Applications of Derivatives",
+      "prompt": "applications of derivatives, finding maxima minima, first and second derivative tests, optimization problems, related rates, curve sketching, mean value theorem, Rolle's theorem. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Taylor and Maclaurin Series",
-      "prompt": "Taylor series, Maclaurin series, Taylor polynomial approximation, remainder term, convergence radius, common Taylor expansions e^x sin cos ln, and applications in numerical methods",
+      "name": "Algebra: Taylor and Maclaurin Series",
+      "prompt": "Taylor series, Maclaurin series, Taylor polynomial approximation, remainder term, convergence radius, common Taylor expansions e^x sin cos ln, and applications in numerical methods. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Integration Techniques",
-      "prompt": "integration, Riemann sums, fundamental theorem of calculus, substitution method, integration by parts, partial fractions, trigonometric substitution, and numerical integration",
+      "name": "Optimization: Integration Techniques",
+      "prompt": "integration, Riemann sums, fundamental theorem of calculus, substitution method, integration by parts, partial fractions, trigonometric substitution, and numerical integration. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Improper Integrals",
-      "prompt": "improper integrals, infinite limits of integration, unbounded integrands, convergence tests comparison test limit comparison, and Gamma function Beta function",
+      "name": "Algebra: Improper Integrals",
+      "prompt": "improper integrals, infinite limits of integration, unbounded integrands, convergence tests comparison test limit comparison, and Gamma function Beta function. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Applications of Integration",
-      "prompt": "applications of integration, area between curves, volume of revolution disk washer shell methods, arc length, surface area, and probability density functions",
+      "name": "Optimization: Applications of Integration",
+      "prompt": "applications of integration, area between curves, volume of revolution disk washer shell methods, arc length, surface area, and probability density functions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Partial Derivatives",
-      "prompt": "partial derivatives, geometric interpretation, notation, higher-order partial derivatives, Clairaut's theorem mixed partials equality, and partial derivatives in machine learning",
+      "name": "Algebra: Partial Derivatives",
+      "prompt": "partial derivatives, geometric interpretation, notation, higher-order partial derivatives, Clairaut's theorem mixed partials equality, and partial derivatives in machine learning. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Gradient and Directional Derivative",
-      "prompt": "gradient vector, directional derivative, gradient as direction of steepest ascent, gradient descent intuition, level curves and gradient perpendicularity, and nabla operator",
+      "name": "Optimization: Gradient and Directional Derivative",
+      "prompt": "gradient vector, directional derivative, gradient as direction of steepest ascent, gradient descent intuition, level curves and gradient perpendicularity, and nabla operator. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Jacobian and Hessian",
-      "prompt": "Jacobian matrix for vector-valued functions, Hessian matrix of second partial derivatives, Hessian in optimization second-order conditions, and Newton's method using Hessian",
+      "name": "Algebra: Jacobian and Hessian",
+      "prompt": "Jacobian matrix for vector-valued functions, Hessian matrix of second partial derivatives, Hessian in optimization second-order conditions, and Newton's method using Hessian. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Multivariable Chain Rule",
-      "prompt": "multivariable chain rule, total derivative, implicit function theorem, backpropagation as chain rule application, and computational graph for automatic differentiation",
+      "name": "Optimization: Multivariable Chain Rule",
+      "prompt": "multivariable chain rule, total derivative, implicit function theorem, backpropagation as chain rule application, and computational graph for automatic differentiation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Lagrange Multipliers",
-      "prompt": "constrained optimization, Lagrange multipliers method, equality constraints, geometric interpretation, multiple constraints, and connection to KKT conditions",
+      "name": "Algebra: Lagrange Multipliers",
+      "prompt": "constrained optimization, Lagrange multipliers method, equality constraints, geometric interpretation, multiple constraints, and connection to KKT conditions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Multiple Integrals",
-      "prompt": "double integrals, triple integrals, iterated integrals, Fubini's theorem, change of variables polar cylindrical spherical coordinates, and Jacobian determinant for substitution",
+      "name": "Optimization: Multiple Integrals",
+      "prompt": "double integrals, triple integrals, iterated integrals, Fubini's theorem, change of variables polar cylindrical spherical coordinates, and Jacobian determinant for substitution. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Vector Calculus",
-      "prompt": "vector calculus, line integrals, surface integrals, Green's theorem, Stokes' theorem, divergence theorem, curl divergence gradient of vector fields, and conservative fields",
+      "name": "Algebra: Vector Calculus",
+      "prompt": "vector calculus, line integrals, surface integrals, Green's theorem, Stokes' theorem, divergence theorem, curl divergence gradient of vector fields, and conservative fields. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "First-Order ODEs",
-      "prompt": "ordinary differential equations, first-order ODEs, separable equations, exact equations, integrating factors, linear first-order ODEs, Bernoulli equations, and existence uniqueness theorem",
+      "name": "Optimization: First-Order ODEs",
+      "prompt": "ordinary differential equations, first-order ODEs, separable equations, exact equations, integrating factors, linear first-order ODEs, Bernoulli equations, and existence uniqueness theorem. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Second-Order Linear ODEs",
-      "prompt": "second-order linear ODEs, homogeneous with constant coefficients, characteristic equation, undetermined coefficients, variation of parameters, and applications spring-mass systems",
+      "name": "Algebra: Second-Order Linear ODEs",
+      "prompt": "second-order linear ODEs, homogeneous with constant coefficients, characteristic equation, undetermined coefficients, variation of parameters, and applications spring-mass systems. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Laplace Transforms",
-      "prompt": "Laplace transforms, definition and properties, inverse Laplace transform, solving ODEs with Laplace transforms, transfer functions, and convolution theorem",
+      "name": "Optimization: Laplace Transforms",
+      "prompt": "Laplace transforms, definition and properties, inverse Laplace transform, solving ODEs with Laplace transforms, transfer functions, and convolution theorem. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Sample Space and Events",
-      "prompt": "probability fundamentals, sample space, events, axioms of probability Kolmogorov, addition rule, complement rule, and counting methods for probability",
+      "name": "Algebra: Sample Space and Events",
+      "prompt": "probability fundamentals, sample space, events, axioms of probability Kolmogorov, addition rule, complement rule, and counting methods for probability. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Conditional Probability and Bayes",
-      "prompt": "conditional probability, multiplication rule, law of total probability, Bayes' theorem derivation and intuition, prior posterior likelihood, and Bayesian reasoning examples",
+      "name": "Optimization: Conditional Probability and Bayes",
+      "prompt": "conditional probability, multiplication rule, law of total probability, Bayes' theorem derivation and intuition, prior posterior likelihood, and Bayesian reasoning examples. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Random Variables",
-      "prompt": "random variables, discrete vs continuous, PMF probability mass function, PDF probability density function, CDF cumulative distribution function, and expected value variance",
+      "name": "Algebra: Random Variables",
+      "prompt": "random variables, discrete vs continuous, PMF probability mass function, PDF probability density function, CDF cumulative distribution function, and expected value variance. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Expectation and Variance",
-      "prompt": "expectation properties linearity, variance and standard deviation, covariance, correlation coefficient, independence, and moment generating functions",
+      "name": "Optimization: Expectation and Variance",
+      "prompt": "expectation properties linearity, variance and standard deviation, covariance, correlation coefficient, independence, and moment generating functions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Common Discrete Distributions",
-      "prompt": "discrete distributions, Bernoulli, binomial, Poisson, geometric, negative binomial, hypergeometric, and their PMFs means variances and applications",
+      "name": "Algebra: Common Discrete Distributions",
+      "prompt": "discrete distributions, Bernoulli, binomial, Poisson, geometric, negative binomial, hypergeometric, and their PMFs means variances and applications. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Common Continuous Distributions",
-      "prompt": "continuous distributions, uniform, normal Gaussian, exponential, gamma, beta, chi-squared, Student's t, F-distribution, Weibull, log-normal, and their PDFs means variances",
+      "name": "Optimization: Common Continuous Distributions",
+      "prompt": "continuous distributions, uniform, normal Gaussian, exponential, gamma, beta, chi-squared, Student's t, F-distribution, Weibull, log-normal, and their PDFs means variances. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Joint Distributions",
-      "prompt": "joint distributions, joint PMF PDF, marginal distributions, conditional distributions, independence of random variables, joint CDF, and transformation of random variables",
+      "name": "Algebra: Joint Distributions",
+      "prompt": "joint distributions, joint PMF PDF, marginal distributions, conditional distributions, independence of random variables, joint CDF, and transformation of random variables. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Multivariate Normal",
-      "prompt": "multivariate normal distribution, mean vector, covariance matrix, marginal and conditional distributions, Mahalanobis distance, and applications in ML",
+      "name": "Optimization: Multivariate Normal",
+      "prompt": "multivariate normal distribution, mean vector, covariance matrix, marginal and conditional distributions, Mahalanobis distance, and applications in ML. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Law of Large Numbers",
-      "prompt": "law of large numbers weak and strong versions, convergence in probability vs almost sure convergence, Monte Carlo estimation, and practical implications for sampling",
+      "name": "Algebra: Law of Large Numbers",
+      "prompt": "law of large numbers weak and strong versions, convergence in probability vs almost sure convergence, Monte Carlo estimation, and practical implications for sampling. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Central Limit Theorem",
-      "prompt": "central limit theorem statement and proof sketch, convergence to normal distribution, sampling distribution of mean, confidence interval derivation, and CLT applications",
+      "name": "Optimization: Central Limit Theorem",
+      "prompt": "central limit theorem statement and proof sketch, convergence to normal distribution, sampling distribution of mean, confidence interval derivation, and CLT applications. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Concentration Inequalities",
-      "prompt": "concentration inequalities, Markov's inequality, Chebyshev's inequality, Chernoff bounds, Hoeffding's inequality, and applications in learning theory PAC bounds",
+      "name": "Algebra: Concentration Inequalities",
+      "prompt": "concentration inequalities, Markov's inequality, Chebyshev's inequality, Chernoff bounds, Hoeffding's inequality, and applications in learning theory PAC bounds. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Maximum Likelihood Estimation",
-      "prompt": "MLE maximum likelihood estimation, likelihood function, log-likelihood, MLE for normal distribution, MLE for Bernoulli, consistency asymptotic normality, and Fisher information",
+      "name": "Optimization: Maximum Likelihood Estimation",
+      "prompt": "MLE maximum likelihood estimation, likelihood function, log-likelihood, MLE for normal distribution, MLE for Bernoulli, consistency asymptotic normality, and Fisher information. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "MAP and Bayesian Estimation",
-      "prompt": "MAP maximum a posteriori estimation, relationship with MLE, prior as regularization, Bayesian estimation posterior mean, and comparison MLE vs MAP vs Bayesian",
+      "name": "Algebra: MAP and Bayesian Estimation",
+      "prompt": "MAP maximum a posteriori estimation, relationship with MLE, prior as regularization, Bayesian estimation posterior mean, and comparison MLE vs MAP vs Bayesian. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Confidence Intervals",
-      "prompt": "confidence intervals, z-interval, t-interval, interpretation of confidence level, confidence interval for proportion, sample size determination, and bootstrap confidence intervals",
+      "name": "Optimization: Confidence Intervals",
+      "prompt": "confidence intervals, z-interval, t-interval, interpretation of confidence level, confidence interval for proportion, sample size determination, and bootstrap confidence intervals. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Bayesian Inference",
-      "prompt": "Bayesian inference, prior distributions informative non-informative Jeffrey's, conjugate priors, posterior computation, Bayesian updating, and credible intervals vs confidence intervals",
+      "name": "Algebra: Bayesian Inference",
+      "prompt": "Bayesian inference, prior distributions informative non-informative Jeffrey's, conjugate priors, posterior computation, Bayesian updating, and credible intervals vs confidence intervals. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "MCMC Methods",
-      "prompt": "MCMC Markov chain Monte Carlo, Metropolis-Hastings algorithm, Gibbs sampling, convergence diagnostics, burn-in, thinning, and applications in Bayesian posterior sampling",
+      "name": "Optimization: MCMC Methods",
+      "prompt": "MCMC Markov chain Monte Carlo, Metropolis-Hastings algorithm, Gibbs sampling, convergence diagnostics, burn-in, thinning, and applications in Bayesian posterior sampling. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "EM Algorithm",
-      "prompt": "EM expectation-maximization algorithm, E-step and M-step, convergence to local maximum, applications GMM parameter estimation, missing data, and variational EM",
+      "name": "Algebra: EM Algorithm",
+      "prompt": "EM expectation-maximization algorithm, E-step and M-step, convergence to local maximum, applications GMM parameter estimation, missing data, and variational EM. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Entropy and Information Theory",
-      "prompt": "Shannon entropy, cross-entropy, KL divergence asymmetry, mutual information, joint entropy, conditional entropy, data processing inequality, and connections to ML loss functions",
+      "name": "Optimization: Entropy and Information Theory",
+      "prompt": "Shannon entropy, cross-entropy, KL divergence asymmetry, mutual information, joint entropy, conditional entropy, data processing inequality, and connections to ML loss functions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Convex Sets and Functions",
-      "prompt": "convex sets, convex functions, concave functions, Jensen's inequality, epigraph, sublevel sets, operations preserving convexity, and identifying convex optimization problems",
+      "name": "Algebra: Convex Sets and Functions",
+      "prompt": "convex sets, convex functions, concave functions, Jensen's inequality, epigraph, sublevel sets, operations preserving convexity, and identifying convex optimization problems. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Gradient Descent Convergence",
-      "prompt": "gradient descent algorithm, convergence analysis, step size selection, Lipschitz continuity, strong convexity, convergence rates O(1/t) vs O(e^-t), and gradient descent variants",
+      "name": "Optimization: Gradient Descent Convergence",
+      "prompt": "gradient descent algorithm, convergence analysis, step size selection, Lipschitz continuity, strong convexity, convergence rates O(1/t) vs O(e^-t), and gradient descent variants. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "KKT Conditions and Duality",
-      "prompt": "KKT Karush-Kuhn-Tucker conditions, Lagrangian function with inequality constraints, primal and dual problems, strong duality Slater's condition, and complementary slackness",
+      "name": "Algebra: KKT Conditions and Duality",
+      "prompt": "KKT Karush-Kuhn-Tucker conditions, Lagrangian function with inequality constraints, primal and dual problems, strong duality Slater's condition, and complementary slackness. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Linear Programming",
-      "prompt": "linear programming, standard form, simplex method, interior point methods, LP duality, sensitivity analysis, and applications in resource allocation",
+      "name": "Optimization: Linear Programming",
+      "prompt": "linear programming, standard form, simplex method, interior point methods, LP duality, sensitivity analysis, and applications in resource allocation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Newton and Quasi-Newton Methods",
-      "prompt": "Newton's method for optimization, quadratic convergence, Hessian computation cost, quasi-Newton methods BFGS L-BFGS, secant condition, and line search methods",
+      "name": "Algebra: Newton and Quasi-Newton Methods",
+      "prompt": "Newton's method for optimization, quadratic convergence, Hessian computation cost, quasi-Newton methods BFGS L-BFGS, secant condition, and line search methods. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Proximal and ADMM Methods",
-      "prompt": "proximal gradient methods, proximal operator, ISTA FISTA for L1 regularization, ADMM alternating direction method of multipliers, and applications in distributed optimization",
+      "name": "Optimization: Proximal and ADMM Methods",
+      "prompt": "proximal gradient methods, proximal operator, ISTA FISTA for L1 regularization, ADMM alternating direction method of multipliers, and applications in distributed optimization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Graph Theory Fundamentals",
-      "prompt": "graph theory, graphs directed undirected weighted, adjacency matrix adjacency list, degree, paths cycles, connectivity, BFS DFS traversals, and graph properties",
+      "name": "Algebra: Graph Theory Fundamentals",
+      "prompt": "graph theory, graphs directed undirected weighted, adjacency matrix adjacency list, degree, paths cycles, connectivity, BFS DFS traversals, and graph properties. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algebra.",
       "covered": false,
       "level_at_cover": 0
     },
     {
-      "name": "Graph Algorithms",
-      "prompt": "graph algorithms, shortest paths Dijkstra Bellman-Ford, minimum spanning tree Kruskal Prim, topological sort, graph coloring, bipartite matching, and network flow max-flow min-cut",
+      "name": "Optimization: Graph Algorithms",
+      "prompt": "graph algorithms, shortest paths Dijkstra Bellman-Ford, minimum spanning tree Kruskal Prim, topological sort, graph coloring, bipartite matching, and network flow max-flow min-cut. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Optimization.",
       "covered": false,
       "level_at_cover": 0
     }
