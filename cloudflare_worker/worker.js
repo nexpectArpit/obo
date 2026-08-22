@@ -600,8 +600,8 @@ async function handleScheduled(env) {
   const nowIst = new Date(now.getTime() + istOffset);
   const hour = nowIst.getUTCHours();
   
-  // Gating window: 3:00 AM - 8:00 AM IST
-  const withinWindow = (hour >= 3 && hour < 8);
+  // Gating window: 3:00 AM - 8:00 AM IST or 6:50 PM - 6:58 PM IST (for testing)
+  const withinWindow = (hour >= 3 && hour < 8) || (hour === 18 && nowIst.getUTCMinutes() >= 50 && nowIst.getUTCMinutes() < 58);
   
   // 2. Fetch scheduler_state.json from GitHub Content API
   let state = null;
@@ -777,7 +777,10 @@ async function handleScheduled(env) {
   }[selectedTrack];
   
   // 6. Generate dynamic session duration
-  const durationMins = Math.floor(Math.random() * (92 - 22 + 1)) + 22; // 22 to 92 mins
+  let durationMins = Math.floor(Math.random() * (92 - 22 + 1)) + 22; // 22 to 92 mins
+  if (hour === 18) {
+    durationMins = 4; // Force 4 minutes for 6:54 PM to 6:58 PM test
+  }
   
   // 7. Dispatch GHA run
   const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, true, selectedTrack, durationMins);
