@@ -600,8 +600,8 @@ async function handleScheduled(env) {
   const nowIst = new Date(now.getTime() + istOffset);
   const hour = nowIst.getUTCHours();
   
-  // Gating window: 3:00 AM - 8:00 AM IST or 6:50 PM - 6:58 PM IST (for testing)
-  const withinWindow = (hour >= 3 && hour < 8) || (hour === 18 && nowIst.getUTCMinutes() >= 50 && nowIst.getUTCMinutes() < 58);
+  // Gating window: 3:00 AM - 8:00 AM IST or 6:50 PM - 7:00 PM IST (for testing)
+  const withinWindow = (hour >= 3 && hour < 8) || (hour === 18 && nowIst.getUTCMinutes() >= 50 && nowIst.getUTCMinutes() <= 59);
   
   // 2. Fetch scheduler_state.json from GitHub Content API
   let state = null;
@@ -779,7 +779,7 @@ async function handleScheduled(env) {
   // 6. Generate dynamic session duration
   let durationMins = Math.floor(Math.random() * (92 - 22 + 1)) + 22; // 22 to 92 mins
   if (hour === 18) {
-    durationMins = 4; // Force 4 minutes for 6:54 PM to 6:58 PM test
+    durationMins = 3; // Force 3 minutes for 6:57 PM to 7:00 PM test
   }
   
   // 7. Dispatch GHA run
