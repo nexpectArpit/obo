@@ -1,0 +1,139 @@
+{
+    "sessions": [
+        {
+            "timestamp": 1786979225.493035,
+            "duration_seconds": 232,
+            "topic": "Advanced Memory Hierarchies for High-Performance Computing"
+        },
+        {
+            "timestamp": 1786988201.717508,
+            "duration_seconds": 132,
+            "topic": "Unraveling Klein bottle geometry"
+        },
+        {
+            "timestamp": 1786991492.5849159,
+            "duration_seconds": 1070,
+            "topic": "random"
+        },
+        {
+            "timestamp": 1786993013.495199,
+            "duration_seconds": 1105,
+            "topic": "Advanced Topological Insulators in Condensed Matter Physics"
+        },
+        {
+            "timestamp": 1787140673.075074,
+            "duration_seconds": 0,
+            "topic": "random"
+        },
+        {
+            "timestamp": 1787148829.1627965,
+            "duration_seconds": 560,
+            "topic": "The physics of groundwater aquifer depletion rates"
+        },
+        {
+            "timestamp": 1787157163.4890463,
+            "duration_seconds": 82,
+            "topic": "The mathematics of han dynasty meritocracy civil"
+        },
+        {
+            "timestamp": 1787157879.3880556,
+            "duration_seconds": 87,
+            "topic": "Analyzing the cohomology groups of topological insulators with applications to condensed matter physics"
+        },
+        {
+            "timestamp": 1787158955.2095954,
+            "duration_seconds": 440,
+            "topic": "floyed cycle detection?"
+        },
+        {
+            "timestamp": 1787159917.389809,
+            "duration_seconds": 721,
+            "topic": "Optimizing HBM3e cache hierarchies for concurrent access in large-scale memory systems"
+        },
+        {
+            "timestamp": 1787161583.2336574,
+            "duration_seconds": 443,
+            "topic": "German"
+        },
+        {
+            "timestamp": 1787163712.1163821,
+            "duration_seconds": 193,
+            "topic": "Investigating Machu Picchu mountain construction"
+        },
+        {
+            "timestamp": 1787166463.4363897,
+            "duration_seconds": 1841,
+            "topic": "about webhook"
+        },
+        {
+            "timestamp": 1787170263.024744,
+            "duration_seconds": 57,
+            "topic": "Designing Scalable AI Inference Pipelines with Custom LPU Accelerators"
+        },
+        {
+            "timestamp": 1787170802.5468357,
+            "duration_seconds": 232,
+            "topic": "Implementing consensus protocols for fault-tolerant memory systems with HBM3e cache hierarchies"
+        },
+        {
+            "timestamp": 1787201066.8449464,
+            "duration_seconds": 1129,
+            "topic": "PID in cs"
+        },
+        {
+            "timestamp": 1787204174.0876665,
+            "duration_seconds": 2357,
+            "topic": "random"
+        },
+        {
+            "timestamp": 1787223505.6551278,
+            "duration_seconds": 1842,
+            "topic": "i want to learn about the call interface mechanics and context switching overhead and will gain some skills to strengthen my understanding,lets go"
+        },
+        {
+            "timestamp": 1787223651.5997384,
+            "duration_seconds": 72,
+            "topic": "what is kadane algorithm?"
+        },
+        {
+            "timestamp": 1787250353.8045092,
+            "duration_seconds": 1498,
+            "topic": "about dp in strings, i want to learn dp from scratch"
+        },
+        {
+            "timestamp": 1787339523.9526157,
+            "duration_seconds": 2808,
+            "topic": "array subsequnce problem"
+        },
+        {
+            "timestamp": 1787342544.8372393,
+            "duration_seconds": 2682,
+            "topic": "deep learning perceptron"
+        },
+        {
+            "timestamp": 1787344676.5088706,
+            "duration_seconds": 1905,
+            "topic": "what is learning rate , and what is boosting techniques,and its algos like light gbm and other....?"
+        },
+        {
+            "timestamp": 1787345079.6555736,
+            "duration_seconds": 244,
+            "topic": "computer architecture and memory systems"
+        },
+        {
+            "timestamp": 1787345574.4758897,
+            "duration_seconds": 235,
+            "topic": "Os concepts"
+        },
+        {
+            "timestamp": 1787352427.61377,
+            "duration_seconds": 997,
+            "topic": "Array Two Pointers Technique"
+        },
+        {
+            "timestamp": 1787403922.767904,
+            "duration_seconds": 201,
+            "topic": "Array Two Pointers Technique"
+        }
+    ]
+}

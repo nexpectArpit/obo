@@ -22,10 +22,13 @@ logger = logging.getLogger("obo-bot")
 # ─── Auth Guard ──────────────────────────────────────────────────
 def authorized(func):
     async def wrapper(update: Update, context: ContextTypes.DEFAULT_TYPE):
-        user_id = update.effective_user.id
+        print(f"\n[BOT DIAGNOSTIC] Incoming update from user: {update.effective_user.id if update.effective_user else 'None'}")
+        user_id = update.effective_user.id if update.effective_user else None
         if user_id != ALLOWED_USER_ID:
+            print(f"[BOT DIAGNOSTIC] Access DENIED: user_id={user_id} != allowed={ALLOWED_USER_ID}")
             await update.effective_message.reply_text("⛔ Unauthorized.")
             return
+        print(f"[BOT DIAGNOSTIC] Access GRANTED to user: {user_id}")
         return await func(update, context)
     return wrapper
 
@@ -159,19 +162,29 @@ TRACK_SKILL_MAP = {
 }
 
 def main_menu_keyboard():
+    enabled = False
+    state_path = Path(__file__).resolve().parent / "data" / "scheduler_state.json"
+    if state_path.exists():
+        try:
+            state = json.loads(state_path.read_text())
+            enabled = state.get("enabled", False)
+        except Exception:
+            pass
+    loop_text = "⏰ Auto-Loop: ACTIVE" if enabled else "⏰ Auto-Loop: INACTIVE"
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🚀 Start Random", callback_data="start_random"),
          InlineKeyboardButton("📈 Focus Pinned Track", callback_data="level_up")],
         [InlineKeyboardButton("📚 Start Topic", callback_data="start_topic"),
          InlineKeyboardButton("🔄 Resume Last", callback_data="resume")],
         [InlineKeyboardButton("🛑 Stop Agent", callback_data="stop"),
-         InlineKeyboardButton("📊 Status", callback_data="status")]
+         InlineKeyboardButton("📊 Status", callback_data="status")],
+        [InlineKeyboardButton(loop_text, callback_data="toggle_auto_loop")]
     ])
 
 def tracks_menu_keyboard():
     # Load current skill levels
     skills = {}
-    skills_path = Path(__file__).resolve().parent / "learned_skills.json"
+    skills_path = Path(__file__).resolve().parent / "data" / "learned_skills.json"
     if skills_path.exists():
         try:
             with open(skills_path, "r") as f:
@@ -341,6 +354,32 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 msg = "📭 No workflow runs found."
         
         await query.message.reply_text(msg, parse_mode="Markdown", reply_markup=main_menu_keyboard())
+
+    elif action == "toggle_auto_loop":
+        state_path = Path(__file__).resolve().parent / "data" / "scheduler_state.json"
+        enabled = False
+        state_data = {}
+        if state_path.exists():
+            try:
+                state_data = json.loads(state_path.read_text())
+                enabled = state_data.get("enabled", False)
+            except Exception:
+                pass
+        
+        new_enabled = not enabled
+        state_data["enabled"] = new_enabled
+        
+        try:
+            state_path.write_text(json.dumps(state_data, indent=4))
+        except Exception:
+            pass
+            
+        status_msg = "⏰ *Auto-Loop Scheduler activated!*" if new_enabled else "🛑 *Auto-Loop Scheduler deactivated.*"
+        await query.message.reply_text(
+            status_msg,
+            parse_mode="Markdown",
+            reply_markup=main_menu_keyboard()
+        )
 
 @authorized
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):

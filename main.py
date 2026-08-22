@@ -25,7 +25,7 @@ def setup_session():
 def is_setup_complete():
     """Check if the user data directory exists and is not empty, or if state.json exists."""
     from pathlib import Path
-    state_path = Path(__file__).resolve().parent / "state.json"
+    state_path = Path(__file__).resolve().parent / "data" / "state.json"
     if state_path.exists():
         return True
     if not config.USER_DATA_DIR.exists():
@@ -51,6 +51,8 @@ def main():
     learn_parser.add_argument("--level-up", action="store_true", help="Only select level-up topics from topics.json")
     learn_parser.add_argument("--pin", type=str, default=None, choices=["cpp", "arch", "os", "ds", "dl", "maths"],
                               help="Pin a specific curriculum track (navigates to pinned Oboe chat)")
+    learn_parser.add_argument("--max-duration", type=int, default=None,
+                              help="Maximum run duration in minutes (stops cleanly)")
 
     args = parser.parse_args()
 
@@ -70,7 +72,7 @@ def main():
         else:
             print(f"Starting agent learning loop for topic: {args.topic}")
         
-        agent = OboeAgent(topic=args.topic, headless=args.headless, resume=args.resume, level_up=args.level_up, pin=args.pin)
+        agent = OboeAgent(topic=args.topic, headless=args.headless, resume=args.resume, level_up=args.level_up, pin=args.pin, max_duration=args.max_duration)
         agent.run()
 
 

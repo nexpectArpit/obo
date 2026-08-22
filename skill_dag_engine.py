@@ -14,8 +14,8 @@ import random
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-GRAPH_PATH = BASE_DIR / "obo_skill_graph.json"
-LEARNED_SKILLS_PATH = BASE_DIR / "learned_skills.json"
+GRAPH_PATH = BASE_DIR / "data" / "obo_skill_graph.json"
+LEARNED_SKILLS_PATH = BASE_DIR / "data" / "learned_skills.json"
 
 # Pinned Track Mastery: Maps short CLI names to track JSON filenames and pinned chat titles
 TRACK_FILES = {

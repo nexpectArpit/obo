@@ -10,7 +10,7 @@ import config
 
 
 # Load topics from topics.json
-topics_path = Path(__file__).resolve().parent / "topics.json"
+topics_path = Path(__file__).resolve().parent / "data" / "topics.json"
 try:
     with open(topics_path, "r") as f:
         RANDOM_TOPICS = json.load(f)
@@ -19,10 +19,11 @@ except Exception:
 
 
 class OboeAgent:
-    def __init__(self, topic="random", headless=False, resume=False, level_up=False, pin=None):
+    def __init__(self, topic="random", headless=False, resume=False, level_up=False, pin=None, max_duration=None):
         self.topic = topic
         self.browser = OboeBrowser(headless=headless)
         self.llm = OboeLLM()
+        self.max_duration = max_duration # in minutes
         self.dag_engine = SkillDAGEngine()
         self.resume = resume
         self.level_up = level_up
@@ -40,7 +41,7 @@ class OboeAgent:
 
         
         # Load learned skills history
-        self.learned_skills_path = Path(__file__).resolve().parent / "learned_skills.json"
+        self.learned_skills_path = Path(__file__).resolve().parent / "data" / "learned_skills.json"
         self.learned_skills = {}
         if self.learned_skills_path.exists():
             try:
@@ -55,7 +56,7 @@ class OboeAgent:
 
     def update_time_tracker(self, elapsed_time):
         """Track sessions and calculate rolling 24h & calendar day (IST) totals."""
-        tracker_path = Path(__file__).resolve().parent / "time_tracker.json"
+        tracker_path = Path(__file__).resolve().parent / "data" / "time_tracker.json"
         
         # Load existing sessions
         data = {"sessions": []}
@@ -156,7 +157,7 @@ class OboeAgent:
                 print(f"[WARNING] Failed to save learned_skills.json: {e}")
 
         # Write final session summary to agent_state.json for Telegram notification
-        state_path = Path(__file__).resolve().parent / "agent_state.json"
+        state_path = Path(__file__).resolve().parent / "data" / "agent_state.json"
         try:
             summary = {
                 "status": status,
@@ -270,7 +271,7 @@ class OboeAgent:
             print(f"[WARNING] Failed to write PID file: {pe}")
 
         # Write initial state
-        state_path = Path(__file__).resolve().parent / "agent_state.json"
+        state_path = Path(__file__).resolve().parent / "data" / "agent_state.json"
         state_data = {
             "status": "RUNNING",
             "topic": self.topic,
@@ -443,6 +444,10 @@ class OboeAgent:
             # Run the interaction loop
             consecutive_loadings = 0
             while True:
+                if self.max_duration and (time.time() - start_time) > (self.max_duration * 60):
+                    print(f"\n[DURATION LIMIT] Session has reached the maximum duration of {self.max_duration} minutes. Exiting loop cleanly.")
+                    break
+
                 if self.active_chat_start_time is None:
                     self.active_chat_start_time = time.time()
 
@@ -634,6 +639,41 @@ class OboeAgent:
                 target_skill_name = self.target_skill or self.active_node.replace("_", " ")
                 achieved_lv = self.learned_skills.get(target_skill_name, 1)
                 self.dag_engine.update_skill_level(self.active_pillar, self.active_node, achieved_lv)
+
+            # Dynamic Skill Adaptation Check for Pinned Tracks
+            if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_target_skills", None) is not None:
+                try:
+                    track_path = self.dag_engine.get_track_path(self.active_track_name)
+                    if track_path.exists():
+                        with open(track_path, "r") as f:
+                            track_data = json.load(f)
+                        
+                        current_targets = track_data.get("target_skills", [])
+                        target_levels = {skill: self.learned_skills.get(skill, 1) for skill in current_targets}
+                        
+                        min_target_skill = min(target_levels, key=target_levels.get) if target_levels else None
+                        min_level = target_levels[min_target_skill] if min_target_skill else 0
+                        
+                        better_skill = None
+                        better_level = min_level
+                        for skill, lv_str in self.achieved_skills.items():
+                            if skill not in current_targets:
+                                try:
+                                    lvl = int(lv_str.replace("LV", "").strip())
+                                    if lvl > better_level:
+                                        better_skill = skill
+                                        better_level = lvl
+                                except ValueError:
+                                    pass
+                                    
+                        if better_skill and min_target_skill:
+                            print(f"\n>>> [DYNAMIC SKILL ADAPTATION] Replacing target skill '{min_target_skill}' (LV {min_level}) with '{better_skill}' (LV {better_level}) in track '{self.active_track_name}' <<<\n")
+                            new_targets = [better_skill if s == min_target_skill else s for s in current_targets]
+                            track_data["target_skills"] = new_targets
+                            with open(track_path, "w") as f:
+                                json.dump(track_data, f, indent=2)
+                except Exception as ex:
+                    print(f"[WARNING] Failed dynamic skill adaptation: {ex}")
 
             # Mark pinned track topic as covered
             if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_topic_index", None) is not None:

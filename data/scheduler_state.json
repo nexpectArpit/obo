@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "consecutive_failures": 0,
+  "active_run_id": null,
+  "active_run_started_at": null,
+  "last_run_status": "success",
+  "last_run_finished_at": null,
+  "next_run_allowed_epoch": 0
+}

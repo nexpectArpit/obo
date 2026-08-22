@@ -16,7 +16,7 @@ class OboeBrowser:
     def start(self):
         """Start the browser context."""
         # Check if portable state.json exists
-        state_path = Path(__file__).resolve().parent / "state.json"
+        state_path = Path(__file__).resolve().parent / "data" / "state.json"
         storage_state = str(state_path) if state_path.exists() else None
         
         self.playwright = sync_playwright().start()
