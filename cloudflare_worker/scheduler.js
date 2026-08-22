@@ -12,6 +12,8 @@ export async function handleScheduled(env) {
     const workflow = (env.GH_WORKFLOW || "run_agent.yml").trim();
     const pat = env.GH_PAT ? env.GH_PAT.trim() : "";
     const allowedUserChatId = (env.ALLOWED_TELEGRAM_CHAT_ID || env.ALLOWED_TELEGRAM_USER_ID || "").trim();
+    console.log("[AUTO-LOOP] env keys:", Object.keys(env));
+    console.log("[AUTO-LOOP] allowedUserChatId resolved to:", allowedUserChatId);
 
     // 1. Get current IST time (UTC + 5:30)
     const now = new Date();
@@ -102,16 +104,20 @@ export async function handleScheduled(env) {
             const coolingMins = Math.floor(Math.random() * (18 - 10 + 1)) + 10; // 10 to 18 minutes random
             const nextAllowed = Date.now() + coolingMins * 60 * 1000;
             
-            await updateSchedulerState(pat, repo, (s) => {
-              s.active_run_id = null;
-              s.active_run_started_at = null;
-              s.consecutive_failures = consecutive_failures;
-              s.enabled = enabled;
-              s.last_run_status = last_run_status;
-              s.last_run_finished_at = Date.now();
-              s.next_run_allowed_epoch = nextAllowed;
-              return s;
-            });
+            try {
+              await updateSchedulerState(pat, repo, (s) => {
+                s.active_run_id = null;
+                s.active_run_started_at = null;
+                s.consecutive_failures = consecutive_failures;
+                s.enabled = enabled;
+                s.last_run_status = last_run_status;
+                s.last_run_finished_at = Date.now();
+                s.next_run_allowed_epoch = nextAllowed;
+                return s;
+              });
+            } catch (err) {
+              console.error("[AUTO-LOOP] Failed to write scheduler state (completion check):", err);
+            }
             
             if (allowedUserChatId) {
               await sendTelegram(token, "sendMessage", {
@@ -127,12 +133,16 @@ export async function handleScheduled(env) {
           }
         } else if (checkRes.status === 404) {
           console.warn(`[AUTO-LOOP] Run ${state.active_run_id} not found. Reconciling state.`);
-          await updateSchedulerState(pat, repo, (s) => {
-            s.active_run_id = null;
-            s.active_run_started_at = null;
-            s.next_run_allowed_epoch = Date.now() + 5 * 60 * 1000; // 5 min cooldown
-            return s;
-          });
+          try {
+            await updateSchedulerState(pat, repo, (s) => {
+              s.active_run_id = null;
+              s.active_run_started_at = null;
+              s.next_run_allowed_epoch = Date.now() + 5 * 60 * 1000; // 5 min cooldown
+              return s;
+            });
+          } catch (err) {
+            console.error("[AUTO-LOOP] Failed to write scheduler state (reconcile check):", err);
+          }
           return;
         }
       } catch (e) {
@@ -191,8 +201,8 @@ export async function handleScheduled(env) {
     const selectedTrack = "cpp";
     const trackDisplay = "1. CP / DSA";
     
-    // 6. Generate dynamic session duration (Temporarily set to 5 mins for testing)
-    let durationMins = 5;
+    // 6. Generate dynamic session duration (Temporarily set to 3 mins for testing)
+    let durationMins = 3;
     
     // 7. Dispatch GHA run
     const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, true, selectedTrack, durationMins);
@@ -201,11 +211,15 @@ export async function handleScheduled(env) {
       const runs = await getRunningRuns(pat, repo, workflow);
       const newRunId = (runs && runs.length > 0) ? runs[0].id : null;
       
-      await updateSchedulerState(pat, repo, (s) => {
-        s.active_run_id = newRunId;
-        s.active_run_started_at = Date.now();
-        return s;
-      });
+      try {
+        await updateSchedulerState(pat, repo, (s) => {
+          s.active_run_id = newRunId;
+          s.active_run_started_at = Date.now();
+          return s;
+        });
+      } catch (err) {
+        console.error("[AUTO-LOOP] Failed to write scheduler state (dispatch update):", err);
+      }
       
       if (allowedUserChatId) {
         await sendTelegram(token, "sendMessage", {
