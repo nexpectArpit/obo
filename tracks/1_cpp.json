@@ -24,7 +24,7 @@
     {
       "name": "Kadane's Algorithm",
       "prompt": "explain Kadane's algorithm for maximum subarray sum, handling all negative numbers, circular subarrays, and extending it to 2D grids",
-      "covered": false,
+      "covered": true,
       "level_at_cover": 0
     },
     {
