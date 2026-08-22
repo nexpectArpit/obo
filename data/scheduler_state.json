@@ -10,10 +10,10 @@
     "test_mode": false,
     "start_hour_ist": 3,
     "end_hour_ist": 8,
-    "min_duration": 50,
-    "max_duration": 85,
+    "min_duration": 22,
+    "max_duration": 92,
     "min_cooldown_mins": 10,
-    "max_cooldown_mins": 17
+    "max_cooldown_mins": 18
   },
   "override": null
 }

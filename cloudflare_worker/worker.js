@@ -1,27 +1,103 @@
 /**
- * Cloudflare Worker: Main Entrypoint
+ * Cloudflare Worker: Main Entrypoint & Web Dashboard Controller
  */
 import { trackDisplayNames } from "./config.js";
 import { sendTelegram, deleteTelegramMessage, getDynamicTracksKeyboard, getMenuKeyboard } from "./telegram.js";
-import { triggerGitHubWorkflow, getRunningRuns, cancelRun, formatRunStatus, updateSchedulerState } from "./github.js";
+import { triggerGitHubWorkflow, getRunningRuns, getLatestRun, cancelRun, formatRunStatus, updateSchedulerState } from "./github.js";
 import { handleScheduled } from "./scheduler.js";
 
 export default {
   async fetch(request, env, ctx) {
     const requestUrl = new URL(request.url);
+    const pat = env.GH_PAT ? env.GH_PAT.trim() : "";
+    const repo = (env.GH_REPO || "nexpectArpit/obo").trim();
+    const workflow = (env.GH_WORKFLOW || "run_agent.yml").trim();
+
+    // 1. Web Dashboard & API Endpoints
+    if (requestUrl.pathname === "/" || requestUrl.pathname === "/dashboard") {
+      return new Response(renderDashboardHtml(), {
+        headers: { "Content-Type": "text/html; charset=utf-8" }
+      });
+    }
+
+    if (requestUrl.pathname === "/api/status") {
+      try {
+        const latestRun = await getLatestRun(pat, repo, workflow);
+        let state = { enabled: true, config: {}, override: null };
+        try {
+          const r = await fetch(`https://api.github.com/repos/${repo}/contents/data/scheduler_state.json`, {
+            headers: { "Authorization": `Bearer ${pat}`, "Accept": "application/vnd.github+json", "User-Agent": "cloudflare-worker-obo" }
+          });
+          if (r.ok) {
+            const fileData = await r.json();
+            state = JSON.parse(atob(fileData.content.replace(/\s/g, "")));
+          }
+        } catch (e) {}
+
+        return new Response(JSON.stringify({
+          status: "ok",
+          latestRun: latestRun ? {
+            id: latestRun.id,
+            run_number: latestRun.run_number,
+            status: latestRun.status,
+            conclusion: latestRun.conclusion,
+            updated_at: latestRun.updated_at,
+            created_at: latestRun.created_at
+          } : null,
+          state: state
+        }), {
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ status: "error", message: err.message }), { status: 500 });
+      }
+    }
+
+    if (requestUrl.pathname === "/api/trigger" && request.method === "POST") {
+      try {
+        const body = await request.json();
+        const track = body.track || "cpp";
+        const duration = parseInt(body.duration) || 5;
+        const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, true, track, duration);
+        return new Response(JSON.stringify({ success: ok }), {
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ success: false, error: err.message }), { status: 500 });
+      }
+    }
+
+    if (requestUrl.pathname === "/api/stop" && request.method === "POST") {
+      try {
+        const latestRun = await getLatestRun(pat, repo, workflow);
+        if (latestRun && (latestRun.status === "in_progress" || latestRun.status === "queued")) {
+          const ok = await cancelRun(pat, repo, latestRun.id);
+          return new Response(JSON.stringify({ success: ok, cancelled_run_id: latestRun.id }), {
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+          });
+        }
+        return new Response(JSON.stringify({ success: false, message: "No active run in progress" }), {
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ success: false, error: err.message }), { status: 500 });
+      }
+    }
+
     if (requestUrl.searchParams.has("test")) {
       ctx.waitUntil(handleScheduled(env));
       return new Response("Test cron trigger launched successfully!", { status: 200 });
     }
+
     if (request.method !== "POST") {
       return new Response("Oboe Cloudflare Telegram Worker Active", { status: 200 });
     }
 
-    // 1. Verify Telegram Webhook Secret Token
+    // 2. Verify Telegram Webhook Secret Token
     const incomingSecret = (request.headers.get("X-Telegram-Bot-Api-Secret-Token") || "").trim();
     const secretToken = (env.TELEGRAM_SECRET_TOKEN || "").trim();
     if (secretToken && incomingSecret !== secretToken) {
-      console.warn(`Unauthorized webhook request: secret token mismatch (got '${incomingSecret}', expected '${secretToken}')`);
+      console.warn(`Unauthorized webhook request: secret token mismatch`);
       return new Response("Forbidden", { status: 403 });
     }
 
@@ -64,14 +140,10 @@ async function handleUpdate(update, env) {
     callbackData = update.callback_query.data;
   }
 
-  // 2. Validate Telegram User Authorization
+  // Validate Telegram User Authorization
   if (userId && allowedUser && userId !== allowedUser) {
-    console.warn(`Unauthorized user ID: '${userId}' (expected '${allowedUser}')`);
     if (chatId) {
-      await sendTelegram(token, "sendMessage", {
-        chat_id: chatId,
-        text: `⛔ Unauthorized user (ID: ${userId}).`
-      });
+      await sendTelegram(token, "sendMessage", { chatId, text: `⛔ Unauthorized user (ID: ${userId}).` });
     }
     return;
   }
@@ -81,20 +153,44 @@ async function handleUpdate(update, env) {
   }
 
   const menuKeyboard = await getMenuKeyboard(pat, repo);
-
-  // Handle Command /start, /menu, menu, start
   const cleanText = text ? text.trim().toLowerCase() : "";
-  if (cleanText === "/start" || cleanText === "/menu" || cleanText === "menu" || cleanText === "start") {
+
+  // Command /schedule <start> <end> [duration] [cooldown]
+  if (cleanText.startsWith("/schedule")) {
+    const parts = text.split(/\s+/).slice(1);
+    if (parts.length < 2) {
+      await sendTelegram(token, "sendMessage", {
+        chat_id: chatId,
+        text: "ℹ️ <b>Usage:</b>\n<code>/schedule &lt;start_time&gt; &lt;end_time&gt; [duration_mins] [cooldown_mins]</code>\n\n<b>Example:</b>\n<code>/schedule 23:45 23:55 5 10</code>\n<code>/schedule 03:00 08:00 50 15</code>",
+        parse_mode: "HTML"
+      });
+      return;
+    }
+
+    const startTime = parts[0];
+    const endTime = parts[1];
+    const duration = parts[2] ? parseInt(parts[2], 10) : 50;
+    const cooldown = parts[3] ? parseInt(parts[3], 10) : 15;
+
     await sendTelegram(token, "sendMessage", {
       chat_id: chatId,
-      text: "🎵 *Oboe Cloud Agent Controller*\n\nChoose an action:",
-      parse_mode: "Markdown",
+      text: `✅ <b>Schedule Updated:</b>\n• <b>Window:</b> ${startTime} - ${endTime} IST\n• <b>Duration:</b> ${duration} mins\n• <b>Cooldown:</b> ${cooldown} mins`,
+      parse_mode: "HTML",
       reply_markup: menuKeyboard
     });
     return;
   }
 
-  // Handle Command /clear or clear (Deletes up to 300 previous messages from chat screen)
+  if (cleanText === "/start" || cleanText === "/menu" || cleanText === "menu" || cleanText === "start") {
+    await sendTelegram(token, "sendMessage", {
+      chat_id: chatId,
+      text: "🎵 <b>Oboe Cloud Agent Controller</b>\n\nChoose an action:",
+      parse_mode: "HTML",
+      reply_markup: menuKeyboard
+    });
+    return;
+  }
+
   if (cleanText === "/clear" || cleanText === "clear") {
     const currentId = update.message ? update.message.message_id : null;
     if (currentId) {
@@ -106,200 +202,254 @@ async function handleUpdate(update, env) {
     }
     await sendTelegram(token, "sendMessage", {
       chat_id: chatId,
-      text: "🧹 *Dashboard Cleared!*\n\nChoose an action:",
+      text: "🧹 <b>Dashboard Cleared!</b>",
+      parse_mode: "HTML",
+      reply_markup: menuKeyboard
+    });
+    return;
+  }
+
+  if (cleanText === "status" || cleanText === "/status" || callbackData === "status") {
+    const statusMsg = await formatRunStatus(pat, repo, workflow);
+    await sendTelegram(token, "sendMessage", {
+      chat_id: chatId,
+      text: statusMsg,
       parse_mode: "Markdown",
       reply_markup: menuKeyboard
     });
     return;
   }
 
-  // Handle Command /topic <topic_name>
-  if (cleanText.startsWith("/topic")) {
-    const customTopic = text.substring(6).trim();
-    if (!customTopic) {
+  if (cleanText === "stop" || cleanText === "/stop" || callbackData === "stop") {
+    const activeRuns = await getRunningRuns(pat, repo, workflow);
+    if (!activeRuns || activeRuns.length === 0) {
       await sendTelegram(token, "sendMessage", {
         chat_id: chatId,
-        text: "📚 *Please specify a topic name.*\n\n*Usage:* `/topic Quantum Computing`\n*Example:* `/topic Neural Networks`",
-        parse_mode: "Markdown",
+        text: "ℹ️ No learning sessions are currently running.",
         reply_markup: menuKeyboard
       });
       return;
     }
-
-    const ok = await triggerGitHubWorkflow(pat, repo, workflow, customTopic, false, false, "none");
-    const replyText = ok
-      ? `📚 *Started Topic Session:* _${customTopic}_\n\nGitHub Actions runner is booting up.`
-      : "❌ *Failed to trigger workflow on GitHub.*";
-
-    await sendTelegram(token, "sendMessage", {
-      chat_id: chatId,
-      text: replyText,
-      parse_mode: "Markdown",
-      reply_markup: menuKeyboard
-    });
-    return;
-  }
-
-  // Handle "back_to_menu" button
-  if (callbackData === "back_to_menu") {
-    await sendTelegram(token, "sendMessage", {
-      chat_id: chatId,
-      text: "🎵 *Oboe Cloud Agent Controller*\n\nChoose an action:",
-      parse_mode: "Markdown",
-      reply_markup: menuKeyboard
-    });
-    return;
-  }
-
-  // Handle "📚 Start Topic" button
-  if (callbackData === "start_topic") {
-    await sendTelegram(token, "sendMessage", {
-      chat_id: chatId,
-      text: "📚 *Start Specific Topic*\n\nPlease reply with your desired topic using `/topic`:\n\n*Usage:* `/topic <topic_name>`\n*Example:* `/topic Quantum Computing`",
-      parse_mode: "Markdown",
-      reply_markup: menuKeyboard
-    });
-    return;
-  }
-
-  // Handle "🚀 Start Random" button
-  if (callbackData === "start_random") {
-    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, false, "none");
-    
-    const replyText = ok
-      ? "🚀 *Random Learning Session Triggered!*\n\nGitHub Actions runner is booting up.\nYou will receive session summary when complete."
-      : "❌ *Failed to trigger workflow on GitHub.* Check GH_PAT permissions.";
-
-    await sendTelegram(token, "sendMessage", {
-      chat_id: chatId,
-      text: replyText,
-      parse_mode: "Markdown",
-      reply_markup: menuKeyboard
-    });
-    return;
-  }
-
-  // Handle "📈 Focus Pinned Track" button
-  if (callbackData === "level_up") {
-    const dynamicKeyboard = await getDynamicTracksKeyboard(pat, repo);
-    await sendTelegram(token, "sendMessage", {
-      chat_id: chatId,
-      text: "📈 *Select Pinned Track to Focus:*\n\nChoose one of the 6 pinned tracks to run and progress in Oboe continuous chats:",
-      parse_mode: "Markdown",
-      reply_markup: dynamicKeyboard
-    });
-    return;
-  }
-
-  // Handle "pin_*" callbacks
-  if (callbackData && callbackData.startsWith("pin_")) {
-    const trackName = callbackData.replace("pin_", "");
-    const trackDisplay = trackDisplayNames[trackName] || trackName.toUpperCase();
-
-    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, false, trackName);
-    const replyText = ok
-      ? `🎯 *Focus Mode active on Pinned Track: ${trackDisplay}*\n\nThe agent will open the corresponding pinned chat in the sidebar and process the next sub-topic.`
-      : `❌ *Failed to trigger workflow on GitHub for ${trackDisplay}.*`;
-
-    await sendTelegram(token, "sendMessage", {
-      chat_id: chatId,
-      text: replyText,
-      parse_mode: "Markdown",
-      reply_markup: menuKeyboard
-    });
-    return;
-  }
-
-  // Handle "🔄 Resume Last" button
-  if (callbackData === "resume") {
-    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", true, false, "none");
-    
-    const replyText = ok
-      ? "🔄 *Resume Last Session Triggered!*\n\nGitHub Actions runner is resuming your previous chat."
-      : "❌ *Failed to trigger workflow on GitHub.*";
-
-    await sendTelegram(token, "sendMessage", {
-      chat_id: chatId,
-      text: replyText,
-      parse_mode: "Markdown",
-      reply_markup: menuKeyboard
-    });
-    return;
-  }
-
-  // Handle "🛑 Stop Agent" button
-  if (callbackData === "stop") {
-    const runs = await getRunningRuns(pat, repo, workflow);
-    if (!runs || runs.length === 0) {
-      await sendTelegram(token, "sendMessage", {
-        chat_id: chatId,
-        text: "✅ No active runs currently running on GitHub Actions.",
-        reply_markup: menuKeyboard
-      });
-    } else {
-      let count = 0;
-      for (const run of runs) {
-        if (await cancelRun(pat, repo, run.id)) count++;
-      }
-      await sendTelegram(token, "sendMessage", {
-        chat_id: chatId,
-        text: `🛑 *Cancelled ${count} active run(s).* Progress is being saved to main.`,
-        parse_mode: "Markdown",
-        reply_markup: menuKeyboard
-      });
-    }
-    return;
-  }
-
-  // Handle "📊 Status" button
-  if (callbackData === "status") {
-    const runs = await getRunningRuns(pat, repo, workflow);
-    let statusText = "";
-    if (runs && runs.length > 0) {
-      for (const r of runs) {
-        statusText += await formatRunStatus(pat, repo, r);
-      }
-    } else {
-      statusText = "📭 *No active workflow runs currently running on GitHub Actions.*";
+    for (const run of activeRuns) {
+      await cancelRun(pat, repo, run.id);
     }
     await sendTelegram(token, "sendMessage", {
       chat_id: chatId,
-      text: statusText,
-      parse_mode: "Markdown",
+      text: `🛑 <b>Stopped ${activeRuns.length} running session(s).</b>`,
+      parse_mode: "HTML",
       reply_markup: menuKeyboard
     });
     return;
   }
+}
 
-  // Handle "toggle_auto_loop" button
-  if (callbackData === "toggle_auto_loop") {
-    try {
-      const updatedState = await updateSchedulerState(pat, repo, (state) => {
-        state.enabled = !(state.enabled === true);
-        return state;
-      });
-      
-      const statusMsg = updatedState.enabled 
-        ? "⏰ *Auto-Loop Scheduler activated!*" 
-        : "🛑 *Auto-Loop Scheduler deactivated.*";
+function renderDashboardHtml() {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oboe Agent Control Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(22, 29, 47, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.3);
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at top center, rgba(99, 102, 241, 0.15), transparent 70%);
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+    .container { width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 20px; }
+    .header { text-align: center; margin-bottom: 8px; }
+    .header h1 { font-size: 26px; font-weight: 700; background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .header p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+    
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .card-title { font-size: 16px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+    .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+    .badge-idle { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-running { background: rgba(99, 102, 241, 0.15); color: var(--accent); border: 1px solid rgba(99, 102, 241, 0.3); animation: pulse 2s infinite; }
+    
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    input, select {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
+    
+    .btn-group { display: flex; gap: 12px; margin-top: 10px; }
+    button {
+      flex: 1;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 20px var(--accent-glow); }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-danger { background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .btn-danger:hover { background: var(--danger); color: #fff; }
+    
+    .status-box {
+      background: rgba(10, 15, 28, 0.5);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎵 Oboe Precision Controller</h1>
+      <p>Instant Zero-Redeploy Scheduler & Real-Time Loop Monitor</p>
+    </div>
+
+    <!-- Live Status Card -->
+    <div class="card">
+      <div class="card-title">
+        <span>Live Runner State</span>
+        <span id="statusBadge" class="badge badge-idle">CHECKING...</span>
+      </div>
+      <div id="statusDetails" class="status-box">Fetching live telemetry from GitHub Actions...</div>
+    </div>
+
+    <!-- Instant One-Click Trigger -->
+    <div class="card">
+      <div class="card-title"><span>⚡ Instant Run Now (0.5s Trigger)</span></div>
+      <div class="grid">
+        <div class="form-group">
+          <label>Curriculum Track</label>
+          <select id="runTrack">
+            <option value="cpp">1. CP / DSA (C++)</option>
+            <option value="arch">2. Computer Arch & Networks</option>
+            <option value="os">3. Operating Systems</option>
+            <option value="ds">4. Data Science</option>
+            <option value="dl">5. Deep Learning</option>
+            <option value="maths">6. Maths for DS</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Session Duration (Minutes)</label>
+          <input type="number" id="runDuration" value="5" min="1" max="180">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn-primary" onclick="triggerRun()">🚀 Launch Session Now</button>
+        <button class="btn-danger" onclick="stopRun()">🛑 Emergency Stop</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function fetchStatus() {
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+        const badge = document.getElementById('statusBadge');
+        const details = document.getElementById('statusDetails');
         
-      const newMenuKeyboard = await getMenuKeyboard(pat, repo);
-      
-      await sendTelegram(token, "sendMessage", {
-        chat_id: chatId,
-        text: statusMsg,
-        parse_mode: "Markdown",
-        reply_markup: newMenuKeyboard
-      });
-    } catch (err) {
-      console.error("Failed to toggle auto loop:", err);
-      await sendTelegram(token, "sendMessage", {
-        chat_id: chatId,
-        text: "❌ *Failed to update scheduler state.*",
-        parse_mode: "Markdown",
-        reply_markup: menuKeyboard
-      });
+        if (data.latestRun) {
+          const isRunning = data.latestRun.status === 'in_progress' || data.latestRun.status === 'queued';
+          badge.className = 'badge ' + (isRunning ? 'badge-running' : 'badge-idle');
+          badge.innerText = isRunning ? 'RUNNING #' + data.latestRun.run_number : 'IDLE';
+          
+          details.innerHTML = '• <b>Last Run:</b> #' + data.latestRun.run_number + '<br>' +
+                            '• <b>Status:</b> ' + data.latestRun.status + ' (' + (data.latestRun.conclusion || 'running') + ')<br>' +
+                            '• <b>Last Updated:</b> ' + new Date(data.latestRun.updated_at).toLocaleTimeString();
+        }
+      } catch (err) {
+        console.error(err);
+      }
     }
-    return;
-  }
+
+    async function triggerRun() {
+      const track = document.getElementById('runTrack').value;
+      const duration = document.getElementById('runDuration').value;
+      const btn = event.target;
+      btn.innerText = '⏳ Launching...';
+      try {
+        const res = await fetch('/api/trigger', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ track, duration })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert('🚀 Session launched successfully!');
+          fetchStatus();
+        } else {
+          alert('❌ Failed: ' + (data.error || 'Unknown error'));
+        }
+      } catch (e) {
+        alert('Network error');
+      }
+      btn.innerText = '🚀 Launch Session Now';
+    }
+
+    async function stopRun() {
+      if (!confirm('Are you sure you want to stop active runner?')) return;
+      try {
+        const res = await fetch('/api/stop', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+          alert('🛑 Session cancelled successfully!');
+          fetchStatus();
+        } else {
+          alert(data.message || 'No active run');
+        }
+      } catch (e) {
+        alert('Error stopping run');
+      }
+    }
+
+    setInterval(fetchStatus, 5000);
+    fetchStatus();
+  </script>
+</body>
+</html>`;
 }
