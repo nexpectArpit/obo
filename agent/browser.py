@@ -158,20 +158,22 @@ class OboeBrowser:
                 if text:
                     choices.append(text)
 
-        # Extract active skills and levels
+        # Extract active skills and levels (Robust regex supporting Lv, LV, Lv., Level)
+        import re
         skills = {}
-        lv_elements = self.page.locator("span, div, p").filter(has_text="LV ").all()
-        for lv_el in lv_elements:
+        lv_regex = re.compile(r"\b(L[vV]\.?\s*|Level\s*)(\d+)\b")
+        candidates = self.page.locator("span, div, p").filter(has_text=re.compile(r"\b(L[vV]|Level)\b")).all()
+        for lv_el in candidates:
             try:
-                lv_text = (lv_el.text_content() or "").strip()
-                # Match e.g. "LV 1" or "LV 2" (keep it simple and short)
-                if len(lv_text) < 10 and "LV" in lv_text:
+                lv_text_raw = (lv_el.text_content() or "").strip()
+                match = lv_regex.search(lv_text_raw)
+                if match and len(lv_text_raw) < 25:
+                    lv_num = match.group(2)
+                    lv_text = f"LV {lv_num}"
+                    
                     parent = lv_el.locator("xpath=..")
                     parent_text = (parent.text_content() or "").strip()
-                    # Clean up parent text to isolate the skill name
-                    # In Oboe, parent text is e.g. "Sorting Algorithms  LV 1  Skills"
-                    skill_name = parent_text.replace(lv_text, "").replace("Skills", "").strip()
-                    # Remove multiple spaces/newlines
+                    skill_name = parent_text.replace(lv_text_raw, "").replace("Skills", "").strip()
                     skill_name = " ".join(skill_name.split())
                     if skill_name and len(skill_name) < 60:
                         skills[skill_name] = lv_text
