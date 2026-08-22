@@ -154,6 +154,11 @@
             "timestamp": 1787418731.144564,
             "duration_seconds": 371,
             "topic": "Boolean Algebra and Logic Gates"
+        },
+        {
+            "timestamp": 1787419256.7243907,
+            "duration_seconds": 323,
+            "topic": "Combinational Circuits"
         }
     ]
 }

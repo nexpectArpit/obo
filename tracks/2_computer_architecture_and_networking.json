@@ -12,8 +12,8 @@
     {
       "name": "Combinational Circuits",
       "prompt": "combinational circuits, multiplexers, demultiplexers, encoders, decoders, full adder, ripple carry adder, carry lookahead adder, and how ALU is built from these components",
-      "covered": false,
-      "level_at_cover": 0
+      "covered": true,
+      "level_at_cover": "LV 4"
     },
     {
       "name": "Sequential Circuits",

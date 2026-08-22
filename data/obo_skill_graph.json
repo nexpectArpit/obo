@@ -33,9 +33,9 @@
         },
         "Cache_Coherence": {
           "topic": "Directory-Based MESI and MOESI Cache Coherence Protocols",
-          "level": 1,
-          "target_level": 2,
-          "status": "blocked",
+          "level": 2,
+          "target_level": 3,
+          "status": "mastered",
           "attempts": 0,
           "prerequisites": [
             "Cache_Hierarchy"
