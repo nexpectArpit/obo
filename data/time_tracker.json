@@ -259,6 +259,11 @@
             "timestamp": 1787517083.5099285,
             "duration_seconds": 937,
             "topic": "Algorithms: Disjoint Set Union (DSU)"
+        },
+        {
+            "timestamp": 1787525655.4615843,
+            "duration_seconds": 5025,
+            "topic": "Neural Networks: Backpropagation"
         }
     ]
 }
