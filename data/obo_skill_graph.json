@@ -79,9 +79,9 @@
         },
         "HBM3e_Optimization": {
           "topic": "HBM3e Bank Conflict Mitigation and High-Bandwidth Interfaces",
-          "level": 5,
-          "target_level": 6,
-          "status": "available",
+          "level": 12,
+          "target_level": 13,
+          "status": "mastered",
           "attempts": 0,
           "prerequisites": [
             "CXL_Protocol"
