@@ -254,6 +254,11 @@
             "timestamp": 1787513572.3010058,
             "duration_seconds": 1012,
             "topic": "Dynamic Programming: Recursion and Backtracking"
+        },
+        {
+            "timestamp": 1787517083.5099285,
+            "duration_seconds": 937,
+            "topic": "Algorithms: Disjoint Set Union (DSU)"
         }
     ]
 }
