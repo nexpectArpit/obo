@@ -249,6 +249,11 @@
             "timestamp": 1787499905.7014506,
             "duration_seconds": 11320,
             "topic": "Algebra: Number Systems"
+        },
+        {
+            "timestamp": 1787513572.3010058,
+            "duration_seconds": 1012,
+            "topic": "Dynamic Programming: Recursion and Backtracking"
         }
     ]
 }

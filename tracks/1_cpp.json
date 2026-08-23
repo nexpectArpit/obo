@@ -54,8 +54,8 @@
     {
       "name": "Dynamic Programming: Recursion and Backtracking",
       "prompt": "advanced backtracking paradigms in CP, generating subsets, permutations, combinations, solving N-Queens, and aggressive pruning strategies. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
-      "covered": false,
-      "level_at_cover": 0
+      "covered": true,
+      "level_at_cover": "LV 1"
     },
     {
       "name": "Algorithms: Disjoint Set Union (DSU)",
