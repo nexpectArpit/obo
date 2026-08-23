@@ -11,6 +11,12 @@ from agent.topic_selector import select_topic, remove_topic_from_pool
 import config
 
 
+OBOE_COMPLETION_SIGNALS = [
+    "you've completed", "curriculum is complete", "journey is complete",
+    "well done on completing", "you've mastered this module", "session complete",
+]
+
+
 class OboeAgent:
     def __init__(self, topic="random", headless=False, resume=False, level_up=False, pin=None, max_duration=None):
         self.topic = topic
@@ -31,6 +37,11 @@ class OboeAgent:
         self.active_track_topic_index = None
         self.active_track_chat_title = None
         self.active_track_target_skills = None
+        
+        self.side_skills = {}
+        self.newly_leveled_target_this_turn = False
+        self.steering_controller = None
+
 
         
         # Load learned skills history
@@ -300,6 +311,7 @@ class OboeAgent:
 
 
             # Log new skills and levels, and update memory
+            newly_achieved_this_turn = False
             if obs.get("skills"):
                 for skill, lv_str in obs["skills"].items():
                     try:
@@ -309,8 +321,22 @@ class OboeAgent:
                     current_max = self.learned_skills.get(skill, 0)
                     if new_lv > current_max:
                         self.learned_skills[skill] = new_lv
-                        self.achieved_skills[skill] = f"LV {new_lv}"
-                        print(f"\n>>> [ACHIEVEMENT] Skill Level Up: {skill} -> LV {new_lv}! <<<\n")
+                        
+                        from agent.curriculum_policy import classify_skill
+                        track_name = self.active_track_name or self.pin or "maths"
+                        cls = classify_skill(track_name, skill)
+                        
+                        if cls in ("TARGET", "SUPPORTING"):
+                            self.achieved_skills[skill] = f"LV {new_lv}"
+                            print(f"\n>>> [ACHIEVEMENT] Skill Level Up: {skill} -> LV {new_lv}! [{cls}] <<<\n")
+                            newly_achieved_this_turn = True
+                            self.newly_leveled_target_this_turn = True
+                        elif cls == "SIDE":
+                            self.side_skills[skill] = f"LV {new_lv}"
+                            print(f"\n>>> [SIDE SKILL] {skill} -> LV {new_lv} [{cls}] (excluded from curriculum) <<<\n")
+                        else:
+                            self.side_skills[skill] = f"LV {new_lv}"
+                            print(f"\n>>> [UNKNOWN SKILL] {skill} -> LV {new_lv} [{cls}] (excluded from curriculum) <<<\n")
 
             print(f"\n[Agent Observe] State: {state.upper()} | Message count: {len(messages)}")
             
@@ -324,39 +350,128 @@ class OboeAgent:
 
             if state == "suggested_replies":
                 print(f"Available options: {choices}")
+                
+                current_target = self._get_current_target_skill()
+                track_name = self.active_track_name or self.pin or "maths"
+                
+                from agent.curriculum_policy import filter_choices
+                filtered = filter_choices(
+                    track_name=track_name,
+                    target_skill=current_target,
+                    choices=choices,
+                    dag_engine=self.dag_engine,
+                    active_track_topic_index=self.active_track_topic_index
+                )
+                valid_choices = filtered["valid"]
+                preferred = filtered["preferred"]
+                rejected = filtered["rejected"]
+                
+                if rejected:
+                    print(f"[CURRICULUM GUARD] Rejected {len(rejected)} off-track option(s): {rejected}")
+                
+                # Double enforcement: if no valid choices, trigger redirection instead of LLM select
+                if not valid_choices:
+                    if self._page_accepts_free_text():
+                        redirect_text = self.steering_controller.force_redirect()
+                        print(f"[CURRICULUM GUARD] Zero valid choices. Injecting steering: '{redirect_text[:60]}...'")
+                        self.browser.type_and_submit(redirect_text)
+                        self.last_action_was_q_answer = True
+                    else:
+                        print("[CURRICULUM GUARD] Zero valid choices. Page has no text input. Clicking first option.")
+                        self.browser.click_suggestion_by_text(choices[0])
+                        self.last_action_was_mcq = True
+                    continue
+                
                 decision = self.llm.decide_action(
                     state, 
                     messages, 
-                    choices, 
+                    valid_choices,  # LLM only sees filtered choices
                     self.learned_skills, 
-                    target_skill=self.target_skill, 
+                    target_skill=current_target, 
                     target_level=self.target_level,
-                    target_skills=self.active_track_target_skills
+                    target_skills=self.active_track_target_skills,
+                    preferred_choices=preferred,
+                    is_direction_decision=True
                 )
                 selection = decision.get("selection")
-                if selection in choices:
+                
+                # Double enforcement: Selection must be in valid_choices
+                if selection in valid_choices:
                     self.browser.click_suggestion_by_text(selection)
+                elif preferred:
+                    fallback = preferred[0]
+                    print(f"[ENFORCEMENT] Selected '{selection}' not in valid set. Clicking top preferred: '{fallback}'")
+                    self.browser.click_suggestion_by_text(fallback)
                 else:
-                    # Fallback click first
-                    print(f"Warning: Selected option '{selection}' not in choices. Clicking first choice.")
-                    self.browser.click_suggestion_by_text(choices[0])
+                    fallback = valid_choices[0]
+                    print(f"[ENFORCEMENT] Selected '{selection}' not in valid set. Clicking first valid: '{fallback}'")
+                    self.browser.click_suggestion_by_text(fallback)
                 self.last_action_was_mcq = True
 
             elif state == "free_text":
-                decision = self.llm.decide_action(
-                    state, 
-                    messages, 
-                    choices, 
-                    self.learned_skills, 
-                    target_skill=self.target_skill, 
-                    target_level=self.target_level,
-                    target_skills=self.active_track_target_skills
-                )
-                text = decision.get("text")
-                if not text or str(text).strip() == "" or str(text).lower() == "none":
-                    text = "I'm interested to learn more about this."
+                # Update steering controller
+                newly_leveled = getattr(self, "newly_leveled_target_this_turn", False)
+                self.steering_controller.update(messages, newly_leveled)
+                self.newly_leveled_target_this_turn = False
+                
+                # Check for wrap-up completion
+                if self._is_oboe_indicating_completion(messages):
+                    print("[WRAP-UP DETECTED] Oboe indicated completion with corroborating signals.")
+                    print("[WRAP-UP] Forcing redirect to next target or track topic.")
+                    if self.pin:
+                        achieved_lv = 0
+                        if self.topic:
+                            levels = [self.learned_skills.get(skill, 1) for skill in (self.active_track_target_skills or [])]
+                            achieved_lv = max(levels) if levels else 1
+                        print(f"[WRAP-UP] Pinned track topic complete. Marking topic #{self.active_track_topic_index} covered (LV {achieved_lv}).")
+                        from curriculum import SkillDAGEngine
+                        SkillDAGEngine.mark_topic_covered(self.pin, self.active_track_topic_index, achieved_lv)
+                        
+                        resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
+                        self.active_track_topic_index = resolved["topic_index"]
+                        self.topic = resolved["topic_name"]
+                        self.active_track_target_skills = resolved.get("target_skills", [])
+                        track_prompt = resolved["prompt"]
+                        print(f"[WRAP-UP] Advancing track to topic #{self.active_track_topic_index}: '{self.topic}'")
+                        self.steering_controller.request_redirect(reason="track topic completion transition")
+                        text = track_prompt
+                    else:
+                        if self.active_pillar and self.active_node:
+                            target_skill_name = self.target_skill or self.active_node.replace("_", " ")
+                            achieved_lv = self.learned_skills.get(target_skill_name, 1)
+                            self.dag_engine.update_skill_level(self.active_pillar, self.active_node, achieved_lv)
+                            
+                            result = self.dag_engine.resolve_next_topic()
+                            self.topic = result["topic"]
+                            self.target_skill = result["target_skill"]
+                            self.target_level = result["target_level"]
+                            self.active_pillar = result["pillar"]
+                            self.active_node = result["node"]
+                            print(f"[WRAP-UP] Advancing DAG to node '{self.active_node}': '{self.topic}'")
+                            self.steering_controller.request_redirect(reason="DAG node completion transition")
+                            text = f"I want to learn about {self.topic}."
+                else:
+                    # Evaluate steering override
+                    steering = self.steering_controller.evaluate()
+                    if steering:
+                        text = steering["text"]
+                    else:
+                        decision = self.llm.decide_action(
+                            state, 
+                            messages, 
+                            choices, 
+                            self.learned_skills, 
+                            target_skill=self._get_current_target_skill(), 
+                            target_level=self.target_level,
+                            target_skills=self.active_track_target_skills
+                        )
+                        text = decision.get("text")
+                        if not text or str(text).strip() == "" or str(text).lower() == "none":
+                            text = "I'm interested to learn more about this."
+
                 self.browser.type_and_submit(text)
                 self.last_action_was_q_answer = True
+
 
             else:
                 # Unknown state (perhaps course completed or error)
@@ -372,7 +487,63 @@ class OboeAgent:
             # Sleep to prevent high-frequency loop and allow Oboe platform to render
             time.sleep(2)
 
+    def _get_current_target_skill(self):
+        """Determine active target skill of the current turn."""
+        if self.pin and self.topic:
+            # E.g. self.topic = "Algebra: Number Systems"
+            parts = self.topic.split(":")
+            if len(parts) > 1:
+                prefix = parts[0].strip()
+                if self.active_track_target_skills and any(prefix.lower() in t.lower() or t.lower() in prefix.lower() for t in self.active_track_target_skills):
+                    matched = next((t for t in self.active_track_target_skills if prefix.lower() in t.lower() or t.lower() in prefix.lower()), prefix)
+                    return matched
+                return prefix
+            if self.active_track_target_skills:
+                return self.active_track_target_skills[0]
+        return self.target_skill
+
+    def _page_accepts_free_text(self) -> bool:
+        """Check if Oboe's current page has a visible free-text input field."""
+        try:
+            textarea = self.browser.page.locator("textarea, [contenteditable='true']")
+            return textarea.count() > 0 and textarea.first.is_visible()
+        except Exception:
+            return False
+
+    def _is_oboe_indicating_completion(self, messages: list) -> bool:
+        """
+        Check if Oboe is indicating curriculum or topic completion.
+        Requires all 3 corroborating signals to avoid false positives:
+        1. Last assistant message has a completion phrase.
+        2. No active question exists.
+        3. No target/supporting skill progress in last 4 turns.
+        """
+        oboe_msgs = [m for m in messages if m["role"] == "assistant"]
+        if not oboe_msgs:
+            return False
+
+        last_oboe = oboe_msgs[-1]["text"].lower()
+        
+        # 1. Completion phrase
+        has_signal = any(sig in last_oboe for sig in OBOE_COMPLETION_SIGNALS)
+        if not has_signal:
+            return False
+
+        # 2. No active question (check ? and starting question keywords)
+        QUESTION_STARTERS = ["what ", "how ", "why ", "can you", "could you", "would you", "do you", "which ", "where "]
+        has_question = ("?" in last_oboe or any(last_oboe.strip().startswith(q) for q in QUESTION_STARTERS))
+        if has_question:
+            return False
+
+        # 3. No recent curriculum progress
+        turns_without_progress = getattr(self.steering_controller, "turns_without_target_skill", 0) if getattr(self, "steering_controller", None) else 0
+        if turns_without_progress < 4:
+            return False
+
+        return True
+
     def _finalize_session(self, start_time, state_path, pid_path):
+
         """Cleanup: close browser, save skills, update DAG, write final state."""
         elapsed_time = time.time() - start_time
         rolling_24h_sec, today_ist_sec = update_time_tracker(elapsed_time, self.topic)
@@ -550,8 +721,27 @@ class OboeAgent:
                 else:
                     self._setup_normal_session(state_data, state_path)
             
+            # Initialize Steering Controller before loop starts
+            from agent.steering_controller import SteeringController
+            target_skills = self.active_track_target_skills or []
+            if not target_skills and self.target_skill:
+                target_skills = [self.target_skill]
+            if not target_skills and self.pin:
+                try:
+                    track_data = self.dag_engine.load_track(self.pin)
+                    target_skills = track_data.get("target_skills", [])
+                except Exception:
+                    pass
+
+            self.steering_controller = SteeringController(
+                track_name=self.active_track_name or self.pin or "maths",
+                target_skills=target_skills,
+                dag_engine=self.dag_engine
+            )
+
             # Run the interaction loop
             self._run_interaction_loop(start_time)
+
 
         except KeyboardInterrupt:
             print("\nAgent stopped by user.")

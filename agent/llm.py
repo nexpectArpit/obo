@@ -105,7 +105,7 @@ class OboeLLM:
         return parsed
 
 
-    def decide_action(self, state, messages, choices, learned_skills=None, target_skill=None, target_level=None, target_skills=None):
+    def decide_action(self, state, messages, choices, learned_skills=None, target_skill=None, target_level=None, target_skills=None, preferred_choices=None, is_direction_decision=False):
         """Phase 5: LLM Integration.
         Makes a structured decision on how to respond based on the conversation state.
         Supports automatic rotation across all configured Groq & Nvidia API keys on rate limit.
@@ -123,6 +123,9 @@ class OboeLLM:
 
         if target_skills:
             target_context += f"\nSEMANTIC FOCUS DIRECTIVE: Shape the vocabulary, mathematical concepts, and reasoning style of your response to implicitly demonstrate depth in the following target areas: {', '.join(target_skills)}.\nDo NOT explicitly mention the names of these target skills in your response. Instead, naturally steer explanations to cover domains, trade-offs, and complexities characteristic of these skills.\n"
+
+        if preferred_choices:
+            target_context += f"\nPREFERRED CHOICES: The following options most directly advance your learning target: {preferred_choices}.\nIf any of these options appear in your choices, select from this set first.\n"
 
         system_prompt = f"""You are a human user participating in an interactive learning course on the website Oboe.com.
 Your goal is to learn the topic, answer questions correctly, and gain skill points.
@@ -189,6 +192,23 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
             "role": "user",
             "content": f"Here is the recent dialogue history:\n\n{history_str}\nAvailable choices: {choices if choices else 'None'}"
         })
+
+        # Capability-aware routing: if is_direction_decision is True, look for a strong model provider first
+        MODEL_CAPABILITIES = {
+            "openai/gpt-oss-20b": "strong",
+            "meta/llama-3.1-8b-instruct": "standard",
+            "mistral-small-latest": "standard"
+        }
+        if is_direction_decision and self.providers:
+            strong_idx = next(
+                (i for i, p in enumerate(self.providers)
+                 if MODEL_CAPABILITIES.get(p.get("complex_model", ""), "standard") == "strong"),
+                None
+            )
+            if strong_idx is not None:
+                self.current_provider_idx = strong_idx
+                print(f"[ROUTING] Direction decision: selecting strong model provider at index {strong_idx}")
+
 
         attempts = 0
         max_attempts = len(self.providers)
