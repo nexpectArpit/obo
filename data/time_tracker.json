@@ -224,6 +224,11 @@
             "timestamp": 1787439551.2988324,
             "duration_seconds": 5319,
             "topic": "Computer Architecture: Von Neumann vs Harvard Architecture"
+        },
+        {
+            "timestamp": 1787445694.4101121,
+            "duration_seconds": 5464,
+            "topic": "Memory Systems: Instruction Cycle"
         }
     ]
 }

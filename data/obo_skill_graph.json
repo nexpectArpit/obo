@@ -7,9 +7,9 @@
       "nodes": {
         "Cache_Hierarchy": {
           "topic": "Cache Hierarchies and Line Allocation Mechanics",
-          "level": 2,
-          "target_level": 3,
-          "status": "in_progress",
+          "level": 3,
+          "target_level": 4,
+          "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
           "deep_anchors": {
@@ -20,9 +20,9 @@
         },
         "Virtual_Memory": {
           "topic": "Virtual Memory Paging and TLB Management",
-          "level": 1,
-          "target_level": 2,
-          "status": "available",
+          "level": 2,
+          "target_level": 3,
+          "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
           "deep_anchors": {
@@ -33,8 +33,8 @@
         },
         "Cache_Coherence": {
           "topic": "Directory-Based MESI and MOESI Cache Coherence Protocols",
-          "level": 2,
-          "target_level": 3,
+          "level": 3,
+          "target_level": 4,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [
@@ -50,7 +50,7 @@
           "topic": "Non-Uniform Memory Access (NUMA) Topology and Balancing",
           "level": 1,
           "target_level": 2,
-          "status": "blocked",
+          "status": "available",
           "attempts": 0,
           "prerequisites": [
             "Virtual_Memory",
@@ -64,9 +64,9 @@
         },
         "CXL_Protocol": {
           "topic": "Compute Express Link (CXL 3.0) Cache-Coherent Memory Fabrics",
-          "level": 1,
-          "target_level": 2,
-          "status": "blocked",
+          "level": 2,
+          "target_level": 3,
+          "status": "mastered",
           "attempts": 0,
           "prerequisites": [
             "NUMA_Architecture"
@@ -81,7 +81,7 @@
           "topic": "HBM3e Bank Conflict Mitigation and High-Bandwidth Interfaces",
           "level": 5,
           "target_level": 6,
-          "status": "blocked",
+          "status": "available",
           "attempts": 0,
           "prerequisites": [
             "CXL_Protocol"
