@@ -18,8 +18,8 @@
     {
       "name": "Machine Learning: Loss Functions",
       "prompt": "loss functions in deep learning, MSE MAE, binary cross-entropy, categorical cross-entropy, focal loss for imbalanced classes, hinge loss, contrastive loss, triplet loss, and when to use each. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
-      "covered": false,
-      "level_at_cover": 0
+      "covered": true,
+      "level_at_cover": "LV 9"
     },
     {
       "name": "Neural Networks: Backpropagation",
@@ -377,7 +377,7 @@
     }
   ],
   "target_skills": [
-    "Deep Learning",
-    "Machine Learning"
+    "Optimization",
+    "Second-Order Optimization"
   ]
 }
