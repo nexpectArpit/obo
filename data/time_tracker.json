@@ -229,6 +229,11 @@
             "timestamp": 1787445694.4101121,
             "duration_seconds": 5464,
             "topic": "Memory Systems: Instruction Cycle"
+        },
+        {
+            "timestamp": 1787449814.917472,
+            "duration_seconds": 3463,
+            "topic": "Algorithms: Ternary Search"
         }
     ]
 }
