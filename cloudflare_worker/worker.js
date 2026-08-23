@@ -13,8 +13,8 @@ export default {
     const repo = (env.GH_REPO || "nexpectArpit/obo").trim();
     const workflow = (env.GH_WORKFLOW || "run_agent.yml").trim();
 
-    // 1. Web Dashboard & API Endpoints
-    if (requestUrl.pathname === "/" || requestUrl.pathname === "/dashboard") {
+    // 1. Web Dashboard & API Endpoints (GET only)
+    if ((requestUrl.pathname === "/" || requestUrl.pathname === "/dashboard") && request.method === "GET") {
       return new Response(renderDashboardHtml(), {
         headers: { "Content-Type": "text/html; charset=utf-8" }
       });
@@ -96,6 +96,7 @@ export default {
     // 2. Verify Telegram Webhook Secret Token
     const incomingSecret = (request.headers.get("X-Telegram-Bot-Api-Secret-Token") || "").trim();
     const secretToken = (env.TELEGRAM_SECRET_TOKEN || "").trim();
+    console.log(`[AUTH-CHECK] incomingSecretLength=${incomingSecret.length}, secretTokenLength=${secretToken.length}, match=${incomingSecret === secretToken}`);
     if (secretToken && incomingSecret !== secretToken) {
       console.warn(`Unauthorized webhook request: secret token mismatch`);
       return new Response("Forbidden", { status: 403 });
@@ -140,10 +141,12 @@ async function handleUpdate(update, env) {
     callbackData = update.callback_query.data;
   }
 
+  console.log(`[TELEGRAM-WEBHOOK] chatId=${chatId}, userId=${userId}, text=${text}, allowedUser=${allowedUser}, tokenLength=${token ? token.length : 0}`);
+
   // Validate Telegram User Authorization
   if (userId && allowedUser && userId !== allowedUser) {
     if (chatId) {
-      await sendTelegram(token, "sendMessage", { chatId, text: `⛔ Unauthorized user (ID: ${userId}).` });
+      await sendTelegram(token, "sendMessage", { chat_id: chatId, text: `⛔ Unauthorized user (ID: ${userId}).` });
     }
     return;
   }
@@ -205,6 +208,131 @@ async function handleUpdate(update, env) {
       text: "🧹 <b>Dashboard Cleared!</b>",
       parse_mode: "HTML",
       reply_markup: menuKeyboard
+    });
+    return;
+  }
+
+  // Handle Callback Queries (Inline Buttons)
+  if (callbackData === "back_to_menu") {
+    await sendTelegram(token, "editMessageText", {
+      chat_id: chatId,
+      message_id: update.callback_query.message.message_id,
+      text: "🎵 <b>Oboe Cloud Agent Controller</b>\n\nChoose an action:",
+      parse_mode: "HTML",
+      reply_markup: menuKeyboard
+    });
+    return;
+  }
+
+  if (callbackData === "start_random") {
+    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, false, "none");
+    if (ok) {
+      await sendTelegram(token, "sendMessage", {
+        chat_id: chatId,
+        text: "🚀 <b>Random topic started!</b>\n\nThe agent is booting up on GitHub Actions.\nIt will take ~2 minutes to set up, then begin learning.\n\nTap 📊 Status to track progress.",
+        parse_mode: "HTML",
+        reply_markup: menuKeyboard
+      });
+    } else {
+      await sendTelegram(token, "sendMessage", {
+        chat_id: chatId,
+        text: "❌ Failed to trigger workflow. Check your GH_PAT permissions.",
+        reply_markup: menuKeyboard
+      });
+    }
+    return;
+  }
+
+  if (callbackData === "level_up") {
+    const tracksKeyboard = await getDynamicTracksKeyboard(pat, repo);
+    await sendTelegram(token, "editMessageText", {
+      chat_id: chatId,
+      message_id: update.callback_query.message.message_id,
+      text: "📈 <b>Select Pinned Track to Focus:</b>\n\nChoose one of the 6 pinned tracks to run and progress in Oboe continuous chats:",
+      parse_mode: "HTML",
+      reply_markup: tracksKeyboard
+    });
+    return;
+  }
+
+  if (callbackData && callbackData.startsWith("pin_")) {
+    const trackName = callbackData.replace("pin_", "");
+    const trackDisplay = {
+      cpp: "1. CP / DSA",
+      arch: "2. Computer Arch & Net",
+      os: "3. OS",
+      ds: "4. Data Science",
+      dl: "5. DL",
+      maths: "6. Maths for DS"
+    }[trackName] || trackName.toUpperCase();
+
+    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", false, false, trackName);
+    if (ok) {
+      await sendTelegram(token, "sendMessage", {
+        chat_id: chatId,
+        text: `🎯 <b>Focus Mode active on Pinned Track: ${trackDisplay}</b>\n\nThe agent will open the corresponding pinned chat in the sidebar and process the next sub-topic.\n\nTap 📊 Status to track progress.`,
+        parse_mode: "HTML",
+        reply_markup: menuKeyboard
+      });
+    } else {
+      await sendTelegram(token, "sendMessage", {
+        chat_id: chatId,
+        text: `❌ Failed to trigger workflow for ${trackDisplay}.`,
+        reply_markup: menuKeyboard
+      });
+    }
+    return;
+  }
+
+  if (callbackData === "resume") {
+    const ok = await triggerGitHubWorkflow(pat, repo, workflow, "random", true, false, "none");
+    if (ok) {
+      await sendTelegram(token, "sendMessage", {
+        chat_id: chatId,
+        text: "🔄 <b>Resuming last chat!</b>\n\nThe agent will pick up where you left off.\n\nTap 📊 Status to track progress.",
+        parse_mode: "HTML",
+        reply_markup: menuKeyboard
+      });
+    } else {
+      await sendTelegram(token, "sendMessage", {
+        chat_id: chatId,
+        text: "❌ Failed to trigger workflow. Check your GH_PAT permissions.",
+        reply_markup: menuKeyboard
+      });
+    }
+    return;
+  }
+
+  if (callbackData === "toggle_auto_loop") {
+    let enabled = false;
+    try {
+      const newState = await updateSchedulerState(pat, repo, (state) => {
+        state.enabled = !state.enabled;
+        enabled = state.enabled;
+        return state;
+      });
+      if (newState) {
+        enabled = newState.enabled;
+      }
+    } catch (e) {
+      console.error("Failed to toggle auto loop:", e);
+    }
+
+    const freshMenuKeyboard = {
+      inline_keyboard: [
+        [{ text: "🚀 Start Random", callback_data: "start_random" }, { text: "📈 Focus Pinned Track", callback_data: "level_up" }],
+        [{ text: "📚 Start Topic", callback_data: "start_topic" }, { text: "🔄 Resume Last", callback_data: "resume" }],
+        [{ text: "🛑 Stop Agent", callback_data: "stop" }, { text: "📊 Status", callback_data: "status" }],
+        [{ text: enabled ? "⏰ Auto-Loop: ACTIVE" : "⏰ Auto-Loop: INACTIVE", callback_data: "toggle_auto_loop" }]
+      ]
+    };
+
+    await sendTelegram(token, "editMessageText", {
+      chat_id: chatId,
+      message_id: update.callback_query.message.message_id,
+      text: "🎵 <b>Oboe Cloud Agent Controller</b>\n\nChoose an action:",
+      parse_mode: "HTML",
+      reply_markup: freshMenuKeyboard
     });
     return;
   }
