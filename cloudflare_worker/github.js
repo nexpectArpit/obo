@@ -88,6 +88,12 @@ export async function cancelRun(pat, repo, runId) {
 }
 
 export async function formatRunStatus(pat, repo, run) {
+  if (typeof run === "string") {
+    run = await getLatestRun(pat, repo, run);
+  }
+  if (!run) {
+    return "📭 No workflow runs found.";
+  }
   const jobsUrl = `https://api.github.com/repos/${repo}/actions/runs/${run.id}/jobs`;
   const r = await fetch(jobsUrl, {
     headers: {
