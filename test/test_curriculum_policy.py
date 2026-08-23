@@ -99,6 +99,12 @@ def test_classify_skill():
     # UNKNOWN skills
     assert classify_skill("maths", "Cooking Basics") == "UNKNOWN"
 
+    # Core CS target_skills vs supporting tests
+    assert classify_skill("cpp", "Dynamic Programming") == "TARGET"
+    assert classify_skill("cpp", "Algorithms") == "TARGET"
+    assert classify_skill("cpp", "Backtracking") == "SUPPORTING"
+    assert classify_skill("cpp", "Recursion") == "SUPPORTING"
+
 def test_track_proximity_logic():
     dag = DummyDAGEngine()
     # At active topic index 1 ("Optimization: Prime Numbers"), topic 4 ("Lagrange Multipliers") is outside sequence

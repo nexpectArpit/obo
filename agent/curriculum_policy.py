@@ -273,8 +273,16 @@ def classify_skill(track_name: str, skill_name: str) -> str:
 
     # Core CS Tracks
     elif track_lower in ("cpp", "os", "dl", "arch", "ds"):
-        # For core CS, we map exactly to node keys
-        # If the skill name contains the track domain name, it is a TARGET or SUPPORTING
+        if track_lower in TRACK_FILES:
+            try:
+                from curriculum.dag_engine import SkillDAGEngine
+                track_data = SkillDAGEngine.load_track(track_lower)
+                target_skills = [s.lower().strip() for s in track_data.get("target_skills", [])]
+                if skill_lower in target_skills:
+                    return "TARGET"
+                return "SUPPORTING"
+            except Exception:
+                pass
         return "TARGET"
 
     return "UNKNOWN"

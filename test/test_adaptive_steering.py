@@ -5,6 +5,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import unittest
 from unittest.mock import patch, MagicMock
 from agent.llm import OboeLLM
+from agent.steering_controller import SteeringController
 
 class TestAdaptiveSteering(unittest.TestCase):
     def setUp(self):
@@ -72,6 +73,21 @@ class TestAdaptiveSteering(unittest.TestCase):
             print("--- [TEST] Live LLM Response Pass ---\n")
         except Exception as e:
             self.fail(f"Live LLM request failed: {e}")
+
+    def test_steering_controller_logic(self):
+        """Test the SteeringController logic and update calls."""
+        controller = SteeringController("cpp", ["Dynamic Programming", "Algorithms"])
+        messages = [
+            {"role": "user", "text": "Let's learn dynamic programming basics"},
+            {"role": "assistant", "text": "Sure, DP is about breaking down problems into subproblems."}
+        ]
+        # Verify update runs without NameError/AttributeError
+        controller.update(messages, newly_leveled_target=False)
+        self.assertEqual(len(controller.alignment_history), 1)
+        
+        # Verify alignment scoring calculations
+        score = controller.alignment_history[0]
+        self.assertIsInstance(score, float)
 
 if __name__ == "__main__":
     unittest.main()

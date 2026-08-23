@@ -25,9 +25,6 @@ class SteeringController:
         """Call once per turn before evaluating steering."""
         # Clean messages history to a text block
         recent_text = " ".join(m["text"].lower() for m in messages[-5:])
-        score = self._compute_alignment_score(recent) if messages else 1.0
-        
-        # We manually compute alignment from recent text
         score = self._compute_alignment_score(recent_text)
         self.alignment_history.append(score)
         if len(self.alignment_history) > 10:
