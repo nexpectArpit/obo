@@ -319,6 +319,11 @@
             "timestamp": 1787611592.3221776,
             "duration_seconds": 340,
             "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping and ReLU"
+        },
+        {
+            "timestamp": 1787612716.3991704,
+            "duration_seconds": 446,
+            "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping Implementation in PyTorch"
         }
     ]
 }

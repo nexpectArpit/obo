@@ -324,7 +324,11 @@
             "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
             "name": "Vanishing Gradient Problem Solutions: Gradient Clipping and ReLU",
             "parent": "dl.neural_networks",
-            "children": [],
+            "children": [
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -356,6 +360,51 @@
             "id": "dl.neural_networks.softmax_cross-entropy_loss_function_derivation",
             "name": "Softmax Cross-Entropy Loss Function Derivation",
             "parent": "dl.neural_networks",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
+            "name": "Vanishing Gradient Problem Solutions: Gradient Clipping Implementation in PyTorch",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "backpropagation",
+                    "computational",
+                    "gradient"
+                ],
+                "unique_concepts_count": 3
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
+            "name": "Vanishing Gradient Problem Solutions: ReLU Derivative Calculation",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks",
+            "name": "Vanishing Gradient Problem Solutions: Identifying Dead Neurons in ReLU Networks",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
             "children": [],
             "mastery_level": 1,
             "evidence": {
