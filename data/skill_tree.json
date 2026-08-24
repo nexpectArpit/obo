@@ -72,7 +72,12 @@
                 "maths.algebra.solving_systems_of_linear_equations_by_substitution"
             ],
             "mastery_level": 1,
-            "evidence": {}
+            "evidence": {
+                "concepts_covered": 2,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0,
+                "successful_assessments": 1
+            }
         },
         "maths.optimization": {
             "id": "maths.optimization",

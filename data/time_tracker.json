@@ -294,6 +294,11 @@
             "timestamp": 1787603787.8525045,
             "duration_seconds": 1905,
             "topic": "Neural Networks"
+        },
+        {
+            "timestamp": 1787604886.6387537,
+            "duration_seconds": 896,
+            "topic": "Algebra"
         }
     ]
 }
