@@ -60,8 +60,8 @@
     {
       "name": "Algorithms: Disjoint Set Union (DSU)",
       "prompt": "implement disjoint set union from scratch, union by rank/size, path compression, amortized inverse Ackermann complexity, and cycle detection. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
-      "covered": false,
-      "level_at_cover": 0
+      "covered": true,
+      "level_at_cover": "LV 3"
     },
     {
       "name": "Dynamic Programming: DSU Advanced Variations",

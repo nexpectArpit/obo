@@ -17,9 +17,9 @@
     "Electrodynamics": 1,
     "Hydrogeology": 1,
     "Hydrology": 1,
-    "Algorithms": 11,
+    "Algorithms": 15,
     "Code Tracing": 2,
-    "Data Structures": 2,
+    "Data Structures": 3,
     "Algebra": 4,
     "Algorithm Analysis": 1,
     "Python": 1,
@@ -47,7 +47,7 @@
     "Context Switching": 1,
     "Interrupt Handling": 1,
     "Symmetric Multiprocessing": 1,
-    "Dynamic Programming": 12,
+    "Dynamic Programming": 16,
     "Space Complexity Optimization": 2,
     "String Algorithms": 2,
     "Combinatorics": 1,
@@ -86,7 +86,7 @@
     "Sequential Logic": 1,
     "Inclusion-Exclusion Principle": 1,
     "Coordinate Compression": 2,
-    "Segment Trees": 1,
+    "Segment Trees": 2,
     "Ternary Search": 1,
     "Virtual Memory": 2,
     "Address Translation": 1,
@@ -176,5 +176,7 @@
     "Utility Theory": 1,
     "Backtracking": 1,
     "Recursion": 1,
-    "Gradient Clipping": 1
+    "Gradient Clipping": 1,
+    "Binary Search": 1,
+    "Range Queries": 1
 }
