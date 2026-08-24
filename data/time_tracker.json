@@ -299,6 +299,11 @@
             "timestamp": 1787604886.6387537,
             "duration_seconds": 896,
             "topic": "Algebra"
+        },
+        {
+            "timestamp": 1787608442.2103436,
+            "duration_seconds": 313,
+            "topic": "Dynamic Programming"
         }
     ]
 }

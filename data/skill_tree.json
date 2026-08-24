@@ -93,7 +93,13 @@
             "parent": "cpp",
             "children": [],
             "mastery_level": 1,
-            "evidence": {}
+            "evidence": {
+                "concepts_covered": 1,
+                "unique_concepts_list": [
+                    "optimization"
+                ],
+                "unique_concepts_count": 1
+            }
         },
         "cpp.algorithms": {
             "id": "cpp.algorithms",

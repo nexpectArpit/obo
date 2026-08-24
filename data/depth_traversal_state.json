@@ -11,7 +11,19 @@
             "consecutive_stalls": 0,
             "last_backtrack_at": {},
             "branch_status": "IN_PROGRESS"
+        },
+        "cpp": {
+            "active_branch": [
+                "cpp",
+                "cpp.dynamic_programming"
+            ],
+            "current_node": "cpp.dynamic_programming",
+            "last_good_node": "cpp",
+            "branch_attempts": 0,
+            "consecutive_stalls": 0,
+            "last_backtrack_at": {},
+            "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "maths"
+    "active_anchor": "cpp"
 }
