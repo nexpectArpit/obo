@@ -289,6 +289,11 @@
             "timestamp": 1787598909.0145361,
             "duration_seconds": 1183,
             "topic": "Algorithms: Binary Search Trees"
+        },
+        {
+            "timestamp": 1787603787.8525045,
+            "duration_seconds": 1905,
+            "topic": "Neural Networks"
         }
     ]
 }

@@ -136,7 +136,16 @@
             "parent": "dl",
             "children": [],
             "mastery_level": 1,
-            "evidence": {}
+            "evidence": {
+                "concepts_covered": 4,
+                "unique_concepts_list": [
+                    "multi-layer",
+                    "optimization",
+                    "computation"
+                ],
+                "unique_concepts_count": 3,
+                "successful_assessments": 3
+            }
         },
         "dl.training": {
             "id": "dl.training",
