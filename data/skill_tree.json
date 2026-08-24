@@ -148,13 +148,16 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 4,
+                "concepts_covered": 5,
                 "unique_concepts_list": [
+                    "computational",
                     "multi-layer",
                     "optimization",
-                    "computation"
+                    "backpropagation",
+                    "computation",
+                    "gradient"
                 ],
-                "unique_concepts_count": 3,
+                "unique_concepts_count": 6,
                 "successful_assessments": 3
             }
         },
