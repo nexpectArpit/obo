@@ -279,6 +279,11 @@
             "timestamp": 1787539519.819176,
             "duration_seconds": 3166,
             "topic": "Algebra: Number Systems"
+        },
+        {
+            "timestamp": 1787575916.5819252,
+            "duration_seconds": 4497,
+            "topic": "Machine Learning: Vanishing and Exploding Gradients"
         }
     ]
 }
