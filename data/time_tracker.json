@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1786988201.717508,
-            "duration_seconds": 132,
-            "topic": "Unraveling Klein bottle geometry"
-        },
-        {
-            "timestamp": 1786991492.5849159,
-            "duration_seconds": 1070,
-            "topic": "random"
-        },
-        {
             "timestamp": 1786993013.495199,
             "duration_seconds": 1105,
             "topic": "Advanced Topological Insulators in Condensed Matter Physics"
@@ -294,6 +284,11 @@
             "timestamp": 1787590725.9938033,
             "duration_seconds": 2618,
             "topic": "Computer Architecture: Instruction Set Architecture"
+        },
+        {
+            "timestamp": 1787596556.2870495,
+            "duration_seconds": 3147,
+            "topic": "Data Types and Structures"
         }
     ]
 }

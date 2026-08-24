@@ -192,5 +192,7 @@
     "Distributed Training": 1,
     "Parallel Computing": 1,
     "Instruction Set Architectures": 2,
-    "Instruction Pipelining": 2
+    "Instruction Pipelining": 2,
+    "Data Analysis": 1,
+    "Regression Analysis": 1
 }
