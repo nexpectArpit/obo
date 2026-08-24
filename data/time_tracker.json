@@ -284,6 +284,11 @@
             "timestamp": 1787575916.5819252,
             "duration_seconds": 4497,
             "topic": "Machine Learning: Vanishing and Exploding Gradients"
+        },
+        {
+            "timestamp": 1787581392.70515,
+            "duration_seconds": 5101,
+            "topic": "Machine Learning: Vanishing and Exploding Gradients"
         }
     ]
 }
