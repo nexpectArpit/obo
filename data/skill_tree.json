@@ -249,9 +249,11 @@
             ],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
             },
             "status": "AVAILABLE"
         },
