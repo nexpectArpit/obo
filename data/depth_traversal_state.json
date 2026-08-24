@@ -1,13 +1,17 @@
 {
-    "active_anchor": "maths",
-    "active_branch": [
-        "maths",
-        "maths.algebra"
-    ],
-    "current_node": "maths.algebra",
-    "last_good_node": "maths",
-    "branch_attempts": 0,
-    "consecutive_stalls": 0,
-    "last_backtrack_at": {},
-    "branch_status": "IN_PROGRESS"
+    "anchors": {
+        "maths": {
+            "active_branch": [
+                "maths",
+                "maths.algebra"
+            ],
+            "current_node": "maths.algebra",
+            "last_good_node": "maths",
+            "branch_attempts": 0,
+            "consecutive_stalls": 0,
+            "last_backtrack_at": {},
+            "branch_status": "IN_PROGRESS"
+        }
+    },
+    "active_anchor": "maths"
 }

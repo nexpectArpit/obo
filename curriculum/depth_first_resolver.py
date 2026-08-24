@@ -16,13 +16,36 @@ class DepthFirstResolver:
         self.tree = self._load_tree()
         self._initialize_anchor()
 
+    @property
+    def active_state(self) -> dict:
+        return self.state["anchors"][self.track_name]
+
     def _load_state(self) -> dict:
         if STATE_FILE.exists():
             try:
-                return json.loads(STATE_FILE.read_text())
+                full_state = json.loads(STATE_FILE.read_text())
+                if "anchors" in full_state:
+                    return full_state
+                elif "active_anchor" in full_state:
+                    # Migrate legacy flat format
+                    anchor = full_state["active_anchor"]
+                    return {
+                        "anchors": {
+                            anchor: {
+                                "active_branch": full_state.get("active_branch", [anchor]),
+                                "current_node": full_state.get("current_node", anchor),
+                                "last_good_node": full_state.get("last_good_node", anchor),
+                                "branch_attempts": full_state.get("branch_attempts", 0),
+                                "consecutive_stalls": full_state.get("consecutive_stalls", 0),
+                                "last_backtrack_at": full_state.get("last_backtrack_at", {}),
+                                "branch_status": full_state.get("branch_status", "IN_PROGRESS")
+                            }
+                        },
+                        "active_anchor": anchor
+                    }
             except Exception:
                 pass
-        return {}
+        return {"anchors": {}, "active_anchor": ""}
 
     def _save_state(self):
         try:
@@ -45,16 +68,20 @@ class DepthFirstResolver:
             print(f"[DFS] Error saving tree: {e}")
 
     def _initialize_anchor(self):
-        # Set active anchor to current track if not present or mismatch
-        if self.state.get("active_anchor") != self.track_name:
-            self.state["active_anchor"] = self.track_name
-            self.state["active_branch"] = [self.track_name]
-            self.state["current_node"] = self.track_name
-            self.state["last_good_node"] = self.track_name
-            self.state["branch_attempts"] = 0
-            self.state["consecutive_stalls"] = 0
-            self.state["last_backtrack_at"] = {}
-            self.state["branch_status"] = "IN_PROGRESS"
+        if "anchors" not in self.state:
+            self.state = {"anchors": {}, "active_anchor": ""}
+        
+        self.state["active_anchor"] = self.track_name
+        if self.track_name not in self.state["anchors"]:
+            self.state["anchors"][self.track_name] = {
+                "active_branch": [self.track_name],
+                "current_node": self.track_name,
+                "last_good_node": self.track_name,
+                "branch_attempts": 0,
+                "consecutive_stalls": 0,
+                "last_backtrack_at": {},
+                "branch_status": "IN_PROGRESS"
+            }
             self._save_state()
 
     def resolve_next_node(self) -> dict:
@@ -62,14 +89,14 @@ class DepthFirstResolver:
         DFS Traversal to resolve next learning node/topic.
         Returns Oboe-compatible resolved dictionary.
         """
-        current_node_id = self.state.get("current_node", self.track_name)
+        current_node_id = self.active_state.get("current_node", self.track_name)
         print(f"[DFS] Resolving from active node: {current_node_id}")
 
         # 1. Check for stall recovery
-        if self.state.get("consecutive_stalls", 0) > 3:
+        if self.active_state.get("consecutive_stalls", 0) > 3:
             print(f"[DFS] Active node {current_node_id} has stalled. Recovery triggered.")
             self._recover_from_stall(current_node_id)
-            current_node_id = self.state.get("current_node", self.track_name)
+            current_node_id = self.active_state.get("current_node", self.track_name)
 
         # 2. Retrieve node metadata
         node = self._get_node(current_node_id)
@@ -100,7 +127,7 @@ class DepthFirstResolver:
             print(f"[DFS] Node {current_node_id} is exhausted. Backtracking...")
             self._backtrack(current_node_id)
             
-            parent_id = self.state.get("current_node", self.track_name)
+            parent_id = self.active_state.get("current_node", self.track_name)
             parent_node = self._get_node(parent_id)
             
             next_sibling_id = self._find_unresolved_child(parent_node)
@@ -131,10 +158,10 @@ class DepthFirstResolver:
         return None
 
     def _descend_to(self, node_id: str):
-        self.state["current_node"] = node_id
-        if node_id not in self.state["active_branch"]:
-            self.state["active_branch"].append(node_id)
-        self.state["branch_status"] = "IN_PROGRESS"
+        self.active_state["current_node"] = node_id
+        if node_id not in self.active_state["active_branch"]:
+            self.active_state["active_branch"].append(node_id)
+        self.active_state["branch_status"] = "IN_PROGRESS"
         self._save_state()
 
     def _backtrack(self, node_id: str):
@@ -144,32 +171,32 @@ class DepthFirstResolver:
             self._save_tree()
 
         # Update last backtrack timestamps to detect oscillation
-        backtracks = self.state.get("last_backtrack_at", {})
+        backtracks = self.active_state.get("last_backtrack_at", {})
         now = time.time()
         backtracks[node_id] = now
-        self.state["last_backtrack_at"] = backtracks
+        self.active_state["last_backtrack_at"] = backtracks
 
         # Remove from active branch path and move to parent
-        branch = self.state.get("active_branch", [])
+        branch = self.active_state.get("active_branch", [])
         if len(branch) > 1:
             branch.pop()
             parent_id = branch[-1]
-            self.state["current_node"] = parent_id
-            self.state["active_branch"] = branch
+            self.active_state["current_node"] = parent_id
+            self.active_state["active_branch"] = branch
         else:
-            self.state["current_node"] = self.track_name
-            self.state["active_branch"] = [self.track_name]
+            self.active_state["current_node"] = self.track_name
+            self.active_state["active_branch"] = [self.track_name]
         
-        self.state["consecutive_stalls"] = 0
+        self.active_state["consecutive_stalls"] = 0
         self._save_state()
 
     def _recover_from_stall(self, node_id: str):
         print(f"[DFS_RECOVERY] Resetting stalled node: {node_id}")
         # Move back to last good node
-        last_good = self.state.get("last_good_node", self.track_name)
+        last_good = self.active_state.get("last_good_node", self.track_name)
         
         # Oscillation protection check
-        backtracks = self.state.get("last_backtrack_at", {})
+        backtracks = self.active_state.get("last_backtrack_at", {})
         last_backtrack = backtracks.get(node_id, 0)
         if time.time() - last_backtrack < 300: # 5 minutes
             print(f"[DFS_RECOVERY] Oscillation detected for node {node_id}. Skipping sibling branch.")
@@ -178,15 +205,15 @@ class DepthFirstResolver:
                 self.tree["nodes"][node_id]["status"] = "EXHAUSTED"
                 self._save_tree()
 
-        self.state["current_node"] = last_good
+        self.active_state["current_node"] = last_good
         # Reset active branch back to last_good
-        branch = self.state.get("active_branch", [])
+        branch = self.active_state.get("active_branch", [])
         if last_good in branch:
             idx = branch.index(last_good)
-            self.state["active_branch"] = branch[:idx+1]
+            self.active_state["active_branch"] = branch[:idx+1]
         else:
-            self.state["active_branch"] = [self.track_name]
-        self.state["consecutive_stalls"] = 0
+            self.active_state["active_branch"] = [self.track_name]
+        self.active_state["consecutive_stalls"] = 0
         self._save_state()
 
     def _discover_dynamic_children(self, parent_id: str) -> list[str]:
@@ -199,7 +226,7 @@ class DepthFirstResolver:
             return []
 
         # Only discover children down to max depth 5 to avoid infinite paths
-        branch_path = self.state.get("active_branch", [])
+        branch_path = self.active_state.get("active_branch", [])
         if len(branch_path) >= 5:
             print(f"[DFS] Max depth reached. Skipping child discovery for {parent_id}")
             return []

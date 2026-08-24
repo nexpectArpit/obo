@@ -373,7 +373,11 @@ class OboeAgent:
                     from curriculum.depth_first_resolver import STATE_FILE
                     if STATE_FILE.exists():
                         traversal_state = json.loads(STATE_FILE.read_text())
-                        active_node = traversal_state.get("current_node")
+                        active_track = self.pin or "maths"
+                        if "anchors" in traversal_state and active_track in traversal_state["anchors"]:
+                            active_node = traversal_state["anchors"][active_track].get("current_node")
+                        else:
+                            active_node = traversal_state.get("current_node")
                         if active_node:
                             last_msg = messages[-1]["text"]
                             correct_assessment = (self.total_mcqs_count > 0 and self.wrong_mcqs_count == 0)
@@ -483,7 +487,11 @@ class OboeAgent:
                                 from curriculum.depth_first_resolver import STATE_FILE, DepthFirstResolver
                                 if STATE_FILE.exists():
                                     traversal_state = json.loads(STATE_FILE.read_text())
-                                    active_node = traversal_state.get("current_node")
+                                    active_track = self.pin or "maths"
+                                    if "anchors" in traversal_state and active_track in traversal_state["anchors"]:
+                                        active_node = traversal_state["anchors"][active_track].get("current_node")
+                                    else:
+                                        active_node = traversal_state.get("current_node")
                                     if active_node:
                                         from curriculum.mastery_evidence import MasteryEvidenceManager
                                         # Record transition-level success to force node status updates

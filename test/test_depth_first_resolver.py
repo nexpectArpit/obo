@@ -34,8 +34,8 @@ class TestDepthFirstResolver(unittest.TestCase):
     def test_anchor_initialization(self):
         resolver = DepthFirstResolver("maths")
         self.assertEqual(resolver.state["active_anchor"], "maths")
-        self.assertEqual(resolver.state["current_node"], "maths")
-        self.assertEqual(resolver.state["active_branch"], ["maths"])
+        self.assertEqual(resolver.active_state["current_node"], "maths")
+        self.assertEqual(resolver.active_state["active_branch"], ["maths"])
 
     def test_dfs_descent_path(self):
         # Seed a dummy child hierarchy
@@ -67,7 +67,7 @@ class TestDepthFirstResolver(unittest.TestCase):
         # Run resolution step which should descend to maths.algebra
         resolved = resolver.resolve_next_node()
         self.assertEqual(resolved["topic_name"], "Algebra")
-        self.assertEqual(resolver.state["current_node"], "maths.algebra")
+        self.assertEqual(resolver.active_state["current_node"], "maths.algebra")
 
     def test_dynamic_child_discovery_validation(self):
         tree_mock = {
@@ -134,15 +134,15 @@ class TestDepthFirstResolver(unittest.TestCase):
         TREE_FILE.write_text(json.dumps(tree_mock, indent=4))
 
         resolver = DepthFirstResolver("maths")
-        resolver.state["current_node"] = "maths.algebra"
-        resolver.state["active_branch"] = ["maths", "maths.algebra"]
-        resolver.state["consecutive_stalls"] = 4 # Exceeds recovery threshold
+        resolver.active_state["current_node"] = "maths.algebra"
+        resolver.active_state["active_branch"] = ["maths", "maths.algebra"]
+        resolver.active_state["consecutive_stalls"] = 4 # Exceeds recovery threshold
         resolver._save_state()
 
         # Triggering resolution should execute stall recovery, reverting current_node to anchor
         resolver.resolve_next_node()
-        self.assertEqual(resolver.state["consecutive_stalls"], 0)
-        self.assertEqual(resolver.state["current_node"], "maths.algebra") # descends back down to available child
+        self.assertEqual(resolver.active_state["consecutive_stalls"], 0)
+        self.assertEqual(resolver.active_state["current_node"], "maths.algebra") # descends back down to available child
 
     def test_mastery_bands_parent_aggregation(self):
         tree_mock = {
