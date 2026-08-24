@@ -1,6 +1,6 @@
 {
     "AI Hardware Acceleration": 3,
-    "Computer Architecture": 5,
+    "Computer Architecture": 6,
     "Fault-Tolerant Systems": 1,
     "Hardware Engineering": 1,
     "Memory Systems": 8,
@@ -25,11 +25,11 @@
     "Python": 1,
     "Cache Hierarchy": 3,
     "Memory Hierarchy": 7,
-    "Cache Coherence": 3,
+    "Cache Coherence": 5,
     "Interconnect Design": 1,
     "Network-on-Chip": 3,
     "Quality of Service (QoS)": 1,
-    "CXL Protocol": 2,
+    "CXL Protocol": 3,
     "German Language": 1,
     "Archaeology": 1,
     "Military Engineering": 1,
@@ -100,7 +100,7 @@
     "Microcontrollers": 1,
     "Embedded Systems": 1,
     "Performance Optimization": 4,
-    "Processing-in-Memory": 9,
+    "Processing-in-Memory": 10,
     "Memristive Systems": 3,
     "Neuromorphic Computing": 2,
     "Systolic Arrays": 3,
@@ -190,5 +190,7 @@
     "Weight Initialization": 1,
     "Vanishing Gradients": 1,
     "Distributed Training": 1,
-    "Parallel Computing": 1
+    "Parallel Computing": 1,
+    "Instruction Set Architectures": 2,
+    "Instruction Pipelining": 2
 }

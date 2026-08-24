@@ -36,8 +36,8 @@
     {
       "name": "Computer Architecture: Instruction Set Architecture",
       "prompt": "ISA design, RISC vs CISC philosophy, x86 vs ARM vs RISC-V, instruction formats, addressing modes immediate direct indirect register indexed, and instruction encoding. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Computer Architecture.",
-      "covered": false,
-      "level_at_cover": 0
+      "covered": true,
+      "level_at_cover": "LV 6"
     },
     {
       "name": "Memory Systems: Pipelining",
@@ -407,7 +407,7 @@
     }
   ],
   "target_skills": [
-    "Processing-in-Memory",
-    "Memory Systems"
+    "Neural Networks",
+    "Processing-in-Memory"
   ]
 }
