@@ -145,7 +145,11 @@
             "id": "dl.neural_networks",
             "name": "Neural Networks",
             "parent": "dl",
-            "children": [],
+            "children": [
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+                "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations",
+                "dl.neural_networks.softmax_cross-entropy_loss_function_derivation"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 5,
@@ -307,6 +311,51 @@
             "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)",
             "name": "Graphing a Linear Equation in Standard Form (Ax + By = C)",
             "parent": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+            "name": "Vanishing Gradient Problem Solutions: Gradient Clipping and ReLU",
+            "parent": "dl.neural_networks",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "gradient",
+                    "computational",
+                    "backpropagation"
+                ],
+                "unique_concepts_count": 3
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations": {
+            "id": "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations",
+            "name": "Convolutional Neural Network (CNN) Architecture Variations",
+            "parent": "dl.neural_networks",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.softmax_cross-entropy_loss_function_derivation": {
+            "id": "dl.neural_networks.softmax_cross-entropy_loss_function_derivation",
+            "name": "Softmax Cross-Entropy Loss Function Derivation",
+            "parent": "dl.neural_networks",
             "children": [],
             "mastery_level": 1,
             "evidence": {

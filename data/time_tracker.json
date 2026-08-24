@@ -314,6 +314,11 @@
             "timestamp": 1787610619.5444772,
             "duration_seconds": 449,
             "topic": "Neural Networks"
+        },
+        {
+            "timestamp": 1787611592.3221776,
+            "duration_seconds": 340,
+            "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping and ReLU"
         }
     ]
 }
