@@ -53,6 +53,8 @@ PROVIDER_TIMEOUTS = {
 MIN_DELAY = float(os.getenv("MIN_DELAY", "7.0"))
 MAX_DELAY = float(os.getenv("MAX_DELAY", "20.0"))
 
+SKILL_DEPTH_MODE = os.getenv("SKILL_DEPTH_MODE", "true").lower() == "true"
+
 GROQ_API_KEY = GROQ_API_KEYS[0] if GROQ_API_KEYS else ""
 OBOE_URL = os.getenv("OBOE_URL", "https://oboe.com")
 USER_DATA_DIR = BASE_DIR / ".user_data"

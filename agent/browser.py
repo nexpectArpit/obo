@@ -104,20 +104,45 @@ class OboeBrowser:
         Detects whether the page has suggested replies, is waiting for free text input,
         is loading, or finished.
         """
-        # 1. Check for suggested replies (MCQ / Yes-No / Choices) first
+        start_time = time.perf_counter()
+        mode = "selector"
+
+        # 1. Tier 1: Selector-first check for specific Oboe loader tags and verify active visibility
+        is_loading = self.page.evaluate('''() => {
+            const loader = document.querySelector('[data-test-id="loader"], .generating, .thinking');
+            return !!(loader && loader.offsetParent !== null);
+        }''')
+        if is_loading:
+            latency = (time.perf_counter() - start_time) * 1000
+            print(f"[DOM_CHECK] mode=selector latency={latency:.2f}ms state=loading")
+            return "loading"
+
+        # 2. Tier 2: Check for suggested replies (MCQ / Yes-No / Choices)
         suggested_replies_locator = self.page.locator('[data-test-id="suggested-replies"] button')
         if suggested_replies_locator.count() > 0:
+            latency = (time.perf_counter() - start_time) * 1000
+            print(f"[DOM_CHECK] mode=selector latency={latency:.2f}ms state=suggested_replies")
             return "suggested_replies"
 
-        # 2. Check for free text input second
+        # 3. Tier 3: Check for free text input
         textarea_locator = self.page.locator('textarea[name="prompt"]')
         if textarea_locator.count() > 0 and textarea_locator.is_visible() and textarea_locator.is_enabled():
+            latency = (time.perf_counter() - start_time) * 1000
+            print(f"[DOM_CHECK] mode=selector latency={latency:.2f}ms state=free_text")
             return "free_text"
 
-        # 3. Check if generating/loading course materials
-        body_text = self.page.locator("body").text_content() or ""
-        content_lower = body_text.lower()
-        if "reviewing" in content_lower or "generating" in content_lower or "loading" in content_lower:
+        # 4. Tier 4: Fallback to innerText search (only if selectors do not resolve state)
+        mode = "fallback"
+        is_loading_fallback = self.page.evaluate('''() => {
+            const txt = (document.body.innerText || '').toLowerCase();
+            return txt.includes("reviewing") || txt.includes("generating") || txt.includes("loading");
+        }''')
+        
+        latency = (time.perf_counter() - start_time) * 1000
+        state = "loading" if is_loading_fallback else "unknown"
+        print(f"[DOM_CHECK] mode={mode} latency={latency:.2f}ms state={state}")
+        
+        if is_loading_fallback:
             return "loading"
 
         return "unknown"

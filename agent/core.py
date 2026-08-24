@@ -80,6 +80,21 @@ class OboeAgent:
             except Exception as e:
                 print(f"[WARNING] Failed to save learned_skills.json: {e}")
 
+        # Update Parent Anchor level metadata for Depth Mode
+        if config.SKILL_DEPTH_MODE:
+            try:
+                from curriculum.mastery_evidence import MasteryEvidenceManager, TREE_FILE
+                if TREE_FILE.exists():
+                    tree_data = json.loads(TREE_FILE.read_text())
+                    anchor_id = self.pin or "maths"
+                    parent_lv = MasteryEvidenceManager.get_parent_mastery_level(anchor_id)
+                    if anchor_id in tree_data.get("anchors", {}):
+                        tree_data["anchors"][anchor_id]["mastery_level"] = parent_lv
+                        TREE_FILE.write_text(json.dumps(tree_data, indent=4))
+                        print(f"[EVIDENCE] Re-aggregated Parent Anchor Level for '{anchor_id}': LV {parent_lv}")
+            except Exception as ee:
+                print(f"[EVIDENCE] Error saving parent level: {ee}")
+
         # Write final session summary to agent_state.json for Telegram notification
         state_path = Path(__file__).resolve().parent.parent / "data" / "agent_state.json"
         try:
@@ -115,7 +130,21 @@ class OboeAgent:
     def _setup_pinned_track_session(self, state_data, state_path):
         """Helper to resolve next topic for pinned track and navigate to its sidebar chat."""
         from curriculum import SkillDAGEngine
-        resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
+        
+        resolved = None
+        if config.SKILL_DEPTH_MODE:
+            try:
+                from curriculum.depth_first_resolver import DepthFirstResolver
+                resolver = DepthFirstResolver(self.pin)
+                resolved = resolver.resolve_next_node()
+                print(f"[DFS] Successfully resolved next node target: '{resolved['topic_name']}'")
+            except Exception as e:
+                print(f"[DFS_FALLBACK] Error in DepthFirstResolver: {e}. Falling back to legacy selector.")
+                resolved = None
+
+        if not resolved:
+            resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
+
         self.active_track_name = resolved["track_name"]
         self.active_track_topic_index = resolved["topic_index"]
         self.active_track_chat_title = resolved["pinned_chat_title"]
@@ -338,6 +367,28 @@ class OboeAgent:
                             self.side_skills[skill] = f"LV {new_lv}"
                             print(f"\n>>> [UNKNOWN SKILL] {skill} -> LV {new_lv} [{cls}] (excluded from curriculum) <<<\n")
 
+            # Phase 11.5: Mastery Evidence Engine turn tracking
+            if config.SKILL_DEPTH_MODE and messages:
+                try:
+                    from curriculum.depth_first_resolver import STATE_FILE
+                    if STATE_FILE.exists():
+                        traversal_state = json.loads(STATE_FILE.read_text())
+                        active_node = traversal_state.get("current_node")
+                        if active_node:
+                            last_msg = messages[-1]["text"]
+                            correct_assessment = (self.total_mcqs_count > 0 and self.wrong_mcqs_count == 0)
+                            duplicated = len(messages) >= 3 and last_msg == messages[-3]["text"]
+                            
+                            from curriculum.mastery_evidence import MasteryEvidenceManager
+                            MasteryEvidenceManager.record_turn_evidence(
+                                node_id=active_node,
+                                message_text=last_msg,
+                                correct_assessment=correct_assessment,
+                                duplicated_content=duplicated
+                            )
+                except Exception as ee:
+                    print(f"[EVIDENCE] Error logging evidence: {ee}")
+
             print(f"\n[Agent Observe] State: {state.upper()} | Message count: {len(messages)}")
             
             # Check if Oboe has replied to our last turn yet
@@ -423,11 +474,32 @@ class OboeAgent:
                         if self.topic:
                             levels = [self.learned_skills.get(skill, 1) for skill in (self.active_track_target_skills or [])]
                             achieved_lv = max(levels) if levels else 1
-                        print(f"[WRAP-UP] Pinned track topic complete. Marking topic #{self.active_track_topic_index} covered (LV {achieved_lv}).")
+                        print(f"[WRAP-UP] Pinned track topic complete. Transitioning (Topic #{self.active_track_topic_index}, LV {achieved_lv}).")
                         from curriculum import SkillDAGEngine
-                        SkillDAGEngine.mark_topic_covered(self.pin, self.active_track_topic_index, achieved_lv)
                         
-                        resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
+                        resolved = None
+                        if config.SKILL_DEPTH_MODE:
+                            try:
+                                from curriculum.depth_first_resolver import STATE_FILE, DepthFirstResolver
+                                if STATE_FILE.exists():
+                                    traversal_state = json.loads(STATE_FILE.read_text())
+                                    active_node = traversal_state.get("current_node")
+                                    if active_node:
+                                        from curriculum.mastery_evidence import MasteryEvidenceManager
+                                        # Record transition-level success to force node status updates
+                                        MasteryEvidenceManager.record_turn_evidence(active_node, "", correct_assessment=True)
+                                
+                                resolver = DepthFirstResolver(self.pin)
+                                resolved = resolver.resolve_next_node()
+                                print(f"[DFS] Transitioned to next node target: '{resolved['topic_name']}'")
+                            except Exception as e:
+                                print(f"[DFS_FALLBACK] Error transitioning DFS: {e}")
+                                resolved = None
+
+                        if not resolved:
+                            SkillDAGEngine.mark_topic_covered(self.pin, self.active_track_topic_index, achieved_lv)
+                            resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
+
                         self.active_track_topic_index = resolved["topic_index"]
                         self.topic = resolved["topic_name"]
                         self.active_track_target_skills = resolved.get("target_skills", [])
