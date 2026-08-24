@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1786993013.495199,
-            "duration_seconds": 1105,
-            "topic": "Advanced Topological Insulators in Condensed Matter Physics"
-        },
-        {
             "timestamp": 1787140673.075074,
             "duration_seconds": 0,
             "topic": "random"
@@ -289,6 +284,11 @@
             "timestamp": 1787596556.2870495,
             "duration_seconds": 3147,
             "topic": "Data Types and Structures"
+        },
+        {
+            "timestamp": 1787598909.0145361,
+            "duration_seconds": 1183,
+            "topic": "Algorithms: Binary Search Trees"
         }
     ]
 }
