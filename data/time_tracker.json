@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1786979225.493035,
-            "duration_seconds": 232,
-            "topic": "Advanced Memory Hierarchies for High-Performance Computing"
-        },
-        {
             "timestamp": 1786988201.717508,
             "duration_seconds": 132,
             "topic": "Unraveling Klein bottle geometry"
@@ -288,6 +283,11 @@
         {
             "timestamp": 1787581392.70515,
             "duration_seconds": 5101,
+            "topic": "Machine Learning: Vanishing and Exploding Gradients"
+        },
+        {
+            "timestamp": 1787587642.8729281,
+            "duration_seconds": 4548,
             "topic": "Machine Learning: Vanishing and Exploding Gradients"
         }
     ]
