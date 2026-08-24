@@ -324,6 +324,11 @@
             "timestamp": 1787612716.3991704,
             "duration_seconds": 446,
             "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping Implementation in PyTorch"
+        },
+        {
+            "timestamp": 1787613623.023687,
+            "duration_seconds": 268,
+            "topic": "Gradient Clipping with Norm"
         }
     ]
 }
