@@ -304,6 +304,11 @@
             "timestamp": 1787608442.2103436,
             "duration_seconds": 313,
             "topic": "Dynamic Programming"
+        },
+        {
+            "timestamp": 1787609522.6084774,
+            "duration_seconds": 428,
+            "topic": "Linear Equations with Two Variables"
         }
     ]
 }

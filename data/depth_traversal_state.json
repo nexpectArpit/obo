@@ -3,9 +3,10 @@
         "maths": {
             "active_branch": [
                 "maths",
-                "maths.algebra"
+                "maths.algebra",
+                "maths.algebra.linear_equations_with_two_variables"
             ],
-            "current_node": "maths.algebra",
+            "current_node": "maths.algebra.linear_equations_with_two_variables",
             "last_good_node": "maths",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -25,5 +26,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "cpp"
+    "active_anchor": "maths"
 }
