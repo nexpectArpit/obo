@@ -91,7 +91,11 @@
             "id": "cpp.dynamic_programming",
             "name": "Dynamic Programming",
             "parent": "cpp",
-            "children": [],
+            "children": [
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+                "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation",
+                "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -454,6 +458,49 @@
             "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks",
             "name": "Vanishing Gradient Problem in Recurrent Neural Networks",
             "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "name": "Memoization with Overlapping Subproblems",
+            "parent": "cpp.dynamic_programming",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "optimization"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation": {
+            "id": "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation",
+            "name": "Top-Down Dynamic Programming with Tabulation",
+            "parent": "cpp.dynamic_programming",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions": {
+            "id": "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions",
+            "name": "Optimal Substructure and Overlapping Subproblems in Recursive Solutions",
+            "parent": "cpp.dynamic_programming",
             "children": [],
             "mastery_level": 1,
             "evidence": {

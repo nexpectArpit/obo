@@ -329,6 +329,11 @@
             "timestamp": 1787613623.023687,
             "duration_seconds": 268,
             "topic": "Gradient Clipping with Norm"
+        },
+        {
+            "timestamp": 1787614586.9881818,
+            "duration_seconds": 334,
+            "topic": "Memoization with Overlapping Subproblems"
         }
     ]
 }

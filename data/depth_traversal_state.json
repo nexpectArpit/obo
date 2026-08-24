@@ -16,9 +16,10 @@
         "cpp": {
             "active_branch": [
                 "cpp",
-                "cpp.dynamic_programming"
+                "cpp.dynamic_programming",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems"
             ],
-            "current_node": "cpp.dynamic_programming",
+            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -41,5 +42,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "cpp"
 }
