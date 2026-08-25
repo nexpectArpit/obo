@@ -53,7 +53,7 @@
     "Combinatorics": 1,
     "Search Algorithms": 2,
     "Deep Learning": 12,
-    "Machine Learning": 7,
+    "Machine Learning": 8,
     "Neural Networks": 11,
     "Gradient Descent": 4,
     "Convolutional Neural Networks": 4,
@@ -220,5 +220,8 @@
     "Breadth-First Search": 1,
     "Network Flow Algorithms": 1,
     "Computational Geometry": 1,
-    "Memoization": 1
+    "Memoization": 1,
+    "Statistical Learning Theory": 1,
+    "Automatic Differentiation": 1,
+    "PyTorch": 1
 }
