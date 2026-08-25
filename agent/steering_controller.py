@@ -41,7 +41,8 @@ class SteeringController:
             self.turns_without_target_skill = 0
             self.recent_target_gain = True
         else:
-            self.turns_without_target_skill += 1
+            # Cap at 20 to prevent unbounded growth causing perpetual stall-loop in long sessions
+            self.turns_without_target_skill = min(self.turns_without_target_skill + 1, 20)
             self.recent_target_gain = False
 
         self.turns_since_last_steering += 1

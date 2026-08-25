@@ -44,9 +44,11 @@ class OboeBrowser:
         else:
             print(f"Launching persistent Chrome context from: {config.USER_DATA_DIR}")
             config.USER_DATA_DIR.mkdir(parents=True, exist_ok=True)
-            launch_args = {
+            # Note: launch_persistent_context takes launch options AND context options as flat kwargs
+            # viewport must be passed directly, not inside a nested dict with launch args
+            persistent_launch_kwargs = {
                 "headless": self.headless,
-                "slow_mo": 100,  # Slight delay to look more human-like
+                "slow_mo": 100,
                 "viewport": {"width": 1280, "height": 800},
                 "args": [
                     "--disable-blink-features=AutomationControlled",
@@ -54,11 +56,11 @@ class OboeBrowser:
                 ]
             }
             if is_github_actions:
-                launch_args["channel"] = "chrome"
-                
+                persistent_launch_kwargs["channel"] = "chrome"
+
             self.context = self.playwright.chromium.launch_persistent_context(
                 str(config.USER_DATA_DIR),
-                **launch_args
+                **persistent_launch_kwargs
             )
         
         # Get or create page
@@ -101,51 +103,35 @@ class OboeBrowser:
 
     def get_interaction_state(self):
         """Phase 4: Interaction Classification.
-        Detects whether the page has suggested replies, is waiting for free text input,
-        is loading, or finished.
+        Uses a single atomic JS evaluation to avoid TOCTOU races where the page
+        transitions between separate locator.count() calls and returns 'unknown'.
         """
         start_time = time.perf_counter()
-        mode = "selector"
 
-        # 1. Tier 1: Selector-first check for specific Oboe loader tags and verify active visibility
-        is_loading = self.page.evaluate('''() => {
+        result = self.page.evaluate('''() => {
+            // 1. Loading check
             const loader = document.querySelector('[data-test-id="loader"], .generating, .thinking');
-            return !!(loader && loader.offsetParent !== null);
+            if (loader && loader.offsetParent !== null) return "loading";
+
+            // 2. Suggested replies
+            const btns = document.querySelectorAll('[data-test-id="suggested-replies"] button');
+            if (btns.length > 0) return "suggested_replies";
+
+            // 3. Free text textarea
+            const ta = document.querySelector('textarea[name="prompt"]');
+            if (ta && ta.offsetParent !== null && !ta.disabled) return "free_text";
+
+            // 4. Fallback loading text scan
+            const txt = (document.body.innerText || "").toLowerCase();
+            if (txt.includes("reviewing") || txt.includes("generating") || txt.includes("loading"))
+                return "loading";
+
+            return "unknown";
         }''')
-        if is_loading:
-            latency = (time.perf_counter() - start_time) * 1000
-            print(f"[DOM_CHECK] mode=selector latency={latency:.2f}ms state=loading")
-            return "loading"
 
-        # 2. Tier 2: Check for suggested replies (MCQ / Yes-No / Choices)
-        suggested_replies_locator = self.page.locator('[data-test-id="suggested-replies"] button')
-        if suggested_replies_locator.count() > 0:
-            latency = (time.perf_counter() - start_time) * 1000
-            print(f"[DOM_CHECK] mode=selector latency={latency:.2f}ms state=suggested_replies")
-            return "suggested_replies"
-
-        # 3. Tier 3: Check for free text input
-        textarea_locator = self.page.locator('textarea[name="prompt"]')
-        if textarea_locator.count() > 0 and textarea_locator.is_visible() and textarea_locator.is_enabled():
-            latency = (time.perf_counter() - start_time) * 1000
-            print(f"[DOM_CHECK] mode=selector latency={latency:.2f}ms state=free_text")
-            return "free_text"
-
-        # 4. Tier 4: Fallback to innerText search (only if selectors do not resolve state)
-        mode = "fallback"
-        is_loading_fallback = self.page.evaluate('''() => {
-            const txt = (document.body.innerText || '').toLowerCase();
-            return txt.includes("reviewing") || txt.includes("generating") || txt.includes("loading");
-        }''')
-        
         latency = (time.perf_counter() - start_time) * 1000
-        state = "loading" if is_loading_fallback else "unknown"
-        print(f"[DOM_CHECK] mode={mode} latency={latency:.2f}ms state={state}")
-        
-        if is_loading_fallback:
-            return "loading"
-
-        return "unknown"
+        print(f"[DOM_CHECK] mode=atomic latency={latency:.2f}ms state={result}")
+        return result
 
     def observe_page(self):
         """Phase 3: Platform Observation.
@@ -252,16 +238,20 @@ class OboeBrowser:
         delay = random.uniform(3.0, 9.0)
         print(f"Thinking for {delay:.2f} seconds...")
         self.page.wait_for_timeout(int(delay * 1000))
-        
+
         print(f"Clicking suggestion: '{text}'")
         # Locator matching exact text inside the suggested replies (either in button or child span)
         button = self.page.locator('[data-test-id="suggested-replies"] button').filter(
             has=self.page.locator('span.inline').filter(has_text=text)
         ).first
-        
+
         if button.count() == 0:
             # Fallback to direct button has-text filter
             button = self.page.locator('[data-test-id="suggested-replies"] button').filter(has_text=text).first
+
+        if button.count() == 0:
+            print(f"[WARNING] Could not find suggestion button for text: '{text}'. Skipping click.")
+            return
 
         button.click()
         # Wait for action to register

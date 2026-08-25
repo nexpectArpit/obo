@@ -61,7 +61,7 @@ class OboeLLM:
         """Returns the appropriate client instance for a given provider with configurable timeout."""
         ptype = provider["type"]
         timeout_val = config.PROVIDER_TIMEOUTS.get(ptype, 15.0)
-        
+
         if ptype == "groq":
             return Groq(api_key=provider["api_key"], timeout=timeout_val)
         elif ptype == "mistral":
@@ -76,7 +76,8 @@ class OboeLLM:
                 api_key=provider["api_key"],
                 timeout=timeout_val
             )
-        return None
+        # Unknown provider type — raise so the failover loop skips it cleanly
+        raise ValueError(f"Unsupported provider type: '{ptype}'")
 
     def _sanitize_human_text(self, text):
         if not isinstance(text, str):
@@ -216,10 +217,14 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
         max_attempts = len(self.providers)
         while attempts < max_attempts:
             provider = self.providers[self.current_provider_idx]
-            client = self._get_client_for_provider(provider)
-            if not client:
-                break
-                
+            try:
+                client = self._get_client_for_provider(provider)
+            except ValueError as ve:
+                print(f"[WARNING] {ve}. Skipping.")
+                attempts += 1
+                self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                continue
+
             # Select model dynamically based on request type
             selected_model = provider["complex_model"] if state == "suggested_replies" else provider["simple_model"]
             print(f"[LLM] Selecting provider: '{provider['type']}' with model: '{selected_model}' for state: '{state}'")
@@ -229,11 +234,9 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                     kwargs = {
                         "model": selected_model,
                         "messages": prompt_messages,
-                        "temperature": 0.7
+                        "temperature": 0.7,
+                        "response_format": {"type": "json_object"}  # both Groq and Mistral support this
                     }
-                    if provider["type"] == "groq":
-                        kwargs["response_format"] = {"type": "json_object"}
-                    
                     response = client.chat.completions.create(**kwargs)
                     raw_content = response.choices[0].message.content
                     result = self._parse_json_response(raw_content)
@@ -280,20 +283,25 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                 return result
                 
             except Exception as e:
-                err_str = str(e)
                 print(f"[WARNING] Provider '{provider['type']}' failed: {e}")
-                
+
                 # Trigger failover on ANY exception to guarantee session continuation
                 attempts += 1
                 if attempts < max_attempts:
                     self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                    # If this was a direction-decision call, update saved_provider_idx too
+                    # so the restore after success points to the correct fallback position
+                    if is_direction_decision:
+                        saved_provider_idx = self.current_provider_idx
                     next_prov = self.providers[self.current_provider_idx]
                     masked_key = next_prov["api_key"][:8] + "..." + next_prov["api_key"][-4:] if len(next_prov["api_key"]) > 12 else "..."
                     print(f"[INFO] Failover triggered! Rotating to provider: '{next_prov['type']}' ({next_prov['complex_model']}) with Key ({masked_key})...")
                     continue
                 break
 
-
+        # Restore provider index before raising so caller's rotation state is clean
+        if is_direction_decision:
+            self.current_provider_idx = saved_provider_idx
         # If all attempts are exhausted, raise an exception to stop the agent
         raise RuntimeError("All configured API keys / providers are exhausted or rate-limited.")
 
@@ -339,10 +347,14 @@ Do NOT repeat the completed topic itself. Output only a JSON object containing t
         max_attempts = len(self.providers)
         while attempts < max_attempts:
             provider = self.providers[self.current_provider_idx]
-            client = self._get_client_for_provider(provider)
-            if not client:
-                break
-                
+            try:
+                client = self._get_client_for_provider(provider)
+            except ValueError as ve:
+                print(f"[WARNING] {ve}. Skipping.")
+                attempts += 1
+                self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                continue
+
             selected_model = provider["simple_model"]
             try:
                 if provider["type"] == "groq":

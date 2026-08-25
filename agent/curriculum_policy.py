@@ -72,18 +72,21 @@ def classify_choice(track_name: str, target_skill: str, choice_text: str, dag_en
     track_lower = (track_name or "").lower()
     target_lower = (target_skill or "").lower()
 
-    # Step 1: Reject keywords check (with conflict resolution)
+    # Step 1: Reject keywords check — collect all matched reject keywords first,
+    # then apply conflict resolution in one pass (order-independent)
     reject_kws = TRACK_REJECT_KEYWORDS.get(track_lower, [])
-    for kw in reject_kws:
-        if kw in text:
-            # Conflict resolution: e.g. "Bayesian optimization" contains "bayesian" (reject)
-            # but is actually optimization (target). If target_skill is present in the text, allow it.
-            if target_lower and target_lower in text:
-                # Still reject if it ALSO contains other non-resolved exit keywords (e.g. "Bayesian optimization and t-test")
-                remaining_rejects = [rk for rk in reject_kws if rk != kw and rk in text]
-                if not remaining_rejects:
-                    # Conflict resolved! Keep checking positive matches.
-                    break
+    matched_rejects = [kw for kw in reject_kws if kw in text]
+    if matched_rejects:
+        if target_lower and target_lower in text:
+            # Conflict resolution: target skill is present in the text.
+            # Check if ALL matched reject keywords can be explained by the target's presence.
+            # If any reject keyword is unrelated to the target, still reject.
+            unresolvable = [kw for kw in matched_rejects if target_lower not in kw and kw not in target_lower]
+            if not unresolvable:
+                pass  # All rejects resolved by target presence — fall through to positive checks
+            else:
+                return "REJECT"
+        else:
             return "REJECT"
 
     # Step 2: Direct match

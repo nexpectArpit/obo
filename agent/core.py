@@ -71,6 +71,7 @@ class OboeAgent:
         self.total_mcqs_count = 0
         self.wrong_mcqs_count = 0
         self.last_action_was_mcq = False
+        self.last_action_was_q_answer = False  # initialize alongside last_action_was_mcq
 
     def save_summary(self, status="COMPLETED", start_time=None):
         """Save state and write agent_state.json summary for Telegram notifications."""
@@ -441,6 +442,61 @@ class OboeAgent:
                 time.sleep(3)
                 continue
 
+            # ── WRAP-UP CHECK: must run before state branching so it fires on
+            #    suggested_replies too (Oboe can show completion + reply buttons).
+            #    When completion fires here we handle it and continue the loop.
+            if self._is_oboe_indicating_completion(messages, start_time):
+                print("[WRAP-UP DETECTED] Oboe indicated completion with corroborating signals.")
+                if self.pin:
+                    achieved_lv = 0
+                    levels = [self.learned_skills.get(skill, 1) for skill in (self.active_track_target_skills or [])]
+                    achieved_lv = max(levels) if levels else 1
+                    print(f"[WRAP-UP] Pinned track topic complete. Transitioning (Topic #{self.active_track_topic_index}, LV {achieved_lv}).")
+                    from curriculum import SkillDAGEngine
+                    resolved = None
+                    if config.SKILL_DEPTH_MODE:
+                        try:
+                            from curriculum.depth_first_resolver import STATE_FILE, DepthFirstResolver
+                            if STATE_FILE.exists():
+                                traversal_state = json.loads(STATE_FILE.read_text())
+                                active_track = self.pin or "maths"
+                                active_node_key = (traversal_state.get("anchors", {}).get(active_track, {}).get("current_node")
+                                                   or traversal_state.get("current_node"))
+                                if active_node_key:
+                                    from curriculum.mastery_evidence import MasteryEvidenceManager
+                                    MasteryEvidenceManager.record_turn_evidence(active_node_key, "", correct_assessment=True)
+                            resolver = DepthFirstResolver(self.pin)
+                            resolved = resolver.resolve_next_node()
+                            print(f"[DFS] Transitioned to next node: '{resolved['topic_name']}'")
+                        except Exception as e:
+                            print(f"[DFS_FALLBACK] Error: {e}")
+                            resolved = None
+                    if not resolved:
+                        SkillDAGEngine.mark_topic_covered(self.pin, self.active_track_topic_index, achieved_lv)
+                        resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
+                    self.active_track_topic_index = resolved["topic_index"]
+                    self.topic = resolved["topic_name"]
+                    self.active_chat_start_time = time.time()
+                    self.active_track_target_skills = resolved.get("target_skills", [])
+                    self.steering_controller.request_redirect(reason="track topic completion transition")
+                    self.browser.type_and_submit(resolved["prompt"])
+                    self.last_action_was_q_answer = True
+                else:
+                    if self.active_pillar and self.active_node:
+                        target_skill_name = self.target_skill or self.active_node.replace("_", " ")
+                        achieved_lv = self.learned_skills.get(target_skill_name, 1)
+                        self.dag_engine.update_skill_level(self.active_pillar, self.active_node, achieved_lv)
+                        result = self.dag_engine.resolve_next_topic()
+                        self.topic = result["topic"]
+                        self.target_skill = result["target_skill"]
+                        self.target_level = result["target_level"]
+                        self.active_pillar = result["pillar"]
+                        self.active_node = result["node"]
+                        self.steering_controller.request_redirect(reason="DAG node completion transition")
+                        self.browser.type_and_submit(f"I want to learn about {self.topic}.")
+                        self.last_action_was_q_answer = True
+                continue
+
             if state == "suggested_replies":
                 print(f"Available options: {choices}")
                 
@@ -506,87 +562,26 @@ class OboeAgent:
                 newly_leveled = getattr(self, "newly_leveled_target_this_turn", False)
                 self.steering_controller.update(messages, newly_leveled)
                 self.newly_leveled_target_this_turn = False
-                
-                # Check for wrap-up completion
-                if self._is_oboe_indicating_completion(messages, start_time):
-                    print("[WRAP-UP DETECTED] Oboe indicated completion with corroborating signals.")
-                    print("[WRAP-UP] Forcing redirect to next target or track topic.")
-                    if self.pin:
-                        achieved_lv = 0
-                        if self.topic:
-                            levels = [self.learned_skills.get(skill, 1) for skill in (self.active_track_target_skills or [])]
-                            achieved_lv = max(levels) if levels else 1
-                        print(f"[WRAP-UP] Pinned track topic complete. Transitioning (Topic #{self.active_track_topic_index}, LV {achieved_lv}).")
-                        from curriculum import SkillDAGEngine
-                        
-                        resolved = None
-                        if config.SKILL_DEPTH_MODE:
-                            try:
-                                from curriculum.depth_first_resolver import STATE_FILE, DepthFirstResolver
-                                if STATE_FILE.exists():
-                                    traversal_state = json.loads(STATE_FILE.read_text())
-                                    active_track = self.pin or "maths"
-                                    if "anchors" in traversal_state and active_track in traversal_state["anchors"]:
-                                        active_node = traversal_state["anchors"][active_track].get("current_node")
-                                    else:
-                                        active_node = traversal_state.get("current_node")
-                                    if active_node:
-                                        from curriculum.mastery_evidence import MasteryEvidenceManager
-                                        # Record transition-level success to force node status updates
-                                        MasteryEvidenceManager.record_turn_evidence(active_node, "", correct_assessment=True)
-                                
-                                resolver = DepthFirstResolver(self.pin)
-                                resolved = resolver.resolve_next_node()
-                                print(f"[DFS] Transitioned to next node target: '{resolved['topic_name']}'")
-                            except Exception as e:
-                                print(f"[DFS_FALLBACK] Error transitioning DFS: {e}")
-                                resolved = None
 
-                        if not resolved:
-                            SkillDAGEngine.mark_topic_covered(self.pin, self.active_track_topic_index, achieved_lv)
-                            resolved = SkillDAGEngine.resolve_next_track_topic(self.pin)
-
-                        self.active_track_topic_index = resolved["topic_index"]
-                        self.topic = resolved["topic_name"]
-                        self.active_chat_start_time = time.time()  # reset timer for new sub-topic
-                        self.active_track_target_skills = resolved.get("target_skills", [])
-                        track_prompt = resolved["prompt"]
-                        print(f"[WRAP-UP] Advancing track to topic #{self.active_track_topic_index}: '{self.topic}'")
-                        self.steering_controller.request_redirect(reason="track topic completion transition")
-                        text = track_prompt
-                    else:
-                        if self.active_pillar and self.active_node:
-                            target_skill_name = self.target_skill or self.active_node.replace("_", " ")
-                            achieved_lv = self.learned_skills.get(target_skill_name, 1)
-                            self.dag_engine.update_skill_level(self.active_pillar, self.active_node, achieved_lv)
-                            
-                            result = self.dag_engine.resolve_next_topic()
-                            self.topic = result["topic"]
-                            self.target_skill = result["target_skill"]
-                            self.target_level = result["target_level"]
-                            self.active_pillar = result["pillar"]
-                            self.active_node = result["node"]
-                            print(f"[WRAP-UP] Advancing DAG to node '{self.active_node}': '{self.topic}'")
-                            self.steering_controller.request_redirect(reason="DAG node completion transition")
-                            text = f"I want to learn about {self.topic}."
+                # Wrap-up is now handled above (before state branching) so it fires
+                # regardless of whether state is free_text or suggested_replies.
+                # Here we only handle normal steering + LLM decision.
+                steering = self.steering_controller.evaluate()
+                if steering:
+                    text = steering["text"]
                 else:
-                    # Evaluate steering override
-                    steering = self.steering_controller.evaluate()
-                    if steering:
-                        text = steering["text"]
-                    else:
-                        decision = self.llm.decide_action(
-                            state, 
-                            messages, 
-                            choices, 
-                            self.learned_skills, 
-                            target_skill=self._get_current_target_skill(), 
-                            target_level=self.target_level,
-                            target_skills=self.active_track_target_skills
-                        )
-                        text = decision.get("text")
-                        if not text or str(text).strip() == "" or str(text).lower() == "none":
-                            text = "I'm interested to learn more about this."
+                    decision = self.llm.decide_action(
+                        state,
+                        messages,
+                        choices,
+                        self.learned_skills,
+                        target_skill=self._get_current_target_skill(),
+                        target_level=self.target_level,
+                        target_skills=self.active_track_target_skills
+                    )
+                    text = decision.get("text")
+                    if not text or str(text).strip() == "" or str(text).lower() == "none":
+                        text = "I'm interested to learn more about this."
 
                 self.browser.type_and_submit(text)
                 self.last_action_was_q_answer = True
@@ -673,26 +668,35 @@ class OboeAgent:
         return True
 
     def _finalize_session(self, start_time, state_path, pid_path):
-
         """Cleanup: close browser, save skills, update DAG, write final state."""
-        elapsed_time = time.time() - start_time
-        rolling_24h_sec, today_ist_sec = update_time_tracker(elapsed_time, self.topic)
+        # Guard: if the browser never actually started a chat session, skip tracking
+        # to prevent writing a garbage 0s "random" entry into time_tracker.json
+        session_started = self.active_chat_start_time is not None
+        elapsed_time = time.time() - start_time if session_started else 0
+
+        if session_started:
+            rolling_24h_sec, today_ist_sec = update_time_tracker(elapsed_time, self.topic)
+        else:
+            rolling_24h_sec, today_ist_sec = 0, 0
+
         # Final observation of page to capture any last-second skill badges/level-ups
-        try:
-            final_obs = self.browser.observe_page()
-            if final_obs.get("skills"):
-                for skill, lv_str in final_obs["skills"].items():
-                    try:
-                        new_lv = int(lv_str.replace("LV", "").strip())
-                    except ValueError:
-                        new_lv = 0
-                    current_max = self.learned_skills.get(skill, 0)
-                    if new_lv > current_max:
-                        self.learned_skills[skill] = new_lv
-                        self.achieved_skills[skill] = f"LV {new_lv}"
-                        print(f"[FINAL CHECK] Captured Skill Level Up: {skill} -> LV {new_lv}!")
-        except Exception as e:
-            print(f"[INFO] Final skill observation status: {e}")
+        if session_started:
+            try:
+                final_obs = self.browser.observe_page()
+                if final_obs.get("skills"):
+                    for skill, lv_str in final_obs["skills"].items():
+                        try:
+                            new_lv = int(lv_str.replace("LV", "").strip())
+                        except ValueError:
+                            print(f"[WARNING] Could not parse skill level: '{lv_str}' for skill '{skill}'")
+                            new_lv = 0
+                        current_max = self.learned_skills.get(skill, 0)
+                        if new_lv > current_max:
+                            self.learned_skills[skill] = new_lv
+                            self.achieved_skills[skill] = f"LV {new_lv}"
+                            print(f"[FINAL CHECK] Captured Skill Level Up: {skill} -> LV {new_lv}!")
+            except Exception as e:
+                print(f"[INFO] Final skill observation status: {e}")
 
         try:
             self.browser.close()
@@ -700,6 +704,7 @@ class OboeAgent:
             print(f"[INFO] Browser close status: {close_err}")
         except KeyboardInterrupt:
             print("\n[INFO] Browser shutdown interrupted.")
+            raise  # re-raise so OS gets a clean shutdown signal
             
         # Clean up PID
         if pid_path.exists():
