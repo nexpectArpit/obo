@@ -24,6 +24,20 @@ class OboeAgent:
         self.llm = OboeLLM()
         self.max_duration = max_duration # in minutes
         self.dag_engine = SkillDAGEngine()
+
+        # Load the scheduler's min_duration_mins so we never allow a wrap-up
+        # transition before that floor has elapsed (prevents <10-min early exits).
+        self._min_session_seconds = 0
+        try:
+            sched_path = Path(__file__).resolve().parent.parent / "data" / "scheduler_state.json"
+            if sched_path.exists():
+                sched = json.loads(sched_path.read_text())
+                self._min_session_seconds = int(sched.get("min_duration_mins", 0)) * 60
+        except Exception:
+            pass
+        # Hard floor: even if scheduler file is missing, never wrap-up inside 20 min
+        if self._min_session_seconds < 20 * 60:
+            self._min_session_seconds = 20 * 60
         self.resume = resume
         self.level_up = level_up
         self.pin = pin  # Pinned track name (e.g. "cpp", "os", "dl")
@@ -470,7 +484,7 @@ class OboeAgent:
                 self.newly_leveled_target_this_turn = False
                 
                 # Check for wrap-up completion
-                if self._is_oboe_indicating_completion(messages):
+                if self._is_oboe_indicating_completion(messages, start_time):
                     print("[WRAP-UP DETECTED] Oboe indicated completion with corroborating signals.")
                     print("[WRAP-UP] Forcing redirect to next target or track topic.")
                     if self.pin:
@@ -590,20 +604,22 @@ class OboeAgent:
         except Exception:
             return False
 
-    def _is_oboe_indicating_completion(self, messages: list) -> bool:
+    def _is_oboe_indicating_completion(self, messages: list, start_time: float = None) -> bool:
         """
         Check if Oboe is indicating curriculum or topic completion.
-        Requires all 3 corroborating signals to avoid false positives:
+        Requires all 4 corroborating signals to avoid false positives:
         1. Last assistant message has a completion phrase.
         2. No active question exists.
-        3. No target/supporting skill progress in last 4 turns.
+        3. No target/supporting skill progress in last 10 turns (raised from 4).
+        4. Minimum session elapsed time has passed (respects scheduler min_duration_mins,
+           hard floor of 20 min) — prevents DFS cold-start and short-burst exits.
         """
         oboe_msgs = [m for m in messages if m["role"] == "assistant"]
         if not oboe_msgs:
             return False
 
         last_oboe = oboe_msgs[-1]["text"].lower()
-        
+
         # 1. Completion phrase
         has_signal = any(sig in last_oboe for sig in OBOE_COMPLETION_SIGNALS)
         if not has_signal:
@@ -615,10 +631,19 @@ class OboeAgent:
         if has_question:
             return False
 
-        # 3. No recent curriculum progress
+        # 3. No recent curriculum progress — raised to 10 turns to prevent DFS cold-start exits
         turns_without_progress = getattr(self.steering_controller, "turns_without_target_skill", 0) if getattr(self, "steering_controller", None) else 0
-        if turns_without_progress < 4:
+        if turns_without_progress < 10:
+            print(f"[WRAP-UP GUARD] Completion signal detected but only {turns_without_progress}/10 turns without progress. Suppressing.")
             return False
+
+        # 4. Minimum elapsed time guard — never wrap-up before min_duration_mins has elapsed
+        if start_time is not None:
+            elapsed = time.time() - start_time
+            if elapsed < self._min_session_seconds:
+                remaining = int((self._min_session_seconds - elapsed) / 60)
+                print(f"[WRAP-UP GUARD] Completion signal suppressed — only {int(elapsed/60)}m elapsed, minimum is {int(self._min_session_seconds/60)}m ({remaining}m remaining).")
+                return False
 
         return True
 
