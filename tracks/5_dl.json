@@ -17,361 +17,361 @@
     },
     {
       "name": "Machine Learning: Loss Functions",
-      "prompt": "loss functions in deep learning, MSE MAE, binary cross-entropy, categorical cross-entropy, focal loss for imbalanced classes, hinge loss, contrastive loss, triplet loss, and when to use each. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "loss functions in deep learning, MSE MAE, binary cross-entropy, categorical cross-entropy, focal loss for imbalanced classes, hinge loss, contrastive loss, triplet loss, and when to use each.",
       "covered": true,
       "level_at_cover": "LV 9"
     },
     {
       "name": "Neural Networks: Backpropagation",
-      "prompt": "backpropagation algorithm, chain rule of calculus applied to neural networks, computational graph, forward pass, backward pass, gradient flow, and manual backprop derivation for 2-layer network. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "backpropagation algorithm, chain rule of calculus applied to neural networks, computational graph, forward pass, backward pass, gradient flow, and manual backprop derivation for 2-layer network.",
       "covered": true,
       "level_at_cover": "LV 5"
     },
     {
       "name": "Machine Learning: Vanishing and Exploding Gradients",
-      "prompt": "vanishing gradient problem, exploding gradient problem, causes with sigmoid and deep networks, solutions: ReLU, residual connections, gradient clipping, and proper weight initialization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "vanishing gradient problem, exploding gradient problem, causes with sigmoid and deep networks, solutions: ReLU, residual connections, gradient clipping, and proper weight initialization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Weight Initialization",
-      "prompt": "weight initialization strategies, Xavier Glorot initialization, He initialization, why zero initialization fails, orthogonal initialization, and impact on training convergence. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "weight initialization strategies, Xavier Glorot initialization, He initialization, why zero initialization fails, orthogonal initialization, and impact on training convergence.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: SGD and Momentum",
-      "prompt": "stochastic gradient descent, mini-batch SGD, batch size effects, momentum optimizer, Nesterov accelerated gradient, and learning rate selection. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "stochastic gradient descent, mini-batch SGD, batch size effects, momentum optimizer, Nesterov accelerated gradient, and learning rate selection.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Adam and Adaptive Optimizers",
-      "prompt": "adaptive optimizers, AdaGrad, RMSProp, Adam, AdamW decoupled weight decay, LAMB for large batch training, LARS, and comparison of optimizer convergence properties. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "adaptive optimizers, AdaGrad, RMSProp, Adam, AdamW decoupled weight decay, LAMB for large batch training, LARS, and comparison of optimizer convergence properties.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Learning Rate Schedules",
-      "prompt": "learning rate schedules, step decay, exponential decay, cosine annealing, warmup, cyclic learning rate, one-cycle policy, and how learning rate affects convergence and generalization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "learning rate schedules, step decay, exponential decay, cosine annealing, warmup, cyclic learning rate, one-cycle policy, and how learning rate affects convergence and generalization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Gradient Clipping and Accumulation",
-      "prompt": "gradient clipping by norm vs by value, gradient accumulation for large effective batch sizes, gradient scaling for mixed precision, and SAM sharpness-aware minimization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "gradient clipping by norm vs by value, gradient accumulation for large effective batch sizes, gradient scaling for mixed precision, and SAM sharpness-aware minimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Regularization Techniques",
-      "prompt": "regularization in deep learning, L1 L2 weight regularization, dropout standard spatial DropConnect DropBlock, weight decay, early stopping, and label smoothing. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "regularization in deep learning, L1 L2 weight regularization, dropout standard spatial DropConnect DropBlock, weight decay, early stopping, and label smoothing.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Batch Normalization",
-      "prompt": "batch normalization, internal covariate shift, how BatchNorm works training vs inference, running mean and variance, affine parameters, and why BatchNorm accelerates training. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "batch normalization, internal covariate shift, how BatchNorm works training vs inference, running mean and variance, affine parameters, and why BatchNorm accelerates training.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Layer Group Instance Normalization",
-      "prompt": "layer normalization for transformers, group normalization, instance normalization for style transfer, comparison of normalization techniques, and when to use each. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "layer normalization for transformers, group normalization, instance normalization for style transfer, comparison of normalization techniques, and when to use each.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Data Augmentation",
-      "prompt": "data augmentation for deep learning, geometric transforms, color augmentation, mixup, cutout, CutMix, RandAugment, AutoAugment, and augmentation strategies for different domains. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "data augmentation for deep learning, geometric transforms, color augmentation, mixup, cutout, CutMix, RandAugment, AutoAugment, and augmentation strategies for different domains.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Convolution Operation",
-      "prompt": "convolution operation in neural networks, 1D 2D 3D convolution, kernel filters, padding valid same, stride, dilation atrous convolution, and feature map size calculation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "convolution operation in neural networks, 1D 2D 3D convolution, kernel filters, padding valid same, stride, dilation atrous convolution, and feature map size calculation.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Depthwise Separable Convolution",
-      "prompt": "depthwise separable convolution, depthwise convolution, pointwise convolution, parameter reduction, computational savings, and why MobileNet uses separable convolutions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "depthwise separable convolution, depthwise convolution, pointwise convolution, parameter reduction, computational savings, and why MobileNet uses separable convolutions.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Pooling and Transposed Convolution",
-      "prompt": "pooling layers max pooling average pooling global average pooling, transposed convolution for upsampling, checkerboard artifacts, and sub-pixel convolution. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "pooling layers max pooling average pooling global average pooling, transposed convolution for upsampling, checkerboard artifacts, and sub-pixel convolution.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: LeNet AlexNet VGGNet",
-      "prompt": "evolution of CNN architectures, LeNet-5 for digits, AlexNet breakthrough in ImageNet, VGGNet deep stacking of 3x3 convolutions, and key insights from each architecture. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "evolution of CNN architectures, LeNet-5 for digits, AlexNet breakthrough in ImageNet, VGGNet deep stacking of 3x3 convolutions, and key insights from each architecture.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: GoogLeNet and Inception",
-      "prompt": "GoogLeNet Inception v1, inception module multiple kernel sizes, 1x1 convolution for dimensionality reduction, Inception v2 v3 v4, and factorized convolutions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "GoogLeNet Inception v1, inception module multiple kernel sizes, 1x1 convolution for dimensionality reduction, Inception v2 v3 v4, and factorized convolutions.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: ResNet and Skip Connections",
-      "prompt": "ResNet residual networks, skip connections identity mapping, residual learning, ResNet-50 101 152, bottleneck blocks, ResNeXt grouped convolutions, and why residual connections solve degradation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "ResNet residual networks, skip connections identity mapping, residual learning, ResNet-50 101 152, bottleneck blocks, ResNeXt grouped convolutions, and why residual connections solve degradation.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: DenseNet and EfficientNet",
-      "prompt": "DenseNet dense connections, feature reuse, DenseNet growth rate, EfficientNet compound scaling width depth resolution, and EfficientNet-B0 to B7 scaling. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "DenseNet dense connections, feature reuse, DenseNet growth rate, EfficientNet compound scaling width depth resolution, and EfficientNet-B0 to B7 scaling.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: MobileNet",
-      "prompt": "MobileNet v1 depthwise separable, MobileNet v2 inverted residuals linear bottleneck, MobileNet v3 NAS-based architecture, and deployment on mobile devices. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "MobileNet v1 depthwise separable, MobileNet v2 inverted residuals linear bottleneck, MobileNet v3 NAS-based architecture, and deployment on mobile devices.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Vanilla RNN",
-      "prompt": "recurrent neural networks, hidden state, unfolding through time, backpropagation through time BPTT, vanishing gradient in RNNs, and limitations for long sequences. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "recurrent neural networks, hidden state, unfolding through time, backpropagation through time BPTT, vanishing gradient in RNNs, and limitations for long sequences.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: LSTM",
-      "prompt": "LSTM long short-term memory, cell state, forget gate, input gate, output gate, gate equations, how LSTM solves vanishing gradient, and peephole connections. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "LSTM long short-term memory, cell state, forget gate, input gate, output gate, gate equations, how LSTM solves vanishing gradient, and peephole connections.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: GRU",
-      "prompt": "GRU gated recurrent unit, update gate, reset gate, comparison with LSTM fewer parameters, bidirectional RNN, deep RNN stacking layers, and when to choose GRU vs LSTM. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "GRU gated recurrent unit, update gate, reset gate, comparison with LSTM fewer parameters, bidirectional RNN, deep RNN stacking layers, and when to choose GRU vs LSTM.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Sequence to Sequence",
-      "prompt": "seq2seq encoder-decoder architecture, teacher forcing, beam search decoding, greedy decoding, and limitations of fixed-length context vector leading to attention. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "seq2seq encoder-decoder architecture, teacher forcing, beam search decoding, greedy decoding, and limitations of fixed-length context vector leading to attention.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Attention Mechanism",
-      "prompt": "attention mechanism, Bahdanau additive attention, Luong multiplicative attention, attention weights visualization, context vector computation, and how attention solves long-range dependencies. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "attention mechanism, Bahdanau additive attention, Luong multiplicative attention, attention weights visualization, context vector computation, and how attention solves long-range dependencies.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Transformer Self-Attention",
-      "prompt": "transformer architecture, self-attention Q K V computation, scaled dot-product attention, multi-head attention, why scaling by sqrt(d_k), and attention complexity O(n^2). Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "transformer architecture, self-attention Q K V computation, scaled dot-product attention, multi-head attention, why scaling by sqrt(d_k), and attention complexity O(n^2).",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Transformer Architecture",
-      "prompt": "full transformer architecture, encoder and decoder stacks, positional encoding sinusoidal vs learned, masked self-attention in decoder, cross-attention, layer norm placement pre vs post norm, and feed-forward network. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "full transformer architecture, encoder and decoder stacks, positional encoding sinusoidal vs learned, masked self-attention in decoder, cross-attention, layer norm placement pre vs post norm, and feed-forward network.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Positional Encoding",
-      "prompt": "positional encodings, sinusoidal positional encoding, learned positional embeddings, RoPE rotary position embedding, ALiBi, relative position encoding, and why position information is needed. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "positional encodings, sinusoidal positional encoding, learned positional embeddings, RoPE rotary position embedding, ALiBi, relative position encoding, and why position information is needed.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: BERT",
-      "prompt": "BERT bidirectional encoder representations from transformers, masked language model MLM, next sentence prediction NSP, pre-training and fine-tuning paradigm, and BERT variants RoBERTa ALBERT DistilBERT. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "BERT bidirectional encoder representations from transformers, masked language model MLM, next sentence prediction NSP, pre-training and fine-tuning paradigm, and BERT variants RoBERTa ALBERT DistilBERT.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: GPT Architecture",
-      "prompt": "GPT generative pre-trained transformer, autoregressive language modeling, causal self-attention, GPT-2 GPT-3 scaling, in-context learning, and decoder-only vs encoder-decoder tradeoffs. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "GPT generative pre-trained transformer, autoregressive language modeling, causal self-attention, GPT-2 GPT-3 scaling, in-context learning, and decoder-only vs encoder-decoder tradeoffs.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: FlashAttention",
-      "prompt": "FlashAttention v1 and v2, tiling strategy, online softmax, IO-aware algorithm, memory efficiency, recomputation in backward pass, and FlashAttention v3 improvements. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "FlashAttention v1 and v2, tiling strategy, online softmax, IO-aware algorithm, memory efficiency, recomputation in backward pass, and FlashAttention v3 improvements.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Efficient Attention Variants",
-      "prompt": "multi-query attention MQA, grouped-query attention GQA, sliding window attention, sparse attention BigBird Longformer, linear attention Performer, and ring attention for long sequences. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "multi-query attention MQA, grouped-query attention GQA, sliding window attention, sparse attention BigBird Longformer, linear attention Performer, and ring attention for long sequences.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: KV Cache and Paged Attention",
-      "prompt": "KV cache in autoregressive inference, memory growth with sequence length, paged attention in vLLM, continuous batching, and techniques to reduce KV cache memory. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "KV cache in autoregressive inference, memory growth with sequence length, paged attention in vLLM, continuous batching, and techniques to reduce KV cache memory.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Tokenization",
-      "prompt": "tokenization for LLMs, byte-pair encoding BPE, WordPiece, SentencePiece, unigram model, vocabulary size tradeoffs, and how tokenization affects model performance. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "tokenization for LLMs, byte-pair encoding BPE, WordPiece, SentencePiece, unigram model, vocabulary size tradeoffs, and how tokenization affects model performance.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Scaling Laws",
-      "prompt": "neural scaling laws, Kaplan scaling laws, Chinchilla optimal compute allocation, loss vs parameters vs data, and implications for training large models efficiently. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "neural scaling laws, Kaplan scaling laws, Chinchilla optimal compute allocation, loss vs parameters vs data, and implications for training large models efficiently.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: RLHF",
-      "prompt": "RLHF reinforcement learning from human feedback, reward model training, PPO proximal policy optimization for LLM alignment, KL penalty, and limitations of RLHF. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "RLHF reinforcement learning from human feedback, reward model training, PPO proximal policy optimization for LLM alignment, KL penalty, and limitations of RLHF.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: DPO",
-      "prompt": "DPO direct preference optimization, bypassing reward model, Bradley-Terry preference model, DPO loss derivation, comparison with RLHF, and practical advantages of DPO. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "DPO direct preference optimization, bypassing reward model, Bradley-Terry preference model, DPO loss derivation, comparison with RLHF, and practical advantages of DPO.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Fine-Tuning and LoRA",
-      "prompt": "fine-tuning strategies, full fine-tuning, LoRA low-rank adaptation, QLoRA quantized LoRA, prefix tuning, adapter layers, prompt tuning, and parameter-efficient fine-tuning comparison. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "fine-tuning strategies, full fine-tuning, LoRA low-rank adaptation, QLoRA quantized LoRA, prefix tuning, adapter layers, prompt tuning, and parameter-efficient fine-tuning comparison.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: RAG",
-      "prompt": "RAG retrieval-augmented generation, document retrieval, embedding similarity search, vector databases, chunking strategies, and RAG vs fine-tuning tradeoffs. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "RAG retrieval-augmented generation, document retrieval, embedding similarity search, vector databases, chunking strategies, and RAG vs fine-tuning tradeoffs.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Autoencoders",
-      "prompt": "autoencoders, encoder decoder bottleneck, denoising autoencoder, variational autoencoder VAE, reparameterization trick, ELBO loss, beta-VAE, and VQ-VAE vector quantized. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "autoencoders, encoder decoder bottleneck, denoising autoencoder, variational autoencoder VAE, reparameterization trick, ELBO loss, beta-VAE, and VQ-VAE vector quantized.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: GANs",
-      "prompt": "generative adversarial networks, generator discriminator minimax game, DCGAN, WGAN Wasserstein distance, WGAN-GP gradient penalty, mode collapse, and training instability solutions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "generative adversarial networks, generator discriminator minimax game, DCGAN, WGAN Wasserstein distance, WGAN-GP gradient penalty, mode collapse, and training instability solutions.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: StyleGAN",
-      "prompt": "StyleGAN architecture, mapping network, adaptive instance normalization AdaIN, style mixing, progressive growing, StyleGAN2 improvements, and truncation trick. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "StyleGAN architecture, mapping network, adaptive instance normalization AdaIN, style mixing, progressive growing, StyleGAN2 improvements, and truncation trick.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Diffusion Models",
-      "prompt": "diffusion models, DDPM denoising diffusion probabilistic models, forward diffusion process, reverse denoising process, noise schedules, DDIM faster sampling, and score-based models. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "diffusion models, DDPM denoising diffusion probabilistic models, forward diffusion process, reverse denoising process, noise schedules, DDIM faster sampling, and score-based models.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Latent Diffusion and Stable Diffusion",
-      "prompt": "latent diffusion models, encoding to latent space, Stable Diffusion architecture, classifier-free guidance, text conditioning with CLIP, and image generation quality vs speed tradeoffs. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "latent diffusion models, encoding to latent space, Stable Diffusion architecture, classifier-free guidance, text conditioning with CLIP, and image generation quality vs speed tradeoffs.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Object Detection",
-      "prompt": "object detection, R-CNN Fast R-CNN Faster R-CNN, region proposal network RPN, anchor boxes, YOLO single-shot detection, SSD, RetinaNet focal loss, DETR transformer-based, and mAP evaluation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "object detection, R-CNN Fast R-CNN Faster R-CNN, region proposal network RPN, anchor boxes, YOLO single-shot detection, SSD, RetinaNet focal loss, DETR transformer-based, and mAP evaluation.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Semantic and Instance Segmentation",
-      "prompt": "semantic segmentation, FCN fully convolutional network, U-Net skip connections, DeepLab atrous convolution, instance segmentation Mask R-CNN, panoptic segmentation, and IoU metrics. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "semantic segmentation, FCN fully convolutional network, U-Net skip connections, DeepLab atrous convolution, instance segmentation Mask R-CNN, panoptic segmentation, and IoU metrics.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Vision Transformers",
-      "prompt": "Vision Transformer ViT, image patch embedding, class token, DeiT data-efficient image transformers, Swin Transformer hierarchical shifted windows, and CNN vs ViT comparison. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "Vision Transformer ViT, image patch embedding, class token, DeiT data-efficient image transformers, Swin Transformer hierarchical shifted windows, and CNN vs ViT comparison.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: NLP Tasks",
-      "prompt": "NLP tasks, text classification, named entity recognition NER, POS tagging, dependency parsing, semantic similarity, machine translation, summarization, question answering, and sentiment analysis. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "NLP tasks, text classification, named entity recognition NER, POS tagging, dependency parsing, semantic similarity, machine translation, summarization, question answering, and sentiment analysis.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Data Parallelism DDP",
-      "prompt": "distributed data parallelism DDP, gradient all-reduce, synchronized SGD, ring all-reduce algorithm, gradient compression, and PyTorch DistributedDataParallel. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "distributed data parallelism DDP, gradient all-reduce, synchronized SGD, ring all-reduce algorithm, gradient compression, and PyTorch DistributedDataParallel.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Model and Tensor Parallelism",
-      "prompt": "model parallelism, tensor parallelism Megatron-LM column and row parallel, pipeline parallelism GPipe PipeDream micro-batches, and 3D parallelism combining all three. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "model parallelism, tensor parallelism Megatron-LM column and row parallel, pipeline parallelism GPipe PipeDream micro-batches, and 3D parallelism combining all three.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: ZeRO Optimization",
-      "prompt": "ZeRO zero redundancy optimizer, ZeRO stage 1 optimizer states, stage 2 gradients, stage 3 parameters, FSDP fully sharded data parallel, and memory savings at each stage. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "ZeRO zero redundancy optimizer, ZeRO stage 1 optimizer states, stage 2 gradients, stage 3 parameters, FSDP fully sharded data parallel, and memory savings at each stage.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Mixed Precision Training",
-      "prompt": "mixed precision training, FP16 vs BF16 vs FP32, loss scaling, gradient scaling, FP8 training, and how mixed precision reduces memory and increases throughput. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "mixed precision training, FP16 vs BF16 vs FP32, loss scaling, gradient scaling, FP8 training, and how mixed precision reduces memory and increases throughput.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Quantization",
-      "prompt": "model quantization, post-training quantization PTQ, quantization-aware training QAT, INT8 INT4 quantization, GPTQ, AWQ, and accuracy vs inference speed tradeoffs. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "model quantization, post-training quantization PTQ, quantization-aware training QAT, INT8 INT4 quantization, GPTQ, AWQ, and accuracy vs inference speed tradeoffs.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Pruning and Distillation",
-      "prompt": "model pruning, structured vs unstructured pruning, magnitude pruning, lottery ticket hypothesis, knowledge distillation, teacher-student training, and DistilBERT example. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "model pruning, structured vs unstructured pruning, magnitude pruning, lottery ticket hypothesis, knowledge distillation, teacher-student training, and DistilBERT example.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: GPU Programming for DL",
-      "prompt": "GPU architecture for deep learning, CUDA cores, tensor cores, streaming multiprocessors, GPU memory hierarchy, memory coalescing, occupancy, and Triton GPU kernel language. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "GPU architecture for deep learning, CUDA cores, tensor cores, streaming multiprocessors, GPU memory hierarchy, memory coalescing, occupancy, and Triton GPU kernel language.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: TensorRT and ONNX",
-      "prompt": "TensorRT inference optimization, operator fusion, kernel auto-tuning, ONNX open neural network exchange, ONNX runtime, model export and interoperability. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "TensorRT inference optimization, operator fusion, kernel auto-tuning, ONNX open neural network exchange, ONNX runtime, model export and interoperability.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Mixture of Experts",
-      "prompt": "mixture of experts MoE, gating network, top-k routing, load balancing loss, expert parallelism, sparse MoE advantages, Switch Transformer, and Mixtral architecture. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "mixture of experts MoE, gating network, top-k routing, load balancing loss, expert parallelism, sparse MoE advantages, Switch Transformer, and Mixtral architecture.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: State Space Models",
-      "prompt": "state space models for sequences, S4 structured state spaces, Mamba selective state space model, hardware-aware algorithm, comparison with transformers for long sequences, and H3 architecture. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "state space models for sequences, S4 structured state spaces, Mamba selective state space model, hardware-aware algorithm, comparison with transformers for long sequences, and H3 architecture.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Machine Learning: Graph Neural Networks",
-      "prompt": "graph neural networks, message passing framework, GCN graph convolutional network, GAT graph attention network, GraphSAGE sampling, over-smoothing problem, and applications. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Machine Learning.",
+      "prompt": "graph neural networks, message passing framework, GCN graph convolutional network, GAT graph attention network, GraphSAGE sampling, over-smoothing problem, and applications.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Neural Networks: Multimodal Models",
-      "prompt": "multimodal AI, CLIP contrastive language-image pretraining, DALL-E, Flamingo visual language model, LLaVA, and how vision and language modalities are aligned. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Neural Networks.",
+      "prompt": "multimodal AI, CLIP contrastive language-image pretraining, DALL-E, Flamingo visual language model, LLaVA, and how vision and language modalities are aligned.",
       "covered": false,
       "level_at_cover": 0
     }

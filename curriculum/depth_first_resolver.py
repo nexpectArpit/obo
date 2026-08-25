@@ -316,6 +316,7 @@ class DepthFirstResolver:
 
     def _build_resolved_topic(self, node_id: str) -> dict:
         """Build Oboe-compatible target topic dictionary."""
+        import random
         node = self._get_node(node_id)
         display_name = node["name"]
         
@@ -326,11 +327,20 @@ class DepthFirstResolver:
             pinned_chat_title = track_data.get("pinned_chat_title", self.track_name)
 
         # Depth-aware steering query construction (Phase 12)
-        prompt = (
-            f"lets explore {display_name} in the domain of {self.track_name}. "
-            f"Specifically focus on the core conceptual implementation details, edge test cases, "
-            f"and advanced depth challenges of {display_name}."
-        )
+        # Randomized prompt pool — avoids repetitive opener pattern that flags bot behavior
+        prompt_templates = [
+            f"hey i want to get into {display_name}, can we go through the key ideas and then you quiz me on the tricky parts?",
+            f"so i've been reading about {display_name} and i think i get the basics... wanna test me on the harder edge cases?",
+            f"let's do {display_name} today. walk me through how it actually works under the hood, then hit me with a tough question",
+            f"can we cover {display_name}? i want to understand the core mechanics, not just the surface stuff",
+            f"i want to really understand {display_name}. can you build up from the intuition and then challenge me?",
+            f"been curious about {display_name} for a while. what's the most important thing to get right about it?",
+            f"let's dig into {display_name}. especially the parts where people usually get confused or make mistakes",
+            f"ok so {display_name} — i want to actually understand it, not just memorize. can we work through it properly?",
+            f"i want to level up on {display_name}. start with the core concept and then test me on something non-trivial",
+            f"teach me {display_name} and then give me a problem that actually requires understanding it deeply",
+        ]
+        prompt = random.choice(prompt_templates)
 
         return {
             "track_name": self.track_name,

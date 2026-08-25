@@ -47,379 +47,379 @@
     },
     {
       "name": "Algorithms: Ternary Search",
-      "prompt": "what is ternary search, finding peak of unimodal functions, optimization problems, and comparison of convergence speed with binary search. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "what is ternary search, finding peak of unimodal functions, optimization problems, and comparison of convergence speed with binary search.",
       "covered": true,
       "level_at_cover": "LV 3"
     },
     {
       "name": "Dynamic Programming: Recursion and Backtracking",
-      "prompt": "advanced backtracking paradigms in CP, generating subsets, permutations, combinations, solving N-Queens, and aggressive pruning strategies. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "advanced backtracking paradigms in CP, generating subsets, permutations, combinations, solving N-Queens, and aggressive pruning strategies.",
       "covered": true,
       "level_at_cover": "LV 1"
     },
     {
       "name": "Algorithms: Disjoint Set Union (DSU)",
-      "prompt": "implement disjoint set union from scratch, union by rank/size, path compression, amortized inverse Ackermann complexity, and cycle detection. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "implement disjoint set union from scratch, union by rank/size, path compression, amortized inverse Ackermann complexity, and cycle detection.",
       "covered": true,
       "level_at_cover": "LV 3"
     },
     {
       "name": "Dynamic Programming: DSU Advanced Variations",
-      "prompt": "explain persistent DSU, rollbacks in DSU, offline dynamic connectivity, and using DSU for Kruskal's MST optimization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "explain persistent DSU, rollbacks in DSU, offline dynamic connectivity, and using DSU for Kruskal's MST optimization.",
       "covered": true,
       "level_at_cover": "LV 4"
     },
     {
       "name": "Algorithms: Binary Search Trees",
-      "prompt": "properties of BST, insert search delete operations, inorder successor/predecessor, and implementing a basic BST from scratch. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "properties of BST, insert search delete operations, inorder successor/predecessor, and implementing a basic BST from scratch.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: AVL Tree",
-      "prompt": "explain AVL tree self-balancing BST, single and double rotations (LL, RR, LR, RL), balancing factor, and complexity guarantees. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "explain AVL tree self-balancing BST, single and double rotations (LL, RR, LR, RL), balancing factor, and complexity guarantees.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Red-Black Tree",
-      "prompt": "properties of red-black trees, insertion cases, deletion cases, rotations, comparison with AVL trees, and why standard libraries use them. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "properties of red-black trees, insertion cases, deletion cases, rotations, comparison with AVL trees, and why standard libraries use them.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Trie Data Structure",
-      "prompt": "implement trie (prefix tree) from scratch, insert search search-prefix, space optimization, and bitwise trie for maximum XOR subarray. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "implement trie (prefix tree) from scratch, insert search search-prefix, space optimization, and bitwise trie for maximum XOR subarray.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Segment Tree Basics",
-      "prompt": "implement segment tree for range sum and range minimum queries, tree construction in O(n), point update and range query in O(log n). Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "implement segment tree for range sum and range minimum queries, tree construction in O(n), point update and range query in O(log n).",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Segment Tree with Lazy Propagation",
-      "prompt": "explain lazy propagation in segment trees, range updates in O(log n), range query optimizations, and handling complex update functions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "explain lazy propagation in segment trees, range updates in O(log n), range query optimizations, and handling complex update functions.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Persistent Segment Tree",
-      "prompt": "what is a persistent segment tree, creating new versions on point updates, space optimization sharing nodes, and queries on historical versions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "what is a persistent segment tree, creating new versions on point updates, space optimization sharing nodes, and queries on historical versions.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Fenwick Tree (BIT)",
-      "prompt": "implement binary indexed tree (BIT), point update and prefix sum query, 2D Fenwick tree, and comparison with segment tree. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "implement binary indexed tree (BIT), point update and prefix sum query, 2D Fenwick tree, and comparison with segment tree.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Treaps and Splay Trees",
-      "prompt": "explain treaps (binary search tree + heap properties) and splay trees, splaying operations, self-adjusting heuristics, and dynamic array operations using treap split/merge. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "explain treaps (binary search tree + heap properties) and splay trees, splaying operations, self-adjusting heuristics, and dynamic array operations using treap split/merge.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Sparse Table",
-      "prompt": "implement sparse table for static range minimum queries in O(1) query time and O(n log n) preprocessing, RMQ optimization, and power of two jumps. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "implement sparse table for static range minimum queries in O(1) query time and O(n log n) preprocessing, RMQ optimization, and power of two jumps.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: LCA Binary Lifting",
-      "prompt": "find lowest common ancestor (LCA) in trees using binary lifting, parent table computation, tree queries in O(log n), and path maximums/minimums. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "find lowest common ancestor (LCA) in trees using binary lifting, parent table computation, tree queries in O(log n), and path maximums/minimums.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Euler Tour Technique",
-      "prompt": "explain Euler tour technique on trees, flattening trees to 1D arrays, subtree queries with segment tree, and path queries. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "explain Euler tour technique on trees, flattening trees to 1D arrays, subtree queries with segment tree, and path queries.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Heavy-Light Decomposition",
-      "prompt": "explain heavy-light decomposition (HLD) on trees, heavy vs light edges, mapping tree paths to segment tree ranges, and solving path updates/queries. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "explain heavy-light decomposition (HLD) on trees, heavy vs light edges, mapping tree paths to segment tree ranges, and solving path updates/queries.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Centroid Decomposition",
-      "prompt": "what is centroid decomposition of a tree, finding centroids, building centroid tree, and solving path queries with length/color constraints. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "what is centroid decomposition of a tree, finding centroids, building centroid tree, and solving path queries with length/color constraints.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Graph BFS and DFS",
-      "prompt": "breadth-first search and depth-first search in graphs, iterative vs recursive, cycle detection, bipartite check, and shortest path in unweighted graphs. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "breadth-first search and depth-first search in graphs, iterative vs recursive, cycle detection, bipartite check, and shortest path in unweighted graphs.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Dijkstra's Algorithm",
-      "prompt": "implement Dijkstra's shortest path algorithm using priority queue, handling weights, why negative edges fail, and time complexity proof. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "implement Dijkstra's shortest path algorithm using priority queue, handling weights, why negative edges fail, and time complexity proof.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Bellman-Ford and SPFA",
-      "prompt": "explain Bellman-Ford for negative weight edges, detecting negative cycles, and shortest path faster algorithm (SPFA) optimization. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "explain Bellman-Ford for negative weight edges, detecting negative cycles, and shortest path faster algorithm (SPFA) optimization.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Floyd-Warshall Algorithm",
-      "prompt": "all-pairs shortest path using Floyd-Warshall, dynamic programming matrix updates, negative cycle check, and transitive closure. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "all-pairs shortest path using Floyd-Warshall, dynamic programming matrix updates, negative cycle check, and transitive closure.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Minimum Spanning Tree Algorithms",
-      "prompt": "Kruskal's algorithm with DSU vs Prim's algorithm with priority queue, comparisons, cut property, and Boruvka's algorithm. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "Kruskal's algorithm with DSU vs Prim's algorithm with priority queue, comparisons, cut property, and Boruvka's algorithm.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Topological Sort",
-      "prompt": "topological sorting of DAGs using Kahn's algorithm (BFS) and DFS post-order, dependency resolution, and cycle verification. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "topological sorting of DAGs using Kahn's algorithm (BFS) and DFS post-order, dependency resolution, and cycle verification.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: SCC Tarjan and Kosaraju",
-      "prompt": "find strongly connected components in directed graphs using Tarjan's low-link algorithm and Kosaraju's double DFS algorithm. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "find strongly connected components in directed graphs using Tarjan's low-link algorithm and Kosaraju's double DFS algorithm.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Bridges and Articulation Points",
-      "prompt": "find bridges and articulation points in undirected graphs using Tarjan's bridge finding algorithm (discovery and low time). Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "find bridges and articulation points in undirected graphs using Tarjan's bridge finding algorithm (discovery and low time).",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Network Flow Basics",
-      "prompt": "max flow problem, Ford-Fulkerson method, residual graphs, augmenting paths, and Edmonds-Karp BFS implementation. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "max flow problem, Ford-Fulkerson method, residual graphs, augmenting paths, and Edmonds-Karp BFS implementation.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Dinic's Algorithm",
-      "prompt": "max flow optimization using Dinic's algorithm, level graphs, blocking flows, DFS path blocking, and complexity comparison with Edmonds-Karp. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "max flow optimization using Dinic's algorithm, level graphs, blocking flows, DFS path blocking, and complexity comparison with Edmonds-Karp.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Bipartite Matching",
-      "prompt": "maximum bipartite matching, Konig's theorem, vertex cover equivalence, and reducing bipartite matching to maximum flow. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "maximum bipartite matching, Konig's theorem, vertex cover equivalence, and reducing bipartite matching to maximum flow.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Dynamic Programming Intro",
-      "prompt": "recursion with memoization vs tabulation in DP, overlapping subproblems, optimal substructure, and step-by-step DP table building. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "recursion with memoization vs tabulation in DP, overlapping subproblems, optimal substructure, and step-by-step DP table building.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: LCS and LIS Variations",
-      "prompt": "solve longest common subsequence and longest increasing subsequence in O(n log n) with patient sorting, space optimization, and tracebacks. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "solve longest common subsequence and longest increasing subsequence in O(n log n) with patient sorting, space optimization, and tracebacks.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: 0-1 and Unbounded Knapsack",
-      "prompt": "dynamic programming solutions to 0-1 knapsack, unbounded knapsack, coin change, and space optimized 1D array updates. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "dynamic programming solutions to 0-1 knapsack, unbounded knapsack, coin change, and space optimized 1D array updates.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Interval DP",
-      "prompt": "solve matrix chain multiplication, palindrome partitioning, optimal binary search trees using interval DP, and O(n^3) state transitions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "solve matrix chain multiplication, palindrome partitioning, optimal binary search trees using interval DP, and O(n^3) state transitions.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Bitmask DP",
-      "prompt": "explain dynamic programming with bitmask, subset state representation, solving traveling salesman problem, and optimal assignments. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "explain dynamic programming with bitmask, subset state representation, solving traveling salesman problem, and optimal assignments.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Digit DP",
-      "prompt": "what is digit DP, counting numbers in range [L, R] satisfying digit constraints, state transitions tracking tight constraint and leading zeros. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "what is digit DP, counting numbers in range [L, R] satisfying digit constraints, state transitions tracking tight constraint and leading zeros.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Tree DP",
-      "prompt": "dynamic programming on trees, finding tree diameter, maximum independent set on trees, and tree rerooting techniques. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "dynamic programming on trees, finding tree diameter, maximum independent set on trees, and tree rerooting techniques.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: SOS DP (Sum over Subsets)",
-      "prompt": "explain sum over subsets (SOS) DP, iterating submasks, DP state definition, O(3^n) brute force vs O(n * 2^n) fast SOS DP. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "explain sum over subsets (SOS) DP, iterating submasks, DP state definition, O(3^n) brute force vs O(n * 2^n) fast SOS DP.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Convex Hull Trick",
-      "prompt": "optimization of DP transitions using convex hull trick, slope trick, maintaining envelope of lines, and amortized query time. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "optimization of DP transitions using convex hull trick, slope trick, maintaining envelope of lines, and amortized query time.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Greedy Choice Property",
-      "prompt": "greedy strategy vs dynamic programming, activity selection, fractional knapsack, Huffman coding, and exchange arguments for proof. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "greedy strategy vs dynamic programming, activity selection, fractional knapsack, Huffman coding, and exchange arguments for proof.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Number Theory GCD and LCM",
-      "prompt": "Euclidean algorithm for GCD, extended Euclidean algorithm, finding linear Diophantine equations coefficients, and modular inverse. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "Euclidean algorithm for GCD, extended Euclidean algorithm, finding linear Diophantine equations coefficients, and modular inverse.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Modular Arithmetic and Modular Inverse",
-      "prompt": "modular arithmetic rules, Fermat's little theorem, modular inverse using extended GCD and Fermat's, and Chinese remainder theorem. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "modular arithmetic rules, Fermat's little theorem, modular inverse using extended GCD and Fermat's, and Chinese remainder theorem.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Primes and Sieve of Eratosthenes",
-      "prompt": "sieve of Eratosthenes for prime generation, linear sieve (Euler's sieve) in O(n), and factorization of numbers using SPF. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "sieve of Eratosthenes for prime generation, linear sieve (Euler's sieve) in O(n), and factorization of numbers using SPF.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Miller-Rabin and Pollard Rho",
-      "prompt": "probabilistic primality testing using Miller-Rabin, choosing bases, and integer factorization using Pollard's rho algorithm. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "probabilistic primality testing using Miller-Rabin, choosing bases, and integer factorization using Pollard's rho algorithm.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Matrix Exponentiation",
-      "prompt": "solving linear recurrences in O(log N) using matrix exponentiation, building transition matrices, and fibonacci application. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "solving linear recurrences in O(log N) using matrix exponentiation, building transition matrices, and fibonacci application.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Combinatorics in CP",
-      "prompt": "combinations and permutations under modulo, precomputing factorials and inverse factorials, Lucas theorem for large nCr, and Catalan numbers. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "combinations and permutations under modulo, precomputing factorials and inverse factorials, Lucas theorem for large nCr, and Catalan numbers.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Probability and Expected Value in CP",
-      "prompt": "calculating expected value in CP, linearity of expectation, probability DP, and random walk problems. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "calculating expected value in CP, linearity of expectation, probability DP, and random walk problems.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: KMP String Matching",
-      "prompt": "string matching with Knuth-Morris-Pratt, constructing pi array (failure function), matching phase complexity, and string period/border queries. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "string matching with Knuth-Morris-Pratt, constructing pi array (failure function), matching phase complexity, and string period/border queries.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Rabin-Karp and String Hashing",
-      "prompt": "string hashing with rolling hash, polynomial rolling hash, choosing prime bases and modulos, and solving string comparisons in O(1). Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "string hashing with rolling hash, polynomial rolling hash, choosing prime bases and modulos, and solving string comparisons in O(1).",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Z-Algorithm",
-      "prompt": "implement Z-algorithm, building Z-array in O(n) time, comparison with KMP, and matching patterns in merged strings. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "implement Z-algorithm, building Z-array in O(n) time, comparison with KMP, and matching patterns in merged strings.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Manacher's Algorithm",
-      "prompt": "longest palindromic substring in O(n) using Manacher's algorithm, tracking palindrome mirrors, expansion centers, and boundary conditions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "longest palindromic substring in O(n) using Manacher's algorithm, tracking palindrome mirrors, expansion centers, and boundary conditions.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Suffix Array and Suffix Tree",
-      "prompt": "suffix array construction, suffix sorting, LCP array computation (Kasai's algorithm), and range minimum query for substring match. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "suffix array construction, suffix sorting, LCP array computation (Kasai's algorithm), and range minimum query for substring match.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Suffix Automaton",
-      "prompt": "what is suffix automaton, directed acyclic word graph representing all substrings, construction algorithm, states, links, and transitions. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "what is suffix automaton, directed acyclic word graph representing all substrings, construction algorithm, states, links, and transitions.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Aho-Corasick Automaton",
-      "prompt": "multi-pattern string matching using Aho-Corasick, building trie + suffix links + dictionary links, and matching multiple queries concurrently. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "multi-pattern string matching using Aho-Corasick, building trie + suffix links + dictionary links, and matching multiple queries concurrently.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Computational Geometry Basics",
-      "prompt": "point representation, cross product of vectors, orientation test (collinear, clockwise, counterclockwise), and line segment intersection. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "point representation, cross product of vectors, orientation test (collinear, clockwise, counterclockwise), and line segment intersection.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Convex Hull Algorithms",
-      "prompt": "convex hull of 2D points, Graham scan sorting by polar angle, Jarvis march gift wrapping, and Monotone Chain algorithm. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "convex hull of 2D points, Graham scan sorting by polar angle, Jarvis march gift wrapping, and Monotone Chain algorithm.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Closest Pair of Points",
-      "prompt": "closest pair of points problem, divide and conquer O(n log n) solution, sweep-line O(n log n) solution, and pruning candidate strip. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "closest pair of points problem, divide and conquer O(n log n) solution, sweep-line O(n log n) solution, and pruning candidate strip.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Polygon Area and Point in Polygon",
-      "prompt": "shoelace formula for polygon area, Pick's theorem, ray casting algorithm for point-in-polygon test, and winding number. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "shoelace formula for polygon area, Pick's theorem, ray casting algorithm for point-in-polygon test, and winding number.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Sweep Line Algorithm",
-      "prompt": "sweep line paradigm in geometry, solving line segment intersection, rectangle union area, and closest pair of points. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "sweep line paradigm in geometry, solving line segment intersection, rectangle union area, and closest pair of points.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Game Theory Combinatorial Games",
-      "prompt": "impartial games, normal play convention, state analysis (winning vs losing states), and subtraction games. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "impartial games, normal play convention, state analysis (winning vs losing states), and subtraction games.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Nim Game and Sprague-Grundy Theorem",
-      "prompt": "Nim game rules, XOR sum of pile sizes, Sprague-Grundy theorem for composite games, calculating grundy values (mex), and games on DAGs. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "Nim game rules, XOR sum of pile sizes, Sprague-Grundy theorem for composite games, calculating grundy values (mex), and games on DAGs.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Interactive Problems Strategies",
-      "prompt": "strategies for interactive problems in CP, flushing output, binary search querying, minimizing query count, and adaptive mock tests. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "strategies for interactive problems in CP, flushing output, binary search querying, minimizing query count, and adaptive mock tests.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Dynamic Programming: Heuristics and Randomized Algorithms",
-      "prompt": "randomized algorithms, Las Vegas vs Monte Carlo, shuffling array, random pivot in quickselect, and hill climbing / simulated annealing in optimization CP. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Dynamic Programming.",
+      "prompt": "randomized algorithms, Las Vegas vs Monte Carlo, shuffling array, random pivot in quickselect, and hill climbing / simulated annealing in optimization CP.",
       "covered": false,
       "level_at_cover": 0
     },
     {
       "name": "Algorithms: Bit Manipulation Tricks",
-      "prompt": "bit manipulation tricks, bitwise operations, checking power of two, bitmask subsets generation, __builtin_clz, __builtin_ctz, and __builtin_popcount. Specifically focusing on advanced architectural principles, mathematical logic, and direct applications of Algorithms.",
+      "prompt": "bit manipulation tricks, bitwise operations, checking power of two, bitmask subsets generation, __builtin_clz, __builtin_ctz, and __builtin_popcount.",
       "covered": false,
       "level_at_cover": 0
     }
