@@ -86,13 +86,14 @@ class OboeAgent:
         today_h = int(today_ist_sec // 3600)
         today_m = int((today_ist_sec % 3600) // 60)
 
-        # Save learned skills to disk
-        if self.achieved_skills:
-            try:
-                self.learned_skills_path.write_text(json.dumps(self.learned_skills, indent=4))
-                print(f"[INFO] Saved skill levels to {self.learned_skills_path.name}")
-            except Exception as e:
-                print(f"[WARNING] Failed to save learned_skills.json: {e}")
+        # Save learned skills to disk — always, not just when achieved_skills is populated
+        # (skills can be updated in-memory without new achievements, and on SIGTERM
+        # _finalize_session is not called, so this is the only save path)
+        try:
+            self.learned_skills_path.write_text(json.dumps(self.learned_skills, indent=4))
+            print(f"[INFO] Saved skill levels to {self.learned_skills_path.name}")
+        except Exception as e:
+            print(f"[WARNING] Failed to save learned_skills.json: {e}")
 
         # Update Parent Anchor level metadata for Depth Mode
         if config.SKILL_DEPTH_MODE:
@@ -257,27 +258,23 @@ class OboeAgent:
         # If a new topic is specified and we are on the dashboard, start it
         state = self.browser.get_interaction_state()
         if self.topic and state == "free_text":
-            # Check if the page is the new chat dashboard (placeholder exists)
-            textarea = self.browser.page.locator('textarea[name="prompt"]')
-            placeholder = textarea.get_attribute("placeholder") or ""
-            if "I want to learn" in placeholder:
-                # Determine prompt based on target skill and level
-                if self.target_skill:
-                    current_lv = self.learned_skills.get(self.target_skill, 0)
-                    if current_lv >= 4:
-                        initial_prompt = f"I'm already very familiar with the basics of {self.topic}. Can we skip the introductory stuff and dive straight into the advanced concepts/complex math? I'd love to challenge myself with some tough questions."
-                    elif current_lv == 3:
-                        initial_prompt = f"I understand the basic overview of {self.topic} already. Let's look at the intermediate concepts and the math behind them."
-                    else:
-                        initial_prompt = f"I want to learn about {self.topic}. Can we start with the core concepts?"
+            # Determine prompt based on target skill and level
+            if self.target_skill:
+                current_lv = self.learned_skills.get(self.target_skill, 0)
+                if current_lv >= 4:
+                    initial_prompt = f"I'm already very familiar with the basics of {self.topic}. Can we skip the introductory stuff and dive straight into the advanced concepts/complex math? I'd love to challenge myself with some tough questions."
+                elif current_lv == 3:
+                    initial_prompt = f"I understand the basic overview of {self.topic} already. Let's look at the intermediate concepts and the math behind them."
                 else:
-                    initial_prompt = self.topic
+                    initial_prompt = f"I want to learn about {self.topic}. Can we start with the core concepts?"
+            else:
+                initial_prompt = self.topic
 
-                print(f"Starting new chat with prompt: '{initial_prompt}'")
-                self.browser.type_and_submit(initial_prompt)
-                self.active_chat_start_time = time.time()
-                # Allow generation to kick off
-                time.sleep(5)
+            print(f"Starting new chat with prompt: '{initial_prompt}'")
+            self.browser.type_and_submit(initial_prompt)
+            self.active_chat_start_time = time.time()
+            # Allow generation to kick off
+            time.sleep(5)
 
     def _run_interaction_loop(self, start_time):
         """Core observe-reason-act loop. Returns when session ends."""
@@ -304,24 +301,22 @@ class OboeAgent:
                 now = time.time()
                 if loading_started_at is None:
                     loading_started_at = now
-                    print("Oboe is thinking/generating... waiting 3 seconds...")
+                waited = now - loading_started_at
+                if waited > MAX_LOADING_WAIT_SECS:
+                    print(f"[TIMEOUT] Page stuck in loading state for {int(waited)}s (>{MAX_LOADING_WAIT_SECS}s limit). Moving on.")
+                    loading_started_at = None
+                    # Force a re-observe to get whatever partial state exists
+                    obs1 = self.browser.observe_page()
+                    state1 = obs1["state"]
+                    if state1 == "loading":
+                        print("[TIMEOUT] Still loading after timeout. Breaking loop.")
+                        break
+                    # Fall through to normal handling with current state
                 else:
-                    waited = now - loading_started_at
-                    if waited > MAX_LOADING_WAIT_SECS:
-                        print(f"[TIMEOUT] Page stuck in loading state for {int(waited)}s (>{MAX_LOADING_WAIT_SECS}s limit). Moving on.")
-                        loading_started_at = None
-                        # Force a re-observe to get whatever partial state exists
-                        obs1 = self.browser.observe_page()
-                        state1 = obs1["state"]
-                        if state1 == "loading":
-                            print("[TIMEOUT] Still loading after timeout. Breaking loop.")
-                            break
-                        # Fall through to normal handling with current state
-                    else:
-                        remaining = int(MAX_LOADING_WAIT_SECS - waited)
-                        print(f"Oboe is thinking/generating... waited {int(waited)}s so far ({remaining}s before timeout)...")
-                        time.sleep(3)
-                        continue
+                    remaining = int(MAX_LOADING_WAIT_SECS - waited)
+                    print(f"Oboe is thinking/generating... waited {int(waited)}s so far ({remaining}s before timeout)...")
+                    time.sleep(3)
+                    continue
             else:
                 # Not loading — reset the loading wall-clock
                 loading_started_at = None
@@ -352,22 +347,30 @@ class OboeAgent:
             messages = obs["messages"]
 
             # Evaluate last action (MCQ or conceptual free-text answer)
-            if (getattr(self, "last_action_was_mcq", False) or getattr(self, "last_action_was_q_answer", False)) and messages:
+            # Clear flags immediately before evaluation to prevent double-counting
+            # if the page requires multiple loop iterations to stabilize after an action.
+            was_mcq = self.last_action_was_mcq
+            was_q_answer = self.last_action_was_q_answer
+            self.last_action_was_mcq = False
+            self.last_action_was_q_answer = False
+            if (was_mcq or was_q_answer) and messages:
                 assistant_msgs = [m for m in messages if m["role"] == "assistant"]
                 if assistant_msgs:
                     oboe_reply = assistant_msgs[-1]["text"].lower()
                     wrong_indicators = ["actually", "incorrect", "wrong", "snag", "correct answer is", "close, but", "consequence of", "different", "not quite"]
                     correct_indicators = ["spot on", "correct", "perfect", "flawless", "exactly", "well done", "right", "great job", "accurate", "precisely"]
-                    
-                    if any(ind in oboe_reply for ind in correct_indicators) or not any(ind in oboe_reply for ind in wrong_indicators):
+
+                    has_correct = any(ind in oboe_reply for ind in correct_indicators)
+                    has_wrong = any(ind in oboe_reply for ind in wrong_indicators)
+
+                    if has_correct and not has_wrong:
                         self.total_mcqs_count += 1
                         print(f"\n>>> [STATS Update] Question Answer: CORRECT! <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
-                    else:
+                    elif has_wrong:
                         self.total_mcqs_count += 1
                         self.wrong_mcqs_count += 1
                         print(f"\n>>> [STATS Update] Question Answer: INCORRECT <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
-                self.last_action_was_mcq = False
-                self.last_action_was_q_answer = False
+                    # else: ambiguous response — don't count either way
 
             # Configured human reading & rate-limit pacing delay (7-20 seconds)
             if messages and messages[-1]["role"] == "assistant":
@@ -545,6 +548,7 @@ class OboeAgent:
 
                         self.active_track_topic_index = resolved["topic_index"]
                         self.topic = resolved["topic_name"]
+                        self.active_chat_start_time = time.time()  # reset timer for new sub-topic
                         self.active_track_target_skills = resolved.get("target_skills", [])
                         track_prompt = resolved["prompt"]
                         print(f"[WRAP-UP] Advancing track to topic #{self.active_track_topic_index}: '{self.topic}'")
@@ -749,8 +753,13 @@ class OboeAgent:
         # Mark pinned track topic as covered
         if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_topic_index", None) is not None:
             from curriculum import SkillDAGEngine
-            # Find the highest achieved level across all skills this session
-            max_achieved = max(self.achieved_skills.values()) if self.achieved_skills else 0
+            # Parse numeric level from "LV N" strings before taking max
+            def _parse_lv(lv_str):
+                try:
+                    return int(str(lv_str).replace("LV", "").replace("lv", "").strip())
+                except (ValueError, AttributeError):
+                    return 0
+            max_achieved = max((_parse_lv(v) for v in self.achieved_skills.values()), default=0)
             SkillDAGEngine.mark_topic_covered(self.active_track_name, self.active_track_topic_index, max_achieved)
 
         if self.achieved_skills:
@@ -769,7 +778,9 @@ class OboeAgent:
         def handle_signal(sig, frame):
             print(f"\n[INFO] Received signal {sig}. Interrupted/Cancelled. Saving session state...")
             self._final_status = "CANCELLED"
-            self.save_summary(status="CANCELLED", start_time=start_time)
+            # Do NOT call save_summary here — the finally block calls _finalize_session
+            # which calls save_summary exactly once. Calling it here would double-count
+            # the session's elapsed time in time_tracker.json.
             try:
                 self.browser.close()
             except Exception:

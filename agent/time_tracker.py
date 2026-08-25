@@ -31,11 +31,14 @@ def update_time_tracker(elapsed_time, topic):
     current_ts = time.time()
     data["sessions"].append({
         "timestamp": current_ts,
-        "duration_seconds": int(elapsed_time),
+        "duration_seconds": round(elapsed_time),  # round instead of int to avoid systematic under-count
         "topic": topic
     })
     
-    # Deduplicate concurrent/redundant sessions (same topic within 5 mins, or close timestamps within 5s)
+    # Deduplicate concurrent/redundant sessions
+    # Two separate cases:
+    # (a) same topic within 5 minutes — merge, keep earliest timestamp
+    # (b) ANY topic within 5 seconds — near-simultaneous duplicate, merge
     deduplicated = []
     for s in data["sessions"]:
         is_dup = False
@@ -44,18 +47,20 @@ def update_time_tracker(elapsed_time, topic):
         for existing in deduplicated:
             e_ts = existing.get("timestamp", 0)
             e_topic = existing.get("topic", "")
-            if abs(s_ts - e_ts) < 300 and (s_topic == e_topic or abs(s_ts - e_ts) < 5):
+            same_topic_close = (s_topic == e_topic and abs(s_ts - e_ts) < 300)
+            any_topic_very_close = (abs(s_ts - e_ts) < 5)
+            if same_topic_close or any_topic_very_close:
                 is_dup = True
-                # Retain the session record with the longer duration
+                # Retain longer duration but keep the EARLIEST timestamp as anchor
                 if s.get("duration_seconds", 0) > existing.get("duration_seconds", 0):
                     existing["duration_seconds"] = s["duration_seconds"]
-                    existing["timestamp"] = s_ts
+                    # Do NOT overwrite existing["timestamp"] — keep earliest
                 break
         if not is_dup:
             deduplicated.append(s)
     data["sessions"] = deduplicated
 
-    # Filter sessions to keep only the last 7 days (to prevent file growing indefinitely)
+    # Filter sessions to keep only the last 7 days (BEFORE writing to disk)
     one_week_ago = current_ts - (7 * 86400)
     data["sessions"] = [s for s in data["sessions"] if s.get("timestamp", 0) > one_week_ago]
     

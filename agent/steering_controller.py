@@ -23,8 +23,15 @@ class SteeringController:
 
     def update(self, messages: list, newly_leveled_target: bool):
         """Call once per turn before evaluating steering."""
+        # Guard: don't score empty/very short message history — prevents premature
+        # redirects in the first few turns before any real conversation exists.
+        if not messages:
+            self.turns_since_last_steering += 1
+            self.turns_since_last_escalation += 1
+            return
+
         # Clean messages history to a text block
-        recent_text = " ".join(m["text"].lower() for m in messages[-5:])
+        recent_text = " ".join(m["text"].lower() for m in messages[-5:] if m.get("text"))
         score = self._compute_alignment_score(recent_text)
         self.alignment_history.append(score)
         if len(self.alignment_history) > 10:

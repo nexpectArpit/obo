@@ -281,8 +281,9 @@ def classify_skill(track_name: str, skill_name: str) -> str:
                 if skill_lower in target_skills:
                     return "TARGET"
                 return "SUPPORTING"
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"[WARNING] Failed to load track '{track_lower}' for skill classification: {e}")
+                return "UNKNOWN"
         return "TARGET"
 
     return "UNKNOWN"

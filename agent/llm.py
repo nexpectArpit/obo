@@ -193,12 +193,14 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
             "content": f"Here is the recent dialogue history:\n\n{history_str}\nAvailable choices: {choices if choices else 'None'}"
         })
 
-        # Capability-aware routing: if is_direction_decision is True, look for a strong model provider first
+        # Capability-aware routing: if is_direction_decision is True, look for a strong model provider first.
+        # Save and restore the index after the call so normal rotation isn't disrupted.
         MODEL_CAPABILITIES = {
             "openai/gpt-oss-20b": "strong",
             "meta/llama-3.1-8b-instruct": "standard",
             "mistral-small-latest": "standard"
         }
+        saved_provider_idx = self.current_provider_idx
         if is_direction_decision and self.providers:
             strong_idx = next(
                 (i for i, p in enumerate(self.providers)
@@ -268,7 +270,12 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                     self.telemetry["providers"][ptype] = {"calls": 0, "tokens": 0}
                 self.telemetry["providers"][ptype]["calls"] += 1
                 self.telemetry["providers"][ptype]["tokens"] += tot_toks
-                
+
+                # Restore original provider index so direction-decision routing
+                # doesn't corrupt the rotation state for subsequent normal calls
+                if is_direction_decision:
+                    self.current_provider_idx = saved_provider_idx
+
                 print(f"\n[LLM Decision] {result.get('thought')}")
                 return result
                 
@@ -361,12 +368,10 @@ Do NOT repeat the completed topic itself. Output only a JSON object containing t
                 print(f"[LLM Related Topics] Generated: {topics}")
                 return topics
             except Exception as e:
-                err_str = str(e)
                 print(f"[WARNING] Provider '{provider['type']}' failed in generating topics: {e}")
-                if "rate_limit" in err_str.lower() or "429" in err_str or "limit exceeded" in err_str.lower():
-                    attempts += 1
-                    if attempts < max_attempts:
-                        self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
-                        continue
+                attempts += 1
+                if attempts < max_attempts:
+                    self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                    continue
                 break
         return []

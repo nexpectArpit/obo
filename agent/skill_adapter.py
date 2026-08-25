@@ -54,8 +54,15 @@ def adapt_track_target_skills(active_track_name, current_targets, learned_skills
                 # If no keyword matched, use all available skills
                 relevant_skills = list(all_skills.items())
 
-            # Sort by highest skill level descending
-            relevant_skills.sort(key=lambda x: x[1], reverse=True)
+            # Sort by highest skill level descending — normalize all values to int first
+            # to prevent TypeError when learned_skills contains mixed str/int values
+            def _to_int_level(v):
+                try:
+                    return int(str(v).replace("LV", "").replace("lv", "").strip())
+                except (ValueError, AttributeError):
+                    return 0
+
+            relevant_skills.sort(key=lambda x: _to_int_level(x[1]), reverse=True)
             
             # Pick the top 2 highest leveled skills to steer the chat
             top_targets = [sk for sk, _ in relevant_skills[:2]]
