@@ -374,6 +374,11 @@
             "timestamp": 1787668015.9812467,
             "duration_seconds": 3095,
             "topic": "Machine Learning"
+        },
+        {
+            "timestamp": 1787676388.8341413,
+            "duration_seconds": 3238,
+            "topic": "Memoization with Tabulation in Dynamic Programming"
         }
     ]
 }

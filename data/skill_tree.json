@@ -586,7 +586,11 @@
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
             "name": "Memoization with Tabulation",
             "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-            "children": [],
+            "children": [
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems"
+            ],
             "mastery_level": 10,
             "evidence": {
                 "concepts_covered": 9,
@@ -673,6 +677,54 @@
             "id": "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning",
             "name": "Gradient Descent Optimizer Hyperparameter Tuning",
             "parent": "ds.machine_learning",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming",
+            "name": "Memoization with Tabulation in Dynamic Programming",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 7,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "t)c(s,t)?cp-algorithms.com",
+                    "memory.illinois.edu",
+                    "edges.cp-algorithms.com",
+                    "optimized",
+                    "optimization",
+                    "algorithmic"
+                ],
+                "unique_concepts_count": 6
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
+            "name": "Tabulation-based Memoization with Recursion",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems",
+            "name": "Memoization with Tabulation for Combinatorial Problems",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
             "children": [],
             "mastery_level": 1,
             "evidence": {
