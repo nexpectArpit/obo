@@ -37,7 +37,7 @@
                 "os.kernel",
                 "os.concurrency"
             ],
-            "mastery_level": 1,
+            "mastery_level": 15,
             "evidence": {}
         },
         "dl": {
@@ -134,8 +134,37 @@
             "name": "Kernel",
             "parent": "os",
             "children": [],
-            "mastery_level": 1,
-            "evidence": {}
+            "mastery_level": 10,
+            "evidence": {
+                "concepts_covered": 115,
+                "unique_concepts_list": [
+                    "thread?ac.cr",
+                    "backing",
+                    "optimal",
+                    "degradation",
+                    "algorithmic",
+                    "memory",
+                    "algorithm",
+                    "optimize",
+                    "threads",
+                    "cross-layer",
+                    "algorithms",
+                    "degrading",
+                    "optimizations",
+                    "production-grade",
+                    "thread",
+                    "multi-threaded",
+                    "computational",
+                    "optimization",
+                    "threading",
+                    "computation",
+                    "layer",
+                    "back"
+                ],
+                "unique_concepts_count": 22,
+                "successful_assessments": 8
+            },
+            "status": "MASTERED"
         },
         "os.concurrency": {
             "id": "os.concurrency",

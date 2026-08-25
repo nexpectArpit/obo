@@ -46,7 +46,19 @@
                 "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value": 1787644755.083857
             },
             "branch_status": "IN_PROGRESS"
+        },
+        "os": {
+            "active_branch": [
+                "os",
+                "os.kernel"
+            ],
+            "current_node": "os.kernel",
+            "last_good_node": "os",
+            "branch_attempts": 0,
+            "consecutive_stalls": 0,
+            "last_backtrack_at": {},
+            "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "maths"
+    "active_anchor": "os"
 }
