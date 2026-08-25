@@ -20,7 +20,7 @@
     "Algorithms": 15,
     "Code Tracing": 2,
     "Data Structures": 4,
-    "Algebra": 5,
+    "Algebra": 7,
     "Algorithm Analysis": 1,
     "Python": 1,
     "Cache Hierarchy": 3,
@@ -137,7 +137,7 @@
     "Numerical Analysis": 1,
     "Statistical Error Analysis": 2,
     "Perceptrons": 2,
-    "Hypothesis Testing": 3,
+    "Hypothesis Testing": 4,
     "Inferential Statistics": 1,
     "Parametric Statistics": 2,
     "Statistics": 1,
@@ -198,9 +198,10 @@
     "Binary Search Trees": 1,
     "Tree Traversal": 1,
     "Nonparametric Statistics": 1,
-    "Linear Equations": 1,
+    "Linear Equations": 3,
     "KMP Algorithm": 1,
     "Z-Algorithm": 1,
     "Regularization": 1,
-    "LSTM Networks": 1
+    "LSTM Networks": 1,
+    "P-Value Interpretation": 1
 }

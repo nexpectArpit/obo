@@ -5,9 +5,10 @@
                 "maths",
                 "maths.algebra",
                 "maths.algebra.linear_equations_with_two_variables",
-                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane"
+                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
+                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation"
             ],
-            "current_node": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
+            "current_node": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation",
             "last_good_node": "maths",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -47,5 +48,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "maths"
 }
