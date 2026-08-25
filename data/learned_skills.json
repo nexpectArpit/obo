@@ -176,7 +176,7 @@
     "Utility Theory": 1,
     "Backtracking": 1,
     "Recursion": 1,
-    "Gradient Clipping": 1,
+    "Gradient Clipping": 2,
     "Binary Search": 1,
     "Range Queries": 1,
     "Disjoint-Set Data Structure": 1,
@@ -187,7 +187,7 @@
     "Group Theory": 1,
     "Residual Networks": 2,
     "Kernel Fusion": 2,
-    "Weight Initialization": 1,
+    "Weight Initialization": 2,
     "Vanishing Gradients": 1,
     "Distributed Training": 1,
     "Parallel Computing": 1,
@@ -200,5 +200,6 @@
     "Nonparametric Statistics": 1,
     "Linear Equations": 1,
     "KMP Algorithm": 1,
-    "Z-Algorithm": 1
+    "Z-Algorithm": 1,
+    "Regularization": 1
 }
