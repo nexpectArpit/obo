@@ -56,6 +56,11 @@ class OboeAgent:
         self.newly_leveled_target_this_turn = False
         self.steering_controller = None
 
+        # session_skills: ALL skills seen on-screen this session (regardless of level-up or classification)
+        # This is the source of truth for "what skills did Oboe show during this session"
+        # Separate from achieved_skills (which is curriculum-filtered level-ups only)
+        self.session_skills = {}
+
 
         
         # Load learned skills history
@@ -125,6 +130,8 @@ class OboeAgent:
                 "today_ist_minutes": today_m,
                 "total_today_ist_seconds": int(today_ist_sec),
                 "achieved_skills": self.achieved_skills or {},
+                "session_skills": self.session_skills or {},
+                "side_skills": self.side_skills or {},
                 "telemetry": getattr(self.llm, "telemetry", {}),
                 "last_session": {
                     "topic": self.topic or "Unknown",
@@ -136,6 +143,8 @@ class OboeAgent:
                     "today_ist_minutes": today_m,
                     "total_today_ist_seconds": int(today_ist_sec),
                     "achieved_skills": self.achieved_skills or {},
+                    "session_skills": self.session_skills or {},
+                    "side_skills": self.side_skills or {},
                     "telemetry": getattr(self.llm, "telemetry", {})
                 }
             }
@@ -388,14 +397,22 @@ class OboeAgent:
                         new_lv = int(lv_str.replace("LV", "").strip())
                     except ValueError:
                         new_lv = 0
+
+                    # Always record every skill seen on-screen this session at its current level
+                    # (even if not a level-up — this is the full picture of what Oboe showed)
+                    existing_session_lv = self.session_skills.get(skill, 0)
+                    if new_lv >= existing_session_lv:
+                        self.session_skills[skill] = f"LV {new_lv}"
+
                     current_max = self.learned_skills.get(skill, 0)
                     if new_lv > current_max:
+                        # Genuine level-up: update long-term memory
                         self.learned_skills[skill] = new_lv
-                        
+
                         from agent.curriculum_policy import classify_skill
                         track_name = self.active_track_name or self.pin or "maths"
                         cls = classify_skill(track_name, skill)
-                        
+
                         if cls in ("TARGET", "SUPPORTING"):
                             self.achieved_skills[skill] = f"LV {new_lv}"
                             print(f"\n>>> [ACHIEVEMENT] Skill Level Up: {skill} -> LV {new_lv}! [{cls}] <<<\n")
@@ -407,6 +424,14 @@ class OboeAgent:
                         else:
                             self.side_skills[skill] = f"LV {new_lv}"
                             print(f"\n>>> [UNKNOWN SKILL] {skill} -> LV {new_lv} [{cls}] (excluded from curriculum) <<<\n")
+                    else:
+                        # Not a level-up but still active on screen — log it at existing level
+                        from agent.curriculum_policy import classify_skill
+                        track_name = self.active_track_name or self.pin or "maths"
+                        cls = classify_skill(track_name, skill)
+                        if cls == "SIDE":
+                            self.side_skills[skill] = lv_str
+                        print(f"[SKILL] Active on screen (no level-up): {skill} = {lv_str} [{cls}]")
 
             # Phase 11.5: Mastery Evidence Engine turn tracking
             if config.SKILL_DEPTH_MODE and messages:
