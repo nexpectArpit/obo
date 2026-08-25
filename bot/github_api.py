@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from datetime import datetime, timezone
 from pathlib import Path
@@ -63,6 +64,17 @@ def get_run_jobs(run_id):
     if r.status_code == 200:
         return r.json().get("jobs", [])
     return []
+
+def get_file_json(path_in_repo):
+    """Fetch a JSON file directly from the repo (always latest, bypasses local stale copy)."""
+    import base64
+    url = f"{GH_API}/contents/{path_in_repo}"
+    r = requests.get(url, headers=gh_headers())
+    if r.status_code == 200:
+        content = r.json().get("content", "")
+        decoded = base64.b64decode(content).decode("utf-8")
+        return json.loads(decoded)
+    return None
 
 def format_elapsed(started_at_str, ended_at_str=None):
     try:

@@ -114,15 +114,25 @@ def main_menu_keyboard():
     ])
 
 def tracks_menu_keyboard():
-    # Load current skill levels
+    # Fetch latest skill levels from GitHub repo (not local stale file)
     skills = {}
-    skills_path = Path(__file__).resolve().parent.parent / "data" / "learned_skills.json"
-    if skills_path.exists():
-        try:
-            with open(skills_path, "r") as f:
-                skills = json.load(f)
-        except Exception:
-            pass
+    try:
+        from bot.github_api import get_file_json
+        remote_skills = get_file_json("data/learned_skills.json")
+        if remote_skills:
+            skills = remote_skills
+    except Exception:
+        pass
+
+    # Fallback to local disk if GitHub fetch fails
+    if not skills:
+        skills_path = Path(__file__).resolve().parent.parent / "data" / "learned_skills.json"
+        if skills_path.exists():
+            try:
+                with open(skills_path, "r") as f:
+                    skills = json.load(f)
+            except Exception:
+                pass
 
     def btn_text(label, track_key):
         mappings = TRACK_SKILL_MAP.get(track_key, [])
