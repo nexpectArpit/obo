@@ -212,8 +212,11 @@ class OboeLLM:
         if target_skill and target_level:
             target_context = f"\nPRIMARY DIRECTIVE: Your objective for this session is to demonstrate mastery of the '{target_skill}' skill at Level {target_level}.\nSteer the conversation and formulate responses that show your depth of knowledge in this area. If writing free_text, make sure to request/prompt for advanced concepts or complex math related to this topic in a natural, curious human way.\n"
 
+        # Resolve primary target name for anchor phrases in free_text responses
+        primary_target = target_skill or (target_skills[0] if target_skills else "this topic")
+
         if target_skills:
-            target_context += f"\nSEMANTIC FOCUS DIRECTIVE: Shape the vocabulary, mathematical concepts, and reasoning style of your response to implicitly demonstrate depth in the following target areas: {', '.join(target_skills)}.\nDo NOT explicitly mention the names of these target skills in your response. Instead, naturally steer explanations to cover domains, trade-offs, and complexities characteristic of these skills.\n"
+            target_context += f"\nSEMANTIC FOCUS DIRECTIVE: Shape the vocabulary, mathematical concepts, and reasoning style of your response to demonstrate depth in the following target areas: {', '.join(target_skills)}.\nYou MAY naturally name these skills when anchoring Oboe's next question (e.g. 'can you give me another {primary_target} problem?'). Steer explanations to cover trade-offs and complexities characteristic of these skills.\n"
 
         if preferred_choices:
             target_context += f"\nPREFERRED CHOICES: The following options most directly advance your learning target: {preferred_choices}.\nIf any of these options appear in your choices, select from this set first.\n"
@@ -226,6 +229,7 @@ CRITICAL IDENTITY RULES:
 {skills_context}
 {target_context}
 Current page state: {state}
+Primary target skill for this session: {primary_target}
 
 INSTRUCTIONS FOR SELECTING THE CORRECT OPTION (suggested_replies):
 1. **Analyze Every Option:** You must carefully read and evaluate each choice in `choices`.
@@ -239,9 +243,16 @@ INSTRUCTIONS FOR WRITING FREE TEXT RESPONSES (free_text):
    - Creator Motivation / Problem Intuition (Why was this approach invented? What original flaw did it solve?)
    - Edge Cases & Failure Modes (Where does it break or run into edge test cases?)
    - Alternative Trade-offs (Why choose this over competing approaches?)
-2. **Context-Aware Follow-Up & Target Skill Probing**: 
-   - If Oboe's latest message ALREADY ends with a question or test prompt, answer/rephrase it directly with technical precision. Do NOT append "can you ask me a question to test me?" when Oboe has already asked one.
-   - If Oboe's latest message did NOT ask a question, ask Oboe to test you on a challenging scenario specifically probing the target skills (e.g., "got it, that makes sense... can you challenge me with a tough problem testing the {', '.join(target_skills) if target_skills else 'core problem solving'} aspects of this?").
+2. **Context-Aware Follow-Up & Target Skill Anchoring (CRITICAL — prevents topic drift)**:
+   - If Oboe's latest message ALREADY ends with a question or test prompt: answer it directly with technical precision, then ALWAYS close with a short anchor sentence that pulls the NEXT question back to the target skill. Example: "...got it. can you give me another one specifically on {primary_target}? maybe with a harder edge case?"
+   - If Oboe's latest message did NOT ask a question: explicitly ask Oboe to test you with a challenging question SPECIFICALLY naming the target skill. E.g. "that makes sense... can you challenge me with a tough {primary_target} problem, something with an edge case i have to trace through?"
+   - NEVER end a free_text response with just a generic "ask me something" or "test me" without naming the target skill. Generic asks give Oboe freedom to drift to unrelated topics.
+   - The anchor phrase must name the target skill directly and naturally, woven into your student voice. Vary the phrasing each turn to avoid pattern detection.
+   - Example anchor phrases (vary these naturally, replace TARGET_SKILL with the actual primary target skill):
+     * "...want to stay focused on TARGET_SKILL — can you hit me with a harder one on that?"
+     * "...anyway, keep the questions on TARGET_SKILL for now, i feel like i'm getting it"
+     * "...can you give me another TARGET_SKILL question? specifically one that tests [edge case]?"
+     * "...still want to drill TARGET_SKILL more, can you keep going on that?"
 3. **Conversational Styling, Pauses & Typos:** Maintain your student persona. Write informally with casual lowercase/plain text, brief sentences, natural pauses (`...`), and occasional realistic minor typos (e.g., "realy", "so basicly...", "got it..."). NEVER use em-dashes (`—` or `--`), bullet points, or AI-style formal punctuation. Write like a real student quickly typing in a chat window.
 
 
