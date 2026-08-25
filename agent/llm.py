@@ -1,9 +1,14 @@
 import os
 import json
+import time
+import hashlib
 from pathlib import Path
 from groq import Groq
 from openai import OpenAI
 import config
+
+# Path for persistent rate limit tracking
+LIMITS_FILE = Path(__file__).resolve().parent.parent / "data" / "provider_limits.json"
 
 class OboeLLM:
     def __init__(self):
@@ -11,28 +16,31 @@ class OboeLLM:
         self.providers = []
         
         # 1. Primary: Groq (GPT-OSS-20B)
-        for key in config.GROQ_API_KEYS:
+        for idx, key in enumerate(config.GROQ_API_KEYS):
             self.providers.append({
                 "type": "groq",
                 "api_key": key,
+                "key_index": idx,
                 "complex_model": "openai/gpt-oss-20b",
                 "simple_model": "openai/gpt-oss-20b"
             })
 
         # 2. Secondary: Nvidia
-        for key in config.NVIDIA_API_KEYS:
+        for idx, key in enumerate(config.NVIDIA_API_KEYS):
             self.providers.append({
                 "type": "nvidia",
                 "api_key": key,
+                "key_index": idx,
                 "complex_model": "meta/llama-3.1-8b-instruct",
                 "simple_model": "meta/llama-3.1-8b-instruct"
             })
 
         # 3. Fallback: Mistral (mistral-small-latest)
-        for key in config.MISTRAL_API_KEYS:
+        for idx, key in enumerate(config.MISTRAL_API_KEYS):
             self.providers.append({
                 "type": "mistral",
                 "api_key": key,
+                "key_index": idx,
                 "complex_model": "mistral-small-latest",
                 "simple_model": "mistral-small-latest"
             })
@@ -40,6 +48,88 @@ class OboeLLM:
         self.current_provider_idx = 0
         if not self.providers:
             print("[WARNING] No Groq, Nvidia, or Mistral API Keys configured.")
+        
+        # Load rate limit state
+        self.rate_limits = self._load_rate_limits()
+    
+    def _get_key_hash(self, api_key):
+        """Create a short hash for API key identification (never log full keys)."""
+        return hashlib.md5(api_key.encode()).hexdigest()[:8]
+    
+    def _load_rate_limits(self):
+        """Load persistent rate limit state from disk."""
+        try:
+            if LIMITS_FILE.exists():
+                return json.loads(LIMITS_FILE.read_text())
+        except Exception as e:
+            print(f"[WARNING] Could not load rate limits: {e}")
+        return {}
+    
+    def _save_rate_limits(self):
+        """Persist rate limit state to disk."""
+        try:
+            LIMITS_FILE.write_text(json.dumps(self.rate_limits, indent=2))
+        except Exception as e:
+            print(f"[WARNING] Could not save rate limits: {e}")
+    
+    def _is_provider_blocked(self, provider):
+        """Check if a provider is currently blocked due to rate limit."""
+        ptype = provider["type"]
+        key_hash = self._get_key_hash(provider["api_key"])
+        key_id = f"{ptype}_{key_hash}"
+        
+        if key_id not in self.rate_limits:
+            return False
+        
+        blocked_until = self.rate_limits[key_id].get("blocked_until")
+        if blocked_until is None:
+            return False
+        
+        # Check if 24 hours have passed
+        if time.time() < blocked_until:
+            remaining_hours = (blocked_until - time.time()) / 3600
+            print(f"[RATE_LIMIT] Provider {ptype} ({key_hash}) blocked for {remaining_hours:.1f} more hours")
+            return True
+        else:
+            # Block expired, clear it
+            del self.rate_limits[key_id]
+            self._save_rate_limits()
+            print(f"[RATE_LIMIT] Provider {ptype} ({key_hash}) block expired, now available")
+            return False
+    
+    def _mark_provider_blocked(self, provider, error_msg="rate limit"):
+        """Mark a provider as blocked for 24 hours."""
+        ptype = provider["type"]
+        key_hash = self._get_key_hash(provider["api_key"])
+        key_id = f"{ptype}_{key_hash}"
+        
+        # Block for 24 hours
+        blocked_until = time.time() + (24 * 60 * 60)
+        
+        self.rate_limits[key_id] = {
+            "blocked_until": blocked_until,
+            "blocked_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "error": error_msg[:200]  # Truncate long error messages
+        }
+        self._save_rate_limits()
+        
+        print(f"[RATE_LIMIT] Provider {ptype} ({key_hash}) BLOCKED for 24 hours: {error_msg[:100]}")
+    
+    def _is_rate_limit_error(self, error):
+        """Detect if an error is a rate limit error."""
+        error_str = str(error).lower()
+        rate_limit_indicators = [
+            "rate limit",
+            "too many requests",
+            "quota exceeded",
+            "429",
+            "requests per",
+            "limit reached",
+            "throttl",
+            "please wait",
+            "retry after"
+        ]
+        return any(ind in error_str for ind in rate_limit_indicators)
             
         # Telemetry tracking (compact aggregate counters)
         self.telemetry = {
@@ -217,6 +307,13 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
         max_attempts = len(self.providers)
         while attempts < max_attempts:
             provider = self.providers[self.current_provider_idx]
+            
+            # Skip if provider is blocked due to rate limit
+            if self._is_provider_blocked(provider):
+                attempts += 1
+                self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                continue
+            
             try:
                 client = self._get_client_for_provider(provider)
             except ValueError as ve:
@@ -283,8 +380,12 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                 return result
                 
             except Exception as e:
+                error_str = str(e)
                 print(f"[WARNING] Provider '{provider['type']}' failed: {e}")
 
+                # Check if this is a rate limit error
+                if self._is_rate_limit_error(e):
+                    self._mark_provider_blocked(provider, error_str)
                 # Trigger failover on ANY exception to guarantee session continuation
                 attempts += 1
                 if attempts < max_attempts:
@@ -294,6 +395,14 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
                     if is_direction_decision:
                         saved_provider_idx = self.current_provider_idx
                     next_prov = self.providers[self.current_provider_idx]
+                    # Skip blocked providers
+                    while self._is_provider_blocked(next_prov) and attempts < max_attempts - 1:
+                        attempts += 1
+                        self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                        next_prov = self.providers[self.current_provider_idx]
+                        if is_direction_decision:
+                            saved_provider_idx = self.current_provider_idx
+                    
                     masked_key = next_prov["api_key"][:8] + "..." + next_prov["api_key"][-4:] if len(next_prov["api_key"]) > 12 else "..."
                     print(f"[INFO] Failover triggered! Rotating to provider: '{next_prov['type']}' ({next_prov['complex_model']}) with Key ({masked_key})...")
                     continue
@@ -347,6 +456,13 @@ Do NOT repeat the completed topic itself. Output only a JSON object containing t
         max_attempts = len(self.providers)
         while attempts < max_attempts:
             provider = self.providers[self.current_provider_idx]
+            
+            # Skip if provider is blocked due to rate limit
+            if self._is_provider_blocked(provider):
+                attempts += 1
+                self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                continue
+            
             try:
                 client = self._get_client_for_provider(provider)
             except ValueError as ve:
@@ -380,7 +496,13 @@ Do NOT repeat the completed topic itself. Output only a JSON object containing t
                 print(f"[LLM Related Topics] Generated: {topics}")
                 return topics
             except Exception as e:
+                error_str = str(e)
                 print(f"[WARNING] Provider '{provider['type']}' failed in generating topics: {e}")
+                
+                # Check if this is a rate limit error
+                if self._is_rate_limit_error(e):
+                    self._mark_provider_blocked(provider, error_str)
+                
                 attempts += 1
                 if attempts < max_attempts:
                     self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
