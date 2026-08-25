@@ -281,7 +281,13 @@ class OboeAgent:
 
     def _run_interaction_loop(self, start_time):
         """Core observe-reason-act loop. Returns when session ends."""
-        consecutive_loadings = 0
+        # Wall-clock timeout for loading state: if Oboe keeps loading for more than
+        # 8 minutes continuously, bail out of that wait and move on.
+        # This replaces the old consecutive_loadings counter which could reset on
+        # DOM flickers, trapping the agent for entire sessions (run-96 bug: 3 calls / 51 min).
+        MAX_LOADING_WAIT_SECS = 8 * 60  # 8 minutes
+        loading_started_at = None       # wall-clock time loading began
+
         while True:
             if self.max_duration and (time.time() - start_time) > (self.max_duration * 60):
                 print(f"\n[DURATION LIMIT] Session has reached the maximum duration of {self.max_duration} minutes. Exiting loop cleanly.")
@@ -295,17 +301,34 @@ class OboeAgent:
             state1 = obs1["state"]
 
             if state1 == "loading":
-                consecutive_loadings += 1
-                if consecutive_loadings > 30:
-                    print("Page stuck in loading state for too long. Exiting.")
-                    break
-                print("Oboe is thinking/generating... waiting 3 seconds...")
-                time.sleep(3)
-                continue
+                now = time.time()
+                if loading_started_at is None:
+                    loading_started_at = now
+                    print("Oboe is thinking/generating... waiting 3 seconds...")
+                else:
+                    waited = now - loading_started_at
+                    if waited > MAX_LOADING_WAIT_SECS:
+                        print(f"[TIMEOUT] Page stuck in loading state for {int(waited)}s (>{MAX_LOADING_WAIT_SECS}s limit). Moving on.")
+                        loading_started_at = None
+                        # Force a re-observe to get whatever partial state exists
+                        obs1 = self.browser.observe_page()
+                        state1 = obs1["state"]
+                        if state1 == "loading":
+                            print("[TIMEOUT] Still loading after timeout. Breaking loop.")
+                            break
+                        # Fall through to normal handling with current state
+                    else:
+                        remaining = int(MAX_LOADING_WAIT_SECS - waited)
+                        print(f"Oboe is thinking/generating... waited {int(waited)}s so far ({remaining}s before timeout)...")
+                        time.sleep(3)
+                        continue
+            else:
+                # Not loading — reset the loading wall-clock
+                loading_started_at = None
 
-            # Ensure page is stable (Oboe finished typing)
-            print("Waiting 5 seconds to verify page stability...")
-            time.sleep(5)
+            # Ensure page is stable (Oboe finished typing) — 2s is enough, 5s wastes ~4min/session
+            print("Waiting 2 seconds to verify page stability...")
+            time.sleep(2)
             obs2 = self.browser.observe_page()
             state2 = obs2["state"]
 
@@ -414,8 +437,6 @@ class OboeAgent:
                 print("Last message was from user. Waiting for Oboe to reply...")
                 time.sleep(3)
                 continue
-
-            consecutive_loadings = 0
 
             if state == "suggested_replies":
                 print(f"Available options: {choices}")
