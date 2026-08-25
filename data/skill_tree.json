@@ -303,7 +303,11 @@
             "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
             "name": "Finding the x and y Intercepts of Linear Equations with Two Variables",
             "parent": "maths.algebra.linear_equations_with_two_variables",
-            "children": [],
+            "children": [
+                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method",
+                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts",
+                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -844,6 +848,47 @@
             "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function",
             "name": "Numerical Gradient Check for ReLU Activation Function",
             "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method": {
+            "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method",
+            "name": "Finding the x-Intercept of Linear Equations with Two Variables using the Zero y-Value Method",
+            "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts": {
+            "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts",
+            "name": "Graphical Analysis of Linear Equations to Locate the x and y Intercepts",
+            "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations": {
+            "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations",
+            "name": "Applying the Slope-Intercept Form to Identify the y-Intercept of Linear Equations",
+            "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
             "children": [],
             "mastery_level": 1,
             "evidence": {
