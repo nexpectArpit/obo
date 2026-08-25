@@ -20,8 +20,8 @@
         },
         "Virtual_Memory": {
           "topic": "Virtual Memory Paging and TLB Management",
-          "level": 2,
-          "target_level": 3,
+          "level": 4,
+          "target_level": 5,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
@@ -201,9 +201,9 @@
         },
         "Concurrency_Primitives": {
           "topic": "Lock-Free Concurrency Primitives and Atomic Memory Barriers",
-          "level": 1,
-          "target_level": 2,
-          "status": "blocked",
+          "level": 3,
+          "target_level": 4,
+          "status": "mastered",
           "attempts": 0,
           "prerequisites": [
             "Thread_Synchronization"
@@ -218,7 +218,7 @@
           "topic": "Linux Kernel CFS Scheduler and eBPF Tracing",
           "level": 1,
           "target_level": 2,
-          "status": "blocked",
+          "status": "available",
           "attempts": 0,
           "prerequisites": [
             "System_Calls",

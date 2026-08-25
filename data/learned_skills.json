@@ -80,7 +80,7 @@
     "Bitwise Operations": 1,
     "Difference Arrays": 3,
     "Prefix Sums": 3,
-    "Backpropagation": 9,
+    "Backpropagation": 10,
     "Monotonic Stack": 1,
     "Processor Design": 1,
     "Sequential Logic": 1,
@@ -202,7 +202,7 @@
     "KMP Algorithm": 1,
     "Z-Algorithm": 1,
     "Regularization": 1,
-    "LSTM Networks": 1,
+    "LSTM Networks": 2,
     "P-Value Interpretation": 1,
     "Process Management": 2,
     "Demand Paging": 2,
@@ -215,5 +215,6 @@
     "CPU Scheduling": 1,
     "Semaphores": 1,
     "Deadlock Management": 1,
-    "Memory Fragmentation": 1
+    "Memory Fragmentation": 1,
+    "Gated Recurrent Units": 1
 }
