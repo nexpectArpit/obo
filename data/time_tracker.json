@@ -349,6 +349,11 @@
             "timestamp": 1787624845.637206,
             "duration_seconds": 3212,
             "topic": "Gradient Clipping with Value"
+        },
+        {
+            "timestamp": 1787647556.650704,
+            "duration_seconds": 2817,
+            "topic": "Vanishing Gradient Problem in Recurrent Neural Networks"
         }
     ]
 }
