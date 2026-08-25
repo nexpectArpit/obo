@@ -319,6 +319,11 @@ class OboeAgent:
                     obs1 = self.browser.observe_page()
                     state1 = obs1["state"]
                     if state1 == "loading":
+                        elapsed_so_far = time.time() - start_time
+                        if elapsed_so_far < self._min_session_seconds:
+                            print(f"[TIMEOUT] Still loading but only {int(elapsed_so_far/60)}m elapsed (min {int(self._min_session_seconds/60)}m). Waiting instead of breaking...")
+                            time.sleep(10)
+                            continue
                         print("[TIMEOUT] Still loading after timeout. Breaking loop.")
                         break
                     # Fall through to normal handling with current state
@@ -613,10 +618,19 @@ class OboeAgent:
 
 
             else:
-                # Unknown state (perhaps course completed or error)
+                # Unknown state — page has no interactive elements.
+                # Could be a brief transition, loading gap, or genuine session end.
+                # Never break before the minimum session floor has elapsed.
+                elapsed_so_far = time.time() - start_time
+                if elapsed_so_far < self._min_session_seconds:
+                    remaining_min = int((self._min_session_seconds - elapsed_so_far) / 60)
+                    print(f"[UNKNOWN STATE] Only {int(elapsed_so_far/60)}m elapsed, minimum is {int(self._min_session_seconds/60)}m. Waiting {remaining_min}m more before considering exit...")
+                    time.sleep(10)
+                    continue
+
                 print("Unknown or finished state. Waiting 5 seconds to observe any changes...")
                 time.sleep(5)
-                # Check again, if still unknown, stop.
+                # Check again — only break if still unknown after re-observation
                 new_state = self.browser.get_interaction_state()
                 if new_state == "unknown":
                     print("No interactive elements found. Task complete.")
