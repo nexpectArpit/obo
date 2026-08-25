@@ -18,9 +18,10 @@
             "active_branch": [
                 "cpp",
                 "cpp.dynamic_programming",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems"
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation"
             ],
-            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -43,5 +44,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "maths"
+    "active_anchor": "cpp"
 }

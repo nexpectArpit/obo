@@ -17,7 +17,7 @@
                 "cpp.dynamic_programming",
                 "cpp.algorithms"
             ],
-            "mastery_level": 1,
+            "mastery_level": 15,
             "evidence": {}
         },
         "ds": {
@@ -473,7 +473,11 @@
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
             "name": "Memoization with Overlapping Subproblems",
             "parent": "cpp.dynamic_programming",
-            "children": [],
+            "children": [
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -503,6 +507,54 @@
             "id": "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions",
             "name": "Optimal Substructure and Overlapping Subproblems in Recursive Solutions",
             "parent": "cpp.dynamic_programming",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+            "name": "Memoization with Tabulation",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "children": [],
+            "mastery_level": 10,
+            "evidence": {
+                "concepts_covered": 9,
+                "successful_assessments": 8,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "z-algorithm",
+                    "computer",
+                    "optimizations",
+                    "algorithmic",
+                    "computational",
+                    "academic-grade"
+                ],
+                "unique_concepts_count": 6
+            },
+            "status": "MASTERED"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+            "name": "Optimizing Recursive Function Calls with Memoization",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
+            "name": "Caching Results with a Hash Table in Memoization",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
             "children": [],
             "mastery_level": 1,
             "evidence": {

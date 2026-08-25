@@ -339,6 +339,11 @@
             "timestamp": 1787615714.2869933,
             "duration_seconds": 439,
             "topic": "Graphing Linear Equations with Two Variables on a Coordinate Plane"
+        },
+        {
+            "timestamp": 1787620993.3335938,
+            "duration_seconds": 4640,
+            "topic": "Memoization with Tabulation"
         }
     ]
 }
