@@ -297,12 +297,13 @@ def get_domain_keywords(track_name: str, tier: str = "all", target_skill: str = 
     Return lists of keywords for steering alignment checks.
     """
     track_lower = (track_name or "").lower()
+
+    # ── maths ──────────────────────────────────────────────────────────────
     if track_lower == "maths":
         if target_skill:
             target_clean = target_skill.lower().strip()
             kws = TARGET_SKILLS_KEYWORDS.get(target_clean)
             if not kws:
-                # partial match fallback
                 matched_key = next((k for k in TARGET_SKILLS_KEYWORDS.keys() if k in target_clean or target_clean in k), None)
                 if matched_key:
                     kws = TARGET_SKILLS_KEYWORDS[matched_key]
@@ -331,4 +332,116 @@ def get_domain_keywords(track_name: str, tier: str = "all", target_skill: str = 
         if tier == "close":
             return close
         return direct + close
+
+    # ── cpp ────────────────────────────────────────────────────────────────
+    if track_lower == "cpp":
+        direct = [
+            "dynamic programming", "memoization", "tabulation", "dp",
+            "algorithm", "algorithms", "data structure", "graph",
+            "binary search", "segment tree", "fenwick tree", "trie",
+            "shortest path", "dijkstra", "floyd", "backtracking",
+            "recursion", "greedy", "bitmask", "knapsack", "lcs", "lis",
+            "disjoint set", "dsu", "union find", "monotonic stack",
+            "sliding window", "two pointers", "prefix sum", "suffix array",
+            "string hashing", "kmp", "z-algorithm", "convex hull",
+            "topological sort", "strongly connected", "max flow", "network flow"
+        ]
+        close = [
+            "complexity", "time complexity", "space complexity", "big o",
+            "amortized", "recurrence", "subproblem", "optimal substructure",
+            "overlapping subproblems", "tree", "heap", "priority queue",
+            "hash map", "hash table", "sorting", "merge sort", "quicksort",
+            "competitive programming", "cp", "coding contest"
+        ]
+        if tier == "direct":
+            return direct
+        if tier == "close":
+            return close
+        return direct + close
+
+    # ── dl ─────────────────────────────────────────────────────────────────
+    if track_lower == "dl":
+        direct = [
+            "optimization", "second-order optimization", "gradient descent",
+            "backpropagation", "neural network", "deep learning", "loss function",
+            "activation function", "weight initialization", "batch normalization",
+            "dropout", "regularization", "vanishing gradient", "exploding gradient",
+            "gradient clipping", "learning rate", "adam", "sgd", "rmsprop",
+            "transformer", "attention", "lstm", "rnn", "cnn", "convolution",
+            "residual network", "skip connection"
+        ]
+        close = [
+            "epoch", "training", "inference", "overfitting", "underfitting",
+            "generalization", "cross entropy", "softmax", "relu", "sigmoid",
+            "perceptron", "mlp", "dense layer", "forward pass", "backward pass",
+            "chain rule", "jacobian", "hessian", "newton method", "quasi-newton",
+            "machine learning", "model", "parameter", "weight", "bias"
+        ]
+        if tier == "direct":
+            return direct
+        if tier == "close":
+            return close
+        return direct + close
+
+    # ── os ─────────────────────────────────────────────────────────────────
+    if track_lower == "os":
+        direct = [
+            "kernel", "process", "thread", "scheduling", "context switch",
+            "system call", "syscall", "virtual memory", "paging", "segmentation",
+            "page table", "tlb", "memory management", "file system", "inode",
+            "mutex", "semaphore", "deadlock", "concurrency", "synchronization",
+            "interrupt", "trap", "user space", "kernel space", "fork", "exec"
+        ]
+        close = [
+            "cpu", "cache", "memory", "disk", "i/o", "buffer", "pipe",
+            "socket", "signal", "race condition", "critical section",
+            "monitor", "condition variable", "spinlock", "priority",
+            "preemption", "round robin", "scheduling algorithm"
+        ]
+        if tier == "direct":
+            return direct
+        if tier == "close":
+            return close
+        return direct + close
+
+    # ── arch ───────────────────────────────────────────────────────────────
+    if track_lower == "arch":
+        direct = [
+            "instruction set", "isa", "pipeline", "cache", "memory hierarchy",
+            "branch prediction", "out-of-order execution", "superscalar",
+            "memory system", "hbm", "dram", "sram", "cache coherence",
+            "mesi", "bus", "interconnect", "cpu", "gpu", "fpga",
+            "von neumann", "harvard architecture", "risc", "cisc"
+        ]
+        close = [
+            "latency", "throughput", "bandwidth", "memory bandwidth",
+            "clock cycle", "instruction", "register", "alu", "fetch decode execute",
+            "compiler", "assembly", "microarchitecture", "chiplet", "die"
+        ]
+        if tier == "direct":
+            return direct
+        if tier == "close":
+            return close
+        return direct + close
+
+    # ── ds (data science) ──────────────────────────────────────────────────
+    if track_lower == "ds":
+        direct = [
+            "machine learning", "statistics", "probability", "regression",
+            "classification", "clustering", "decision tree", "random forest",
+            "gradient boosting", "pandas", "numpy", "data analysis",
+            "feature engineering", "cross validation", "hypothesis test",
+            "p-value", "confidence interval", "distribution"
+        ]
+        close = [
+            "data", "dataset", "model", "training", "prediction", "accuracy",
+            "precision", "recall", "f1", "roc", "auc", "confusion matrix",
+            "normalization", "standardization", "dimensionality reduction", "pca"
+        ]
+        if tier == "direct":
+            return direct
+        if tier == "close":
+            return close
+        return direct + close
+
     return []
