@@ -59,7 +59,19 @@
             "consecutive_stalls": 0,
             "last_backtrack_at": {},
             "branch_status": "IN_PROGRESS"
+        },
+        "ds": {
+            "active_branch": [
+                "ds",
+                "ds.machine_learning"
+            ],
+            "current_node": "ds.machine_learning",
+            "last_good_node": "ds",
+            "branch_attempts": 0,
+            "consecutive_stalls": 0,
+            "last_backtrack_at": {},
+            "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "ds"
 }
