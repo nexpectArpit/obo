@@ -606,7 +606,7 @@
                 ],
                 "unique_concepts_count": 6
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
@@ -615,9 +615,15 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tails.push_back(x);",
+                    "<algorithm>",
+                    "optimizelis(const"
+                ],
+                "unique_concepts_count": 3
             },
             "status": "AVAILABLE"
         },
@@ -744,7 +750,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         }
     }
 }
