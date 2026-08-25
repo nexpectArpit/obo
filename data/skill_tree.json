@@ -726,7 +726,7 @@
                 ],
                 "unique_concepts_count": 4
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems",
@@ -735,9 +735,14 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "backbone",
+                    "algorithm"
+                ],
+                "unique_concepts_count": 2
             },
             "status": "AVAILABLE"
         }

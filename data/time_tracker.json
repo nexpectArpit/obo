@@ -379,6 +379,11 @@
             "timestamp": 1787676388.8341413,
             "duration_seconds": 3238,
             "topic": "Memoization with Tabulation in Dynamic Programming"
+        },
+        {
+            "timestamp": 1787683114.4929898,
+            "duration_seconds": 636,
+            "topic": "Memoization with Tabulation for Combinatorial Problems"
         }
     ]
 }

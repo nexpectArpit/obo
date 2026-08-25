@@ -47,7 +47,7 @@
     "Context Switching": 2,
     "Interrupt Handling": 2,
     "Symmetric Multiprocessing": 1,
-    "Dynamic Programming": 17,
+    "Dynamic Programming": 18,
     "Space Complexity Optimization": 3,
     "String Algorithms": 4,
     "Combinatorics": 1,
@@ -217,5 +217,7 @@
     "Deadlock Management": 1,
     "Memory Fragmentation": 1,
     "Gated Recurrent Units": 1,
-    "Breadth-First Search": 1
+    "Breadth-First Search": 1,
+    "Network Flow Algorithms": 1,
+    "Computational Geometry": 1
 }

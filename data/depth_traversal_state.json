@@ -21,14 +21,15 @@
                 "cpp.dynamic_programming",
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion"
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems"
             ],
-            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
+            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
             "last_backtrack_at": {
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming": 1787677917.7210598
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming": 1787677917.7210598,
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion": 1787682610.8701925
             },
             "branch_status": "IN_PROGRESS"
         },
