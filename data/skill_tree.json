@@ -117,7 +117,11 @@
             "id": "ds.machine_learning",
             "name": "Machine Learning",
             "parent": "ds",
-            "children": [],
+            "children": [
+                "ds.machine_learning.custom_autograd_function_double_backward",
+                "ds.machine_learning.activation_function_backpropagation_in_pytorch",
+                "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 3,
@@ -617,6 +621,58 @@
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
             "name": "Caching Results with a Hash Table in Memoization",
             "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "ds.machine_learning.custom_autograd_function_double_backward": {
+            "id": "ds.machine_learning.custom_autograd_function_double_backward",
+            "name": "Custom autograd.Function double backward",
+            "parent": "ds.machine_learning",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 2,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "gradient",
+                    "computed",
+                    "computes",
+                    "backward",
+                    "torch.autograd.function",
+                    "autograd",
+                    "squaredoublebackward\u2014passing",
+                    "ctx.save_for_backward(x",
+                    "torch.autograd.grad",
+                    "squaredoublebackward"
+                ],
+                "unique_concepts_count": 10
+            },
+            "status": "AVAILABLE"
+        },
+        "ds.machine_learning.activation_function_backpropagation_in_pytorch": {
+            "id": "ds.machine_learning.activation_function_backpropagation_in_pytorch",
+            "name": "Activation Function Backpropagation in PyTorch",
+            "parent": "ds.machine_learning",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning": {
+            "id": "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning",
+            "name": "Gradient Descent Optimizer Hyperparameter Tuning",
+            "parent": "ds.machine_learning",
             "children": [],
             "mastery_level": 1,
             "evidence": {

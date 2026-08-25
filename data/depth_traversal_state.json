@@ -63,9 +63,10 @@
         "ds": {
             "active_branch": [
                 "ds",
-                "ds.machine_learning"
+                "ds.machine_learning",
+                "ds.machine_learning.custom_autograd_function_double_backward"
             ],
-            "current_node": "ds.machine_learning",
+            "current_node": "ds.machine_learning.custom_autograd_function_double_backward",
             "last_good_node": "ds",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
