@@ -135,10 +135,24 @@ def tracks_menu_keyboard():
                 pass
 
     def btn_text(label, track_key):
-        mappings = TRACK_SKILL_MAP.get(track_key, [])
+        target_skills = []
+        try:
+            tracks_dir = Path(__file__).resolve().parent.parent / "tracks"
+            track_file = next(tracks_dir.glob(f"*_{track_key}.json"), None)
+            if track_file and track_file.exists():
+                with open(track_file, "r") as f:
+                    track_data = json.load(f)
+                target_skills = track_data.get("target_skills", [])
+        except Exception:
+            pass
+
+        if not target_skills:
+            mappings = TRACK_SKILL_MAP.get(track_key, [])
+            target_skills = [long_name for _, long_name in mappings]
+
         levels = []
-        for short_name, long_name in mappings:
-            lvl = skills.get(long_name, 1)
+        for skill_name in target_skills:
+            lvl = skills.get(skill_name, 1)
             levels.append(str(lvl))
         if levels:
             return f"{label} ({', '.join(levels)})"

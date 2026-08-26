@@ -536,6 +536,46 @@ class OboeAgent:
                 
                 current_target = self._get_current_target_skill()
                 track_name = self.active_track_name or self.pin or "maths"
+
+                # Irrelevant MCQ Guard: If Oboe asks an MCQ not matching our active topic/target keywords
+                # and page allows free text, bypass MCQ and steer back.
+                from agent.curriculum_policy import is_curriculum_choice
+                if not is_curriculum_choice(choices) and self._page_accepts_free_text():
+                    target_terms = []
+                    if self.topic:
+                        clean_topic = self.topic.replace(":", " ").replace("-", " ").lower()
+                        target_terms.extend([w for w in clean_topic.split() if len(w) > 3 and w not in ["with", "from", "that", "this", "about", "what"]])
+                    if current_target:
+                        clean_target = current_target.replace(":", " ").replace("-", " ").lower()
+                        target_terms.extend([w for w in clean_target.split() if len(w) > 3])
+                    
+                    from agent.curriculum_policy import get_domain_keywords
+                    try:
+                        kws = get_domain_keywords(track_name, tier="direct", target_skill=current_target)
+                        target_terms.extend([kw.lower() for kw in kws])
+                    except Exception:
+                        pass
+                    
+                    target_terms = list(set(target_terms))
+                    oboe_msgs = [m for m in messages if m["role"] == "assistant"]
+                    last_question = oboe_msgs[-1]["text"].lower() if oboe_msgs else ""
+                    
+                    is_relevant = False
+                    for term in target_terms:
+                        if term in last_question:
+                            is_relevant = True
+                            break
+                        if any(term in choice.lower() for choice in choices):
+                            is_relevant = True
+                            break
+                            
+                    if not is_relevant and target_terms:
+                        steer_topic = self.topic or current_target or "Kernel Modules"
+                        redirect_text = f"Let's focus on {steer_topic} for now. Can you challenge me with a question on that instead?"
+                        print(f"[CURRICULUM GUARD] Irrelevant MCQ detected (Target keywords: {target_terms}). Bypassing and steering: '{redirect_text}'")
+                        self.browser.type_and_submit(redirect_text)
+                        self.last_action_was_q_answer = True
+                        continue
                 
                 from agent.curriculum_policy import filter_choices
                 filtered = filter_choices(
@@ -725,19 +765,20 @@ class OboeAgent:
         # Final observation of page to capture any last-second skill badges/level-ups
         if session_started:
             try:
-                final_obs = self.browser.observe_page()
-                if final_obs.get("skills"):
-                    for skill, lv_str in final_obs["skills"].items():
-                        try:
-                            new_lv = int(lv_str.replace("LV", "").strip())
-                        except ValueError:
-                            print(f"[WARNING] Could not parse skill level: '{lv_str}' for skill '{skill}'")
-                            new_lv = 0
-                        current_max = self.learned_skills.get(skill, 0)
-                        if new_lv > current_max:
-                            self.learned_skills[skill] = new_lv
-                            self.achieved_skills[skill] = f"LV {new_lv}"
-                            print(f"[FINAL CHECK] Captured Skill Level Up: {skill} -> LV {new_lv}!")
+                if self.browser.page and not self.browser.page.is_closed():
+                    final_obs = self.browser.observe_page()
+                    if final_obs.get("skills"):
+                        for skill, lv_str in final_obs["skills"].items():
+                            try:
+                                new_lv = int(lv_str.replace("LV", "").strip())
+                            except ValueError:
+                                print(f"[WARNING] Could not parse skill level: '{lv_str}' for skill '{skill}'")
+                                new_lv = 0
+                            current_max = self.learned_skills.get(skill, 0)
+                            if new_lv > current_max:
+                                self.learned_skills[skill] = new_lv
+                                self.achieved_skills[skill] = f"LV {new_lv}"
+                                print(f"[FINAL CHECK] Captured Skill Level Up: {skill} -> LV {new_lv}!")
             except Exception as e:
                 print(f"[INFO] Final skill observation status: {e}")
 

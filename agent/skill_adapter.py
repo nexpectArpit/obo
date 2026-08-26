@@ -34,7 +34,7 @@ def adapt_track_target_skills(active_track_name, current_targets, learned_skills
             track_keywords = {
                 "cpp": ["cpp", "c++", "algorithm", "data structure", "tree", "graph", "dynamic programming", "stack", "queue", "pointer", "array", "string", "hash", "sorting"],
                 "arch": ["architecture", "memory", "cache", "pipeline", "network", "tcp", "ip", "socket", "cpu", "bus", "assembly"],
-                "os": ["operating system", "os", "thread", "process", "syscall", "system call", "mutex", "semaphore", "virtual memory", "paging", "file system", "concurrency"],
+                "os": ["operating system", "os", "thread", "process", "syscall", "system call", "mutex", "semaphore", "virtual memory", "paging", "file system", "concurrency", "kernel", "module"],
                 "ds": ["data science", "machine learning", "statistics", "hypothesis", "regression", "probability", "pandas", "numpy", "eda", "clustering"],
                 "dl": ["deep learning", "neural network", "machine learning", "gradient descent", "sgd", "convolution", "cnn", "transformer", "attention", "loss", "backprop", "activation", "optimization"],
                 "maths": ["algebra", "linear algebra", "calculus", "matrix", "vector", "optimization", "probability", "eigen"]

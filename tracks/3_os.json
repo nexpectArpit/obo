@@ -353,7 +353,7 @@
     }
   ],
   "target_skills": [
-    "Processing-in-Memory",
-    "Operating Systems"
+    "Kernel Modules",
+    "Kernel Development"
   ]
 }
