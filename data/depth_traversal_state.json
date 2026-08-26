@@ -92,7 +92,19 @@
             "consecutive_stalls": 0,
             "last_backtrack_at": {},
             "branch_status": "IN_PROGRESS"
+        },
+        "arch": {
+            "active_branch": [
+                "arch",
+                "arch.cpu"
+            ],
+            "current_node": "arch.cpu",
+            "last_good_node": "arch",
+            "branch_attempts": 0,
+            "consecutive_stalls": 0,
+            "last_backtrack_at": {},
+            "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "maths"
+    "active_anchor": "arch"
 }

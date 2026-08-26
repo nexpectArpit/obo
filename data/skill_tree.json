@@ -229,7 +229,11 @@
             "parent": "arch",
             "children": [],
             "mastery_level": 1,
-            "evidence": {}
+            "evidence": {
+                "concepts_covered": 1,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            }
         },
         "arch.memory": {
             "id": "arch.memory",

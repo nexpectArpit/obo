@@ -469,6 +469,11 @@
             "timestamp": 1787728629.8875675,
             "duration_seconds": 1053,
             "topic": "Understanding Mariana Trench depth pressure"
+        },
+        {
+            "timestamp": 1787744274.6940494,
+            "duration_seconds": 133,
+            "topic": "CPU"
         }
     ]
 }
