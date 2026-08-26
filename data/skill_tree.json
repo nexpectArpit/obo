@@ -246,13 +246,15 @@
             ],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 9,
+                "concepts_covered": 70,
                 "successful_assessments": 3,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
+                    "backbones",
+                    "layers",
                     "back-action"
                 ],
-                "unique_concepts_count": 1
+                "unique_concepts_count": 3
             },
             "status": "AVAILABLE"
         },
