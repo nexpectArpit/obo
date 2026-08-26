@@ -352,22 +352,22 @@
             "children": [],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 240,
+                "concepts_covered": 254,
                 "successful_assessments": 59,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "computational",
-                    "layer",
                     "layer's",
+                    "optimal",
+                    "optimize",
+                    "algorithm",
+                    "integrity.algo.monster",
                     "optimizing",
                     "pass.algo.monster+1",
+                    "computational",
                     "computer",
-                    "optimization",
-                    "optimal",
-                    "algorithm",
-                    "optimize",
+                    "layer",
                     "efficiently.algo.monster+1",
-                    "integrity.algo.monster"
+                    "optimization"
                 ],
                 "unique_concepts_count": 12
             },
