@@ -352,18 +352,22 @@
             "children": [],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 23,
-                "successful_assessments": 19,
+                "concepts_covered": 62,
+                "successful_assessments": 47,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "computational",
-                    "optimization",
-                    "optimizing",
                     "computer",
+                    "pass.algo.monster+1",
                     "optimal",
-                    "algorithm"
+                    "algorithm",
+                    "optimizing",
+                    "optimize",
+                    "efficiently.algo.monster+1",
+                    "integrity.algo.monster",
+                    "computational",
+                    "optimization"
                 ],
-                "unique_concepts_count": 6
+                "unique_concepts_count": 10
             },
             "status": "MASTERED"
         },
