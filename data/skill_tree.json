@@ -386,7 +386,7 @@
                 "unique_concepts_list": [],
                 "unique_concepts_count": 0
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)": {
             "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)",
@@ -395,7 +395,7 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 3,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
                 "unique_concepts_list": [],

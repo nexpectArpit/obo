@@ -506,6 +506,36 @@
       "prompt": "Develop a stochastic L-BFGS variant where the Hessian approximation updates are coupled with a stratified sampling strategy that prioritizes samples with high gradient variance. Implement this for a Transformer (6-layer, 8 heads) on the WMT\u201914 dataset. Compare against Adam and SGD with momentum, and provide a theoretical justification for the coupling mechanism.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Newton-CG Method: Solving Large-Scale Nonlinear Optimization with Linear Conjugate Gradient Subproblems",
+      "prompt": "Let's implement the Newton-CG method from scratch to solve a non-convex deep learning loss landscape (e.g., training a ResNet-50 on CIFAR-10) and analyze how the Hessian-vector product approximation via CG affects convergence speed and memory efficiency compared to BFGS.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Gauss-Newton Matrix-Free Optimization for Neural Network Training: Levenberg-Marquardt Adaptations",
+      "prompt": "Implement a matrix-free Gauss-Newton optimizer for training a Transformer model on a machine translation task, and compare its performance to AdamW in terms of generalization error and convergence speed. Use the Fisher Information Matrix approximation via Hutchinson\u2019s trace estimator.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quasi-Newton Methods with Limited-Memory BFGS (L-BFGS) for High-Dimensional Parameter Spaces",
+      "prompt": "Design an L-BFGS optimizer for fine-tuning a large language model (e.g., BERT-base) on a domain-specific dataset. Experiment with different history lengths (e.g., 10 vs. 20) and analyze how the trade-off between memory usage and convergence rate impacts downstream task performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Second-Order Stochastic Optimization via Stochastic Newton and SARAH: Theory and Implementation",
+      "prompt": "Derive and implement the Stochastic Newton method and SARAH algorithm for training a CNN on MNIST in a distributed setting. Compare their empirical convergence rates and generalization performance against SGD and Adam, and explain why second-order methods may or may not outperform first-order methods in stochastic regimes.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hessian-Free Optimization for Reinforcement Learning: Trust-Region Policy Optimization (TRPO) and CMA-ES",
+      "prompt": "Implement the Hessian-free optimization component of TRPO to train a policy for the MuJoCo Ant-v4 environment. Compare its performance to standard policy gradient methods (e.g., PPO) and analyze how the conjugate gradient solver\u2019s accuracy in approximating the natural gradient impacts learning stability.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

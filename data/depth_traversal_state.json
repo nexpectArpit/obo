@@ -6,15 +6,15 @@
                 "maths.algebra",
                 "maths.algebra.linear_equations_with_two_variables",
                 "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
-                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)"
+                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)"
             ],
-            "current_node": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)",
+            "current_node": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)",
             "last_good_node": "maths",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
             "last_backtrack_at": {
                 "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation": 1787783842.0792792,
-                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)": 1787694789.1216135,
+                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)": 1787786963.163271,
                 "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)": 1787698446.6605074,
                 "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane": 1787698446.804428,
                 "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method": 1787701318.543716,
@@ -111,5 +111,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "cpp"
+    "active_anchor": "maths"
 }
