@@ -1001,20 +1001,33 @@
                 ],
                 "unique_concepts_count": 16
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         },
         "os.kernel.linux_kernel_memory_management_subsystem": {
             "id": "os.kernel.linux_kernel_memory_management_subsystem",
             "name": "Linux Kernel Memory Management Subsystem",
             "parent": "os.kernel",
             "children": [],
-            "mastery_level": 1,
+            "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 0,
-                "successful_assessments": 0,
-                "recent_repetition": 0
+                "concepts_covered": 32,
+                "successful_assessments": 21,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "thread",
+                    "writeback",
+                    "optimization",
+                    "optimize",
+                    "threads",
+                    "memory",
+                    "write-backs",
+                    "layer",
+                    "algorithms",
+                    "background"
+                ],
+                "unique_concepts_count": 10
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         },
         "os.kernel.linux_kernel_system_call_implementation": {
             "id": "os.kernel.linux_kernel_system_call_implementation",

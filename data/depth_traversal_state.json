@@ -68,13 +68,15 @@
             "active_branch": [
                 "os",
                 "os.kernel",
-                "os.kernel.linux_kernel_module_loaders_and_unloaders"
+                "os.kernel.linux_kernel_memory_management_subsystem"
             ],
-            "current_node": "os.kernel.linux_kernel_module_loaders_and_unloaders",
+            "current_node": "os.kernel.linux_kernel_memory_management_subsystem",
             "last_good_node": "os",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
-            "last_backtrack_at": {},
+            "last_backtrack_at": {
+                "os.kernel.linux_kernel_module_loaders_and_unloaders": 1787737113.775702
+            },
             "branch_status": "IN_PROGRESS"
         },
         "ds": {
