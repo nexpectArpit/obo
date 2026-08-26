@@ -526,7 +526,7 @@
                 ],
                 "unique_concepts_count": 4
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value": {
             "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value",
@@ -535,19 +535,19 @@
             "children": [],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 6,
+                "concepts_covered": 8,
                 "successful_assessments": 5,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "layer",
-                    "backpropagation",
-                    "optimization",
+                    "multi-layer",
                     "memory",
-                    "multi-layer"
+                    "optimization",
+                    "backpropagation",
+                    "layer"
                 ],
                 "unique_concepts_count": 5
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         },
         "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks": {
             "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks",
