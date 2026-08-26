@@ -48,7 +48,17 @@ class OboeLLM:
         self.current_provider_idx = 0
         if not self.providers:
             print("[WARNING] No Groq, Nvidia, or Mistral API Keys configured.")
-        
+
+        # Load stealth/behavioral rules for the system prompt
+        self.rules = self._load_rules()
+
+        # Aggregate usage telemetry across providers
+        self.telemetry = {
+            "total_api_calls": 0,
+            "total_tokens": 0,
+            "providers": {}
+        }
+
         # Load rate limit state
         self.rate_limits = self._load_rate_limits()
     
@@ -130,14 +140,6 @@ class OboeLLM:
             "retry after"
         ]
         return any(ind in error_str for ind in rate_limit_indicators)
-            
-        # Telemetry tracking (compact aggregate counters)
-        self.telemetry = {
-            "total_api_calls": 0,
-            "total_tokens": 0,
-            "providers": {}
-        }
-        self.rules = self._load_rules()
 
     def _load_rules(self):
         """Load stealth and behavioral rules from agent_rules.txt."""
