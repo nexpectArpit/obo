@@ -419,6 +419,33 @@ class OboeAgent:
                         # Genuine level-up: update long-term memory
                         self.learned_skills[skill] = new_lv
 
+                        # Save updated skill levels immediately to disk
+                        try:
+                            self.learned_skills_path.write_text(json.dumps(self.learned_skills, indent=4))
+                            print(f"[DYNAMIC SAVE] Saved skill levels to {self.learned_skills_path.name}")
+                        except Exception as se:
+                            print(f"[WARNING] Failed to save learned_skills.json: {se}")
+
+                        # Run dynamic adaptation immediately to update target skills in track JSON
+                        if getattr(self, "active_track_name", None) is not None and getattr(self, "active_track_target_skills", None) is not None:
+                            from agent.skill_adapter import adapt_track_target_skills
+                            try:
+                                adapt_track_target_skills(
+                                    self.active_track_name,
+                                    self.active_track_target_skills,
+                                    self.learned_skills,
+                                    self.achieved_skills,
+                                    self.dag_engine.get_track_path
+                                )
+                                # Reload active target skills after adaptation
+                                track_path = self.dag_engine.get_track_path(self.active_track_name)
+                                if track_path and track_path.exists():
+                                    with open(track_path, "r") as f:
+                                        track_data = json.load(f)
+                                    self.active_track_target_skills = track_data.get("target_skills", [])
+                            except Exception as ex:
+                                print(f"[WARNING] Failed dynamic skill adaptation: {ex}")
+
                         from agent.curriculum_policy import classify_skill
                         track_name = self.active_track_name or self.pin or "maths"
                         cls = classify_skill(track_name, skill)

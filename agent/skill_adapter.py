@@ -34,19 +34,27 @@ def adapt_track_target_skills(active_track_name, current_targets, learned_skills
             track_keywords = {
                 "cpp": ["cpp", "c++", "algorithm", "data structure", "tree", "graph", "dynamic programming", "stack", "queue", "pointer", "array", "string", "hash", "sorting"],
                 "arch": ["architecture", "memory", "cache", "pipeline", "network", "tcp", "ip", "socket", "cpu", "bus", "assembly"],
-                "os": ["operating system", "os", "thread", "process", "syscall", "system call", "mutex", "semaphore", "virtual memory", "paging", "file system", "concurrency", "kernel", "module"],
+                "os": ["operating system", "operating systems", "os", "thread", "threads", "process", "processes", "syscall", "syscalls", "system call", "system calls", "mutex", "semaphore", "virtual memory", "paging", "file system", "concurrency", "kernel", "kernels", "module", "modules"],
                 "ds": ["data science", "machine learning", "statistics", "hypothesis", "regression", "probability", "pandas", "numpy", "eda", "clustering"],
                 "dl": ["deep learning", "neural network", "machine learning", "gradient descent", "sgd", "convolution", "cnn", "transformer", "attention", "loss", "backprop", "activation", "optimization"],
                 "maths": ["algebra", "linear algebra", "calculus", "matrix", "vector", "optimization", "probability", "eigen"]
             }
             
+            import re
             keywords = track_keywords.get(active_track_name.lower(), [])
             
             # Filter skills relevant to this track
             relevant_skills = []
             for skill_name, lvl in all_skills.items():
                 sk_lower = skill_name.lower()
-                is_relevant = any(kw in sk_lower for kw in keywords) or (active_track_name.lower() in sk_lower)
+                is_relevant = False
+                for kw in keywords:
+                    pattern = r'\b' + re.escape(kw.lower()) + r'\b'
+                    if re.search(pattern, sk_lower):
+                        is_relevant = True
+                        break
+                if not is_relevant and active_track_name.lower() in sk_lower:
+                    is_relevant = True
                 if is_relevant:
                     relevant_skills.append((skill_name, lvl))
                     
