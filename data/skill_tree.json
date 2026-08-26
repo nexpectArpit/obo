@@ -627,20 +627,21 @@
             ],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 9,
+                "concepts_covered": 11,
                 "successful_assessments": 8,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "z-algorithm",
                     "computer",
-                    "optimizations",
-                    "algorithmic",
+                    "academic-grade",
                     "computational",
-                    "academic-grade"
+                    "algorithmic",
+                    "z-algorithm",
+                    "optimizations",
+                    "optimization"
                 ],
-                "unique_concepts_count": 6
+                "unique_concepts_count": 7
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",

@@ -439,6 +439,11 @@
             "timestamp": 1787780412.5838711,
             "duration_seconds": 643,
             "topic": "Gradient Clipping with Norm"
+        },
+        {
+            "timestamp": 1787781685.5282261,
+            "duration_seconds": 592,
+            "topic": "Memoization with Tabulation"
         }
     ]
 }
