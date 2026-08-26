@@ -746,16 +746,16 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 7,
+                "concepts_covered": 9,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "t)c(s,t)?cp-algorithms.com",
-                    "memory.illinois.edu",
-                    "edges.cp-algorithms.com",
-                    "optimized",
                     "optimization",
-                    "algorithmic"
+                    "memory.illinois.edu",
+                    "t)c(s,t)?cp-algorithms.com",
+                    "algorithmic",
+                    "optimized",
+                    "edges.cp-algorithms.com"
                 ],
                 "unique_concepts_count": 6
             },
