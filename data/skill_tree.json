@@ -1,967 +1,969 @@
 {
-  "anchors": {
-    "maths": {
-      "id": "maths",
-      "name": "Mathematics",
-      "children": [
-        "maths.algebra",
-        "maths.optimization"
-      ],
-      "mastery_level": 15,
-      "evidence": {}
+    "anchors": {
+        "maths": {
+            "id": "maths",
+            "name": "Mathematics",
+            "children": [
+                "maths.algebra",
+                "maths.optimization"
+            ],
+            "mastery_level": 15,
+            "evidence": {}
+        },
+        "cpp": {
+            "id": "cpp",
+            "name": "Competitive Programming & C++",
+            "children": [
+                "cpp.dynamic_programming",
+                "cpp.algorithms"
+            ],
+            "mastery_level": 15,
+            "evidence": {}
+        },
+        "ds": {
+            "id": "ds",
+            "name": "Data Science",
+            "children": [
+                "ds.machine_learning",
+                "ds.hypothesis_testing"
+            ],
+            "mastery_level": 1,
+            "evidence": {}
+        },
+        "os": {
+            "id": "os",
+            "name": "Operating Systems",
+            "children": [
+                "os.kernel",
+                "os.concurrency"
+            ],
+            "mastery_level": 15,
+            "evidence": {}
+        },
+        "dl": {
+            "id": "dl",
+            "name": "Deep Learning",
+            "children": [
+                "dl.neural_networks",
+                "dl.training"
+            ],
+            "mastery_level": 15,
+            "evidence": {}
+        },
+        "arch": {
+            "id": "arch",
+            "name": "Computer Architecture",
+            "children": [
+                "arch.cpu",
+                "arch.memory"
+            ],
+            "mastery_level": 1,
+            "evidence": {}
+        }
     },
-    "cpp": {
-      "id": "cpp",
-      "name": "Competitive Programming & C++",
-      "children": [
-        "cpp.dynamic_programming",
-        "cpp.algorithms"
-      ],
-      "mastery_level": 15,
-      "evidence": {}
-    },
-    "ds": {
-      "id": "ds",
-      "name": "Data Science",
-      "children": [
-        "ds.machine_learning",
-        "ds.hypothesis_testing"
-      ],
-      "mastery_level": 1,
-      "evidence": {}
-    },
-    "os": {
-      "id": "os",
-      "name": "Operating Systems",
-      "children": [
-        "os.kernel",
-        "os.concurrency"
-      ],
-      "mastery_level": 15,
-      "evidence": {}
-    },
-    "dl": {
-      "id": "dl",
-      "name": "Deep Learning",
-      "children": [
-        "dl.neural_networks",
-        "dl.training"
-      ],
-      "mastery_level": 15,
-      "evidence": {}
-    },
-    "arch": {
-      "id": "arch",
-      "name": "Computer Architecture",
-      "children": [
-        "arch.cpu",
-        "arch.memory"
-      ],
-      "mastery_level": 1,
-      "evidence": {}
+    "nodes": {
+        "maths.algebra": {
+            "id": "maths.algebra",
+            "name": "Algebra",
+            "parent": "maths",
+            "children": [
+                "maths.algebra.linear_equations_with_two_variables",
+                "maths.algebra.graphing_linear_equations_in_slope-intercept_form",
+                "maths.algebra.solving_systems_of_linear_equations_by_substitution"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 2,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0,
+                "successful_assessments": 1
+            }
+        },
+        "maths.optimization": {
+            "id": "maths.optimization",
+            "name": "Optimization",
+            "parent": "maths",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {}
+        },
+        "cpp.dynamic_programming": {
+            "id": "cpp.dynamic_programming",
+            "name": "Dynamic Programming",
+            "parent": "cpp",
+            "children": [
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+                "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation",
+                "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "unique_concepts_list": [
+                    "optimization"
+                ],
+                "unique_concepts_count": 1
+            }
+        },
+        "cpp.algorithms": {
+            "id": "cpp.algorithms",
+            "name": "Algorithms",
+            "parent": "cpp",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {}
+        },
+        "ds.machine_learning": {
+            "id": "ds.machine_learning",
+            "name": "Machine Learning",
+            "parent": "ds",
+            "children": [
+                "ds.machine_learning.custom_autograd_function_double_backward",
+                "ds.machine_learning.activation_function_backpropagation_in_pytorch",
+                "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 3,
+                "unique_concepts_list": [
+                    "gradient",
+                    "optimization",
+                    "computed",
+                    "optimizing"
+                ],
+                "unique_concepts_count": 4
+            }
+        },
+        "ds.hypothesis_testing": {
+            "id": "ds.hypothesis_testing",
+            "name": "Hypothesis Testing",
+            "parent": "ds",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {}
+        },
+        "os.kernel": {
+            "id": "os.kernel",
+            "name": "Kernel",
+            "parent": "os",
+            "children": [],
+            "mastery_level": 10,
+            "evidence": {
+                "concepts_covered": 115,
+                "unique_concepts_list": [
+                    "thread?ac.cr",
+                    "backing",
+                    "optimal",
+                    "degradation",
+                    "algorithmic",
+                    "memory",
+                    "algorithm",
+                    "optimize",
+                    "threads",
+                    "cross-layer",
+                    "algorithms",
+                    "degrading",
+                    "optimizations",
+                    "production-grade",
+                    "thread",
+                    "multi-threaded",
+                    "computational",
+                    "optimization",
+                    "threading",
+                    "computation",
+                    "layer",
+                    "back"
+                ],
+                "unique_concepts_count": 22,
+                "successful_assessments": 8
+            },
+            "status": "MASTERED"
+        },
+        "os.concurrency": {
+            "id": "os.concurrency",
+            "name": "Concurrency",
+            "parent": "os",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {}
+        },
+        "dl.neural_networks": {
+            "id": "dl.neural_networks",
+            "name": "Neural Networks",
+            "parent": "dl",
+            "children": [
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+                "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations",
+                "dl.neural_networks.softmax_cross-entropy_loss_function_derivation"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 5,
+                "unique_concepts_list": [
+                    "computational",
+                    "multi-layer",
+                    "optimization",
+                    "backpropagation",
+                    "computation",
+                    "gradient"
+                ],
+                "unique_concepts_count": 6,
+                "successful_assessments": 3
+            }
+        },
+        "dl.training": {
+            "id": "dl.training",
+            "name": "Training",
+            "parent": "dl",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {}
+        },
+        "arch.cpu": {
+            "id": "arch.cpu",
+            "name": "CPU",
+            "parent": "arch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {}
+        },
+        "arch.memory": {
+            "id": "arch.memory",
+            "name": "Memory",
+            "parent": "arch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {}
+        },
+        "maths.algebra.linear_equations_with_two_variables": {
+            "id": "maths.algebra.linear_equations_with_two_variables",
+            "name": "Linear Equations with Two Variables",
+            "parent": "maths.algebra",
+            "children": [
+                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
+                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
+                "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 9,
+                "successful_assessments": 3,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "back-action"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.graphing_linear_equations_in_slope-intercept_form": {
+            "id": "maths.algebra.graphing_linear_equations_in_slope-intercept_form",
+            "name": "Graphing Linear Equations in Slope-Intercept Form",
+            "parent": "maths.algebra",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.solving_systems_of_linear_equations_by_substitution": {
+            "id": "maths.algebra.solving_systems_of_linear_equations_by_substitution",
+            "name": "Solving Systems of Linear Equations by Substitution",
+            "parent": "maths.algebra",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane": {
+            "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
+            "name": "Graphing Linear Equations with Two Variables on a Coordinate Plane",
+            "parent": "maths.algebra.linear_equations_with_two_variables",
+            "children": [
+                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation",
+                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)",
+                "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables": {
+            "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
+            "name": "Finding the x and y Intercepts of Linear Equations with Two Variables",
+            "parent": "maths.algebra.linear_equations_with_two_variables",
+            "children": [
+                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method",
+                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts",
+                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables": {
+            "id": "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables",
+            "name": "Determining the Number of Solutions for Linear Equations with Two Variables",
+            "parent": "maths.algebra.linear_equations_with_two_variables",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation": {
+            "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation",
+            "name": "Identifying the x and y Intercepts of a Linear Equation",
+            "parent": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
+            "children": [],
+            "mastery_level": 10,
+            "evidence": {
+                "concepts_covered": 21,
+                "successful_assessments": 19,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "optimization",
+                    "optimal",
+                    "computer",
+                    "computational",
+                    "optimizing",
+                    "algorithm"
+                ],
+                "unique_concepts_count": 6
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)": {
+            "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)",
+            "name": "Graphing a Linear Equation in Slope-Intercept Form (y = mx + b)",
+            "parent": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)": {
+            "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)",
+            "name": "Graphing a Linear Equation in Standard Form (Ax + By = C)",
+            "parent": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+            "name": "Vanishing Gradient Problem Solutions: Gradient Clipping and ReLU",
+            "parent": "dl.neural_networks",
+            "children": [
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "gradient",
+                    "computational",
+                    "backpropagation"
+                ],
+                "unique_concepts_count": 3
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations": {
+            "id": "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations",
+            "name": "Convolutional Neural Network (CNN) Architecture Variations",
+            "parent": "dl.neural_networks",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.softmax_cross-entropy_loss_function_derivation": {
+            "id": "dl.neural_networks.softmax_cross-entropy_loss_function_derivation",
+            "name": "Softmax Cross-Entropy Loss Function Derivation",
+            "parent": "dl.neural_networks",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
+            "name": "Vanishing Gradient Problem Solutions: Gradient Clipping Implementation in PyTorch",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+            "children": [
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_norm",
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value",
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "backpropagation",
+                    "computational",
+                    "gradient"
+                ],
+                "unique_concepts_count": 3
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
+            "name": "Vanishing Gradient Problem Solutions: ReLU Derivative Calculation",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+            "children": [
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.calculating_relu_derivative_for_matrix_operations",
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.relu_derivative_in_backpropagation_algorithm_flowcharts",
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 2,
+                "successful_assessments": 1,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks",
+            "name": "Vanishing Gradient Problem Solutions: Identifying Dead Neurons in ReLU Networks",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_norm": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_norm",
+            "name": "Gradient Clipping with Norm",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "computational",
+                    "backpropagation",
+                    "gradient"
+                ],
+                "unique_concepts_count": 3
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value",
+            "name": "Gradient Clipping with Value",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
+            "children": [],
+            "mastery_level": 10,
+            "evidence": {
+                "concepts_covered": 6,
+                "successful_assessments": 5,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "layer",
+                    "backpropagation",
+                    "optimization",
+                    "memory",
+                    "multi-layer"
+                ],
+                "unique_concepts_count": 5
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks",
+            "name": "Vanishing Gradient Problem in Recurrent Neural Networks",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 5,
+                "successful_assessments": 4,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "optimization",
+                    "gradient",
+                    "memory",
+                    "computational"
+                ],
+                "unique_concepts_count": 4
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "name": "Memoization with Overlapping Subproblems",
+            "parent": "cpp.dynamic_programming",
+            "children": [
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "optimization"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation": {
+            "id": "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation",
+            "name": "Top-Down Dynamic Programming with Tabulation",
+            "parent": "cpp.dynamic_programming",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions": {
+            "id": "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions",
+            "name": "Optimal Substructure and Overlapping Subproblems in Recursive Solutions",
+            "parent": "cpp.dynamic_programming",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+            "name": "Memoization with Tabulation",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "children": [
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems"
+            ],
+            "mastery_level": 10,
+            "evidence": {
+                "concepts_covered": 9,
+                "successful_assessments": 8,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "z-algorithm",
+                    "computer",
+                    "optimizations",
+                    "algorithmic",
+                    "computational",
+                    "academic-grade"
+                ],
+                "unique_concepts_count": 6
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+            "name": "Optimizing Recursive Function Calls with Memoization",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "children": [
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tails.push_back(x);",
+                    "<algorithm>",
+                    "optimizelis(const"
+                ],
+                "unique_concepts_count": 3
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
+            "name": "Caching Results with a Hash Table in Memoization",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
+            "children": [
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.implementing_hash_table_in_c++_for_memoization",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++"
+            ],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "ds.machine_learning.custom_autograd_function_double_backward": {
+            "id": "ds.machine_learning.custom_autograd_function_double_backward",
+            "name": "Custom autograd.Function double backward",
+            "parent": "ds.machine_learning",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 2,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "gradient",
+                    "computed",
+                    "computes",
+                    "backward",
+                    "torch.autograd.function",
+                    "autograd",
+                    "squaredoublebackward\u2014passing",
+                    "ctx.save_for_backward(x",
+                    "torch.autograd.grad",
+                    "squaredoublebackward"
+                ],
+                "unique_concepts_count": 10
+            },
+            "status": "AVAILABLE"
+        },
+        "ds.machine_learning.activation_function_backpropagation_in_pytorch": {
+            "id": "ds.machine_learning.activation_function_backpropagation_in_pytorch",
+            "name": "Activation Function Backpropagation in PyTorch",
+            "parent": "ds.machine_learning",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning": {
+            "id": "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning",
+            "name": "Gradient Descent Optimizer Hyperparameter Tuning",
+            "parent": "ds.machine_learning",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming",
+            "name": "Memoization with Tabulation in Dynamic Programming",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 7,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "t)c(s,t)?cp-algorithms.com",
+                    "memory.illinois.edu",
+                    "edges.cp-algorithms.com",
+                    "optimized",
+                    "optimization",
+                    "algorithmic"
+                ],
+                "unique_concepts_count": 6
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
+            "name": "Tabulation-based Memoization with Recursion",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 5,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "pre-computes",
+                    "computations",
+                    "algorithms",
+                    "thread"
+                ],
+                "unique_concepts_count": 4
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems",
+            "name": "Memoization with Tabulation for Combinatorial Problems",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "backbone",
+                    "algorithm"
+                ],
+                "unique_concepts_count": 2
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++",
+            "name": "Overcoming the Exponential Time Complexity of Recursive Functions with Memoization in C++",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "compute",
+                    "computed"
+                ],
+                "unique_concepts_count": 2
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++",
+            "name": "Applying Memoization to Recursively Defined Data Structures in C++",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls",
+            "name": "Implementing Memoization in C++ using Stl Maps and Unordered Maps for Efficient Function Calls",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.calculating_relu_derivative_for_matrix_operations": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.calculating_relu_derivative_for_matrix_operations",
+            "name": "Calculating ReLU Derivative for Matrix Operations",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.relu_derivative_in_backpropagation_algorithm_flowcharts": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.relu_derivative_in_backpropagation_algorithm_flowcharts",
+            "name": "ReLU Derivative in Backpropagation Algorithm Flowcharts",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function": {
+            "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function",
+            "name": "Numerical Gradient Check for ReLU Activation Function",
+            "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method": {
+            "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method",
+            "name": "Finding the x-Intercept of Linear Equations with Two Variables using the Zero y-Value Method",
+            "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts": {
+            "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts",
+            "name": "Graphical Analysis of Linear Equations to Locate the x and y Intercepts",
+            "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations": {
+            "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations",
+            "name": "Applying the Slope-Intercept Form to Identify the y-Intercept of Linear Equations",
+            "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming",
+            "name": "Memoization vs. Dynamic Programming",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "optimal"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.implementing_hash_table_in_c++_for_memoization": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.implementing_hash_table_in_c++_for_memoization",
+            "name": "Implementing Hash Table in C++ for Memoization",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++": {
+            "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++",
+            "name": "Applying Memoization to Recursive Functions in C++",
+            "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        }
     }
-  },
-  "nodes": {
-    "maths.algebra": {
-      "id": "maths.algebra",
-      "name": "Algebra",
-      "parent": "maths",
-      "children": [
-        "maths.algebra.linear_equations_with_two_variables",
-        "maths.algebra.graphing_linear_equations_in_slope-intercept_form",
-        "maths.algebra.solving_systems_of_linear_equations_by_substitution"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 2,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0,
-        "successful_assessments": 1
-      }
-    },
-    "maths.optimization": {
-      "id": "maths.optimization",
-      "name": "Optimization",
-      "parent": "maths",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {}
-    },
-    "cpp.dynamic_programming": {
-      "id": "cpp.dynamic_programming",
-      "name": "Dynamic Programming",
-      "parent": "cpp",
-      "children": [
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-        "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation",
-        "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "unique_concepts_list": [
-          "optimization"
-        ],
-        "unique_concepts_count": 1
-      }
-    },
-    "cpp.algorithms": {
-      "id": "cpp.algorithms",
-      "name": "Algorithms",
-      "parent": "cpp",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {}
-    },
-    "ds.machine_learning": {
-      "id": "ds.machine_learning",
-      "name": "Machine Learning",
-      "parent": "ds",
-      "children": [
-        "ds.machine_learning.custom_autograd_function_double_backward",
-        "ds.machine_learning.activation_function_backpropagation_in_pytorch",
-        "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 3,
-        "unique_concepts_list": [
-          "gradient",
-          "optimization",
-          "computed",
-          "optimizing"
-        ],
-        "unique_concepts_count": 4
-      }
-    },
-    "ds.hypothesis_testing": {
-      "id": "ds.hypothesis_testing",
-      "name": "Hypothesis Testing",
-      "parent": "ds",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {}
-    },
-    "os.kernel": {
-      "id": "os.kernel",
-      "name": "Kernel",
-      "parent": "os",
-      "children": [],
-      "mastery_level": 10,
-      "evidence": {
-        "concepts_covered": 115,
-        "unique_concepts_list": [
-          "thread?ac.cr",
-          "backing",
-          "optimal",
-          "degradation",
-          "algorithmic",
-          "memory",
-          "algorithm",
-          "optimize",
-          "threads",
-          "cross-layer",
-          "algorithms",
-          "degrading",
-          "optimizations",
-          "production-grade",
-          "thread",
-          "multi-threaded",
-          "computational",
-          "optimization",
-          "threading",
-          "computation",
-          "layer",
-          "back"
-        ],
-        "unique_concepts_count": 22,
-        "successful_assessments": 8
-      },
-      "status": "MASTERED"
-    },
-    "os.concurrency": {
-      "id": "os.concurrency",
-      "name": "Concurrency",
-      "parent": "os",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {}
-    },
-    "dl.neural_networks": {
-      "id": "dl.neural_networks",
-      "name": "Neural Networks",
-      "parent": "dl",
-      "children": [
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
-        "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations",
-        "dl.neural_networks.softmax_cross-entropy_loss_function_derivation"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 5,
-        "unique_concepts_list": [
-          "computational",
-          "multi-layer",
-          "optimization",
-          "backpropagation",
-          "computation",
-          "gradient"
-        ],
-        "unique_concepts_count": 6,
-        "successful_assessments": 3
-      }
-    },
-    "dl.training": {
-      "id": "dl.training",
-      "name": "Training",
-      "parent": "dl",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {}
-    },
-    "arch.cpu": {
-      "id": "arch.cpu",
-      "name": "CPU",
-      "parent": "arch",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {}
-    },
-    "arch.memory": {
-      "id": "arch.memory",
-      "name": "Memory",
-      "parent": "arch",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {}
-    },
-    "maths.algebra.linear_equations_with_two_variables": {
-      "id": "maths.algebra.linear_equations_with_two_variables",
-      "name": "Linear Equations with Two Variables",
-      "parent": "maths.algebra",
-      "children": [
-        "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
-        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
-        "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 2,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.graphing_linear_equations_in_slope-intercept_form": {
-      "id": "maths.algebra.graphing_linear_equations_in_slope-intercept_form",
-      "name": "Graphing Linear Equations in Slope-Intercept Form",
-      "parent": "maths.algebra",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.solving_systems_of_linear_equations_by_substitution": {
-      "id": "maths.algebra.solving_systems_of_linear_equations_by_substitution",
-      "name": "Solving Systems of Linear Equations by Substitution",
-      "parent": "maths.algebra",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane": {
-      "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
-      "name": "Graphing Linear Equations with Two Variables on a Coordinate Plane",
-      "parent": "maths.algebra.linear_equations_with_two_variables",
-      "children": [
-        "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation",
-        "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)",
-        "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables": {
-      "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
-      "name": "Finding the x and y Intercepts of Linear Equations with Two Variables",
-      "parent": "maths.algebra.linear_equations_with_two_variables",
-      "children": [
-        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method",
-        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts",
-        "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables": {
-      "id": "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables",
-      "name": "Determining the Number of Solutions for Linear Equations with Two Variables",
-      "parent": "maths.algebra.linear_equations_with_two_variables",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation": {
-      "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation",
-      "name": "Identifying the x and y Intercepts of a Linear Equation",
-      "parent": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
-      "children": [],
-      "mastery_level": 10,
-      "evidence": {
-        "concepts_covered": 21,
-        "successful_assessments": 19,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "optimization",
-          "optimal",
-          "computer",
-          "computational",
-          "optimizing",
-          "algorithm"
-        ],
-        "unique_concepts_count": 6
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)": {
-      "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)",
-      "name": "Graphing a Linear Equation in Slope-Intercept Form (y = mx + b)",
-      "parent": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)": {
-      "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_standard_form_(ax_+_by_=_c)",
-      "name": "Graphing a Linear Equation in Standard Form (Ax + By = C)",
-      "parent": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
-      "name": "Vanishing Gradient Problem Solutions: Gradient Clipping and ReLU",
-      "parent": "dl.neural_networks",
-      "children": [
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "gradient",
-          "computational",
-          "backpropagation"
-        ],
-        "unique_concepts_count": 3
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations": {
-      "id": "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations",
-      "name": "Convolutional Neural Network (CNN) Architecture Variations",
-      "parent": "dl.neural_networks",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.softmax_cross-entropy_loss_function_derivation": {
-      "id": "dl.neural_networks.softmax_cross-entropy_loss_function_derivation",
-      "name": "Softmax Cross-Entropy Loss Function Derivation",
-      "parent": "dl.neural_networks",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
-      "name": "Vanishing Gradient Problem Solutions: Gradient Clipping Implementation in PyTorch",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
-      "children": [
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_norm",
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value",
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "backpropagation",
-          "computational",
-          "gradient"
-        ],
-        "unique_concepts_count": 3
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
-      "name": "Vanishing Gradient Problem Solutions: ReLU Derivative Calculation",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
-      "children": [
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.calculating_relu_derivative_for_matrix_operations",
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.relu_derivative_in_backpropagation_algorithm_flowcharts",
-        "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 2,
-        "successful_assessments": 1,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "memory"
-        ],
-        "unique_concepts_count": 1
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks",
-      "name": "Vanishing Gradient Problem Solutions: Identifying Dead Neurons in ReLU Networks",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_norm": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_norm",
-      "name": "Gradient Clipping with Norm",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "computational",
-          "backpropagation",
-          "gradient"
-        ],
-        "unique_concepts_count": 3
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_value",
-      "name": "Gradient Clipping with Value",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
-      "children": [],
-      "mastery_level": 10,
-      "evidence": {
-        "concepts_covered": 6,
-        "successful_assessments": 5,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "layer",
-          "backpropagation",
-          "optimization",
-          "memory",
-          "multi-layer"
-        ],
-        "unique_concepts_count": 5
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.vanishing_gradient_problem_in_recurrent_neural_networks",
-      "name": "Vanishing Gradient Problem in Recurrent Neural Networks",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 5,
-        "successful_assessments": 4,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "optimization",
-          "gradient",
-          "memory",
-          "computational"
-        ],
-        "unique_concepts_count": 4
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-      "name": "Memoization with Overlapping Subproblems",
-      "parent": "cpp.dynamic_programming",
-      "children": [
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "optimization"
-        ],
-        "unique_concepts_count": 1
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation": {
-      "id": "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation",
-      "name": "Top-Down Dynamic Programming with Tabulation",
-      "parent": "cpp.dynamic_programming",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions": {
-      "id": "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions",
-      "name": "Optimal Substructure and Overlapping Subproblems in Recursive Solutions",
-      "parent": "cpp.dynamic_programming",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
-      "name": "Memoization with Tabulation",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-      "children": [
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming",
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems"
-      ],
-      "mastery_level": 10,
-      "evidence": {
-        "concepts_covered": 9,
-        "successful_assessments": 8,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "z-algorithm",
-          "computer",
-          "optimizations",
-          "algorithmic",
-          "computational",
-          "academic-grade"
-        ],
-        "unique_concepts_count": 6
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
-      "name": "Optimizing Recursive Function Calls with Memoization",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-      "children": [
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++",
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++",
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "tails.push_back(x);",
-          "<algorithm>",
-          "optimizelis(const"
-        ],
-        "unique_concepts_count": 3
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
-      "name": "Caching Results with a Hash Table in Memoization",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-      "children": [
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming",
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.implementing_hash_table_in_c++_for_memoization",
-        "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++"
-      ],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "ds.machine_learning.custom_autograd_function_double_backward": {
-      "id": "ds.machine_learning.custom_autograd_function_double_backward",
-      "name": "Custom autograd.Function double backward",
-      "parent": "ds.machine_learning",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 2,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "gradient",
-          "computed",
-          "computes",
-          "backward",
-          "torch.autograd.function",
-          "autograd",
-          "squaredoublebackward\u2014passing",
-          "ctx.save_for_backward(x",
-          "torch.autograd.grad",
-          "squaredoublebackward"
-        ],
-        "unique_concepts_count": 10
-      },
-      "status": "AVAILABLE"
-    },
-    "ds.machine_learning.activation_function_backpropagation_in_pytorch": {
-      "id": "ds.machine_learning.activation_function_backpropagation_in_pytorch",
-      "name": "Activation Function Backpropagation in PyTorch",
-      "parent": "ds.machine_learning",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning": {
-      "id": "ds.machine_learning.gradient_descent_optimizer_hyperparameter_tuning",
-      "name": "Gradient Descent Optimizer Hyperparameter Tuning",
-      "parent": "ds.machine_learning",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming",
-      "name": "Memoization with Tabulation in Dynamic Programming",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 7,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "t)c(s,t)?cp-algorithms.com",
-          "memory.illinois.edu",
-          "edges.cp-algorithms.com",
-          "optimized",
-          "optimization",
-          "algorithmic"
-        ],
-        "unique_concepts_count": 6
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
-      "name": "Tabulation-based Memoization with Recursion",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 5,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "pre-computes",
-          "computations",
-          "algorithms",
-          "thread"
-        ],
-        "unique_concepts_count": 4
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems",
-      "name": "Memoization with Tabulation for Combinatorial Problems",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "backbone",
-          "algorithm"
-        ],
-        "unique_concepts_count": 2
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++",
-      "name": "Overcoming the Exponential Time Complexity of Recursive Functions with Memoization in C++",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "compute",
-          "computed"
-        ],
-        "unique_concepts_count": 2
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++",
-      "name": "Applying Memoization to Recursively Defined Data Structures in C++",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls",
-      "name": "Implementing Memoization in C++ using Stl Maps and Unordered Maps for Efficient Function Calls",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.calculating_relu_derivative_for_matrix_operations": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.calculating_relu_derivative_for_matrix_operations",
-      "name": "Calculating ReLU Derivative for Matrix Operations",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "memory"
-        ],
-        "unique_concepts_count": 1
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.relu_derivative_in_backpropagation_algorithm_flowcharts": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.relu_derivative_in_backpropagation_algorithm_flowcharts",
-      "name": "ReLU Derivative in Backpropagation Algorithm Flowcharts",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "memory"
-        ],
-        "unique_concepts_count": 1
-      },
-      "status": "AVAILABLE"
-    },
-    "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function": {
-      "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function",
-      "name": "Numerical Gradient Check for ReLU Activation Function",
-      "parent": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "memory"
-        ],
-        "unique_concepts_count": 1
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method": {
-      "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method",
-      "name": "Finding the x-Intercept of Linear Equations with Two Variables using the Zero y-Value Method",
-      "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts": {
-      "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts",
-      "name": "Graphical Analysis of Linear Equations to Locate the x and y Intercepts",
-      "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations": {
-      "id": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations",
-      "name": "Applying the Slope-Intercept Form to Identify the y-Intercept of Linear Equations",
-      "parent": "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [],
-        "unique_concepts_count": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming",
-      "name": "Memoization vs. Dynamic Programming",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 1,
-        "successful_assessments": 0,
-        "recent_repetition": 0,
-        "unique_concepts_list": [
-          "optimal"
-        ],
-        "unique_concepts_count": 1
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.implementing_hash_table_in_c++_for_memoization": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.implementing_hash_table_in_c++_for_memoization",
-      "name": "Implementing Hash Table in C++ for Memoization",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    },
-    "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++": {
-      "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++",
-      "name": "Applying Memoization to Recursive Functions in C++",
-      "parent": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
-      "children": [],
-      "mastery_level": 1,
-      "evidence": {
-        "concepts_covered": 0,
-        "successful_assessments": 0,
-        "recent_repetition": 0
-      },
-      "status": "AVAILABLE"
-    }
-  }
 }
