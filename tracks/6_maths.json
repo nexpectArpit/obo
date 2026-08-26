@@ -476,6 +476,36 @@
       "prompt": "explain discrete-time Markov chains, transition probability matrices, stationary distribution vectors, and absorbing states",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Newton-CG Method for Large-Scale Non-Convex Problems",
+      "prompt": "Derive the exact CG (Conjugate Gradient) iteration for the Newton system in a non-convex loss landscape with L-BFGS preconditioning. Implement this in PyTorch for a ResNet-50 on ImageNet with a batch size of 256, and analyze the trade-off between Hessian-vector product calls and convergence speed. Include a comparison with AdamW using the same hyperparameters.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Gauss-Newton Approximation in Neural Network Training",
+      "prompt": "Implement the exact Gauss-Newton matrix-vector product for a 3-layer MLP on the MNIST dataset, but replace the true Hessian with the Kronecker-Factored Approximate Curvature (K-FAC) block-diagonal approximation. Compare the training dynamics (loss curve, gradient variance) against SGD+momentum and Adam. Rigorously justify why K-FAC\u2019s approximations matter for second-order optimization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Trust-Region Methods with Eigenvalue-Based Radius Adaptation",
+      "prompt": "Design a trust-region algorithm where the radius is dynamically adjusted based on the smallest eigenvalue of the Hessian approximation (computed via power iteration). Implement this for a logistic regression problem on the covtype dataset (581K samples) with a dense Hessian. Compare against Levenberg-Marquardt and analyze how eigenvalue sensitivity affects convergence.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Second-Order Meta-Learning for Few-Shot Optimization",
+      "prompt": "Implement a MAML-like algorithm where the meta-update step uses a full Newton step on the inner-loop Hessian (computed via Hutchinson\u2019s trace estimator). Train a 4-layer CNN on the miniImageNet dataset with 5-way 1-shot tasks. Compare the convergence speed and generalization gap against first-order meta-learning baselines (e.g., Reptile) and analyze the effect of Hessian conditioning.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stochastic Quasi-Newton Methods with Coupled Sampling",
+      "prompt": "Develop a stochastic L-BFGS variant where the Hessian approximation updates are coupled with a stratified sampling strategy that prioritizes samples with high gradient variance. Implement this for a Transformer (6-layer, 8 heads) on the WMT\u201914 dataset. Compare against Adam and SGD with momentum, and provide a theoretical justification for the coupling mechanism.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

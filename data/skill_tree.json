@@ -371,7 +371,7 @@
                 ],
                 "unique_concepts_count": 12
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         },
         "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)": {
             "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.graphing_a_linear_equation_in_slope-intercept_form_(y_=_mx_+_b)",
@@ -380,9 +380,11 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 2,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
             },
             "status": "AVAILABLE"
         },
