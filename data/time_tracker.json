@@ -439,6 +439,11 @@
             "timestamp": 1787706379.8064275,
             "duration_seconds": 541,
             "topic": "Implementing Memoization in C++ using Stl Maps and Unordered Maps for Efficient Function Calls"
+        },
+        {
+            "timestamp": 1787707401.6375515,
+            "duration_seconds": 374,
+            "topic": "ReLU Derivative in Backpropagation Algorithm Flowcharts"
         }
     ]
 }
