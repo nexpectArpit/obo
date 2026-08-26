@@ -801,7 +801,7 @@
                 "unique_concepts_list": [],
                 "unique_concepts_count": 0
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls",
@@ -810,9 +810,11 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [],
+                "unique_concepts_count": 0
             },
             "status": "AVAILABLE"
         },
