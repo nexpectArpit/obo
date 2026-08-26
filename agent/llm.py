@@ -95,7 +95,7 @@ class OboeLLM:
         if blocked_until is None:
             return False
         
-        # Check if 24 hours have passed
+        # Check if block duration has passed
         if time.time() < blocked_until:
             remaining_hours = (blocked_until - time.time()) / 3600
             print(f"[RATE_LIMIT] Provider {ptype} ({key_hash}) blocked for {remaining_hours:.1f} more hours")
@@ -108,13 +108,13 @@ class OboeLLM:
             return False
     
     def _mark_provider_blocked(self, provider, error_msg="rate limit"):
-        """Mark a provider as blocked for 24 hours."""
+        """Mark a provider as blocked for 8 hours."""
         ptype = provider["type"]
         key_hash = self._get_key_hash(provider["api_key"])
         key_id = f"{ptype}_{key_hash}"
         
-        # Block for 24 hours
-        blocked_until = time.time() + (24 * 60 * 60)
+        # Block for 8 hours
+        blocked_until = time.time() + (8 * 60 * 60)
         
         self.rate_limits[key_id] = {
             "blocked_until": blocked_until,
@@ -123,7 +123,7 @@ class OboeLLM:
         }
         self._save_rate_limits()
         
-        print(f"[RATE_LIMIT] Provider {ptype} ({key_hash}) BLOCKED for 24 hours: {error_msg[:100]}")
+        print(f"[RATE_LIMIT] Provider {ptype} ({key_hash}) BLOCKED for 8 hours: {error_msg[:100]}")
     
     def _is_rate_limit_error(self, error):
         """Detect if an error is a rate limit error."""

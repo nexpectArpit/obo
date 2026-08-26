@@ -769,6 +769,65 @@ class OboeAgent:
     def _save_current_state(self, status="RUNNING"):
         state_path = Path(__file__).resolve().parent.parent / "data" / "agent_state.json"
         elapsed = time.time() - self.start_time if getattr(self, "start_time", None) else 0
+        
+        # Calculate live IST totals by reading the time tracker history
+        rolling_24h_sec = 0
+        today_ist_sec = 0
+        try:
+            tracker_path = Path(__file__).resolve().parent.parent / "data" / "time_tracker.json"
+            if tracker_path.exists():
+                data = json.loads(tracker_path.read_text())
+                sessions = data.get("sessions", [])
+                
+                # Combine history with a virtual session of the current elapsed time
+                current_ts = time.time()
+                virtual_session = {
+                    "timestamp": current_ts,
+                    "duration_seconds": round(elapsed),
+                    "topic": self.topic
+                }
+                temp_sessions = sessions + [virtual_session]
+                
+                # Deduplicate concurrent entries to match update_time_tracker logic
+                deduplicated = []
+                for s in temp_sessions:
+                    is_dup = False
+                    s_ts = s.get("timestamp", 0)
+                    s_topic = s.get("topic", "")
+                    for existing in deduplicated:
+                        e_ts = existing.get("timestamp", 0)
+                        e_topic = existing.get("topic", "")
+                        same_topic_close = (s_topic == e_topic and abs(s_ts - e_ts) < 300)
+                        any_topic_very_close = (abs(s_ts - e_ts) < 5)
+                        if same_topic_close or any_topic_very_close:
+                            is_dup = True
+                            if s.get("duration_seconds", 0) > existing.get("duration_seconds", 0):
+                                existing["duration_seconds"] = s["duration_seconds"]
+                            break
+                    if not is_dup:
+                        deduplicated.append(s)
+                
+                # Calculate rolling 24h
+                twenty_four_hours_ago = current_ts - 86400
+                rolling_24h_sec = sum(s.get("duration_seconds", 0) for s in deduplicated if s.get("timestamp", 0) > twenty_four_hours_ago)
+                
+                # Calculate calendar day (IST)
+                from datetime import datetime, timezone, timedelta
+                ist_tz = timezone(timedelta(hours=5, minutes=30))
+                ist_now = datetime.now(timezone.utc).astimezone(ist_tz)
+                current_date_ist = ist_now.date()
+                
+                for s in deduplicated:
+                    s_ts = s.get("timestamp", 0)
+                    try:
+                        s_dt_ist = datetime.fromtimestamp(s_ts, timezone.utc).astimezone(ist_tz)
+                        if s_dt_ist.date() == current_date_ist:
+                            today_ist_sec += s.get("duration_seconds", 0)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
         state_data = {
             "status": status,
             "topic": self.topic,
@@ -782,7 +841,9 @@ class OboeAgent:
                 "elapsed_seconds": int(elapsed),
                 "mcqs_total": self.total_mcqs_count,
                 "mcqs_wrong": self.wrong_mcqs_count,
-                "achieved_skills": self.achieved_skills
+                "achieved_skills": self.achieved_skills,
+                "total_24h_seconds": rolling_24h_sec,
+                "total_today_ist_seconds": today_ist_sec
             }
         }
         try:
