@@ -67,9 +67,10 @@
         "os": {
             "active_branch": [
                 "os",
-                "os.kernel"
+                "os.kernel",
+                "os.kernel.linux_kernel_module_loaders_and_unloaders"
             ],
-            "current_node": "os.kernel",
+            "current_node": "os.kernel.linux_kernel_module_loaders_and_unloaders",
             "last_good_node": "os",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -90,5 +91,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "cpp"
+    "active_anchor": "os"
 }

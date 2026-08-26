@@ -6,5 +6,15 @@
     }
   },
   "nvidia": {},
-  "mistral": {}
+  "mistral": {},
+  "groq_43b60c3c": {
+    "blocked_until": 1787818682.5318408,
+    "blocked_at": "2026-08-26 08:18:02",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjck1t4e9wvbt3f6n8xv0yh` service tier `on_demand` on tokens per day (TPD): Limit 2000"
+  },
+  "groq_f4ad7c1d": {
+    "blocked_until": 1787819507.2087116,
+    "blocked_at": "2026-08-26 08:31:47",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjyp11cez2s479zkqw9br7m` service tier `on_demand` on tokens per day (TPD): Limit 2000"
+  }
 }
