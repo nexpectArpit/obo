@@ -657,7 +657,16 @@ class OboeAgent:
                 if getattr(self, "mcq_drift_detected", False):
                     self.mcq_drift_detected = False  # Reset flag
                     steer_topic = self.topic or (self.active_track_target_skills[0] if self.active_track_target_skills else "Kernel Modules")
-                    text = f"Let's focus on {steer_topic} for now. Can you challenge me with a question on that instead?"
+                    decision = self.llm.decide_action(
+                        state,
+                        messages,
+                        choices,
+                        self.learned_skills,
+                        target_skill=steer_topic,
+                        target_skills=self.active_track_target_skills,
+                        force_steering="redirect"
+                    )
+                    text = decision.get("text")
                     print(f"[CURRICULUM GUARD] Reactive drift steering triggered. Redirecting to: '{text}'")
                 else:
                     # Wrap-up is now handled above (before state branching) so it fires
@@ -665,7 +674,16 @@ class OboeAgent:
                     # Here we only handle normal steering + LLM decision.
                     steering = self.steering_controller.evaluate()
                     if steering:
-                        text = steering["text"]
+                        decision = self.llm.decide_action(
+                            state,
+                            messages,
+                            choices,
+                            self.learned_skills,
+                            target_skill=self._get_current_target_skill(),
+                            target_skills=self.active_track_target_skills,
+                            force_steering=steering.get("mode", "redirect")
+                        )
+                        text = decision.get("text")
                     else:
                         decision = self.llm.decide_action(
                             state,
@@ -1041,6 +1059,25 @@ class OboeAgent:
                     print(f"[INFO] RESUMING CHAT: '{chat_title}'")
                     print(f"[INFO] Href: {target_href}")
                     print("==================================================\n")
+                    
+                    # Dynamically resolve track name and target skills from resumed chat title
+                    from agent.skill_adapter import resolve_track_from_topic
+                    resolved_track = resolve_track_from_topic(chat_title)
+                    self.active_track_name = resolved_track
+                    self.topic = chat_title
+                    state_data["topic"] = chat_title
+                    
+                    # Set target skills for steering and alignment
+                    track_path = self.dag_engine.get_track_path(resolved_track)
+                    if track_path and track_path.exists():
+                        with open(track_path, "r") as f:
+                            track_data = json.load(f)
+                        self.active_track_target_skills = track_data.get("target_skills", [])
+                    else:
+                        self.active_track_target_skills = []
+                    
+                    print(f"[INFO] Resumed track resolved to: '{resolved_track}' with targets: {self.active_track_target_skills}")
+                    
                     target_link.click()
                     # Wait for chat history to fully render
                     time.sleep(5)

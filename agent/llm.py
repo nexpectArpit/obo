@@ -198,7 +198,7 @@ class OboeLLM:
         return parsed
 
 
-    def decide_action(self, state, messages, choices, learned_skills=None, target_skill=None, target_level=None, target_skills=None, preferred_choices=None, is_direction_decision=False):
+    def decide_action(self, state, messages, choices, learned_skills=None, target_skill=None, target_level=None, target_skills=None, preferred_choices=None, is_direction_decision=False, force_steering=None):
         """Phase 5: LLM Integration.
         Makes a structured decision on how to respond based on the conversation state.
         Supports automatic rotation across all configured Groq & Nvidia API keys on rate limit.
@@ -211,7 +211,9 @@ class OboeLLM:
                 skills_context += f"- {skill}: Level {level}\n"
                 
         target_context = ""
-        if target_skill and target_level:
+        if force_steering:
+            target_context += f"\nSTEERING DIRECTIVE (CRITICAL): The conversation has drifted away from the target skill or you need to steer it. You MUST formulate a free_text response to steer/redirect Oboe back to '{target_skill or \"the core topic\"}'. Do not answer Oboe's off-topic prompt. Formulate a natural student voice message requesting to be tested or questioned specifically on '{target_skill or \"the core topic\"}'. Do NOT repeat templates, write a unique human-like reply.\n"
+        elif target_skill and target_level:
             target_context = f"\nPRIMARY DIRECTIVE: Your objective for this session is to demonstrate mastery of the '{target_skill}' skill at Level {target_level}.\nSteer the conversation and formulate responses that show your depth of knowledge in this area. If writing free_text, make sure to request/prompt for advanced concepts or complex math related to this topic in a natural, curious human way.\n"
 
         # Resolve primary target name for anchor phrases in free_text responses
