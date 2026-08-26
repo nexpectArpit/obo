@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787140673.075074,
-            "duration_seconds": 0,
-            "topic": "random"
-        },
-        {
             "timestamp": 1787148829.1627965,
             "duration_seconds": 560,
             "topic": "The physics of groundwater aquifer depletion rates"
@@ -474,6 +469,11 @@
             "timestamp": 1787744274.6940494,
             "duration_seconds": 133,
             "topic": "CPU"
+        },
+        {
+            "timestamp": 1787746032.1027973,
+            "duration_seconds": 643,
+            "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping Implementation in PyTorch"
         }
     ]
 }

@@ -455,15 +455,16 @@
             ],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 3,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
+                    "gradient",
                     "backpropagation",
-                    "computational",
-                    "gradient"
+                    "memory",
+                    "computational"
                 ],
-                "unique_concepts_count": 3
+                "unique_concepts_count": 4
             },
             "status": "AVAILABLE"
         },
