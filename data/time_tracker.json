@@ -444,6 +444,11 @@
             "timestamp": 1787707401.6375515,
             "duration_seconds": 374,
             "topic": "ReLU Derivative in Backpropagation Algorithm Flowcharts"
+        },
+        {
+            "timestamp": 1787708575.7631567,
+            "duration_seconds": 515,
+            "topic": "Caching Results with a Hash Table in Memoization"
         }
     ]
 }
