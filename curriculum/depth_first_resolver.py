@@ -225,10 +225,12 @@ class DepthFirstResolver:
         if not node:
             return []
 
-        # Only discover children down to max depth 5 to avoid infinite paths
+        # Only discover children down to max depth 3 — deeper nodes become too narrow,
+        # leading to 6-9 min sessions that exhaust immediately (run-102+ pattern).
+        # Depth 3 keeps topics broad enough for 15-25 min productive sessions.
         branch_path = self.active_state.get("active_branch", [])
-        if len(branch_path) >= 5:
-            print(f"[DFS] Max depth reached. Skipping child discovery for {parent_id}")
+        if len(branch_path) >= 3:
+            print(f"[DFS] Max depth (3) reached. Skipping child discovery for {parent_id}")
             return []
 
         print(f"[DFS] Running Dynamic Child Discovery for: {node['name']}")

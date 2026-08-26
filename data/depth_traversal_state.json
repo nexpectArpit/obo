@@ -4,10 +4,9 @@
             "active_branch": [
                 "maths",
                 "maths.algebra",
-                "maths.algebra.linear_equations_with_two_variables",
-                "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables"
+                "maths.algebra.linear_equations_with_two_variables"
             ],
-            "current_node": "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables",
+            "current_node": "maths.algebra.linear_equations_with_two_variables",
             "last_good_node": "maths",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -27,11 +26,9 @@
             "active_branch": [
                 "cpp",
                 "cpp.dynamic_programming",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming"
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems"
             ],
-            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming",
+            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -51,11 +48,9 @@
             "active_branch": [
                 "dl",
                 "dl.neural_networks",
-                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
-                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation",
-                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function"
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu"
             ],
-            "current_node": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function",
+            "current_node": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
