@@ -133,10 +133,34 @@ class OboeBrowser:
         print(f"[DOM_CHECK] mode=atomic latency={latency:.2f}ms state={result}")
         return result
 
+    def dismiss_overlays(self):
+        """Finds and dismisses any blocking dialog modals/overlays (e.g. Oboe level-up/completion celebrate dialogs)."""
+        try:
+            # 1. Try sending Escape key to close standard Radix/React dialogs
+            dialog_count = self.page.locator('[role="dialog"], [data-state="open"]').count()
+            if dialog_count > 0:
+                print(f"[OVERLAY] Detected {dialog_count} open dialog(s). Sending Escape key to dismiss...")
+                self.page.keyboard.press("Escape")
+                self.page.wait_for_timeout(1000)
+                
+            # 2. Look for any explicit close/dismiss buttons and click them
+            close_buttons = self.page.locator('button:has-text("Close"), button:has-text("Got it"), button:has-text("Dismiss"), [aria-label="Close"]').all()
+            for btn in close_buttons:
+                try:
+                    if btn.is_visible():
+                        print("[OVERLAY] Clicking visible dialog close/dismiss button...")
+                        btn.click(timeout=2000)
+                        self.page.wait_for_timeout(1000)
+                except Exception:
+                    pass
+        except Exception as e:
+            print(f"[OVERLAY] Notice during overlay dismissal: {e}")
+
     def observe_page(self):
         """Phase 3: Platform Observation.
         Extracts dialogue history and list of available options from the current page.
         """
+        self.dismiss_overlays()
         state = self.get_interaction_state()
         
         # Extract chat messages
@@ -234,6 +258,7 @@ class OboeBrowser:
 
     def click_suggestion_by_text(self, text):
         """Execute action: Click an MCQ / suggestion choice by matching text."""
+        self.dismiss_overlays()
         # Human-like thinking delay (2–5s — reduced from 3–9s to cut per-turn latency)
         delay = random.uniform(2.0, 5.0)
         print(f"Thinking for {delay:.2f} seconds...")
@@ -259,6 +284,7 @@ class OboeBrowser:
 
     def type_and_submit(self, text):
         """Execute action: Type text in the prompt input and submit."""
+        self.dismiss_overlays()
         if not text:
             text = "I'm interested to learn more about this."
         text_str = str(text)
