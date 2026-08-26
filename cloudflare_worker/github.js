@@ -94,6 +94,9 @@ export async function formatRunStatus(pat, repo, run) {
   if (!run) {
     return "📭 No workflow runs found.";
   }
+  if (run.conclusion === "startup_failure") {
+    return `❌ *Run #${run.run_number}* — Startup Failure (GitHub provisioning error).\n\n`;
+  }
   const jobsUrl = `https://api.github.com/repos/${repo}/actions/runs/${run.id}/jobs`;
   const r = await fetch(jobsUrl, {
     headers: {
