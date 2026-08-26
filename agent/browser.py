@@ -48,7 +48,7 @@ class OboeBrowser:
             # viewport must be passed directly, not inside a nested dict with launch args
             persistent_launch_kwargs = {
                 "headless": self.headless,
-                "slow_mo": 100,
+                "slow_mo": 50,  # Reduced from 100ms — still human-like but saves ~2s/turn
                 "viewport": {"width": 1280, "height": 800},
                 "args": [
                     "--disable-blink-features=AutomationControlled",
@@ -234,8 +234,8 @@ class OboeBrowser:
 
     def click_suggestion_by_text(self, text):
         """Execute action: Click an MCQ / suggestion choice by matching text."""
-        # Human-like thinking delay (randomly between 3.0 and 9.0 seconds)
-        delay = random.uniform(3.0, 9.0)
+        # Human-like thinking delay (2–5s — reduced from 3–9s to cut per-turn latency)
+        delay = random.uniform(2.0, 5.0)
         print(f"Thinking for {delay:.2f} seconds...")
         self.page.wait_for_timeout(int(delay * 1000))
 
@@ -263,8 +263,8 @@ class OboeBrowser:
             text = "I'm interested to learn more about this."
         text_str = str(text)
 
-        # Human-like thinking delay (randomly between 3.0 and 9.0 seconds)
-        delay = random.uniform(3.0, 9.0)
+        # Human-like thinking delay (2–5s — reduced from 3–9s to cut per-turn latency)
+        delay = random.uniform(2.0, 5.0)
         print(f"Thinking for {delay:.2f} seconds...")
         self.page.wait_for_timeout(int(delay * 1000))
         

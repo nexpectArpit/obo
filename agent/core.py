@@ -336,9 +336,9 @@ class OboeAgent:
                 # Not loading — reset the loading wall-clock
                 loading_started_at = None
 
-            # Ensure page is stable (Oboe finished typing) — 2s is enough, 5s wastes ~4min/session
-            print("Waiting 2 seconds to verify page stability...")
-            time.sleep(2)
+            # Ensure page is stable (Oboe finished typing) — 1s is enough, 2s wastes time
+            print("Waiting 1 second to verify page stability...")
+            time.sleep(1)
             obs2 = self.browser.observe_page()
             state2 = obs2["state"]
 
