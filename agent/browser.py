@@ -266,13 +266,13 @@ class OboeBrowser:
 
         print(f"Clicking suggestion: '{text}'")
         # Locator matching exact text inside the suggested replies (either in button or child span)
-        button = self.page.locator('[data-test-id="suggested-replies"] button').filter(
+        button = self.page.locator('[data-test-id="suggested-replies"]').last.locator('button').filter(
             has=self.page.locator('span.inline').filter(has_text=text)
         ).first
 
         if button.count() == 0:
             # Fallback to direct button has-text filter
-            button = self.page.locator('[data-test-id="suggested-replies"] button').filter(has_text=text).first
+            button = self.page.locator('[data-test-id="suggested-replies"]').last.locator('button').filter(has_text=text).first
 
         if button.count() == 0:
             print(f"[WARNING] Could not find suggestion button for text: '{text}'. Skipping click.")

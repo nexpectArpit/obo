@@ -614,6 +614,17 @@ class OboeAgent:
                     preferred_choices=preferred,
                     is_direction_decision=True
                 )
+                
+                action = decision.get("action")
+                if action == "type" and decision.get("text"):
+                    if self._page_accepts_free_text():
+                        print(f"[CURRICULUM GUARD] LLM rejected MCQ to prevent drift. Typing: '{decision.get('text')[:60]}...'")
+                        self.browser.type_and_submit(decision.get("text"))
+                        self.last_action_was_q_answer = True
+                        continue
+                    else:
+                        print("[CURRICULUM GUARD] LLM tried to type but page has no text input. Falling back to MCQ click.")
+
                 selection = decision.get("selection")
                 
                 # Double enforcement: Selection must be in valid_choices
