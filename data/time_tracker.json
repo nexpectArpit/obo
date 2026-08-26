@@ -454,6 +454,11 @@
             "timestamp": 1787709601.4234147,
             "duration_seconds": 409,
             "topic": "Numerical Gradient Check for ReLU Activation Function"
+        },
+        {
+            "timestamp": 1787710804.5104663,
+            "duration_seconds": 524,
+            "topic": "Memoization vs. Dynamic Programming"
         }
     ]
 }
