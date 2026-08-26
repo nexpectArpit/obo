@@ -405,7 +405,11 @@ class OboeAgent:
 
                     # Always record every skill seen on-screen this session at its current level
                     # (even if not a level-up — this is the full picture of what Oboe showed)
-                    existing_session_lv = self.session_skills.get(skill, 0)
+                    raw_existing = self.session_skills.get(skill, 0)
+                    try:
+                        existing_session_lv = int(str(raw_existing).replace("LV", "").replace("lv", "").strip())
+                    except (ValueError, TypeError):
+                        existing_session_lv = 0
                     if new_lv >= existing_session_lv:
                         self.session_skills[skill] = f"LV {new_lv}"
 
