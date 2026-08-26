@@ -1,21 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787166463.4363897,
-            "duration_seconds": 1841,
-            "topic": "about webhook"
-        },
-        {
-            "timestamp": 1787170263.024744,
-            "duration_seconds": 57,
-            "topic": "Designing Scalable AI Inference Pipelines with Custom LPU Accelerators"
-        },
-        {
-            "timestamp": 1787170802.5468357,
-            "duration_seconds": 232,
-            "topic": "Implementing consensus protocols for fault-tolerant memory systems with HBM3e cache hierarchies"
-        },
-        {
             "timestamp": 1787201066.8449464,
             "duration_seconds": 1129,
             "topic": "PID in cs"
@@ -449,6 +434,11 @@
             "timestamp": 1787770989.178337,
             "duration_seconds": 187,
             "topic": "random"
+        },
+        {
+            "timestamp": 1787780412.5838711,
+            "duration_seconds": 643,
+            "topic": "Gradient Clipping with Norm"
         }
     ]
 }

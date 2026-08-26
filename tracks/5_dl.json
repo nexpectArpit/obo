@@ -416,6 +416,36 @@
       "prompt": "explain why decoupling weight decay from gradient updates (AdamW) differs from standard L2 regularization in adaptive optimizers",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Neural Architecture Search (NAS) with Differentiable Architecture Parameters",
+      "prompt": "Let's implement a differentiable NAS pipeline where we replace the discrete architecture selection with continuous relaxation (e.g., Gumbel-Softmax) to optimize both weights and architecture jointly. How would you modify the gradient computation to handle this relaxation? Can you derive the gradient for the architecture parameters when using a softmax over operations like convolution, max-pooling, or identity?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Transformers with Adaptive Sparse Attention via Routing Networks",
+      "prompt": "Design a transformer layer where attention heads are dynamically routed through a lightweight neural network (e.g., a 2-layer MLP) that predicts which tokens to attend to, reducing the O(N^2) complexity. How would you ensure gradient flow through the routing decisions? Can you implement a top-k routing mechanism where only the top-2 heads per token are activated during training?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deep Equilibrium Models (DEQs) for Sequence Modeling",
+      "prompt": "Implement a DEQ-based language model where the hidden state is defined as the fixed point of an implicit layer (e.g., F(h, x) = h). How would you compute gradients through this fixed point using the implicit function theorem? Can you derive the Jacobian-free backward pass for a DEQ with 10,000 iterations of fixed-point iteration?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Diffusion Models with Learned Noise Schedules",
+      "prompt": "Instead of using a fixed noise schedule (e.g., linear or cosine), let's train a neural network to predict the optimal noise schedule for a diffusion model. How would you parameterize the schedule (e.g., as a learnable spline or MLP)? Can you implement a differentiable loss that penalizes both the denoising error and the KL divergence between the learned and target distributions?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hypernetworks for Meta-Learning with Weight Generation Constraints",
+      "prompt": "Design a hypernetwork that generates weights for a target model (e.g., a CNN for image classification) but enforces constraints like low-rank factorization or sparsity. How would you enforce these constraints during the weight generation process? Can you implement a hypernetwork that generates weights for a ResNet-50 while ensuring the generated weights have a rank <= 32?",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

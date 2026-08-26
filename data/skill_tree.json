@@ -515,15 +515,16 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 3,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "computational",
+                    "gradient",
                     "backpropagation",
-                    "gradient"
+                    "computational",
+                    "memory"
                 ],
-                "unique_concepts_count": 3
+                "unique_concepts_count": 4
             },
             "status": "AVAILABLE"
         },
