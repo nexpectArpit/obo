@@ -314,6 +314,54 @@
       "prompt": "advanced NumPy, broadcasting rules, vectorization, einsum for tensor operations, structured arrays, memory layout C vs Fortran order, and performance optimization tips",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Statistical Inference: A/B Testing Statistical Power and Sample Size Sizing",
+      "prompt": "explain statistical power (1 - Beta), significance level (Alpha), effect size, and calculating required sample size for A/B split tests",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Statistical Inference: ANOVA F-Statistic Calculation and Multiple Comparisons",
+      "prompt": "explain Analysis of Variance (ANOVA), sum of squares partition, F-statistic derivation, and Bonferroni correction for multiple hypothesis tests",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Statistical Inference: Chi-Square Test of Independence and Goodness-of-Fit",
+      "prompt": "explain Chi-Square distribution degrees of freedom, calculating observed vs expected contingency tables, and testing category dependencies",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Regression Diagnostics: Multicollinearity and Variance Inflation Factors",
+      "prompt": "explain multicollinearity in linear models, calculate Variance Inflation Factors (VIF), and diagnose high-variance coefficients",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Regression Diagnostics: Heteroscedasticity and Residual Homoscedasticity Tests",
+      "prompt": "explain heteroscedasticity, evaluate residual plots, and run Breusch-Pagan / White tests to verify constant variance assumptions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dimensionality Reduction: Principal Component Analysis Singular Value Decomposition",
+      "prompt": "explain PCA projection maximization, covariance matrix diagonalization, and how singular value decomposition (SVD) solves PCA without covariance",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Clustering Validation: Silhouette Coefficient and Davies-Bouldin Index",
+      "prompt": "explain silhouette width calculation, Davies-Bouldin clustering index, and selecting optimal K clusters using validation indices",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Clustering Algorithms: DBSCAN Epsilon Neighborhood and Core Points",
+      "prompt": "explain density-based spatial clustering parameters (Epsilon, MinPts), Core, Border, and Noise points classifications, and handling arbitrary shapes",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

@@ -1,0 +1,94 @@
+﻿2026-08-26T06:06:26.5838603Z ##[group]Run python -u -c '
+2026-08-26T06:06:26.5839000Z [36;1mpython -u -c '[0m
+2026-08-26T06:06:26.5839373Z [36;1mimport json, urllib.request, urllib.parse, os, sys, html[0m
+2026-08-26T06:06:26.5839760Z [36;1m[0m
+2026-08-26T06:06:26.5840013Z [36;1mtoken = os.environ.get("TG_TOKEN", "")[0m
+2026-08-26T06:06:26.5840388Z [36;1mchat_id = os.environ.get("TG_CHAT", "")[0m
+2026-08-26T06:06:26.5840727Z [36;1mif not token or not chat_id:[0m
+2026-08-26T06:06:26.5841140Z [36;1m    print("Telegram credentials not set, skipping notification.")[0m
+2026-08-26T06:06:26.5841552Z [36;1m    sys.exit(0)[0m
+2026-08-26T06:06:26.5841791Z [36;1m[0m
+2026-08-26T06:06:26.5842022Z [36;1m# Try to read agent_state.json[0m
+2026-08-26T06:06:26.5842323Z [36;1mtry:[0m
+2026-08-26T06:06:26.5842621Z [36;1m    with open("data/agent_state.json") as f:[0m
+2026-08-26T06:06:26.5842970Z [36;1m        state_full = json.load(f)[0m
+2026-08-26T06:06:26.5843285Z [36;1mexcept Exception:[0m
+2026-08-26T06:06:26.5843792Z [36;1m    state_full = {}[0m
+2026-08-26T06:06:26.5844085Z [36;1m[0m
+2026-08-26T06:06:26.5844558Z [36;1mlast_s = state_full.get("last_session", {}) if isinstance(state_full.get("last_session"), dict) else state_full[0m
+2026-08-26T06:06:26.5845113Z [36;1m[0m
+2026-08-26T06:06:26.5845344Z [36;1mif not state_full and not last_s:[0m
+2026-08-26T06:06:26.5845889Z [36;1m    msg = "🛑 <b>Oboe Session Cancelled!</b>\n\nAgent was stopped during setup phase before starting."[0m
+2026-08-26T06:06:26.5846408Z [36;1melse:[0m
+2026-08-26T06:06:26.5846759Z [36;1m    raw_topic = last_s.get("topic") or state_full.get("topic") or "Unknown"[0m
+2026-08-26T06:06:26.5847214Z [36;1m    topic = html.escape(str(raw_topic))[0m
+2026-08-26T06:06:26.5847688Z [36;1m    elapsed = last_s.get("elapsed_seconds") or state_full.get("elapsed_seconds", 0)[0m
+2026-08-26T06:06:26.5848473Z [36;1m    mcqs_total = last_s.get("mcqs_total") or state_full.get("mcqs_total", 0)[0m
+2026-08-26T06:06:26.5849018Z [36;1m    mcqs_wrong = last_s.get("mcqs_wrong") or state_full.get("mcqs_wrong", 0)[0m
+2026-08-26T06:06:26.5849508Z [36;1m    mcqs_correct = max(0, mcqs_total - mcqs_wrong)[0m
+2026-08-26T06:06:26.5849848Z [36;1m    [0m
+2026-08-26T06:06:26.5850140Z [36;1m    today_sec = last_s.get("total_today_ist_seconds", 0)[0m
+2026-08-26T06:06:26.5850532Z [36;1m    today_h = today_sec // 3600[0m
+2026-08-26T06:06:26.5850854Z [36;1m    today_m = (today_sec % 3600) // 60[0m
+2026-08-26T06:06:26.5851319Z [36;1m    skills = last_s.get("achieved_skills") or state_full.get("achieved_skills", {})[0m
+2026-08-26T06:06:26.5851760Z [36;1m[0m
+2026-08-26T06:06:26.5852018Z [36;1m    mins, secs = elapsed // 60, elapsed % 60[0m
+2026-08-26T06:06:26.5852403Z [36;1m    status = state_full.get("status", "COMPLETED")[0m
+2026-08-26T06:06:26.5852743Z [36;1m[0m
+2026-08-26T06:06:26.5852966Z [36;1m    if status == "CANCELLED":[0m
+2026-08-26T06:06:26.5853310Z [36;1m        msg = "🛑 <b>Oboe Session Stopped!</b>\n\n"[0m
+2026-08-26T06:06:26.5853801Z [36;1m    else:[0m
+2026-08-26T06:06:26.5854143Z [36;1m        msg = "🎉 <b>Oboe Session Complete!</b>\n\n"[0m
+2026-08-26T06:06:26.5854509Z [36;1m    msg += f"📚 <b>Topic:</b> {topic}\n"[0m
+2026-08-26T06:06:26.5854879Z [36;1m    msg += f"⏱️ <b>Session Time:</b> {mins}m {secs}s\n"[0m
+2026-08-26T06:06:26.5855308Z [36;1m    msg += f"📊 <b>MCQs:</b> {mcqs_correct}/{mcqs_total} correct"[0m
+2026-08-26T06:06:26.5855689Z [36;1m    if mcqs_wrong > 0:[0m
+2026-08-26T06:06:26.5855986Z [36;1m        msg += f" ({mcqs_wrong} wrong)"[0m
+2026-08-26T06:06:26.5856432Z [36;1m    msg += f"\n⏱️ <b>Today (IST):</b> {today_h}h {today_m}m\n"[0m
+2026-08-26T06:06:26.5856803Z [36;1m[0m
+2026-08-26T06:06:26.5857154Z [36;1m    telemetry = state_full.get("telemetry", {}) or last_s.get("telemetry", {})[0m
+2026-08-26T06:06:26.5857661Z [36;1m    tot_calls = telemetry.get("total_api_calls", 0)[0m
+2026-08-26T06:06:26.5858056Z [36;1m    tot_toks = telemetry.get("total_tokens", 0)[0m
+2026-08-26T06:06:26.5858443Z [36;1m    providers_map = telemetry.get("providers", {})[0m
+2026-08-26T06:06:26.5858985Z [36;1m    if tot_calls > 0:[0m
+2026-08-26T06:06:26.5859342Z [36;1m        msg += f"🧠 <b>LLM Calls:</b> {tot_calls} ({tot_toks} tokens)\n"[0m
+2026-08-26T06:06:26.5859750Z [36;1m        if providers_map:[0m
+2026-08-26T06:06:26.5860226Z [36;1m            prov_str = ", ".join([p.upper() + ": " + str(d.get("calls", 0)) for p, d in providers_map.items()])[0m
+2026-08-26T06:06:26.5860775Z [36;1m            msg += f"⚡ <b>Providers:</b> {prov_str}\n"[0m
+2026-08-26T06:06:26.5861112Z [36;1m[0m
+2026-08-26T06:06:26.5861326Z [36;1m    if skills:[0m
+2026-08-26T06:06:26.5861614Z [36;1m        msg += "\n<b>📈 Skills Leveled Up:</b>\n"[0m
+2026-08-26T06:06:26.5861968Z [36;1m        for sk, lv in skills.items():[0m
+2026-08-26T06:06:26.5862317Z [36;1m            safe_sk = html.escape(str(sk))[0m
+2026-08-26T06:06:26.5862658Z [36;1m            msg += f"  • {safe_sk}: {lv}\n"[0m
+2026-08-26T06:06:26.5862958Z [36;1m    else:[0m
+2026-08-26T06:06:26.5863253Z [36;1m        msg += "\nNo skill level-ups this session."[0m
+2026-08-26T06:06:26.5863967Z [36;1m[0m
+2026-08-26T06:06:26.5864302Z [36;1murl = f"https://api.telegram.org/bot{token}/sendMessage"[0m
+2026-08-26T06:06:26.5864678Z [36;1m[0m
+2026-08-26T06:06:26.5864883Z [36;1mtry:[0m
+2026-08-26T06:06:26.5865315Z [36;1m    data = urllib.parse.urlencode({"chat_id": chat_id, "text": msg, "parse_mode": "HTML"}).encode()[0m
+2026-08-26T06:06:26.5865853Z [36;1m    urllib.request.urlopen(url, data=data)[0m
+2026-08-26T06:06:26.5866267Z [36;1m    print("Telegram notification sent successfully (HTML).")[0m
+2026-08-26T06:06:26.5866667Z [36;1mexcept Exception as e:[0m
+2026-08-26T06:06:26.5867074Z [36;1m    print(f"HTML notification failed: {e}. Trying plain text fallback...")[0m
+2026-08-26T06:06:26.5867668Z [36;1m    try:[0m
+2026-08-26T06:06:26.5867984Z [36;1m        plain_msg = msg.replace("<b>", "").replace("</b>", "")[0m
+2026-08-26T06:06:26.5868533Z [36;1m        data_plain = urllib.parse.urlencode({"chat_id": chat_id, "text": plain_msg}).encode()[0m
+2026-08-26T06:06:26.5869082Z [36;1m        urllib.request.urlopen(url, data=data_plain)[0m
+2026-08-26T06:06:26.5869552Z [36;1m        print("Telegram notification sent successfully (Plain Text).")[0m
+2026-08-26T06:06:26.5869973Z [36;1m    except Exception as fe:[0m
+2026-08-26T06:06:26.5870319Z [36;1m        print(f"Plain text fallback also failed: {fe}")[0m
+2026-08-26T06:06:26.5870666Z [36;1m'[0m
+2026-08-26T06:06:26.5908381Z shell: /usr/bin/bash -e {0}
+2026-08-26T06:06:26.5908668Z env:
+2026-08-26T06:06:26.5908970Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-08-26T06:06:26.5909446Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+2026-08-26T06:06:26.5909916Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-08-26T06:06:26.5910325Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-08-26T06:06:26.5910761Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-08-26T06:06:26.5911189Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+2026-08-26T06:06:26.5911709Z   TG_TOKEN: ***
+2026-08-26T06:06:26.5911948Z   TG_CHAT: ***
+2026-08-26T06:06:26.5912167Z ##[endgroup]
+2026-08-26T06:06:27.3082357Z Telegram notification sent successfully (HTML).

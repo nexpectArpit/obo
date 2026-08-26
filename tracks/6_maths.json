@@ -422,6 +422,60 @@
       "prompt": "graph algorithms, shortest paths Dijkstra Bellman-Ford, minimum spanning tree Kruskal Prim, topological sort, graph coloring, bipartite matching, and network flow max-flow min-cut.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Numerical Optimization: Quasi-Newton Methods (BFGS Update Step)",
+      "prompt": "explain Quasi-Newton BFGS optimization, the secant equation, and formulating rank-2 updates to approximate the inverse Hessian matrix",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Numerical Optimization: Memory-Reduced L-BFGS Two-Loop Recursion",
+      "prompt": "explain Limited-memory BFGS (L-BFGS), state saving using vector history, and the two-loop recursion algorithm to compute search directions",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Numerical Optimization: Newton-Raphson Step Size and Convergence Rates",
+      "prompt": "explain multi-dimensional Newton's optimization step delta x = - H^(-1) * g, and quadratic convergence guarantees",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Constrained Optimization: Karush-Kuhn-Tucker (KKT) Conditions",
+      "prompt": "explain Karush-Kuhn-Tucker (KKT) stationarity, primal feasibility, dual feasibility, and complementary slackness conditions for inequality constraints",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Constrained Optimization: Lagrange Multipliers and Support Vector Boundaries",
+      "prompt": "explain method of Lagrange multipliers, formulating dual optimization problems, and finding optimal hyperplanes in support vector machines",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Linear Algebra: Singular Value Decomposition Low-Rank Matrix Approximation",
+      "prompt": "explain Singular Value Decomposition (SVD) matrix factorization A = U * Sigma * V^T, and Eckart-Young-Mirsky low-rank matrix approximation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Linear Algebra: Eigenvalue and Eigenvector Diagonalization",
+      "prompt": "explain eigenvector diagonalization A = P * D * P^(-1), characteristic polynomial calculations, and geometric vs algebraic multiplicity",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Probability: Bayes Theorem and Gaussian Mixture Models",
+      "prompt": "explain Bayes theorem, prior/likelihood/posterior probability formulations, and parameter fitting in Gaussian Mixture Models (GMM)",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Probability: Markov Chains Transition Probabilities and Steady State",
+      "prompt": "explain discrete-time Markov chains, transition probability matrices, stationary distribution vectors, and absorbing states",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

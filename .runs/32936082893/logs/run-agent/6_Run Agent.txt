@@ -1,0 +1,119 @@
+﻿2026-08-26T05:57:28.7519907Z ##[group]Run ARGS=("-u" "main.py" "learn" "--headless")
+2026-08-26T05:57:28.7520384Z [36;1mARGS=("-u" "main.py" "learn" "--headless")[0m
+2026-08-26T05:57:28.7520730Z [36;1mif [ "false" = "true" ]; then[0m
+2026-08-26T05:57:28.7521037Z [36;1m  ARGS+=("--resume")[0m
+2026-08-26T05:57:28.7521380Z [36;1melif [ -n "random" ] && [ "random" != "random" ]; then[0m
+2026-08-26T05:57:28.7521760Z [36;1m  ARGS+=("--topic" "random")[0m
+2026-08-26T05:57:28.7522058Z [36;1melse[0m
+2026-08-26T05:57:28.7522306Z [36;1m  ARGS+=("--topic" "random")[0m
+2026-08-26T05:57:28.7522608Z [36;1mfi[0m
+2026-08-26T05:57:28.7522843Z [36;1mif [ "false" = "true" ]; then[0m
+2026-08-26T05:57:28.7523136Z [36;1m  ARGS+=("--level-up")[0m
+2026-08-26T05:57:28.7523790Z [36;1mfi[0m
+2026-08-26T05:57:28.7524092Z [36;1mif [ -n "cpp" ] && [ "cpp" != "none" ]; then[0m
+2026-08-26T05:57:28.7524438Z [36;1m  ARGS+=("--pin" "cpp")[0m
+2026-08-26T05:57:28.7524706Z [36;1mfi[0m
+2026-08-26T05:57:28.7524972Z [36;1mif [ -n "none" ] && [ "none" != "none" ]; then[0m
+2026-08-26T05:57:28.7525360Z [36;1m  ARGS+=("--max-duration" "none")[0m
+2026-08-26T05:57:28.7525666Z [36;1mfi[0m
+2026-08-26T05:57:28.7525917Z [36;1mecho "Executing: python ${ARGS[*]}"[0m
+2026-08-26T05:57:28.7526257Z [36;1mexec python "${ARGS[@]}"[0m
+2026-08-26T05:57:28.7563589Z shell: /usr/bin/bash -e {0}
+2026-08-26T05:57:28.7563887Z env:
+2026-08-26T05:57:28.7564189Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-08-26T05:57:28.7564662Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+2026-08-26T05:57:28.7565142Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-08-26T05:57:28.7565560Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-08-26T05:57:28.7565988Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-08-26T05:57:28.7566424Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+2026-08-26T05:57:28.7566790Z ##[endgroup]
+2026-08-26T05:57:28.7629962Z Executing: python -u main.py learn --headless --topic random --pin cpp
+2026-08-26T05:57:29.8480696Z Starting agent learning loop for topic: random
+2026-08-26T05:57:29.8500431Z Starting obo agent...
+2026-08-26T05:57:30.2314950Z [INFO] Seeding browser context with storage state from: state.json
+2026-08-26T05:57:38.0171831Z Navigating to https://oboe.com...
+2026-08-26T05:57:42.5448481Z [DFS] Resolving from active node: cpp.dynamic_programming.memoization_with_overlapping_subproblems
+2026-08-26T05:57:42.5450378Z [DFS] Unresolved child found. Descending to: cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation
+2026-08-26T05:57:42.5453185Z [DFS] Successfully resolved next node target: 'Memoization with Tabulation'
+2026-08-26T05:57:42.5454086Z 
+2026-08-26T05:57:42.5455859Z ============================================================
+2026-08-26T05:57:42.5456767Z [PINNED TRACK] Track: cpp
+2026-08-26T05:57:42.5457261Z [PINNED TRACK] Chat: 'cpp'
+2026-08-26T05:57:42.5457788Z [PINNED TRACK] Topic #999: Memoization with Tabulation
+2026-08-26T05:57:42.5458993Z [PINNED TRACK] Prompt: let's do Memoization with Tabulation today. walk me through how it actually works under the hood, th...
+2026-08-26T05:57:42.5464412Z ============================================================
+2026-08-26T05:57:42.5464997Z 
+2026-08-26T05:57:42.5868316Z [PINNED TRACK] Found pinned chat: 'cpp' -> /chat/cpp-vwa1d1
+2026-08-26T05:57:47.6945914Z Thinking for 2.55 seconds...
+2026-08-26T05:57:50.2484579Z Typing free text response: 'let's do Memoization with Tabulation today. walk me through how it actually works under the hood, then hit me with a tough question'
+2026-08-26T05:58:12.1619456Z [DOM_CHECK] mode=atomic latency=50.48ms state=free_text
+2026-08-26T06:00:02.3032366Z Waiting 1 second to verify page stability...
+2026-08-26T06:00:03.3174629Z [DOM_CHECK] mode=atomic latency=14.05ms state=suggested_replies
+2026-08-26T06:01:28.4109758Z Page state changed during wait. Retrying observation...
+2026-08-26T06:01:28.4238392Z [DOM_CHECK] mode=atomic latency=12.68ms state=suggested_replies
+2026-08-26T06:02:56.7469003Z Waiting 1 second to verify page stability...
+2026-08-26T06:02:57.7607134Z [DOM_CHECK] mode=atomic latency=13.65ms state=suggested_replies
+2026-08-26T06:04:39.7486502Z Reading Oboe's response... Simulating human delay for 8.75 seconds (Configured Range: 7.0-20.0s)...
+2026-08-26T06:04:48.4990813Z [SKILL] Active on screen (no level-up): Algorithms = LV 15 [TARGET]
+2026-08-26T06:04:48.4992225Z [SKILL] Active on screen (no level-up): Data Structures = LV 4 [SUPPORTING]
+2026-08-26T06:04:48.4994878Z [SKILL] Active on screen (no level-up): Combinatorics = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5004521Z [SKILL] Active on screen (no level-up): Dynamic Programming = LV 18 [TARGET]
+2026-08-26T06:04:48.5009956Z [SKILL] Active on screen (no level-up): Code Tracing = LV 2 [SUPPORTING]
+2026-08-26T06:04:48.5011165Z [SKILL] Active on screen (no level-up): Space Complexity Optimization = LV 3 [SUPPORTING]
+2026-08-26T06:04:48.5012578Z [SKILL] Active on screen (no level-up): Search Algorithms = LV 2 [SUPPORTING]
+2026-08-26T06:04:48.5014064Z [SKILL] Active on screen (no level-up): Two Pointers Technique = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5015302Z [SKILL] Active on screen (no level-up): Tree Algorithms = LV 4 [SUPPORTING]
+2026-08-26T06:04:48.5016518Z [SKILL] Active on screen (no level-up): Sliding Window Technique = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5017735Z [SKILL] Active on screen (no level-up): Time Complexity Analysis = LV 3 [SUPPORTING]
+2026-08-26T06:04:48.5018991Z [SKILL] Active on screen (no level-up): Bitwise Operations = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5020179Z [SKILL] Active on screen (no level-up): Difference Arrays = LV 3 [SUPPORTING]
+2026-08-26T06:04:48.5021350Z [SKILL] Active on screen (no level-up): Prefix Sums = LV 3 [SUPPORTING]
+2026-08-26T06:04:48.5022467Z [SKILL] Active on screen (no level-up): Monotonic Stack = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5023864Z [SKILL] Active on screen (no level-up): Optimization = LV 2 [SUPPORTING]
+2026-08-26T06:04:48.5025200Z [SKILL] Active on screen (no level-up): Inclusion-Exclusion Principle = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5026481Z [SKILL] Active on screen (no level-up): Coordinate Compression = LV 2 [SUPPORTING]
+2026-08-26T06:04:48.5027727Z [SKILL] Active on screen (no level-up): Segment Trees = LV 2 [SUPPORTING]
+2026-08-26T06:04:48.5044488Z [SKILL] Active on screen (no level-up): Ternary Search = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5064656Z [SKILL] Active on screen (no level-up): C++ Programming = LV 2 [SUPPORTING]
+2026-08-26T06:04:48.5084680Z [SKILL] Active on screen (no level-up): Competitive Programming = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5096009Z [SKILL] Active on screen (no level-up): Fenwick Trees = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5096603Z [SKILL] Active on screen (no level-up): Backtracking = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5097114Z [SKILL] Active on screen (no level-up): Recursion = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5104861Z [SKILL] Active on screen (no level-up): Binary Search = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5106420Z [SKILL] Active on screen (no level-up): Range Queries = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5117114Z [SKILL] Active on screen (no level-up): Disjoint-Set Data Structure = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5154374Z [SKILL] Active on screen (no level-up): Divide and Conquer Algorithms = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5155621Z [SKILL] Active on screen (no level-up): Centroid Decomposition = LV 2 [SUPPORTING]
+2026-08-26T06:04:48.5156571Z [SKILL] Active on screen (no level-up): String Algorithms = LV 4 [SUPPORTING]
+2026-08-26T06:04:48.5157427Z [SKILL] Active on screen (no level-up): Tries = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5158260Z [SKILL] Active on screen (no level-up): Binary Search Trees = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5158820Z [SKILL] Active on screen (no level-up): Tree Traversal = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5159343Z [SKILL] Active on screen (no level-up): KMP Algorithm = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5159841Z [SKILL] Active on screen (no level-up): Z-Algorithm = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5160563Z [SKILL] Active on screen (no level-up): Algebra = LV 7 [SUPPORTING]
+2026-08-26T06:04:48.5161051Z [SKILL] Active on screen (no level-up): Breadth-First Search = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5161592Z [SKILL] Active on screen (no level-up): Network Flow Algorithms = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5162136Z [SKILL] Active on screen (no level-up): Computational Geometry = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5162644Z [SKILL] Active on screen (no level-up): Memoization = LV 2 [SUPPORTING]
+2026-08-26T06:04:48.5163123Z [SKILL] Active on screen (no level-up): Hash Tables = LV 1 [SUPPORTING]
+2026-08-26T06:04:48.5164109Z [EVIDENCE] Logged turn evidence for: cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation (Covered: 10, Correct: 8, Reps: 0)
+2026-08-26T06:04:48.5164746Z 
+2026-08-26T06:04:48.5164934Z [Agent Observe] State: SUGGESTED_REPLIES | Message count: 1636
+2026-08-26T06:04:48.5166509Z Available options: ['D. By computing only odd-indexed rows and doubling their values during table lookups.', "A. By iterating the capacity weight loop backwards from W down to the current item's weight using a single 1D array.", 'B. By replacing the 2D table with a hash map to store only unvisited coordinate states.', 'C. By sorting the weights and profits in descending order to eliminate redundant rows.']
+2026-08-26T06:04:48.5167901Z 
+2026-08-26T06:04:48.5168088Z [CURRICULUM] MCQ Answer Choices detected (No filtration applied)
+2026-08-26T06:04:48.5168506Z Track: cpp | Target: Memoization with Tabulation
+2026-08-26T06:04:48.5169981Z Oboe choices: ['D. By computing only odd-indexed rows and doubling their values during table lookups.', "A. By iterating the capacity weight loop backwards from W down to the current item's weight using a single 1D array.", 'B. By replacing the 2D table with a hash map to store only unvisited coordinate states.', 'C. By sorting the weights and profits in descending order to eliminate redundant rows.']
+2026-08-26T06:04:48.5171331Z 
+2026-08-26T06:04:48.5171520Z Error in agent execution: 'OboeLLM' object has no attribute 'rules'
+2026-08-26T06:04:50.3134551Z Screenshot saved to error_state.png
+2026-08-26T06:04:50.3402019Z [DOM_CHECK] mode=atomic latency=21.56ms state=suggested_replies
+2026-08-26T06:06:26.4004675Z Browser stopped.
+2026-08-26T06:06:26.4005314Z [INFO] Saved skill levels to learned_skills.json
+2026-08-26T06:06:26.4024006Z 
+2026-08-26T06:06:26.4025162Z >>> [DYNAMIC STEERING] Top Mastery Skills in Track 'cpp': [('Dynamic Programming', 18), ('Algorithms', 15), ('Data Structures', 4)] <<<
+2026-08-26T06:06:26.4027778Z >>> [DYNAMIC STEERING] Updating target focus to: ['Dynamic Programming', 'Algorithms'] to incline conversation towards highest growth! <<<
+2026-08-26T06:06:26.4028973Z 
+2026-08-26T06:06:26.4047557Z [INFO] Saved skill levels to learned_skills.json
+2026-08-26T06:06:26.4055136Z [EVIDENCE] Anchor 'cpp' children levels: [10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+2026-08-26T06:06:26.4060646Z [EVIDENCE] Re-aggregated Parent Anchor Level for 'cpp': LV 15

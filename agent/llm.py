@@ -31,8 +31,8 @@ class OboeLLM:
                 "type": "nvidia",
                 "api_key": key,
                 "key_index": idx,
-                "complex_model": "meta/llama-3.1-8b-instruct",
-                "simple_model": "meta/llama-3.1-8b-instruct"
+                "complex_model": "meta/llama-3.3-70b-instruct",
+                "simple_model": "meta/llama-3.3-70b-instruct"
             })
 
         # 3. Fallback: Mistral (mistral-small-latest)
@@ -308,7 +308,7 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
         # Save and restore the index after the call so normal rotation isn't disrupted.
         MODEL_CAPABILITIES = {
             "openai/gpt-oss-20b": "strong",
-            "meta/llama-3.1-8b-instruct": "standard",
+            "meta/llama-3.3-70b-instruct": "strong",
             "mistral-small-latest": "standard"
         }
         saved_provider_idx = self.current_provider_idx
@@ -532,6 +532,88 @@ Do NOT repeat the completed topic itself. Output only a JSON object containing t
                 if self._is_rate_limit_error(e):
                     self._mark_provider_blocked(provider, error_str)
                 
+                attempts += 1
+                if attempts < max_attempts:
+                    self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                    continue
+                break
+        return []
+
+    def generate_advanced_subtopics(self, track_name, skill_name):
+        """
+        Dynamically generates 5 highly specific advanced topics/prompts 
+        for a given skill on a specific track to dynamically expand the curriculum.
+        """
+        system_prompt = (
+            "You are an expert curriculum designer for advanced Computer Science.\n"
+            "Respond strictly with a JSON object matching this schema:\n"
+            "{\n"
+            "  \"topics\": [\n"
+            "    {\n"
+            "      \"name\": \"Name of the topic (e.g. 'Dynamic Programming: Knapsack Variants')\",\n"
+            "      \"prompt\": \"A student-like chat prompt (e.g. 'Let's discuss...')\",\n"
+            "      \"covered\": false,\n"
+            "      \"level_at_cover\": 0\n"
+            "    }\n"
+            "  ]\n"
+            "}"
+        )
+        
+        user_prompt = (
+            f"Generate exactly 5 highly specific, advanced, and unique sub-topics or programming problem sets "
+            f"specifically related to the skill '{skill_name}' under the curriculum track '{track_name}'.\n"
+            f"Make the topics and prompts very concrete, focusing on real-world algorithms, architectures, "
+            f"or mathematical formulations. Do NOT write generic explanations. Output only the JSON object."
+        )
+
+        prompt_messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ]
+
+        attempts = 0
+        max_attempts = len(self.providers)
+        retry_start_time = time.time()
+        
+        while attempts < max_attempts:
+            elapsed_retry_time = time.time() - retry_start_time
+            if elapsed_retry_time > config.MAX_LLM_RETRY_DURATION:
+                break
+            
+            provider = self.providers[self.current_provider_idx]
+            if self._is_provider_blocked(provider):
+                attempts += 1
+                self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)
+                continue
+            
+            try:
+                client = self._get_client_for_provider(provider)
+                selected_model = provider["simple_model"]
+                
+                if provider["type"] == "groq":
+                    response = client.chat.completions.create(
+                        model=selected_model,
+                        messages=prompt_messages,
+                        response_format={"type": "json_object"},
+                        temperature=0.7
+                    )
+                    raw_content = response.choices[0].message.content
+                    result = json.loads(raw_content)
+                else:
+                    response = client.chat.completions.create(
+                        model=selected_model,
+                        messages=prompt_messages,
+                        temperature=0.7,
+                        max_tokens=1024
+                    )
+                    raw_content = response.choices[0].message.content
+                    result = self._parse_json_response(raw_content)
+                    
+                return result.get("topics", [])
+            except Exception as e:
+                error_str = str(e)
+                if self._is_rate_limit_error(e):
+                    self._mark_provider_blocked(provider, error_str)
                 attempts += 1
                 if attempts < max_attempts:
                     self.current_provider_idx = (self.current_provider_idx + 1) % len(self.providers)

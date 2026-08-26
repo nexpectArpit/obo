@@ -1,0 +1,16 @@
+﻿2026-08-26T06:06:27.3324270Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-26T06:06:27.3325621Z Post job cleanup.
+2026-08-26T06:06:27.4314099Z [command]/usr/bin/git version
+2026-08-26T06:06:27.4376895Z git version 2.55.0
+2026-08-26T06:06:27.4456740Z Copying '/home/runner/.gitconfig' to '/home/runner/work/_temp/b1e380e7-1399-45ab-92c8-57d03074be64/.gitconfig'
+2026-08-26T06:06:27.4458404Z Temporarily overriding HOME='/home/runner/work/_temp/b1e380e7-1399-45ab-92c8-57d03074be64' before making global git config changes
+2026-08-26T06:06:27.4459961Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-26T06:06:27.4461203Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/obo/obo
+2026-08-26T06:06:27.4523692Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-26T06:06:27.4645339Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-26T06:06:27.4964763Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-26T06:06:27.4982418Z http.https://github.com/.extraheader
+2026-08-26T06:06:27.4986848Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-08-26T06:06:27.5048903Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-26T06:06:27.5589554Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-26T06:06:27.5674685Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url

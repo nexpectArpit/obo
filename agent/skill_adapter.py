@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-def adapt_track_target_skills(active_track_name, current_targets, learned_skills, achieved_skills, get_track_path_fn):
+def adapt_track_target_skills(active_track_name, current_targets, learned_skills, achieved_skills, get_track_path_fn, llm_instance=None):
     """
     Data Analysis & Dynamic Steering:
     Compares all recorded and newly achieved skills for the active track,
@@ -31,7 +31,7 @@ def adapt_track_target_skills(active_track_name, current_targets, learned_skills
                 return
 
             track_keywords = {
-                "cpp": ["cpp", "c++", "algorithm", "algorithms", "data structure", "data structures", "tree", "graph", "dynamic programming", "dp", "stack", "queue", "pointer", "array", "string", "hash", "hashing", "sorting", "trie", "bitmask", "bitwise", "binary search", "segment tree", "fenwick tree", "bit", "sparse table", "union find", "disjoint set", "dsu", "shortest path", "dijkstra", "bellman ford", "floyd warshall", "mst", "kruskal", "prim", "topological sort", "backtracking", "greedy", "two pointers", "sliding window", "prefix sum", "suffix array", "kmp", "rabin karp", "z algorithm", "bipartite", "maximum flow", "min cut", "centroid decomposition", "heavy light decomposition", "computational geometry", "convex hull", "sweep line"],
+                "cpp": ["cpp", "c++", "algorithm", "algorithms", "data structure", "data structures", "tree", "graph", "dynamic programming", "dp", "stack", "queue", "pointer", "array", "string", "hash", "hashing", "sorting", "trie", "bitmask", "bitwise", "binary search", "segment tree", "fenwick tree", "union find", "disjoint set", "dsu", "shortest path", "dijkstra", "bellman ford", "floyd warshall", "mst", "kruskal", "prim", "topological sort", "backtracking", "greedy", "two pointers", "sliding window", "prefix sum", "suffix array", "kmp", "rabin karp", "z algorithm", "bipartite", "maximum flow", "min cut", "centroid decomposition", "heavy light decomposition", "computational geometry", "convex hull", "sweep line"],
                 "arch": ["architecture", "memory", "cache", "pipeline", "networking", "network", "tcp", "ip", "socket", "cpu", "bus", "assembly", "instruction set", "isa", "risc", "cisc", "x86", "arm", "out-of-order", "superscalar", "branch prediction", "virtual memory", "mmu", "tlb", "dma", "i/o", "interrupt", "multiprocessor", "coherence", "consistency", "numa", "smp", "gpu architecture", "simd", "fpga", "asic", "verilog", "vhdl", "routing", "switching", "bgp", "ospf", "dns", "http", "udp", "mac address", "arp", "subnet", "vlans", "osi model", "data link", "physical layer"],
                 "os": ["operating system", "operating systems", "os", "thread", "threads", "process", "processes", "syscall", "syscalls", "system call", "system calls", "mutex", "semaphore", "virtual memory", "paging", "file system", "concurrency", "kernel", "kernels", "module", "modules", "linux", "windows", "macos", "unix", "posix", "scheduler", "scheduling", "cfs", "deadlock", "spinlock", "context switch", "pcb", "tcb", "fork", "exec", "inter-process communication", "ipc", "pipe", "shared memory", "signal", "inode", "ext4", "ntfs", "fat32", "zfs", "device driver", "bootloader", "grub", "virtualization", "hypervisor", "namespace", "cgroup", "docker", "container"],
                 "ds": ["data science", "machine learning", "statistics", "hypothesis", "regression", "probability", "pandas", "numpy", "eda", "clustering", "classification", "scikit-learn", "sklearn", "data preprocessing", "feature engineering", "imputation", "outlier detection", "pca", "dimensionality reduction", "k-means", "dbscan", "hierarchical clustering", "decision tree", "random forest", "xgboost", "lightgbm", "catboost", "svm", "support vector machine", "knn", "naive bayes", "logistic regression", "linear regression", "r-squared", "p-value", "anova", "t-test", "chi-square", "a/b testing", "time series", "arima", "forecasting", "cross-validation", "grid search"],
@@ -60,7 +60,7 @@ def adapt_track_target_skills(active_track_name, current_targets, learned_skills
             if not relevant_skills:
                 # If no keyword matched, use all available skills
                 relevant_skills = list(all_skills.items())
-
+ 
             # Sort by highest skill level descending — normalize all values to int first
             # to prevent TypeError when learned_skills contains mixed str/int values
             def _to_int_level(v):
@@ -78,7 +78,65 @@ def adapt_track_target_skills(active_track_name, current_targets, learned_skills
                 print(f"\n>>> [DYNAMIC STEERING] Top Mastery Skills in Track '{active_track_name}': {relevant_skills[:3]} <<<")
                 print(f">>> [DYNAMIC STEERING] Updating target focus to: {top_targets} to incline conversation towards highest growth! <<<\n")
                 track_data["target_skills"] = top_targets
+                
+                # DYNAMIC CURRICULUM EXPANSION:
+                # Generate new sub-topics on-the-fly if we lack concrete problems for this target skill
+                if llm_instance:
+                    for target_skill in top_targets:
+                        matching_count = sum(1 for t in track_data.get("topics", []) if target_skill.lower() in t.get("name", "").lower())
+                        if matching_count < 3:
+                            print(f"[DYNAMIC CURRICULUM] Only {matching_count} topics found for target skill '{target_skill}'. Generating 5 advanced sub-topics...")
+                            try:
+                                new_topics = llm_instance.generate_advanced_subtopics(active_track_name, target_skill)
+                                if new_topics:
+                                    existing_names = {t.get("name") for t in track_data.get("topics", [])}
+                                    appended = 0
+                                    for nt in new_topics:
+                                        if nt.get("name") and nt["name"] not in existing_names:
+                                            track_data["topics"].append(nt)
+                                            appended += 1
+                                    if appended > 0:
+                                        print(f"[DYNAMIC CURRICULUM] Successfully appended {appended} new topics for '{target_skill}' to track '{active_track_name}'.")
+                            except Exception as ex:
+                                print(f"[WARNING] Failed to generate dynamic subtopics: {ex}")
+
                 with open(track_path, "w") as f:
                     json.dump(track_data, f, indent=2)
     except Exception as ex:
         print(f"[WARNING] Failed dynamic skill adaptation: {ex}")
+
+
+def resolve_track_from_topic(topic_name):
+    """
+    Scans the topic_name against track keywords to resolve the most suitable track.
+    If multiple matches occur, it scores them based on matches.
+    """
+    if not topic_name:
+        return "maths"
+    
+    topic_lower = topic_name.lower()
+    
+    track_keywords = {
+        "cpp": ["cpp", "c++", "algorithm", "algorithms", "data structure", "data structures", "tree", "graph", "dynamic programming", "dp", "stack", "queue", "pointer", "array", "string", "hash", "hashing", "sorting", "trie", "bitmask", "bitwise", "binary search", "segment tree", "fenwick tree", "union find", "disjoint set", "dsu", "shortest path", "dijkstra", "bellman ford", "floyd warshall", "mst", "kruskal", "prim", "topological sort", "backtracking", "greedy", "two pointers", "sliding window", "prefix sum", "suffix array", "kmp", "rabin karp", "z algorithm", "bipartite", "maximum flow", "min cut", "centroid decomposition", "heavy light decomposition", "computational geometry", "convex hull", "sweep line", "subarray", "problem"],
+        "arch": ["architecture", "memory", "cache", "pipeline", "networking", "network", "tcp", "ip", "socket", "cpu", "bus", "assembly", "instruction set", "isa", "risc", "cisc", "x86", "arm", "out-of-order", "superscalar", "branch prediction", "virtual memory", "mmu", "tlb", "dma", "i/o", "interrupt", "multiprocessor", "coherence", "consistency", "numa", "smp", "gpu architecture", "simd", "fpga", "asic", "verilog", "vhdl", "routing", "switching", "bgp", "ospf", "dns", "http", "udp", "mac address", "arp", "subnet", "vlans", "osi model", "data link", "physical layer"],
+        "os": ["operating system", "operating systems", "os", "thread", "threads", "process", "processes", "syscall", "syscalls", "system call", "system calls", "mutex", "semaphore", "virtual memory", "paging", "file system", "concurrency", "kernel", "kernels", "module", "modules", "linux", "windows", "macos", "unix", "posix", "scheduler", "scheduling", "cfs", "deadlock", "spinlock", "context switch", "pcb", "tcb", "fork", "exec", "inter-process communication", "ipc", "pipe", "shared memory", "signal", "inode", "ext4", "ntfs", "fat32", "zfs", "device driver", "bootloader", "grub", "virtualization", "hypervisor", "namespace", "cgroup", "docker", "container"],
+        "ds": ["data science", "machine learning", "statistics", "hypothesis", "regression", "probability", "pandas", "numpy", "eda", "clustering", "classification", "scikit-learn", "sklearn", "data preprocessing", "feature engineering", "imputation", "outlier detection", "pca", "dimensionality reduction", "k-means", "dbscan", "hierarchical clustering", "decision tree", "random forest", "xgboost", "lightgbm", "catboost", "svm", "support vector machine", "knn", "naive bayes", "logistic regression", "linear regression", "r-squared", "p-value", "anova", "t-test", "chi-square", "a/b testing", "time series", "arima", "forecasting", "cross-validation", "grid search"],
+        "dl": ["deep learning", "neural network", "neural networks", "gradient descent", "sgd", "convolution", "convolutional", "cnn", "transformer", "attention", "loss", "backprop", "backpropagation", "activation", "perceptron", "mlp", "rnn", "lstm", "gru", "autoencoder", "gan", "diffusion model", "generative", "llm", "large language model", "bert", "gpt", "pytorch", "tensorflow", "keras", "tensor", "batch normalization", "dropout", "regularizer", "weight decay", "adam", "rmsprop", "learning rate", "epoch", "forward pass", "pooling", "softmax", "relu", "sigmoid", "cross entropy"],
+        "maths": ["algebra", "linear algebra", "calculus", "matrix", "matrices", "vector", "vectors", "optimization", "probability", "eigen", "eigenvalue", "eigenvector", "derivative", "partial derivative", "gradient", "hessian", "jacobian", "integral", "differential equation", "convex", "convexity", "concave", "quasi-newton", "bfgs", "l-bfgs", "second-order", "numerical methods", "taylor series", "fourier transform", "laplace", "tensor calculus", "statistics theory", "distributions", "normal distribution", "gaussian", "poisson", "binomial", "bayes theorem", "bayesian", "markov chain", "stochastic", "monte carlo", "combinatorics"]
+    }
+    
+    import re
+    scores = {}
+    for track, keywords in track_keywords.items():
+        score = 0
+        for kw in keywords:
+            pattern = r'\b' + re.escape(kw.lower()) + r'\b'
+            if re.search(pattern, topic_lower):
+                score += 1
+        if score > 0:
+            scores[track] = score
+            
+    if not scores:
+        return "maths"
+        
+    return max(scores, key=scores.get)

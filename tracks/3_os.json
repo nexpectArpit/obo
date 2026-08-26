@@ -350,6 +350,60 @@
       "prompt": "kernel crash analysis, kdump mechanism, crash utility, analyzing kernel oops and panics, core dumps, dmesg, and kernel debugging with KGDB.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Concurrency: Spinlock vs Mutex Overhead and Sleep Queues",
+      "prompt": "compare spinlocks with mutexes, explaining busy-waiting vs context switching overhead, thread suspension, and kernel sleep queues",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Concurrency: Lock-Free Structures and Compare-And-Swap (CAS) Operations",
+      "prompt": "explain lock-free programming principles, lock-free stack/queue implementation using atomic CAS operations, and the ABA problem",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Concurrency: Read-Copy-Update (RCU) Kernel Synchronization",
+      "prompt": "explain Read-Copy-Update (RCU) lockless read synchronization, deferred deletion, grace periods, and quiescent states in kernel threads",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Concurrency: Priority Inversion and Priority Inheritance Protocols",
+      "prompt": "explain priority inversion in real-time preemptive schedulers, and how priority inheritance and priority ceiling protocols resolve it",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "OS Scheduling: CFS Scheduler Virtual Runtime Calculations",
+      "prompt": "explain Linux Completely Fair Scheduler (CFS) red-black tree layout, priority-to-weight mapping, and virtual runtime calculations",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Virtual Memory: Hierarchical Page Table Walks and Translation Lookaside Buffer",
+      "prompt": "explain multi-level page tables, virtual-to-physical address translation steps, and TLB hit/miss penalty mitigation",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Virtual Memory: TLB Shootdowns in Symmetric Multiprocessing",
+      "prompt": "explain TLB shootdown process, inter-processor interrupts (IPI) for page table modification, and overhead of multiprocessor address consistency",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "File Systems: ext4 Journaling Modes and Write-Ahead Log Optimizations",
+      "prompt": "compare ext4 journaling modes (journal, ordered, writeback), write-ahead log barriers, and metadata recovery consistency",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "File Systems: ZFS Copy-on-Write Page Mapping and Merkle Tree Integrity",
+      "prompt": "explain ZFS Copy-on-Write (CoW) page allocation, transaction groups, and Merkle tree block checksum verification for data integrity",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

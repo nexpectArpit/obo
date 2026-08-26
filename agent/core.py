@@ -254,6 +254,10 @@ class OboeAgent:
             self.target_level = result["target_level"]
             self.active_pillar = result["active_pillar"]
             self.active_node = result["active_node"]
+            self.active_track_name = result["active_pillar"]
+        else:
+            from agent.skill_adapter import resolve_track_from_topic
+            self.active_track_name = resolve_track_from_topic(self.topic)
 
         # Remove the topic from topics.json if it is present (including explicit CLI topics)
         remove_topic_from_pool(self.topic, self.target_skill, self.target_level)
@@ -435,7 +439,8 @@ class OboeAgent:
                                     self.active_track_target_skills,
                                     self.learned_skills,
                                     self.achieved_skills,
-                                    self.dag_engine.get_track_path
+                                    self.dag_engine.get_track_path,
+                                    self.llm
                                 )
                                 # Reload active target skills after adaptation
                                 track_path = self.dag_engine.get_track_path(self.active_track_name)
@@ -450,8 +455,10 @@ class OboeAgent:
                         track_name = self.active_track_name or self.pin or "maths"
                         cls = classify_skill(track_name, skill)
 
+                        # Always record all level-ups in achieved_skills for summary & tracking purposes
+                        self.achieved_skills[skill] = f"LV {new_lv}"
+
                         if cls in ("TARGET", "SUPPORTING"):
-                            self.achieved_skills[skill] = f"LV {new_lv}"
                             print(f"\n>>> [ACHIEVEMENT] Skill Level Up: {skill} -> LV {new_lv}! [{cls}] <<<\n")
                             newly_achieved_this_turn = True
                             self.newly_leveled_target_this_turn = True
@@ -937,7 +944,8 @@ class OboeAgent:
                 self.active_track_target_skills,
                 self.learned_skills,
                 self.achieved_skills,
-                self.dag_engine.get_track_path
+                self.dag_engine.get_track_path,
+                self.llm
             )
 
         # Mark pinned track topic as covered

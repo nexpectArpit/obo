@@ -158,6 +158,30 @@ async function handleUpdate(update, env) {
   const menuKeyboard = await getMenuKeyboard(pat, repo);
   const cleanText = text ? text.trim().toLowerCase() : "";
 
+  // Handle Force Reply for custom topics
+  if (update.message && update.message.reply_to_message) {
+    const parentText = update.message.reply_to_message.text || "";
+    if (parentText.includes("Type the custom topic name")) {
+      const customTopic = update.message.text.trim();
+      const ok = await triggerGitHubWorkflow(pat, repo, workflow, customTopic, false, false, "none");
+      if (ok) {
+        await sendTelegram(token, "sendMessage", {
+          chat_id: chatId,
+          text: `🚀 <b>Custom topic started!</b>\n\nTopic: <i>${customTopic}</i>\n\nThe agent is booting up on GitHub Actions.\n\nTap 📊 Status to track progress.`,
+          parse_mode: "HTML",
+          reply_markup: menuKeyboard
+        });
+      } else {
+        await sendTelegram(token, "sendMessage", {
+          chat_id: chatId,
+          text: `❌ Failed to trigger workflow for topic: ${customTopic}.`,
+          reply_markup: menuKeyboard
+        });
+      }
+      return;
+    }
+  }
+
   // Command /schedule <start> <end> [duration] [cooldown]
   if (cleanText.startsWith("/schedule")) {
     const parts = text.split(/\s+/).slice(1);
@@ -240,6 +264,19 @@ async function handleUpdate(update, env) {
         reply_markup: menuKeyboard
       });
     }
+    return;
+  }
+
+  if (callbackData === "start_topic") {
+    await sendTelegram(token, "sendMessage", {
+      chat_id: chatId,
+      text: "📚 <b>Type the custom topic name you want to start learning:</b>\n\n(Write-in response will trigger GitHub Actions)",
+      parse_mode: "HTML",
+      reply_markup: {
+        force_reply: true,
+        selective: true
+      }
+    });
     return;
   }
 

@@ -374,6 +374,48 @@
       "prompt": "multimodal AI, CLIP contrastive language-image pretraining, DALL-E, Flamingo visual language model, LLaVA, and how vision and language modalities are aligned.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Deep Backpropagation: Softmax with Cross-Entropy Gradient Derivation",
+      "prompt": "derive analytical partial derivatives of cross-entropy loss with respect to pre-activation softmax inputs, separating target vs non-target classes",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deep Backpropagation: Layer Normalization Backward Pass Math",
+      "prompt": "derive backward pass gradients for Layer Normalization, explaining mean/variance derivative paths and input feature dependencies",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deep Backpropagation: Gated RNN Vanishing Gradient Pathways",
+      "prompt": "analyze backward pass gradient routes in LSTMs and GRUs, showing how additive cell state transitions prevent exponential decay",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Attention Mechanisms: Multi-Head Self-Attention Projection Sizes",
+      "prompt": "explain Scaled Dot-Product Attention, Multi-Head projection matrix shapes (W_q, W_k, W_v, W_o), and relative memory footprints",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Attention Mechanisms: Rotary Positional Embedding (RoPE) Mathematical Formulations",
+      "prompt": "explain Rotary Positional Embedding (RoPE), 2D vector rotation matrices, and relative position tracking in Multi-Head attention",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimization Tricks: Layer-wise Adaptive Rate Scaling (LARS)",
+      "prompt": "explain Layer-wise Adaptive Rate Scaling (LARS), compute layer-wise local learning rates based on weight and gradient norms for large batch training",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimization Tricks: Weight Decay vs L2 Regularization in AdamW",
+      "prompt": "explain why decoupling weight decay from gradient updates (AdamW) differs from standard L2 regularization in adaptive optimizers",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

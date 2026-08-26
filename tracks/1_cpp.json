@@ -422,6 +422,96 @@
       "prompt": "bit manipulation tricks, bitwise operations, checking power of two, bitmask subsets generation, __builtin_clz, __builtin_ctz, and __builtin_popcount.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: 0/1 and Unbounded Knapsack Problem Variants",
+      "prompt": "explain 0/1 knapsack and unbounded knapsack, and solve subset sum, partition equal subset sum, and change coins problem patterns",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: Longest Common Subsequence and Edit Distance",
+      "prompt": "explain LCS transition, solve edit distance, shortest common supersequence, and delete operation for two strings",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: Longest Increasing Subsequence and Coordinate Compression",
+      "prompt": "explain O(N log N) LIS using binary search, solve Russian doll envelopes, and apply coordinate compression to LIS variants",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: Interval DP and Matrix Chain Multiplication",
+      "prompt": "explain interval DP state definition dp[i][j], solve matrix chain multiplication, burst balloons, and minimum cost to merge stones",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: Bitmask DP and Hamiltonian Path Problems",
+      "prompt": "explain state compression using bitmasks, solve traveling salesman problem, and find Hamiltonian paths in graphs",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: DP on Trees and Tree Diameter Optimization",
+      "prompt": "explain tree DP using post-order traversal, solve tree diameter, maximum path sum, and binary tree coloring game",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: Digit DP and Numeric Constraints",
+      "prompt": "explain digit DP technique, count numbers with unique digits in a range [L, R] satisfying digit constraints",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: Probability and Expectation DP",
+      "prompt": "explain probability DP state transition, solve soup servings, and calculate expected steps to reach a goal in a grid",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Programming: Convex Hull Trick and DP Optimization",
+      "prompt": "explain Convex Hull Trick (CHT) for O(N) DP optimization, slope trick, and Knuth's optimization for interval DP",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Algorithms: Subarray Optimization Patterns",
+      "prompt": "explain Kadane's algorithm, sliding window maximum using monotonic deque, and finding subarray sum equals K using prefix hashmap",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Algorithms: Segment Tree with Lazy Propagation",
+      "prompt": "implement segment tree with lazy propagation for range updates and range queries in O(log N), and solve range addition query",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Algorithms: Fenwick Tree (Binary Indexed Tree) for Multi-Dimensional Range Sums",
+      "prompt": "implement 1D and 2D Fenwick Trees, perform point updates and prefix sum queries, and solve range query point update",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Algorithms: Sparse Table for Constant Time Range Minimum Queries",
+      "prompt": "implement sparse table, explain precomputation in O(N log N), and perform constant time O(1) range minimum queries",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Algorithms: Tarjan's and Kosaraju's Strongly Connected Components",
+      "prompt": "explain Kosaraju's double DFS algorithm and Tarjan's single-pass DFS algorithm for finding strongly connected components in directed graphs",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Algorithms: Hierholzer's Algorithm for Eulerian Paths",
+      "prompt": "explain Eulerian path conditions for directed and undirected graphs, and implement Hierholzer's algorithm to reconstruct paths",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

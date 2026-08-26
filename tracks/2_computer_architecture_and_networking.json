@@ -404,6 +404,66 @@
       "prompt": "load balancing algorithms, round robin, weighted round robin, least connections, IP hash, consistent hashing, L4 vs L7 load balancing, and health checks.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Cache Performance: Cache Blocking and Matrix Multiplication Optimization",
+      "prompt": "explain cache blocking (tiling) to optimize matrix multiplication, spatial vs temporal locality, and sizing blocks to fit L1/L2 caches",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Cache Performance: Stride Access Patterns and Spatial Locality",
+      "prompt": "explain stride-1 vs non-unit stride memory access patterns, how cache lines prefetch sequential blocks, and loop interchange to fix stride",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Cache Performance: Cache Pollution and Conflict Misses",
+      "prompt": "explain conflict misses in direct-mapped and set-associative caches, cache way alignment, and avoiding cache pollution with non-temporal prefetch",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Instruction Execution: Pipeline Hazards and Branch Target Buffers",
+      "prompt": "explain structural, data, and control pipeline hazards, and how branch target buffers (BTB) minimize branch penalties",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Instruction Execution: Out-of-Order Execution and Register Renaming",
+      "prompt": "explain Tomasulo's algorithm for out-of-order execution, reservation stations, and register renaming to resolve WAR/WAW hazards",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Instruction Execution: Speculative Execution and Cache Side Channels",
+      "prompt": "explain speculative execution, branch prediction direction, and how CPU speculation transient states create cache timing side channels",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Memory Interface: HBM3e Memory Channels and Cache Hierarchy Coherence",
+      "prompt": "explain HBM3e high-bandwidth memory channel layout, cache coherence protocols (MESI/MOESI), and directory-based coherence for multi-socket systems",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Memory Interface: NUMA Architecture and Memory Access Latency",
+      "prompt": "explain Non-Uniform Memory Access (NUMA) node affinity, local vs remote memory latency, and page migration strategies in OS",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Network Performance: TCP Window Scaling and Buffer Sizing",
+      "prompt": "explain TCP sliding window flow control, window scaling option for high-delay networks, and tuning socket send/receive buffer sizes",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Network Performance: TCP Congestion Control Algorithms (BBR vs Cubic)",
+      "prompt": "compare loss-based congestion control (Cubic) with delay/bandwidth-based control (BBR), explaining throughput and queue buildup trade-offs",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
