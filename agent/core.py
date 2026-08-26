@@ -427,12 +427,22 @@ class OboeAgent:
                             print(f"\n>>> [ACHIEVEMENT] Skill Level Up: {skill} -> LV {new_lv}! [{cls}] <<<\n")
                             newly_achieved_this_turn = True
                             self.newly_leveled_target_this_turn = True
+
+                            # Reactive MCQ Drift Check: If this is a non-targeted skill that leveled up, flag it!
+                            targets = self.active_track_target_skills or []
+                            is_target = any(t.lower() in skill.lower() or skill.lower() in t.lower() for t in targets)
+                            if not is_target and targets:
+                                print(f"[DRIFT DETECTED] Gained level-up in non-target skill: '{skill}' -> LV {new_lv} (Target: {targets})")
+                                self.mcq_drift_detected = True
                         elif cls == "SIDE":
                             self.side_skills[skill] = f"LV {new_lv}"
                             print(f"\n>>> [SIDE SKILL] {skill} -> LV {new_lv} [{cls}] (excluded from curriculum) <<<\n")
+                            print(f"[DRIFT DETECTED] Gained level-up in side skill: '{skill}' -> LV {new_lv}")
+                            self.mcq_drift_detected = True
                         else:
                             self.side_skills[skill] = f"LV {new_lv}"
                             print(f"\n>>> [UNKNOWN SKILL] {skill} -> LV {new_lv} [{cls}] (excluded from curriculum) <<<\n")
+                            self.mcq_drift_detected = True
                     else:
                         # Not a level-up but still active on screen — log it at existing level
                         from agent.curriculum_policy import classify_skill
@@ -536,46 +546,6 @@ class OboeAgent:
                 
                 current_target = self._get_current_target_skill()
                 track_name = self.active_track_name or self.pin or "maths"
-
-                # Irrelevant MCQ Guard: If Oboe asks an MCQ not matching our active topic/target keywords
-                # and page allows free text, bypass MCQ and steer back.
-                from agent.curriculum_policy import is_curriculum_choice
-                if not is_curriculum_choice(choices) and self._page_accepts_free_text():
-                    target_terms = []
-                    if self.topic:
-                        clean_topic = self.topic.replace(":", " ").replace("-", " ").lower()
-                        target_terms.extend([w for w in clean_topic.split() if len(w) > 3 and w not in ["with", "from", "that", "this", "about", "what"]])
-                    if current_target:
-                        clean_target = current_target.replace(":", " ").replace("-", " ").lower()
-                        target_terms.extend([w for w in clean_target.split() if len(w) > 3])
-                    
-                    from agent.curriculum_policy import get_domain_keywords
-                    try:
-                        kws = get_domain_keywords(track_name, tier="direct", target_skill=current_target)
-                        target_terms.extend([kw.lower() for kw in kws])
-                    except Exception:
-                        pass
-                    
-                    target_terms = list(set(target_terms))
-                    oboe_msgs = [m for m in messages if m["role"] == "assistant"]
-                    last_question = oboe_msgs[-1]["text"].lower() if oboe_msgs else ""
-                    
-                    is_relevant = False
-                    for term in target_terms:
-                        if term in last_question:
-                            is_relevant = True
-                            break
-                        if any(term in choice.lower() for choice in choices):
-                            is_relevant = True
-                            break
-                            
-                    if not is_relevant and target_terms:
-                        steer_topic = self.topic or current_target or "Kernel Modules"
-                        redirect_text = f"Let's focus on {steer_topic} for now. Can you challenge me with a question on that instead?"
-                        print(f"[CURRICULUM GUARD] Irrelevant MCQ detected (Target keywords: {target_terms}). Bypassing and steering: '{redirect_text}'")
-                        self.browser.type_and_submit(redirect_text)
-                        self.last_action_was_q_answer = True
-                        continue
                 
                 from agent.curriculum_policy import filter_choices
                 filtered = filter_choices(
@@ -637,25 +607,32 @@ class OboeAgent:
                 self.steering_controller.update(messages, newly_leveled)
                 self.newly_leveled_target_this_turn = False
 
-                # Wrap-up is now handled above (before state branching) so it fires
-                # regardless of whether state is free_text or suggested_replies.
-                # Here we only handle normal steering + LLM decision.
-                steering = self.steering_controller.evaluate()
-                if steering:
-                    text = steering["text"]
+                # Reactive MCQ Drift Steering Redirect
+                if getattr(self, "mcq_drift_detected", False):
+                    self.mcq_drift_detected = False  # Reset flag
+                    steer_topic = self.topic or (self.active_track_target_skills[0] if self.active_track_target_skills else "Kernel Modules")
+                    text = f"Let's focus on {steer_topic} for now. Can you challenge me with a question on that instead?"
+                    print(f"[CURRICULUM GUARD] Reactive drift steering triggered. Redirecting to: '{text}'")
                 else:
-                    decision = self.llm.decide_action(
-                        state,
-                        messages,
-                        choices,
-                        self.learned_skills,
-                        target_skill=self._get_current_target_skill(),
-                        target_level=self.target_level,
-                        target_skills=self.active_track_target_skills
-                    )
-                    text = decision.get("text")
-                    if not text or str(text).strip() == "" or str(text).lower() == "none":
-                        text = "I'm interested to learn more about this."
+                    # Wrap-up is now handled above (before state branching) so it fires
+                    # regardless of whether state is free_text or suggested_replies.
+                    # Here we only handle normal steering + LLM decision.
+                    steering = self.steering_controller.evaluate()
+                    if steering:
+                        text = steering["text"]
+                    else:
+                        decision = self.llm.decide_action(
+                            state,
+                            messages,
+                            choices,
+                            self.learned_skills,
+                            target_skill=self._get_current_target_skill(),
+                            target_level=self.target_level,
+                            target_skills=self.active_track_target_skills
+                        )
+                        text = decision.get("text")
+                        if not text or str(text).strip() == "" or str(text).lower() == "none":
+                            text = "I'm interested to learn more about this."
 
                 self.browser.type_and_submit(text)
                 self.last_action_was_q_answer = True

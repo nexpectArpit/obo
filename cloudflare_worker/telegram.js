@@ -36,6 +36,8 @@ export async function deleteTelegramMessage(token, chatId, messageId) {
 
 export async function getDynamicTracksKeyboard(pat, repo) {
   let skills = {};
+  let trackTargets = {};
+  
   try {
     const r = await fetch(`https://api.github.com/repos/${repo}/contents/data/learned_skills.json`, {
       headers: {
@@ -53,11 +55,47 @@ export async function getDynamicTracksKeyboard(pat, repo) {
     console.error("Failed to load dynamic skill levels from GitHub:", err);
   }
 
+  const trackFiles = {
+    "cpp": "1_cpp.json",
+    "arch": "2_computer_architecture_and_networking.json",
+    "os": "3_os.json",
+    "ds": "4_data_science.json",
+    "dl": "5_dl.json",
+    "maths": "6_maths.json"
+  };
+
+  // Fetch track target skills in parallel
+  const trackPromises = Object.entries(trackFiles).map(async ([trackKey, fileName]) => {
+    try {
+      const r = await fetch(`https://api.github.com/repos/${repo}/contents/tracks/${fileName}`, {
+        headers: {
+          "Authorization": `Bearer ${pat}`,
+          "Accept": "application/vnd.github+json",
+          "User-Agent": "cloudflare-worker-obo"
+        }
+      });
+      if (r.ok) {
+        const fileData = await r.json();
+        const decoded = atob(fileData.content.replace(/\s/g, ""));
+        const trackData = JSON.parse(decoded);
+        trackTargets[trackKey] = trackData.target_skills || [];
+      }
+    } catch (err) {
+      console.error(`Failed to load target skills for ${trackKey}:`, err);
+    }
+  });
+
+  await Promise.all(trackPromises);
+
   function getBtnText(label, trackKey) {
-    const mappings = trackSkillMap[trackKey] || [];
+    let targetSkills = trackTargets[trackKey] || [];
+    if (targetSkills.length === 0) {
+      const mappings = trackSkillMap[trackKey] || [];
+      targetSkills = mappings.map(m => m[1]);
+    }
     const levels = [];
-    for (const [shortName, longName] of mappings) {
-      const lvl = skills[longName] !== undefined ? skills[longName] : 1;
+    for (const skillName of targetSkills) {
+      const lvl = skills[skillName] !== undefined ? skills[skillName] : 1;
       levels.push(String(lvl));
     }
     if (levels.length > 0) {
