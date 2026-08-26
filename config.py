@@ -44,10 +44,14 @@ for i in range(2, 10):
 
 # Configurable per-provider timeouts (in seconds)
 PROVIDER_TIMEOUTS = {
-    "groq": float(os.getenv("GROQ_TIMEOUT", "15.0")),
-    "mistral": float(os.getenv("MISTRAL_TIMEOUT", "15.0")),
-    "nvidia": float(os.getenv("NVIDIA_TIMEOUT", "20.0"))
+    "groq": float(os.getenv("GROQ_TIMEOUT", "10.0")),       # Reduced from 15s
+    "mistral": float(os.getenv("MISTRAL_TIMEOUT", "10.0")), # Reduced from 15s
+    "nvidia": float(os.getenv("NVIDIA_TIMEOUT", "12.0"))    # Reduced from 20s
 }
+
+# Maximum total time to spend retrying LLM calls across all providers
+# Prevents 6+ minute hangs when all providers are rate-limited
+MAX_LLM_RETRY_DURATION = float(os.getenv("MAX_LLM_RETRY_DURATION", "45.0"))  # seconds
 
 # Pacing parameters (Quota & Rate-Limit Management)
 MIN_DELAY = float(os.getenv("MIN_DELAY", "7.0"))

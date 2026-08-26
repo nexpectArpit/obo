@@ -465,7 +465,16 @@ Do NOT repeat the completed topic itself. Output only a JSON object containing t
 
         attempts = 0
         max_attempts = len(self.providers)
+        retry_start_time = time.time()  # Track total time spent on retries
+        
         while attempts < max_attempts:
+            # GUARD: Don't spend more than MAX_LLM_RETRY_DURATION across all providers
+            elapsed_retry_time = time.time() - retry_start_time
+            if elapsed_retry_time > config.MAX_LLM_RETRY_DURATION:
+                print(f"\n[LLM_TIMEOUT] Exceeded max retry duration ({elapsed_retry_time:.1f}s) across {attempts} attempts.")
+                print(f"[LLM_TIMEOUT] All {len(self.providers)} providers exhausted or rate-limited.")
+                raise RuntimeError(f"LLM calls timed out after {elapsed_retry_time:.1f}s across {attempts} providers")
+            
             provider = self.providers[self.current_provider_idx]
             
             # Skip if provider is blocked due to rate limit
