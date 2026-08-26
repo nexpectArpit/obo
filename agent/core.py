@@ -296,6 +296,7 @@ class OboeAgent:
         loading_started_at = None       # wall-clock time loading began
 
         while True:
+            self._save_current_state()
             if self.max_duration and (time.time() - start_time) > (self.max_duration * 60):
                 print(f"\n[DURATION LIMIT] Session has reached the maximum duration of {self.max_duration} minutes. Exiting loop cleanly.")
                 break
@@ -726,6 +727,30 @@ class OboeAgent:
                 return False
 
         return True
+
+    def _save_current_state(self, status="RUNNING"):
+        state_path = Path(__file__).resolve().parent.parent / "data" / "agent_state.json"
+        elapsed = time.time() - self.start_time if getattr(self, "start_time", None) else 0
+        state_data = {
+            "status": status,
+            "topic": self.topic,
+            "started_at": getattr(self, "start_time", None),
+            "elapsed_seconds": int(elapsed),
+            "mcqs_total": self.total_mcqs_count,
+            "mcqs_wrong": self.wrong_mcqs_count,
+            "achieved_skills": self.achieved_skills,
+            "last_session": {
+                "topic": self.topic,
+                "elapsed_seconds": int(elapsed),
+                "mcqs_total": self.total_mcqs_count,
+                "mcqs_wrong": self.wrong_mcqs_count,
+                "achieved_skills": self.achieved_skills
+            }
+        }
+        try:
+            state_path.write_text(json.dumps(state_data, indent=4))
+        except Exception as e:
+            print(f"[WARNING] Failed to write agent_state.json: {e}")
 
     def _finalize_session(self, start_time, state_path, pid_path):
         """Cleanup: close browser, save skills, update DAG, write final state."""
