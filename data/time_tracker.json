@@ -464,6 +464,11 @@
             "timestamp": 1787787720.99596,
             "duration_seconds": 941,
             "topic": "Graphing a Linear Equation in Standard Form (Ax + By = C)"
+        },
+        {
+            "timestamp": 1787789112.9162545,
+            "duration_seconds": 650,
+            "topic": "Vanishing Gradient Problem in Recurrent Neural Networks"
         }
     ]
 }

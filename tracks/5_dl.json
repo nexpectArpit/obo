@@ -476,6 +476,36 @@
       "prompt": "Build a GAN architecture for unpaired image-to-image translation (e.g., horse \u2194 zebra) using spectral normalization in both the generator and discriminator. Replace the traditional cycle-consistency loss with a self-supervised contrastive loss (e.g., SimCLR) to improve feature alignment. Quantify the improvement in FID score and perceptual similarity metrics against a baseline CycleGAN.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Differentiable Neural Computers (DNC): Memory-Augmented Architecture with Explicit Addressing",
+      "prompt": "Let's implement a Differentiable Neural Computer (DNC) from scratch for solving a dynamic graph traversal problem. We'll focus on the controller architecture (LSTM), memory matrix operations (read/write heads with content and location-based addressing), and temporal memory linkage. Start by deriving the differentiable attention mechanisms (cosine similarity + sharpening) and implement the memory update equations. How would you modify the architecture to handle sparse memory access patterns?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Learning for 3D Point Cloud Segmentation: Contrastive Grouping with Spatial Transformers",
+      "prompt": "Design a self-supervised pretext task for 3D point cloud segmentation using contrastive learning. Implement a Spatial Transformer Network (STN) to learn canonical transformations that align point clouds before and after augmentation. Define the loss function to maximize agreement between transformed and original views while enforcing geometric consistency. How would you adapt the architecture to work with variable point densities?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Neural ODEs for Continuous-Time Reinforcement Learning: Hamiltonian-Based Policy Gradients",
+      "prompt": "Implement a Hamiltonian Neural ODE (HODEN) to model continuous-time dynamics in a reinforcement learning environment. Define the Hamiltonian energy function to encode physical constraints and derive the policy gradient updates using the symplectic Euler method. Compare the performance of Hamiltonian ODEs against standard Neural ODEs in a MuJoCo locomotion task. What are the numerical stability challenges when solving the ODE backward in time?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Sparse Attention Mechanisms in Vision Transformers: Multi-Scale Deformable Attention for High-Resolution Images",
+      "prompt": "Implement a multi-scale deformable attention module for vision transformers to process high-resolution images efficiently. Derive the sampling offsets and modulation scalars for deformable attention and integrate them into a Swin Transformer variant. Optimize the attention computation to run in O(HW) time per head. How would you handle the non-uniform sampling distribution when computing gradients through the offset predictions?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Robustness in GANs: Wasserstein Distance Minimization with Gradient Penalty in High-Dimensional Spaces",
+      "prompt": "Formulate the WGAN-GP (Wasserstein GAN with Gradient Penalty) objective and derive the gradient penalty term for high-dimensional data. Implement a critic network with spectral normalization and analyze the spectral properties of the Jacobian matrix. Experiment with different gradient penalty weights and study their effect on mode collapse. What are the numerical challenges when computing the Jacobian in high dimensions?",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
