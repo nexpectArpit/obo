@@ -240,7 +240,9 @@ INSTRUCTIONS FOR SELECTING THE CORRECT OPTION (suggested_replies):
 2. **Match with Chat History & Skill Profile:** Look at the recent dialogue history and your current skill levels. The correct answer is almost always explicitly explained, defined, or heavily hinted at in the preceding messages. Find the option that directly matches the facts, terms, or mechanisms explained in the chat.
 3. **Plausibility Check:** Reject options that contain scientific contradictions, physical impossibilities, or absurd claims (e.g., exceeding the Carnot efficiency limit, physical melting of solid carbon, etc.).
 4. **Step-by-Step Reasoning:** In the "thought" field, write down your step-by-step reasoning explaining why you eliminated the incorrect choices and why your selected choice is the scientifically and contextually correct one.
-5. **Reject Off-Topic MCQs (CRITICAL to prevent drift):** If ALL of the available choices represent a topic drift entirely away from the Target Skills, DO NOT select any choice. Instead, you MUST reject the MCQ by falling back to formulating a custom 'free_text' response that firmly pivots the conversation back to the primary target skill.
+5. **Reject Off-Topic MCQs (CRITICAL — ONLY FOR EXTREME DRIFT):** You are ONLY allowed to reject an MCQ if the choices represent an extreme, absolute topic drift to an entirely unrelated academic domain (e.g., if the target is "Dynamic Programming" but the options are about "Photosynthesis", "Ancient History", or "Organic Chemistry").
+   * NEVER reject an MCQ because you think the options are simplified, technically incomplete, theoretically imperfect, or poorly phrased.
+   * If the options contain vocabulary, variables, or concepts related to computer science, math, or your active track, it is ON-TOPIC. You MUST pick the best possible matching option from the choices list. Do not reject it.
 
 INSTRUCTIONS FOR WRITING FREE TEXT RESPONSES (free_text):
 1. **Deep Conceptual Summary (Triggers Oboe's High-Value Points)**:
@@ -271,9 +273,9 @@ If state is 'suggested_replies':
   "action": "click",
   "selection": "The exact string of the option button to click (MUST match one of the choices exactly)"
 }}
-OR, if ALL choices completely drift away from the Target Skill:
+OR, ONLY if ALL choices completely drift away from the Target Skill to an entirely unrelated domain:
 {{
-  "thought": "All provided choices lead to a topic drift away from the Target Skill. Rejecting MCQ to force a pivot.",
+  "thought": "All provided choices lead to complete domain-level topic drift away from the Target Skill. Rejecting MCQ to force a pivot.",
   "action": "type",
   "text": "Your human-like text response completely ignoring the options and pivoting the conversation back to the target skill (see FREE TEXT guidelines)"
 }}
