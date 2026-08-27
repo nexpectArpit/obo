@@ -322,21 +322,22 @@
             ],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 118,
+                "concepts_covered": 120,
                 "successful_assessments": 58,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "optimal",
+                    "matrix.algo.monster",
+                    "recompute",
                     "space.algo.monster",
                     "computed",
-                    "layered",
-                    "algorithm",
                     "computation",
-                    "recompute",
-                    "matrix.algo.monster",
+                    "background",
+                    "algorithm",
+                    "layered",
+                    "optimal",
                     "time.algo.monster"
                 ],
-                "unique_concepts_count": 9
+                "unique_concepts_count": 10
             },
             "status": "MASTERED"
         },

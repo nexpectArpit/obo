@@ -20,8 +20,8 @@
         },
         "Virtual_Memory": {
           "topic": "Virtual Memory Paging and TLB Management",
-          "level": 4,
-          "target_level": 5,
+          "level": 6,
+          "target_level": 7,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
@@ -175,8 +175,8 @@
       "nodes": {
         "System_Calls": {
           "topic": "System Call Interface Mechanics and Context Switching Overhead",
-          "level": 2,
-          "target_level": 3,
+          "level": 5,
+          "target_level": 6,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
