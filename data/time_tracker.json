@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787201066.8449464,
-            "duration_seconds": 1129,
-            "topic": "PID in cs"
-        },
-        {
             "timestamp": 1787204174.0876665,
             "duration_seconds": 2357,
             "topic": "random"
@@ -479,6 +474,11 @@
             "timestamp": 1787800702.999785,
             "duration_seconds": 5373,
             "topic": "Tabulation-based Memoization with Recursion"
+        },
+        {
+            "timestamp": 1787808335.416156,
+            "duration_seconds": 514,
+            "topic": "Vanishing Gradient Problem Solutions: ReLU Derivative Calculation"
         }
     ]
 }

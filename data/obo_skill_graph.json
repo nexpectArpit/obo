@@ -99,8 +99,8 @@
       "nodes": {
         "Basic_Data_Structures": {
           "topic": "Fundamental Data Structures and Hash Table Mechanics",
-          "level": 4,
-          "target_level": 5,
+          "level": 5,
+          "target_level": 6,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
@@ -140,8 +140,8 @@
         },
         "Dynamic_Programming": {
           "topic": "Dynamic Programming Subproblem State Transitions and Memoization",
-          "level": 25,
-          "target_level": 26,
+          "level": 45,
+          "target_level": 46,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [

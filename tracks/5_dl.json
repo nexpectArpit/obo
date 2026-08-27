@@ -506,6 +506,36 @@
       "prompt": "Formulate the WGAN-GP (Wasserstein GAN with Gradient Penalty) objective and derive the gradient penalty term for high-dimensional data. Implement a critic network with spectral normalization and analyze the spectral properties of the Jacobian matrix. Experiment with different gradient penalty weights and study their effect on mode collapse. What are the numerical challenges when computing the Jacobian in high dimensions?",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Neural Architecture Search (NAS) with Weight-Sharing and Supernets",
+      "prompt": "I want to implement a differentiable NAS algorithm using weight-sharing and supernets. Can you explain how to construct the supernet, train it with gradient-based optimization, and extract the optimal sub-network? Include the math behind the softmax over architecture parameters and the bi-level optimization problem.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Transformer-XL with Adaptive Segment Size and Dynamic Memory",
+      "prompt": "How do I modify the Transformer-XL architecture to handle variable-length segments by introducing adaptive segment size prediction and dynamic memory compression? Derive the recurrence equation for the extended relative positional encoding and explain the modifications to the attention mask.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Convolutional Networks (GCNs) with Spectral Regularization for Robust Node Classification",
+      "prompt": "Can you design a GCN that incorporates spectral regularization to enforce smoothness in the learned node embeddings while avoiding over-smoothing? Provide the modified loss function and the spectral decomposition constraints. Implement this in PyTorch and evaluate on the Cora dataset.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Diffusion Models with Score-Based Generative Modeling and Langevin Dynamics",
+      "prompt": "Explain how to train a score-based generative model using denoising score matching and generate samples using annealed Langevin dynamics. Derive the reverse diffusion SDE and the score function approximation. Implement this from scratch and compare FID scores on CIFAR-10.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Learning with Barlow Twins and Cross-View Reconstruction Loss",
+      "prompt": "How does the Barlow Twins loss function work to maximize the information between two distorted views of the same input? Derive the cross-correlation matrix optimization objective and implement it in PyTorch. Compare its performance against SimCLR on the STL-10 dataset.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
