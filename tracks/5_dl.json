@@ -536,6 +536,34 @@
       "prompt": "How does the Barlow Twins loss function work to maximize the information between two distorted views of the same input? Derive the cross-correlation matrix optimization objective and implement it in PyTorch. Compare its performance against SimCLR on the STL-10 dataset.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Vision Transformer Adaptation for Multi-Modal Medical Image Segmentation",
+      "prompt": "Let's design a Vision Transformer architecture that fuses CT and MRI modalities for precise tumor segmentation, incorporating cross-attention and hierarchical patch embeddings.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Network for Protein-Protein Interaction Prediction Using 3D Structural Graphs",
+      "prompt": "Let's build a graph neural network that takes 3D protein structures as graphs, applies edge-conditioned convolutions, and predicts interaction likelihoods with sub-angstrom precision.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Contrastive Learning on Irregular Time Series for Forecasting",
+      "prompt": "Let's implement a contrastive learning framework that augments irregular time-series data with temporal masking and learns representations suitable for downstream forecasting tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Adaptive Differential Privacy for Edge IoT Devices",
+      "prompt": "Let's develop a federated learning pipeline that dynamically adjusts privacy budgets per device based on data heterogeneity and communication constraints, ensuring utility while preserving privacy.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Neural Architecture Search via Reinforcement Learning for Real-Time Autonomous Driving Perception",
+      "prompt": "Let's formulate a reinforcement learning-based NAS that optimizes both inference latency and accuracy on LiDAR and camera streams for real-time obstacle detection in autonomous vehicles."
     }
   ],
   "target_skills": [
