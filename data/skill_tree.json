@@ -761,7 +761,7 @@
                 ],
                 "unique_concepts_count": 6
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
@@ -770,16 +770,20 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 5,
+                "concepts_covered": 15,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "pre-computes",
-                    "computations",
                     "algorithms",
-                    "thread"
+                    "computations",
+                    "thread",
+                    "optimizedbitmaskdp",
+                    "optimizedbitmaskdp(int",
+                    "pre-computes",
+                    "<algorithm>",
+                    "optimized"
                 ],
-                "unique_concepts_count": 4
+                "unique_concepts_count": 8
             },
             "status": "AVAILABLE"
         },
