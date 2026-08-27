@@ -115,7 +115,11 @@ class OboeBrowser:
 
             // 2. Suggested replies
             const btns = document.querySelectorAll('[data-test-id="suggested-replies"] button');
-            if (btns.length > 0) return "suggested_replies";
+            if (btns.length > 0) {
+                const allDisabled = Array.from(btns).every(b => b.disabled || b.getAttribute('disabled') !== null);
+                if (allDisabled) return "loading";
+                return "suggested_replies";
+            }
 
             // 3. Free text textarea
             const ta = document.querySelector('textarea[name="prompt"]');
@@ -278,7 +282,15 @@ class OboeBrowser:
             print(f"[WARNING] Could not find suggestion button for text: '{text}'. Skipping click.")
             return
 
-        button.click()
+        if button.is_disabled():
+            print(f"[WARNING] Suggestion button for '{text}' is disabled (already clicked/waiting for response). Skipping click to prevent timeout.")
+            return
+
+        try:
+            button.click(timeout=5000)
+        except Exception as e:
+            print(f"[WARNING] Failed to click button: {e}. Skipping.")
+        
         # Wait for action to register
         self.page.wait_for_timeout(3000)
 
