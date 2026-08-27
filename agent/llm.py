@@ -31,8 +31,8 @@ class OboeLLM:
                 "type": "nvidia",
                 "api_key": key,
                 "key_index": idx,
-                "complex_model": "nvidia/llama-3.1-nemotron-70b-instruct",
-                "simple_model": "nvidia/llama-3.1-nemotron-70b-instruct"
+                "complex_model": "meta/llama-3.2-11b-vision-instruct",
+                "simple_model": "meta/llama-3.2-11b-vision-instruct"
             })
 
         # 3. Fallback: Mistral (mistral-small-latest)
@@ -310,7 +310,7 @@ Do NOT output any conversational text or explanation outside the JSON. Return on
         # Save and restore the index after the call so normal rotation isn't disrupted.
         MODEL_CAPABILITIES = {
             "openai/gpt-oss-20b": "strong",
-            "nvidia/llama-3.1-nemotron-70b-instruct": "strong",
+            "meta/llama-3.2-11b-vision-instruct": "strong",
             "mistral-small-latest": "standard"
         }
         saved_provider_idx = self.current_provider_idx
