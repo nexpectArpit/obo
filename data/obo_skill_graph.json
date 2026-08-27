@@ -112,8 +112,8 @@
         },
         "Sorting_Algorithms": {
           "topic": "Sorting Algorithm Complexities and In-Place Tradeoffs",
-          "level": 17,
-          "target_level": 18,
+          "level": 18,
+          "target_level": 19,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
