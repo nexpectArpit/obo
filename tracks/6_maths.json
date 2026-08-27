@@ -536,6 +536,96 @@
       "prompt": "Implement the Hessian-free optimization component of TRPO to train a policy for the MuJoCo Ant-v4 environment. Compare its performance to standard policy gradient methods (e.g., PPO) and analyze how the conjugate gradient solver\u2019s accuracy in approximating the natural gradient impacts learning stability.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Newton-CG Conjugate Gradient for Non-Convex Problems: Implementing Hessian-Free Optimization for Deep Learning",
+      "prompt": "Let's implement a Hessian-Free Optimization (HFO) variant using the Newton-CG algorithm to train a deep neural network on a non-convex objective like CIFAR-10 with a custom loss function. We need to solve the linear system \u2207\u00b2f(x) * p = -\u2207f(x) using Conjugate Gradient (CG) at each step, while handling indefinite Hessians via Levenberg-Marquardt damping. Can we derive the exact stopping criteria for CG to ensure superlinear convergence? Show me the full PyTorch implementation with hooks for Hessian-vector products.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "BFGS with Exact Line Search vs. Wolfe Conditions: Benchmarking Quasi-Newton Methods on L-BFGS-B for Large-Scale SVM Training",
+      "prompt": "Compare the performance of L-BFGS-B using exact line search (Armijo + Wolfe conditions) versus inexact line search (backtracking only) when training a linear SVM on the MNIST dataset with 1M samples. We need to derive the Wolfe conditions for the BFGS update and implement both variants from scratch in Python. How does the curvature condition (y\u1d40s > 0) affect the Hessian approximation accuracy? Plot the convergence curves for both methods and analyze the trade-off between computational overhead and convergence speed.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Second-Order Optimization in Reinforcement Learning: Trust-Region Policy Optimization (TRPO) with Exact Fisher Information Matrix",
+      "prompt": "Implement Trust-Region Policy Optimization (TRPO) for a continuous control task (e.g., HalfCheetah) using the exact Fisher Information Matrix (FIM) instead of the diagonal or Kronecker-factored approximations. Derive the KL divergence constraint and the conjugate gradient solver for the natural gradient step. How does the choice of FIM approximation (e.g., full vs. block-diagonal) impact policy update stability? Provide a full TensorFlow implementation with debug prints for the FIM eigenvalues.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Curvature-Aware Adaptive Learning Rates: Deriving the Newton-Momentum Hybrid for Transformer Training",
+      "prompt": "Design a second-order optimization variant that combines Newton\u2019s method with momentum for training a Transformer on the WikiText-103 dataset. Use a diagonal Hessian approximation (e.g., via Hutchinson\u2019s method) to compute per-parameter learning rates, then apply Nesterov momentum with a curvature-aware restarts. Derive the update rule and implement it in PyTorch. How does this hybrid method compare to AdamW in terms of perplexity convergence and memory usage? Provide a full training loop with logging.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stochastic Second-Order Methods for Distributed Optimization: Implementing Distributed L-BFGS with Compression and Gradient Coding",
+      "prompt": "Implement a distributed L-BFGS algorithm for training a ResNet-50 on ImageNet across 8 GPUs, where each worker computes a stochastic Hessian-vector product using mini-batches. Introduce gradient coding to handle stragglers and a novel compression scheme for Hessian approximations (e.g., 4-bit quantization of curvature pairs). Derive the convergence guarantees for this compressed second-order method. How does the compression ratio affect the final test accuracy compared to synchronous SGD? Provide the full PyTorch DistributedDataParallel implementation with a custom AllReduce hook.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Newton-CG: Implementing Conjugate Gradient Preconditioning for Large-Scale Quadratic Problems",
+      "prompt": "How would you modify the Newton-CG algorithm to handle a 100k-dimensional Hessian in a logistic regression setting where the Hessian is only available as a matrix-free operator? Provide the pseudo-code for the inner CG loop with a block-Jacobi preconditioner, and discuss how you'd ensure numerical stability when the condition number exceeds 1e6.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "BFGS with Limited-Memory Symmetric Rank-1 Updates for Non-Convex Deep Learning",
+      "prompt": "Derive the BFGS update rule when the inverse Hessian approximation is stored using a compact representation with 5 memory pairs. Implement this in PyTorch for a non-convex loss landscape (e.g., ResNet-50 on ImageNet). Explain how you'd handle cases where the curvature condition fails, and why the SR1 variant might outperform BFGS in high-noise regimes.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Gauss-Newton with Automatic Differentiation for Tensor Network Approximations",
+      "prompt": "Formulate the Gauss-Newton approximation for optimizing a Tensor Network (e.g., MPS or PEPS) subject to a non-linear loss. Provide the AD-based workflow to compute the Jacobian blocks without explicitly forming the full tensor. Discuss how you'd exploit the Kronecker product structure in the GN matrix for efficient inversion using the Levenberg-Marquardt damping strategy.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Trust-Region Methods with Exact Second-Order Models for Non-Smooth Constrained Optimization",
+      "prompt": "Implement a trust-region algorithm for solving a constrained problem where the objective is the sum of a smooth quadratic and an L1-regularizer (e.g., sparse portfolio optimization). How would you handle the non-smoothness in the subproblem? Derive the Cauchy point and dogleg step with exact second-order models, and discuss the convergence guarantees when the trust-region radius is updated using a ratio of actual to predicted reduction.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Second-Order Optimization for Hamiltonian Monte Carlo with Adaptive Metrics",
+      "prompt": "Design a second-order optimizer for Hamiltonian Monte Carlo (HMC) where the metric tensor is learned via a Riemannian metric (e.g., Fisher information matrix). Provide the mathematical formulation for the Riemannian Newton step, and discuss how you'd stabilize the inverse metric computation in high-dimensional spaces (e.g., VAEs with 1M parameters). Implement a mini-batch version of the optimizer and analyze its bias-variance tradeoff.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Hessian-Free Optimization for Training Deep Neural Networks",
+      "prompt": "Let's implement and analyze the Hessian-free optimization (HFO) method to train a deep neural network on the CIFAR-10 dataset. Start by deriving the Newton step approximation using the conjugate gradient method for solving the linear system involving the Hessian-regularized matrix. Then, compare its convergence rate and computational overhead against SGD and Adam for a ResNet-50 architecture. Include the effect of damping parameter tuning on the loss landscape.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quasi-Newton Methods with Limited-Memory BFGS (L-BFGS) in Distributed Systems",
+      "prompt": "Design a distributed L-BFGS implementation for optimizing a logistic regression model across 8 GPU nodes. Begin by deriving the two-loop recursion for the approximate Hessian inverse and adapt it for asynchronous updates with staleness tolerance. Measure the impact of varying memory size (m) on the convergence speed and communication overhead. Use PyTorch Distributed and compare against distributed SGD with momentum.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Newton-CG for Non-Convex Optimization in Reinforcement Learning",
+      "prompt": "Implement a Newton-CG optimizer for policy gradient methods in reinforcement learning (e.g., PPO) applied to the MuJoCo Hopper-v4 environment. Formulate the Fisher Information Matrix (FIM) as the Hessian approximation and derive the CG solver for the Newton direction. Evaluate the policy updates' stability and sample efficiency against first-order methods like TRPO and PPO with Adam. Discuss the challenges of Hessian-vector products in high-dimensional action spaces.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Second-Order Optimization in Hyperparameter Optimization via Bayesian Neural Networks",
+      "prompt": "Develop a second-order hyperparameter optimizer using Laplace approximation for a Bayesian Neural Network (BNN) on the MNIST dataset. Derive the Hessian of the log-posterior for the BNN weights and use it to approximate the posterior predictive distribution. Compare the proposed method against first-order hyperparameter optimizers (e.g., Hyperband) in terms of convergence speed and robustness to noisy evaluations. Include code for automatic relevance determination (ARD) kernels.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Curvature-Aware Optimization for Transformer Fine-Tuning",
+      "prompt": "Investigate the effect of second-order optimization (e.g., K-FAC or AdaHessian) on fine-tuning a pre-trained BERT model on the GLUE benchmark. Derive the Kronecker-Factored Approximate Curvature (K-FAC) update rule and implement it in PyTorch. Compare its performance in terms of convergence speed, final accuracy, and memory usage against Adam and SGD with warm restarts. Analyze the curvature statistics of the loss landscape for different layers.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

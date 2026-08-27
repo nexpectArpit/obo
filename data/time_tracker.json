@@ -469,6 +469,11 @@
             "timestamp": 1787789112.9162545,
             "duration_seconds": 650,
             "topic": "Vanishing Gradient Problem in Recurrent Neural Networks"
+        },
+        {
+            "timestamp": 1787794630.637086,
+            "duration_seconds": 4947,
+            "topic": "Finding the x and y Intercepts of Linear Equations with Two Variables"
         }
     ]
 }
