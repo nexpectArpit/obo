@@ -322,22 +322,30 @@
             ],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 121,
-                "successful_assessments": 58,
+                "concepts_covered": 161,
+                "successful_assessments": 87,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "matrix.algo.monster",
-                    "optimal",
-                    "recompute",
-                    "layered",
-                    "time.algo.monster",
-                    "computation",
-                    "background",
-                    "computed",
                     "space.algo.monster",
-                    "algorithm"
+                    "sequence.algo.monster",
+                    "sequence.algo.monster+1",
+                    "matrix.algo.monster",
+                    "background",
+                    "optimal",
+                    "reset.algo.monster",
+                    "simultaneously.algo.monster",
+                    "delimiter.algo.monster",
+                    "recompute",
+                    "time.algo.monster",
+                    "computed",
+                    "algorithm",
+                    "computation",
+                    "subsegments.algo.monster",
+                    "layered",
+                    "backward",
+                    "compute"
                 ],
-                "unique_concepts_count": 10
+                "unique_concepts_count": 18
             },
             "status": "MASTERED"
         },
