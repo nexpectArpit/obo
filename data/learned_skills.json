@@ -17,7 +17,7 @@
     "Electrodynamics": 1,
     "Hydrogeology": 1,
     "Hydrology": 1,
-    "Algorithms": 17,
+    "Algorithms": 18,
     "Code Tracing": 2,
     "Data Structures": 5,
     "Algebra": 9,
@@ -233,5 +233,6 @@
     "Biochemistry": 2,
     "Ocean Engineering": 2,
     "Genetics": 21,
-    "Meiosis": 9
+    "Meiosis": 9,
+    "Java": 1
 }
