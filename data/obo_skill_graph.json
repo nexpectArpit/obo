@@ -112,8 +112,8 @@
         },
         "Sorting_Algorithms": {
           "topic": "Sorting Algorithm Complexities and In-Place Tradeoffs",
-          "level": 15,
-          "target_level": 16,
+          "level": 17,
+          "target_level": 18,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
@@ -140,8 +140,8 @@
         },
         "Dynamic_Programming": {
           "topic": "Dynamic Programming Subproblem State Transitions and Memoization",
-          "level": 21,
-          "target_level": 22,
+          "level": 25,
+          "target_level": 26,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [
