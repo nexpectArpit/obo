@@ -322,20 +322,20 @@
             ],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 120,
+                "concepts_covered": 121,
                 "successful_assessments": 58,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
                     "matrix.algo.monster",
+                    "optimal",
                     "recompute",
-                    "space.algo.monster",
-                    "computed",
+                    "layered",
+                    "time.algo.monster",
                     "computation",
                     "background",
-                    "algorithm",
-                    "layered",
-                    "optimal",
-                    "time.algo.monster"
+                    "computed",
+                    "space.algo.monster",
+                    "algorithm"
                 ],
                 "unique_concepts_count": 10
             },
