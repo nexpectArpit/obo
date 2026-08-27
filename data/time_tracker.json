@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787204174.0876665,
-            "duration_seconds": 2357,
-            "topic": "random"
-        },
-        {
             "timestamp": 1787223505.6551278,
             "duration_seconds": 1842,
             "topic": "i want to learn about the call interface mechanics and context switching overhead and will gain some skills to strengthen my understanding,lets go"
@@ -479,6 +474,11 @@
             "timestamp": 1787808335.416156,
             "duration_seconds": 514,
             "topic": "Vanishing Gradient Problem Solutions: ReLU Derivative Calculation"
+        },
+        {
+            "timestamp": 1787813440.6381767,
+            "duration_seconds": 1645,
+            "topic": "Linux Kernel System Call Implementation"
         }
     ]
 }

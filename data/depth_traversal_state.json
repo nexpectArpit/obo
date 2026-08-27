@@ -72,14 +72,15 @@
             "active_branch": [
                 "os",
                 "os.kernel",
-                "os.kernel.linux_kernel_memory_management_subsystem"
+                "os.kernel.linux_kernel_system_call_implementation"
             ],
-            "current_node": "os.kernel.linux_kernel_memory_management_subsystem",
+            "current_node": "os.kernel.linux_kernel_system_call_implementation",
             "last_good_node": "os",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
             "last_backtrack_at": {
-                "os.kernel.linux_kernel_module_loaders_and_unloaders": 1787737113.775702
+                "os.kernel.linux_kernel_module_loaders_and_unloaders": 1787737113.775702,
+                "os.kernel.linux_kernel_memory_management_subsystem": 1787811805.387049
             },
             "branch_status": "IN_PROGRESS"
         },
@@ -109,5 +110,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "os"
 }

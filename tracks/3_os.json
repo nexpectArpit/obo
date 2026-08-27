@@ -404,10 +404,190 @@
       "prompt": "explain ZFS Copy-on-Write (CoW) page allocation, transaction groups, and Merkle tree block checksum verification for data integrity",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Linux Loadable Kernel Module (LKM) for Dynamic CPU Frequency Scaling",
+      "prompt": "Design a LKM that dynamically adjusts CPU frequency based on the number of active cores and the current workload, utilizing the intel_pstate driver and the acpi_cpufreq driver.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel Module Development for a Custom PCIe Device with DMA and Interrupt Handling",
+      "prompt": "Develop a kernel module that interacts with a custom PCIe device, handling DMA transfers and interrupt events, and utilizing the Linux PCIe API.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Kernel Module for Real-time Data Compression using LZ4 and Huffman Coding",
+      "prompt": "Create a kernel module that compresses and decompresses data in real-time using LZ4 and Huffman coding algorithms, with a focus on minimizing latency and maximizing compression ratios.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Kernel Module for Hardware-based Cryptographic Acceleration using Intel QuickAssist",
+      "prompt": "Develop a kernel module that utilizes the Intel QuickAssist Technology (QAT) to accelerate cryptographic operations, such as AES encryption and decryption, and RSA key generation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Creating a Kernel Module for Customized Network Packet Processing using the nAPI",
+      "prompt": "Design a kernel module that utilizes the nAPI to process and manipulate network packets in real-time, with a focus on implementing customized packet filtering and classification rules.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Meiosis in Linux Device Driver Development: Efficient Context Switching",
+      "prompt": "Discuss the process of implementing meiosis in a Linux device driver to optimize context switching for a network interface card.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bloom Filter Optimization using Meiosis: Reducing False Positives",
+      "prompt": "Explain how to apply meiosis to a Bloom filter implementation to minimize false positives in a high-performance caching system.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Meiosis in Scientific Computing: Parallelizing Molecular Dynamics Simulations",
+      "prompt": "Describe the application of meiosis to parallelize molecular dynamics simulations for a protein folding study, focusing on load balancing and synchronization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Meiosis-based Load Balancing in Distributed Systems: A Case Study on MapReduce",
+      "prompt": "Analyze the use of meiosis to design an efficient load balancing algorithm for a MapReduce framework, considering task distribution and resource allocation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Meiosis in Cryptographic Protocol Design: Secure Multi-Party Computation",
+      "prompt": "Explain the application of meiosis to design a secure multi-party computation protocol, focusing on private set intersection and secure function evaluation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux IRQ Handler Framework for Efficient Interrupt Handling",
+      "prompt": "Design an IRQ handler framework for the Linux kernel that minimizes interrupt latency and optimizes resource allocation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Performance of the Linux Network Stack using the NAPI Polling Mechanism",
+      "prompt": "Develop a NAPI polling mechanism to improve network stack performance in the Linux kernel by minimizing CPU utilization and maximizing network throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Kernel Module for Real-time Data Compression using the LZO Algorithm",
+      "prompt": "Implement a kernel module that uses the LZO algorithm to compress and decompress data in real-time, optimizing system resources and minimizing latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Device Mapper Framework for Efficient Storage Virtualization",
+      "prompt": "Design a device mapper framework for the Linux kernel that optimizes storage virtualization, minimizing I/O latency and maximizing storage utilization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Kernel Module for Efficient Memory Allocation using the SLUB Allocator",
+      "prompt": "Implement a kernel module that uses the SLUB allocator to optimize memory allocation, minimizing memory fragmentation and maximizing system performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Kernel's kmemcheck Framework for Detecting Memory Bugs",
+      "prompt": "Can you explain how to extend the kmemcheck framework to detect memory corruption issues in kernel modules?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Kernel Module to Optimize System Call Overhead using Just-In-Time (JIT) Compilation",
+      "prompt": "How would you apply JIT compilation to reduce the overhead of system calls in a kernel module?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Kernel Module to Utilize Hardware Transactional Memory (HTM) for Concurrent Data Access",
+      "prompt": "Can you describe the steps to create a kernel module that leverages HTM for concurrent access to shared data structures?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Creating a Kernel Module to Implement the Read-Copy-Update (RCU) Algorithm for Synchronization",
+      "prompt": "How would you design a kernel module that utilizes RCU to synchronize access to shared data structures?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Kernel Module to Optimize Page Table Management using a Hybrid Approach of Direct and Indirect Mapping",
+      "prompt": "Can you explain the benefits and trade-offs of using a hybrid approach to page table management in a kernel module?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Intel SHA-256 Algorithm in a Linux Kernel Module for Cryptographic Hashing",
+      "prompt": "How would you optimize the SHA-256 algorithm to ensure it meets the Linux kernel's performance requirements for cryptographic hashing?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Linux Kernel Module for Efficient Page Table Management using Hierarchical Memory Allocation",
+      "prompt": "What data structures would you use to implement a hierarchical memory allocation system for efficient page table management in a Linux kernel module?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Linux Kernel Module for Real-Time Scheduling using Rate Monotonic Scheduling (RMS) Algorithm",
+      "prompt": "How would you adapt the RMS algorithm for real-time scheduling in a Linux kernel module, considering factors like task priority and deadline?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing a Linux Kernel Module for NUMA-Aware Memory Allocation using a Genetic Algorithm",
+      "prompt": "What genetic algorithm parameters would you tune to optimize memory allocation for a Linux kernel module in a NUMA system, ensuring low latency and high throughput?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Linux Kernel Module for Efficient Interrupt Handling using a Priority Queue with a Dynamic Time-division Multiple Access (TDMA) Scheduler",
+      "prompt": "How would you balance interrupt handling efficiency and fairness in a Linux kernel module using a priority queue with a dynamic TDMA scheduler?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux VM Event Notification (vEvent) Interface for Custom Kernel Modules",
+      "prompt": "Let's discuss how to integrate custom kernel modules with the vEvent interface to receive VM event notifications in a Linux environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Performance of Interrupt-Driven I/O Operations in Kernel Modules using SIMD Instructions",
+      "prompt": "How can we utilize SIMD instructions to accelerate interrupt-driven I/O operations in kernel modules, and what are the associated trade-offs?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a High-Performance Kernel Module for Network Packet Processing using Hierarchical Bloom Filters",
+      "prompt": "Let's discuss the design and implementation of a kernel module that leverages hierarchical Bloom filters to efficiently process network packets at high speeds.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Kernel Module for Dynamic Memory Allocation using SLAB Allocation and Memory Tagging",
+      "prompt": "How can we design and implement a kernel module that utilizes SLAB allocation and memory tagging to provide efficient dynamic memory allocation services?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Kernel Module for Real-Time Data Compression using LZ4 and Huffman Coding",
+      "prompt": "Let's discuss the design and implementation of a kernel module that uses LZ4 and Huffman coding to provide real-time data compression services, with a focus on minimizing latency and maximizing compression ratios.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
     "Kernel Modules",
-    "Operating Systems"
+    "Meiosis"
   ]
 }

@@ -1056,7 +1056,7 @@
                 ],
                 "unique_concepts_count": 10
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         },
         "os.kernel.linux_kernel_system_call_implementation": {
             "id": "os.kernel.linux_kernel_system_call_implementation",
@@ -1065,9 +1065,15 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 38,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory",
+                    "optimize",
+                    "backed"
+                ],
+                "unique_concepts_count": 3
             },
             "status": "AVAILABLE"
         }
