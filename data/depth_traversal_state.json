@@ -100,9 +100,10 @@
         "arch": {
             "active_branch": [
                 "arch",
-                "arch.cpu"
+                "arch.cpu",
+                "arch.cpu.instruction-level_parallelism"
             ],
-            "current_node": "arch.cpu",
+            "current_node": "arch.cpu.instruction-level_parallelism",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -110,5 +111,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "os"
+    "active_anchor": "arch"
 }

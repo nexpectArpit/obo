@@ -227,7 +227,11 @@
             "id": "arch.cpu",
             "name": "CPU",
             "parent": "arch",
-            "children": [],
+            "children": [
+                "arch.cpu.instruction-level_parallelism",
+                "arch.cpu.pipeline_stalls_and_bypassing",
+                "arch.cpu.superscalar_execution_and_register_renaming"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -1090,6 +1094,55 @@
                     "backed"
                 ],
                 "unique_concepts_count": 3
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.cpu.instruction-level_parallelism": {
+            "id": "arch.cpu.instruction-level_parallelism",
+            "name": "Instruction-Level Parallelism",
+            "parent": "arch.cpu",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 11,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "computing",
+                    "server-grade",
+                    "optimizations",
+                    "memory",
+                    "processing-in-memory",
+                    "graduate-level",
+                    "computer"
+                ],
+                "unique_concepts_count": 7
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.cpu.pipeline_stalls_and_bypassing": {
+            "id": "arch.cpu.pipeline_stalls_and_bypassing",
+            "name": "Pipeline Stalls and Bypassing",
+            "parent": "arch.cpu",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.cpu.superscalar_execution_and_register_renaming": {
+            "id": "arch.cpu.superscalar_execution_and_register_renaming",
+            "name": "Superscalar Execution and Register Renaming",
+            "parent": "arch.cpu",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
             },
             "status": "AVAILABLE"
         }

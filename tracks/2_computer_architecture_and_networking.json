@@ -464,6 +464,96 @@
       "prompt": "compare loss-based congestion control (Cubic) with delay/bandwidth-based control (BBR), explaining throughput and queue buildup trade-offs",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "In-Memory Sparse Matrix-Vector Multiplication using Crossbar Arrays for Graph Analytics",
+      "prompt": "Let's design a crossbar-based PIM accelerator for sparse matrix-vector multiplication tailored to large-scale graph analytics workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "PIM-Optimized Binarized Neural Network Inference on Resistive RAM for Edge Devices",
+      "prompt": "Let's explore how to implement binarized neural network inference directly within resistive RAM crossbars, focusing on weight quantization and activation mapping.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "In-Memory Hierarchical Clustering via Density Peak Algorithm on 3D Stacked Memory",
+      "prompt": "Let's formulate a density-peak clustering algorithm that operates entirely within 3D stacked memory, minimizing off-chip traffic.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "PIM-Enabled Real-Time Kalman Filtering for Sensor Fusion on Embedded SRAM Arrays",
+      "prompt": "Let's develop a Kalman filter that runs in-place on embedded SRAM arrays, optimizing for low latency sensor fusion.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Mathematical Modeling of Bit-Flip Noise Impact on PIM-based Graph Coloring Algorithms",
+      "prompt": "Let's analyze how bit-flip noise in PIM memory affects the correctness and convergence of graph coloring algorithms executed in-memory.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Resistive Crossbar-Based BFS for Massive Social Graphs",
+      "prompt": "Let's design a resistive crossbar memory that can perform breadth-first search on a 10-million-node social network with minimal off-chip traffic.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analog In-Memory Convolution for Real-Time Video Edge Detection",
+      "prompt": "Let's build an analog in-memory convolution engine using memristor MACs to accelerate Sobel filtering on 4K video streams.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Digital-Analog In-Memory Bayesian Inference for Autonomous Sensor Fusion",
+      "prompt": "Let's create a hybrid SRAM\u2013memristor architecture that performs Bayesian updates on multi-sensor data streams in real time.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Programmable In-Memory Sparse Matrix Multiplication for Finite Element Analysis",
+      "prompt": "Let's design a programmable in-memory accelerator that handles irregular sparse matrices with compression and dynamic reconfiguration for FEA.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stochastic Memristive In-Memory Optimization for Large-Scale Vehicle Routing",
+      "prompt": "Let's develop a stochastic memristive in-memory algorithm that solves vehicle routing problems with thousands of nodes and complex constraints.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Processing-in-Memory for Graph Algorithms: Parallelizing BFS/DFS on Hybrid Memory Architectures",
+      "prompt": "I need to optimize Breadth-First Search (BFS) and Depth-First Search (DFS) for large-scale graphs (e.g., social networks with 100M+ nodes) by leveraging Processing-in-Memory (PIM) architectures like UPMEM or Samsung's PIM DIMMs. How would you mathematically model the data movement vs. computation trade-offs when storing adjacency lists in PIM cores vs. traditional DRAM? Provide a concrete implementation using a PIM SDK (e.g., UPMEM's SDK) where each PIM core processes subgraphs independently, and discuss how to handle graph partitioning to minimize inter-core communication overhead.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "In-Memory Matrix Factorization for Recommender Systems: Accelerating SGD with PIM",
+      "prompt": "How would you implement Stochastic Gradient Descent (SGD) for matrix factorization (e.g., for a Netflix-scale recommender system with a 10K x 100K user-item matrix) entirely within Processing-in-Memory (PIM) cores, avoiding traditional DRAM access for updates? Derive the computational complexity of updating latent factors in PIM vs. CPU/GPU, and provide a PIM-optimized algorithm that minimizes inter-core synchronization. Use a real-world dataset (e.g., MovieLens 20M) to benchmark latency and energy efficiency compared to state-of-the-art GPU implementations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "PIM-Accelerated Spiking Neural Networks: Event-Driven Computation in Hybrid Memory",
+      "prompt": "Design a Processing-in-Memory (PIM) architecture to accelerate event-driven computation in Spiking Neural Networks (SNNs), where synaptic updates and membrane potentials are computed in-memory using analog PIM (e.g., RRAM or PCM-based designs). How would you map neuron spikes to PIM cores to exploit temporal locality, and what mathematical formulation would you use to bound the error introduced by analog PIM computations (e.g., due to device variability)? Provide a simulation framework (e.g., using PyTorch or NEST) to evaluate the trade-offs between energy savings and classification accuracy for a benchmark like the MNIST-DVS dataset.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Processing-in-Memory for Real-Time Video Processing: In-Sensor CNN Inference with PIM",
+      "prompt": "Propose an architecture where Processing-in-Memory (PIM) is used to perform real-time convolutional neural network (CNN) inference directly on the sensor (e.g., a PIM-enabled CMOS image sensor). How would you optimize memory access patterns for 2D convolutions (e.g., 3x3 kernels) by storing weights in PIM arrays and streaming pixel data from the sensor? Derive the bandwidth requirements for a 1080p video stream at 60 FPS and compare the energy efficiency of this approach against traditional von Neumann architectures. Implement a proof-of-concept using a PIM simulator (e.g., Ramulator with PIM extensions) and benchmark against a GPU-based baseline.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Mathematical Formulations for PIM-Based Sorting and Hashing: Lower Bounds and Algorithms",
+      "prompt": "Derive the theoretical lower bounds for sorting and hash table operations (e.g., insert, lookup) when computed entirely within Processing-in-Memory (PIM) architectures, where PIM cores can only access local memory blocks. Provide two concrete algorithms: (1) a PIM-optimized radix sort that exploits bit-level parallelism in PIM, and (2) a cuckoo hashing variant that minimizes write amplification in PIM arrays. Benchmark these against GPU-accelerated versions (e.g., using CUDA Thrust) on a dataset of 100M 32-bit integers, and analyze the impact of PIM core failure rates on correctness.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
