@@ -564,6 +564,36 @@
     {
       "name": "Neural Architecture Search via Reinforcement Learning for Real-Time Autonomous Driving Perception",
       "prompt": "Let's formulate a reinforcement learning-based NAS that optimizes both inference latency and accuracy on LiDAR and camera streams for real-time obstacle detection in autonomous vehicles."
+    },
+    {
+      "name": "Self\u2011Supervised Vision Transformers for Unlabeled Medical Imaging",
+      "prompt": "Let's design a self\u2011supervised Vision Transformer to pretrain on unlabeled chest X\u2011ray data and then fine\u2011tune it for pneumonia detection.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Diffusion Model for 3D Protein Structure Generation",
+      "prompt": "Let's build a diffusion\u2011based generative model that samples realistic 3D protein conformations conditioned on amino\u2011acid sequence.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Edge\u2011Conditioned Attention GNN for Molecular Property Prediction",
+      "prompt": "Let's implement a Graph Neural Network with edge\u2011conditioned attention to predict solubility from SMILES representations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Transformer Policy for Multi\u2011Agent Reinforcement Learning in Dynamic Environments",
+      "prompt": "Let's train a transformer\u2011based policy network that coordinates multiple agents for path planning in changing terrains.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy for Transformer Language Models",
+      "prompt": "Let's design a federated learning protocol that trains a transformer while guaranteeing differential privacy across client devices.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

@@ -514,6 +514,11 @@
             "timestamp": 1787878012.7137678,
             "duration_seconds": 1523,
             "topic": "Applying the Slope-Intercept Form to Identify the y-Intercept of Linear Equations"
+        },
+        {
+            "timestamp": 1787880556.269287,
+            "duration_seconds": 1804,
+            "topic": "ReLU Derivative in Backpropagation Algorithm Flowcharts"
         }
     ]
 }
