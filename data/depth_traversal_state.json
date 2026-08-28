@@ -30,15 +30,15 @@
                 "cpp.dynamic_programming",
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion"
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems"
             ],
-            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion",
+            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
             "last_backtrack_at": {
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_in_dynamic_programming": 1787795479.1066022,
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion": 1787682610.8701925,
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.tabulation-based_memoization_with_recursion": 1787874172.701887,
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation.memoization_with_tabulation_for_combinatorial_problems": 1787683995.0371327,
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation": 1787683995.0376654,
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++": 1787697247.2823994,
@@ -115,5 +115,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "maths"
+    "active_anchor": "cpp"
 }
