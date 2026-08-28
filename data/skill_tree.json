@@ -287,7 +287,7 @@
                 ],
                 "unique_concepts_count": 3
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "maths.algebra.solving_systems_of_linear_equations_by_substitution": {
             "id": "maths.algebra.solving_systems_of_linear_equations_by_substitution",
@@ -296,9 +296,15 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "gradients",
+                    "compute",
+                    "backpropagation"
+                ],
+                "unique_concepts_count": 3
             },
             "status": "AVAILABLE"
         },

@@ -4,9 +4,9 @@
             "active_branch": [
                 "maths",
                 "maths.algebra",
-                "maths.algebra.graphing_linear_equations_in_slope-intercept_form"
+                "maths.algebra.solving_systems_of_linear_equations_by_substitution"
             ],
-            "current_node": "maths.algebra.graphing_linear_equations_in_slope-intercept_form",
+            "current_node": "maths.algebra.solving_systems_of_linear_equations_by_substitution",
             "last_good_node": "maths",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -20,7 +20,8 @@
                 "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations": 1787883585.676702,
                 "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables": 1787883585.6773086,
                 "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables": 1787952671.3804991,
-                "maths.algebra.linear_equations_with_two_variables": 1787952671.3809655
+                "maths.algebra.linear_equations_with_two_variables": 1787952671.3809655,
+                "maths.algebra.graphing_linear_equations_in_slope-intercept_form": 1787955174.3956523
             },
             "branch_status": "IN_PROGRESS"
         },
