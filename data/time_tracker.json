@@ -529,6 +529,11 @@
             "timestamp": 1787958939.379623,
             "duration_seconds": 1490,
             "topic": "Numerical Gradient Check for ReLU Activation Function"
+        },
+        {
+            "timestamp": 1787961422.3377178,
+            "duration_seconds": 1871,
+            "topic": "Vanishing Gradient Problem Solutions: Identifying Dead Neurons in ReLU Networks"
         }
     ]
 }
