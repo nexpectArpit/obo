@@ -365,7 +365,7 @@
                 ],
                 "unique_concepts_count": 32
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         },
         "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables": {
             "id": "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables",
@@ -374,11 +374,15 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 2,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
-                "unique_concepts_list": [],
-                "unique_concepts_count": 0
+                "unique_concepts_list": [
+                    "gradients",
+                    "backpropagation",
+                    "compute"
+                ],
+                "unique_concepts_count": 3
             },
             "status": "AVAILABLE"
         },
@@ -998,7 +1002,7 @@
                 ],
                 "unique_concepts_count": 3
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming",
