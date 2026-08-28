@@ -539,6 +539,11 @@
             "timestamp": 1787903334.1993144,
             "duration_seconds": 588,
             "topic": "pytorch for machine learning and deep learning from scratch"
+        },
+        {
+            "timestamp": 1787930111.385851,
+            "duration_seconds": 538,
+            "topic": "Supervised Learning and Evaluation"
         }
     ]
 }
