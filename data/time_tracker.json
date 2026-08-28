@@ -1,31 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787339523.9526157,
-            "duration_seconds": 2808,
-            "topic": "array subsequnce problem"
-        },
-        {
-            "timestamp": 1787342544.8372393,
-            "duration_seconds": 2682,
-            "topic": "deep learning perceptron"
-        },
-        {
-            "timestamp": 1787344676.5088706,
-            "duration_seconds": 1905,
-            "topic": "what is learning rate , and what is boosting techniques,and its algos like light gbm and other....?"
-        },
-        {
-            "timestamp": 1787345079.6555736,
-            "duration_seconds": 244,
-            "topic": "computer architecture and memory systems"
-        },
-        {
-            "timestamp": 1787345574.4758897,
-            "duration_seconds": 235,
-            "topic": "Os concepts"
-        },
-        {
             "timestamp": 1787352427.61377,
             "duration_seconds": 997,
             "topic": "Array Two Pointers Technique"
@@ -544,6 +519,11 @@
             "timestamp": 1787930111.385851,
             "duration_seconds": 538,
             "topic": "Supervised Learning and Evaluation"
+        },
+        {
+            "timestamp": 1787954377.8169403,
+            "duration_seconds": 1822,
+            "topic": "Graphing Linear Equations in Slope-Intercept Form"
         }
     ]
 }

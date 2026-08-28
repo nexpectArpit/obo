@@ -4,10 +4,9 @@
             "active_branch": [
                 "maths",
                 "maths.algebra",
-                "maths.algebra.linear_equations_with_two_variables",
-                "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables"
+                "maths.algebra.graphing_linear_equations_in_slope-intercept_form"
             ],
-            "current_node": "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables",
+            "current_node": "maths.algebra.graphing_linear_equations_in_slope-intercept_form",
             "last_good_node": "maths",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -19,7 +18,9 @@
                 "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.finding_the_x-intercept_of_linear_equations_with_two_variables_using_the_zero_y-value_method": 1787871542.5873592,
                 "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.graphical_analysis_of_linear_equations_to_locate_the_x_and_y_intercepts": 1787876694.2569387,
                 "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables.applying_the_slope-intercept_form_to_identify_the_y-intercept_of_linear_equations": 1787883585.676702,
-                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables": 1787883585.6773086
+                "maths.algebra.linear_equations_with_two_variables.finding_the_x_and_y_intercepts_of_linear_equations_with_two_variables": 1787883585.6773086,
+                "maths.algebra.linear_equations_with_two_variables.determining_the_number_of_solutions_for_linear_equations_with_two_variables": 1787952671.3804991,
+                "maths.algebra.linear_equations_with_two_variables": 1787952671.3809655
             },
             "branch_status": "IN_PROGRESS"
         },
