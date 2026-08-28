@@ -680,7 +680,7 @@
                 ],
                 "unique_concepts_count": 7
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
@@ -693,15 +693,17 @@
             ],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 4,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "tails.push_back(x);",
                     "<algorithm>",
-                    "optimizelis(const"
+                    "tails.push_back(x);",
+                    "statespaceoptimizer",
+                    "optimizelis(const",
+                    "statespaceoptimizer(int"
                 ],
-                "unique_concepts_count": 3
+                "unique_concepts_count": 5
             },
             "status": "AVAILABLE"
         },
@@ -840,7 +842,7 @@
                 ],
                 "unique_concepts_count": 4
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++",
