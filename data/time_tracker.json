@@ -534,6 +534,11 @@
             "timestamp": 1787902567.6731956,
             "duration_seconds": 4859,
             "topic": "Dutch National Flag Algorithm"
+        },
+        {
+            "timestamp": 1787903334.1993144,
+            "duration_seconds": 588,
+            "topic": "pytorch for machine learning and deep learning from scratch"
         }
     ]
 }
