@@ -372,19 +372,34 @@
             "name": "Determining the Number of Solutions for Linear Equations with Two Variables",
             "parent": "maths.algebra.linear_equations_with_two_variables",
             "children": [],
-            "mastery_level": 1,
+            "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 2,
-                "successful_assessments": 0,
+                "concepts_covered": 146,
+                "successful_assessments": 111,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
+                    "backward",
                     "gradients",
+                    "optimized",
+                    "optimizing",
+                    "optimal",
+                    "memory",
+                    "recompute",
+                    "optimize",
+                    "optimum",
+                    "computed",
+                    "compute",
                     "backpropagation",
-                    "compute"
+                    "optimization",
+                    "memory-constrained",
+                    "backwards",
+                    "computations",
+                    "algorithm",
+                    "algorithms"
                 ],
-                "unique_concepts_count": 3
+                "unique_concepts_count": 18
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         },
         "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation": {
             "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane.identifying_the_x_and_y_intercepts_of_a_linear_equation",
