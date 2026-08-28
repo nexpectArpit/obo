@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787352427.61377,
-            "duration_seconds": 997,
-            "topic": "Array Two Pointers Technique"
-        },
-        {
             "timestamp": 1787403922.767904,
             "duration_seconds": 201,
             "topic": "Array Two Pointers Technique"
@@ -529,6 +524,11 @@
             "timestamp": 1787956646.090955,
             "duration_seconds": 1684,
             "topic": "Solving Systems of Linear Equations by Substitution"
+        },
+        {
+            "timestamp": 1787958939.379623,
+            "duration_seconds": 1490,
+            "topic": "Numerical Gradient Check for ReLU Activation Function"
         }
     ]
 }
