@@ -594,6 +594,96 @@
       "prompt": "Let's design a federated learning protocol that trains a transformer while guaranteeing differential privacy across client devices.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Transfer Learning for Image Classification using Pre-Trained Convolutional Neural Networks",
+      "prompt": "Compare the performance of fine-tuning a pre-trained VGG16 model versus a pre-trained ResNet50 model on the CIFAR-10 dataset for image classification tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing Attention Mechanisms in Sequence-to-Sequence Models for Machine Translation",
+      "prompt": "Describe the key components and hyperparameters required to implement the Luong attention mechanism in a sequence-to-sequence model for machine translation tasks, and discuss its impact on model performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Training for Robustness against Adversarial Attacks in Deep Neural Networks",
+      "prompt": "Explain the concept of adversarial training and its application in robustifying deep neural networks against adversarial attacks, and discuss the trade-offs between robustness and accuracy.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Mathematical Formulation of Generative Adversarial Networks (GANs) using Wasserstein Distance",
+      "prompt": "Derive the mathematical formulation of GANs using the Wasserstein distance, and discuss the advantages and disadvantages of this approach compared to traditional GANs.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing Graph Convolutional Networks (GCNs) for Node Classification Tasks",
+      "prompt": "Describe the key components and hyperparameters required to implement GCNs for node classification tasks, and discuss the challenges and limitations of GCNs in handling large-scale graph-structured data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multi-Modal Fusion with Late Fusion and Early Fusion Techniques",
+      "prompt": "Consider a scenario where we want to integrate text and image features for a multimodal sentiment analysis task. Discuss the pros and cons of late fusion and early fusion techniques.",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Self-Supervised Learning with Contrastive Predictive Coding (CPC)",
+      "prompt": "Explain how CPC works and how it can be used to learn representations for sequential data such as videos or audio signals. Provide a mathematical formulation of the CPC loss function.",
+      "covered": false,
+      "level_at_cover": 9
+    },
+    {
+      "name": "Deep Reinforcement Learning with Proximal Policy Optimization (PPO) and Actor-Critic Methods",
+      "prompt": "Describe the PPO algorithm and its variants. Discuss how PPO can be used for continuous control tasks and how actor-critic methods can be used to improve sample efficiency.",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Graph Neural Networks with Graph Attention Networks (GAT) and Graph Convolutional Networks (GCN)",
+      "prompt": "Compare and contrast GAT and GCN architectures. Discuss the applications of GAT and GCN in graph classification and node classification tasks.",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Explainable Deep Learning with SHAP Values and LIME",
+      "prompt": "Explain how SHAP values and LIME can be used to provide feature importance and model interpretability for deep neural networks. Provide a concrete example of how SHAP values can be used to explain a model's predictions.",
+      "covered": false,
+      "level_at_cover": 7
+    },
+    {
+      "name": "Training Transformers for Long-Range Dependencies with Self-Attention",
+      "prompt": "How would you modify the standard Transformer architecture to effectively capture long-range dependencies in a sequence-to-sequence task, such as text summarization?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Sliced Wasserstein Distance for Generative Models",
+      "prompt": "Can you explain the mathematical formulation of the sliced Wasserstein distance and how it can be used to evaluate the quality of generated samples from a GAN?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Efficient Inference in Deep Residual Networks using Tensor Cores",
+      "prompt": "How would you optimize the inference process of a deep residual network using tensor cores, and what are the benefits of this approach?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Unsupervised Domain Adaptation using Maximum Mean Discrepancy",
+      "prompt": "Can you describe the MMD-based domain adaptation approach and how it can be used to adapt a model trained on one domain to another domain with limited labeled data?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quantization-Aware Training for Low-Precision Deep Learning",
+      "prompt": "How would you modify the training process of a deep neural network to accommodate low-precision arithmetic and minimize the impact on accuracy?",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
