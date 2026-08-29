@@ -534,6 +534,11 @@
             "timestamp": 1787961422.3377178,
             "duration_seconds": 1871,
             "topic": "Vanishing Gradient Problem Solutions: Identifying Dead Neurons in ReLU Networks"
+        },
+        {
+            "timestamp": 1787963867.5074623,
+            "duration_seconds": 1781,
+            "topic": "Convolutional Neural Network (CNN) Architecture Variations"
         }
     ]
 }

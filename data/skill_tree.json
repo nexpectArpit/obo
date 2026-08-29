@@ -523,7 +523,7 @@
                 ],
                 "unique_concepts_count": 3
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations": {
             "id": "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations",
@@ -532,9 +532,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },
@@ -611,7 +615,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_norm": {
             "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch.gradient_clipping_with_norm",
