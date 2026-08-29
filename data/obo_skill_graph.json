@@ -64,8 +64,8 @@
         },
         "CXL_Protocol": {
           "topic": "Compute Express Link (CXL 3.0) Cache-Coherent Memory Fabrics",
-          "level": 3,
-          "target_level": 4,
+          "level": 8,
+          "target_level": 9,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [

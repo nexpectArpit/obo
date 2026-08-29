@@ -17,7 +17,7 @@
     "Electrodynamics": 1,
     "Hydrogeology": 1,
     "Hydrology": 1,
-    "Algorithms": 48,
+    "Algorithms": 57,
     "Code Tracing": 2,
     "Data Structures": 5,
     "Algebra": 9,
@@ -47,7 +47,7 @@
     "Context Switching": 2,
     "Interrupt Handling": 2,
     "Symmetric Multiprocessing": 1,
-    "Dynamic Programming": 97,
+    "Dynamic Programming": 119,
     "Space Complexity Optimization": 3,
     "String Algorithms": 4,
     "Combinatorics": 1,
@@ -234,7 +234,7 @@
     "Ocean Engineering": 2,
     "Genetics": 21,
     "Meiosis": 9,
-    "Java": 20,
+    "Java": 22,
     "Supervised Learning": 1,
     "Cross-Validation": 2
 }
