@@ -85,16 +85,31 @@
             "name": "Optimization",
             "parent": "maths",
             "children": [],
-            "mastery_level": 1,
+            "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 143,
                 "unique_concepts_list": [
                     "compute",
+                    "processing\u2011in\u2011memory",
+                    "optimal",
+                    "backpressure",
+                    "backward",
+                    "tensor",
                     "backpropagation",
-                    "gradients"
+                    "computations.micron.com",
+                    "optimization",
+                    "write\u2011back",
+                    "memory\u2011systems",
+                    "gradients",
+                    "computation",
+                    "memory",
+                    "background",
+                    "degradation"
                 ],
-                "unique_concepts_count": 3
-            }
+                "unique_concepts_count": 16,
+                "successful_assessments": 49
+            },
+            "status": "MASTERED"
         },
         "cpp.dynamic_programming": {
             "id": "cpp.dynamic_programming",

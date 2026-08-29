@@ -554,10 +554,100 @@
       "prompt": "Derive the theoretical lower bounds for sorting and hash table operations (e.g., insert, lookup) when computed entirely within Processing-in-Memory (PIM) architectures, where PIM cores can only access local memory blocks. Provide two concrete algorithms: (1) a PIM-optimized radix sort that exploits bit-level parallelism in PIM, and (2) a cuckoo hashing variant that minimizes write amplification in PIM arrays. Benchmark these against GPU-accelerated versions (e.g., using CUDA Thrust) on a dataset of 100M 32-bit integers, and analyze the impact of PIM core failure rates on correctness.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Design and Optimization of In-Memory Accumulator Networks for Sparse Matrix-Vector Multiplication",
+      "prompt": "Let's design an in-memory accumulator network that efficiently handles sparse matrix-vector multiplication for large-scale graph analytics, focusing on memory bandwidth and energy efficiency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Programmable Resistive Crossbar Arrays for 3D Convolutional Neural Network Inference",
+      "prompt": "Let's explore how to program 3D convolution kernels onto resistive crossbar arrays and analyze the trade-offs between precision and energy consumption for mobile AI devices.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Fault-Tolerant Bit-Serial Arithmetic Units in Emerging Memory for Edge AI",
+      "prompt": "Let's design a bit-serial arithmetic unit that operates directly in emerging memory arrays while tolerating stuck-at faults and quantifying error resilience for edge inference workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Voltage and Temperature Scaling in PIM-enabled DRAM for Real-time Video Encoding",
+      "prompt": "Let's formulate a DVS/T scaling policy that maximizes throughput for real-time video encoding on DRAM-based PIM, including a model of temperature-dependent leakage and write endurance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Co-Design of PIM-based Graph Traversal Engine with Hierarchical TLB for Large Graphs",
+      "prompt": "Let's co-design a PIM graph traversal engine that uses a hierarchical TLB to manage memory accesses for billion-node graphs, optimizing cache line prefetching and locality exploitation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "In-Memory Sparse Matrix-Vector Multiplication on Resistive RAM Crossbars",
+      "prompt": "Let's design a resistive RAM crossbar-based in-memory implementation for sparse matrix-vector multiplication, focusing on data mapping, weight encoding, and latency optimization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Energy-Efficient In-Memory Convolution Engine Using Phase-Change Memory for CNNs",
+      "prompt": "Let's develop an energy-efficient in-memory convolution engine leveraging phase-change memory, detailing the weight storage, analog multiplication, and error mitigation techniques.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analog In-Memory Sorting Network for Real-Time Data Streams",
+      "prompt": "Let's implement an analog in-memory sorting network using memristor arrays to sort continuous data streams in real-time, optimizing for throughput and precision.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid PCM-Resistive Memory Architecture for Real-Time Graph Analytics",
+      "prompt": "Let's architect a hybrid PCM-resistive memory system tailored for real-time graph analytics, specifying data layout, traversal acceleration, and consistency mechanisms.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stochastic In-Memory Matrix Multiplication for Solving Linear Systems",
+      "prompt": "Let's design a stochastic in-memory matrix multiplication scheme using probabilistic computing elements to solve large linear systems efficiently, focusing on accuracy bounds and convergence.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Processing-in-Memory: Accelerated Sparse Matrix-Vector Multiplication via Row-Column Partitioning",
+      "prompt": "Let's design a PIM architecture that efficiently handles sparse matrix-vector multiplication using row-column partitioning, compression, and in-memory reduction techniques.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Processing-in-Memory: In-Memory Graph Traversal for PageRank Using Hop-Count Encoding",
+      "prompt": "Let's develop an in-memory algorithm for PageRank that encodes hop counts and performs parallel updates across memory arrays, minimizing data movement.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Processing-in-Memory: Neural Network Inference with Mixed-Precision Quantization on Resistive Crossbar Arrays",
+      "prompt": "Let's explore mixed-precision quantization for deep neural network inference on resistive crossbar PIM hardware, focusing on accuracy\u2013energy trade-offs.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Processing-in-Memory: Data-Parallel FFT Implementation on 3D Stacked DRAM with In-Place Cooley-Tukey",
+      "prompt": "Let's implement a data-parallel FFT on 3D stacked DRAM using in-place Cooley-Tukey algorithm and evaluate latency and bandwidth utilization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Processing-in-Memory: Real-Time Video Compression Using In-Memory DCT on Emerging MRAM",
+      "prompt": "Let's design a real-time video compression pipeline that performs DCT and motion estimation directly in MRAM arrays, optimizing for low-latency and power.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
-    "Processing-in-Memory",
-    "Memory Systems"
+    "Memory Systems",
+    "Processing-in-Memory"
   ]
 }
