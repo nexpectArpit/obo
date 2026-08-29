@@ -53,9 +53,9 @@
             "active_branch": [
                 "dl",
                 "dl.training",
-                "dl.training.microlearning_strategies_for_personalized_training"
+                "dl.training.gamification_techniques_for_enhanced_engagement"
             ],
-            "current_node": "dl.training.microlearning_strategies_for_personalized_training",
+            "current_node": "dl.training.gamification_techniques_for_enhanced_engagement",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -72,7 +72,8 @@
                 "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu": 1787962197.307857,
                 "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations": 1787964658.8155367,
                 "dl.neural_networks.softmax_cross-entropy_loss_function_derivation": 1787966811.193215,
-                "dl.neural_networks": 1787966811.1939316
+                "dl.neural_networks": 1787966811.1939316,
+                "dl.training.microlearning_strategies_for_personalized_training": 1788041575.2473085
             },
             "branch_status": "IN_PROGRESS"
         },
