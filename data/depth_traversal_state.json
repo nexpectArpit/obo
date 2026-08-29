@@ -31,9 +31,10 @@
                 "cpp",
                 "cpp.dynamic_programming",
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization"
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++"
             ],
-            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization",
+            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -122,5 +123,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "cpp"
 }
