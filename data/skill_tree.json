@@ -213,7 +213,8 @@
                 ],
                 "unique_concepts_count": 6,
                 "successful_assessments": 3
-            }
+            },
+            "status": "EXHAUSTED"
         },
         "dl.training": {
             "id": "dl.training",
@@ -221,7 +222,13 @@
             "parent": "dl",
             "children": [],
             "mastery_level": 1,
-            "evidence": {}
+            "evidence": {
+                "concepts_covered": 1,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
+            }
         },
         "arch.cpu": {
             "id": "arch.cpu",
@@ -557,7 +564,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch": {
             "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_gradient_clipping_implementation_in_pytorch",

@@ -544,6 +544,11 @@
             "timestamp": 1787966109.5892196,
             "duration_seconds": 1526,
             "topic": "Softmax Cross-Entropy Loss Function Derivation"
+        },
+        {
+            "timestamp": 1787968352.7966144,
+            "duration_seconds": 1660,
+            "topic": "Training"
         }
     ]
 }
