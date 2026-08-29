@@ -77,7 +77,8 @@
                 "unique_concepts_list": [],
                 "unique_concepts_count": 0,
                 "successful_assessments": 1
-            }
+            },
+            "status": "EXHAUSTED"
         },
         "maths.optimization": {
             "id": "maths.optimization",
@@ -85,7 +86,15 @@
             "parent": "maths",
             "children": [],
             "mastery_level": 1,
-            "evidence": {}
+            "evidence": {
+                "concepts_covered": 1,
+                "unique_concepts_list": [
+                    "compute",
+                    "backpropagation",
+                    "gradients"
+                ],
+                "unique_concepts_count": 3
+            }
         },
         "cpp.dynamic_programming": {
             "id": "cpp.dynamic_programming",
@@ -313,7 +322,7 @@
                 ],
                 "unique_concepts_count": 3
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane": {
             "id": "maths.algebra.linear_equations_with_two_variables.graphing_linear_equations_with_two_variables_on_a_coordinate_plane",
