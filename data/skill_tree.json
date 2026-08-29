@@ -540,7 +540,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.neural_networks.softmax_cross-entropy_loss_function_derivation": {
             "id": "dl.neural_networks.softmax_cross-entropy_loss_function_derivation",
@@ -549,9 +549,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },

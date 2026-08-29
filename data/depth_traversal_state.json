@@ -52,9 +52,9 @@
             "active_branch": [
                 "dl",
                 "dl.neural_networks",
-                "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations"
+                "dl.neural_networks.softmax_cross-entropy_loss_function_derivation"
             ],
-            "current_node": "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations",
+            "current_node": "dl.neural_networks.softmax_cross-entropy_loss_function_derivation",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -68,7 +68,8 @@
                 "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.numerical_gradient_check_for_relu_activation_function": 1787959685.5702915,
                 "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation": 1787959685.5708864,
                 "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_identifying_dead_neurons_in_relu_networks": 1787962197.3072522,
-                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu": 1787962197.307857
+                "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu": 1787962197.307857,
+                "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations": 1787964658.8155367
             },
             "branch_status": "IN_PROGRESS"
         },

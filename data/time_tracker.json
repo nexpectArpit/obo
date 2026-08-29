@@ -539,6 +539,11 @@
             "timestamp": 1787963867.5074623,
             "duration_seconds": 1781,
             "topic": "Convolutional Neural Network (CNN) Architecture Variations"
+        },
+        {
+            "timestamp": 1787966109.5892196,
+            "duration_seconds": 1526,
+            "topic": "Softmax Cross-Entropy Loss Function Derivation"
         }
     ]
 }
