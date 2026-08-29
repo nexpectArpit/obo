@@ -1,96 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787403922.767904,
-            "duration_seconds": 201,
-            "topic": "Array Two Pointers Technique"
-        },
-        {
-            "timestamp": 1787412315.7723079,
-            "duration_seconds": 207,
-            "topic": "Exploring Photosynthesis Calvin cycle carbon"
-        },
-        {
-            "timestamp": 1787416358.7049549,
-            "duration_seconds": 177,
-            "topic": "algo techniques derivation for linkedlist cycle detection"
-        },
-        {
-            "timestamp": 1787418201.1306355,
-            "duration_seconds": 663,
-            "topic": "Perceptron and MLP"
-        },
-        {
-            "timestamp": 1787418731.144564,
-            "duration_seconds": 371,
-            "topic": "Boolean Algebra and Logic Gates"
-        },
-        {
-            "timestamp": 1787419256.7243907,
-            "duration_seconds": 323,
-            "topic": "Combinational Circuits"
-        },
-        {
-            "timestamp": 1787420191.1939013,
-            "duration_seconds": 355,
-            "topic": "Array Two Pointers Technique"
-        },
-        {
-            "timestamp": 1787420573.1247563,
-            "duration_seconds": 201,
-            "topic": "Prefix Sum and Difference Array"
-        },
-        {
-            "timestamp": 1787421096.1548197,
-            "duration_seconds": 180,
-            "topic": "Sliding Window Maximum"
-        },
-        {
-            "timestamp": 1787421585.309667,
-            "duration_seconds": 194,
-            "topic": "Kadane's Algorithm"
-        },
-        {
-            "timestamp": 1787423206.8336806,
-            "duration_seconds": 131,
-            "topic": "Perceptron and MLP"
-        },
-        {
-            "timestamp": 1787423797.1766047,
-            "duration_seconds": 183,
-            "topic": "Monotonic Stack"
-        },
-        {
-            "timestamp": 1787424277.6485655,
-            "duration_seconds": 125,
-            "topic": "Activation Functions"
-        },
-        {
-            "timestamp": 1787429254.5111418,
-            "duration_seconds": 175,
-            "topic": "Monotonic Queue"
-        },
-        {
-            "timestamp": 1787429590.674016,
-            "duration_seconds": 146,
-            "topic": "Binary Search on Answer"
-        },
-        {
-            "timestamp": 1787429924.316535,
-            "duration_seconds": 185,
-            "topic": "Sequential Circuits"
-        },
-        {
-            "timestamp": 1787431910.5193431,
-            "duration_seconds": 1027,
-            "topic": "Algorithms: Ternary Search"
-        },
-        {
-            "timestamp": 1787433296.4932978,
-            "duration_seconds": 519,
-            "topic": "Algorithms: Ternary Search"
-        },
-        {
             "timestamp": 1787439551.2988324,
             "duration_seconds": 5319,
             "topic": "Computer Architecture: Von Neumann vs Harvard Architecture"
@@ -559,6 +469,11 @@
             "timestamp": 1787992103.2514334,
             "duration_seconds": 5621,
             "topic": "memory systems"
+        },
+        {
+            "timestamp": 1788040817.7642698,
+            "duration_seconds": 1896,
+            "topic": "Microlearning Strategies for Personalized Training"
         }
     ]
 }

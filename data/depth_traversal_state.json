@@ -52,9 +52,10 @@
         "dl": {
             "active_branch": [
                 "dl",
-                "dl.training"
+                "dl.training",
+                "dl.training.microlearning_strategies_for_personalized_training"
             ],
-            "current_node": "dl.training",
+            "current_node": "dl.training.microlearning_strategies_for_personalized_training",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -120,5 +121,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "maths"
+    "active_anchor": "dl"
 }

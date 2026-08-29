@@ -256,7 +256,11 @@
             "id": "dl.training",
             "name": "Training",
             "parent": "dl",
-            "children": [],
+            "children": [
+                "dl.training.microlearning_strategies_for_personalized_training",
+                "dl.training.gamification_techniques_for_enhanced_engagement",
+                "dl.training.performance_metrics_for_measuring_training_effectiveness"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -1277,6 +1281,49 @@
             "id": "arch.cpu.superscalar_execution_and_register_renaming",
             "name": "Superscalar Execution and Register Renaming",
             "parent": "arch.cpu",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.training.microlearning_strategies_for_personalized_training": {
+            "id": "dl.training.microlearning_strategies_for_personalized_training",
+            "name": "Microlearning Strategies for Personalized Training",
+            "parent": "dl.training",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.training.gamification_techniques_for_enhanced_engagement": {
+            "id": "dl.training.gamification_techniques_for_enhanced_engagement",
+            "name": "Gamification Techniques for Enhanced Engagement",
+            "parent": "dl.training",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.training.performance_metrics_for_measuring_training_effectiveness": {
+            "id": "dl.training.performance_metrics_for_measuring_training_effectiveness",
+            "name": "Performance Metrics for Measuring Training Effectiveness",
+            "parent": "dl.training",
             "children": [],
             "mastery_level": 1,
             "evidence": {
