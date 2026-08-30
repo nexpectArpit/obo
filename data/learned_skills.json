@@ -62,7 +62,7 @@
     "Attention Mechanisms": 8,
     "Transformers": 4,
     "Neural Network Optimization": 5,
-    "Optimization": 37,
+    "Optimization": 57,
     "Gradient Boosting": 2,
     "Hyperparameter Tuning": 1,
     "Model Deployment": 1,
@@ -131,7 +131,7 @@
     "Metric Learning": 1,
     "Activation Functions": 9,
     "Numerical Optimization": 5,
-    "Second-Order Optimization": 24,
+    "Second-Order Optimization": 36,
     "Quasi-Newton Methods": 13,
     "SIMD Programming": 1,
     "Numerical Analysis": 1,
@@ -201,7 +201,7 @@
     "Linear Equations": 6,
     "KMP Algorithm": 1,
     "Z-Algorithm": 1,
-    "Regularization": 3,
+    "Regularization": 7,
     "LSTM Networks": 2,
     "P-Value Interpretation": 1,
     "Process Management": 2,
@@ -236,5 +236,6 @@
     "Meiosis": 9,
     "Java": 31,
     "Supervised Learning": 1,
-    "Cross-Validation": 2
+    "Cross-Validation": 2,
+    "M-Estimators": 7
 }

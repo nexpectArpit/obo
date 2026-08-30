@@ -79,8 +79,8 @@
         },
         "HBM3e_Optimization": {
           "topic": "HBM3e Bank Conflict Mitigation and High-Bandwidth Interfaces",
-          "level": 26,
-          "target_level": 27,
+          "level": 37,
+          "target_level": 38,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [
