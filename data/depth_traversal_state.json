@@ -54,9 +54,9 @@
             "active_branch": [
                 "dl",
                 "dl.training",
-                "dl.training.gamification_techniques_for_enhanced_engagement"
+                "dl.training.performance_metrics_for_measuring_training_effectiveness"
             ],
-            "current_node": "dl.training.gamification_techniques_for_enhanced_engagement",
+            "current_node": "dl.training.performance_metrics_for_measuring_training_effectiveness",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -74,7 +74,8 @@
                 "dl.neural_networks.convolutional_neural_network_(cnn)_architecture_variations": 1787964658.8155367,
                 "dl.neural_networks.softmax_cross-entropy_loss_function_derivation": 1787966811.193215,
                 "dl.neural_networks": 1787966811.1939316,
-                "dl.training.microlearning_strategies_for_personalized_training": 1788041575.2473085
+                "dl.training.microlearning_strategies_for_personalized_training": 1788041575.2473085,
+                "dl.training.gamification_techniques_for_enhanced_engagement": 1788050398.6627963
             },
             "branch_status": "IN_PROGRESS"
         },
@@ -126,5 +127,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "arch"
+    "active_anchor": "dl"
 }
