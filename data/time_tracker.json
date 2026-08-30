@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787455795.5731487,
-            "duration_seconds": 5304,
-            "topic": "Machine Learning: Loss Functions"
-        },
-        {
             "timestamp": 1787488317.127805,
             "duration_seconds": 3574,
             "topic": "Algebra: Number Systems"
@@ -494,6 +489,11 @@
             "timestamp": 1788057681.2268205,
             "duration_seconds": 1385,
             "topic": "Encoding Schemes in Neural Networks"
+        },
+        {
+            "timestamp": 1788077477.2219396,
+            "duration_seconds": 3228,
+            "topic": "PyTorch from Scratch"
         }
     ]
 }
