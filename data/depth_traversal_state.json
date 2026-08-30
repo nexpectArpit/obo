@@ -113,9 +113,10 @@
         "arch": {
             "active_branch": [
                 "arch",
-                "arch.memory"
+                "arch.memory",
+                "arch.memory.encoding_schemes_in_neural_networks"
             ],
-            "current_node": "arch.memory",
+            "current_node": "arch.memory.encoding_schemes_in_neural_networks",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,

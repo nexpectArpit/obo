@@ -489,6 +489,11 @@
             "timestamp": 1788055657.1490533,
             "duration_seconds": 2787,
             "topic": "Memory"
+        },
+        {
+            "timestamp": 1788057681.2268205,
+            "duration_seconds": 1385,
+            "topic": "Encoding Schemes in Neural Networks"
         }
     ]
 }

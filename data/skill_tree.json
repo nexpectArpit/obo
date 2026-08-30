@@ -291,7 +291,11 @@
             "id": "arch.memory",
             "name": "Memory",
             "parent": "arch",
-            "children": [],
+            "children": [
+                "arch.memory.encoding_schemes_in_neural_networks",
+                "arch.memory.short-term_vs_long-term_memory_models",
+                "arch.memory.associative_memory_with_neural_networks"
+            ],
             "mastery_level": 10,
             "evidence": {
                 "concepts_covered": 21,
@@ -1366,6 +1370,52 @@
                     "memory"
                 ],
                 "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.memory.encoding_schemes_in_neural_networks": {
+            "id": "arch.memory.encoding_schemes_in_neural_networks",
+            "name": "Encoding Schemes in Neural Networks",
+            "parent": "arch.memory",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 9,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensor",
+                    "processing-in-memory",
+                    "memory",
+                    "layers"
+                ],
+                "unique_concepts_count": 4
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.memory.short-term_vs_long-term_memory_models": {
+            "id": "arch.memory.short-term_vs_long-term_memory_models",
+            "name": "Short-Term vs Long-Term Memory Models",
+            "parent": "arch.memory",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.memory.associative_memory_with_neural_networks": {
+            "id": "arch.memory.associative_memory_with_neural_networks",
+            "name": "Associative Memory with Neural Networks",
+            "parent": "arch.memory",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
             },
             "status": "AVAILABLE"
         }
