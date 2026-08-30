@@ -494,6 +494,11 @@
             "timestamp": 1788127210.1447473,
             "duration_seconds": 1870,
             "topic": "Applying Memoization to Recursively Defined Data Structures in C++"
+        },
+        {
+            "timestamp": 1788129450.987409,
+            "duration_seconds": 1551,
+            "topic": "Deep Learning"
         }
     ]
 }
