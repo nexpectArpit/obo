@@ -1013,7 +1013,7 @@
                 ],
                 "unique_concepts_count": 3
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++",
@@ -1022,11 +1022,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 2,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
-                "unique_concepts_list": [],
-                "unique_concepts_count": 0
+                "unique_concepts_list": [
+                    "<algorithm>"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },

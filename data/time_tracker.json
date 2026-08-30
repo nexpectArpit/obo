@@ -1,21 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787499905.7014506,
-            "duration_seconds": 11320,
-            "topic": "Algebra: Number Systems"
-        },
-        {
-            "timestamp": 1787513572.3010058,
-            "duration_seconds": 1012,
-            "topic": "Dynamic Programming: Recursion and Backtracking"
-        },
-        {
-            "timestamp": 1787517083.5099285,
-            "duration_seconds": 937,
-            "topic": "Algorithms: Disjoint Set Union (DSU)"
-        },
-        {
             "timestamp": 1787525655.4615843,
             "duration_seconds": 5025,
             "topic": "Neural Networks: Backpropagation"
@@ -504,6 +489,11 @@
             "timestamp": 1788099878.1856525,
             "duration_seconds": 2083,
             "topic": "Supervised Learning and Evaluation"
+        },
+        {
+            "timestamp": 1788127210.1447473,
+            "duration_seconds": 1870,
+            "topic": "Applying Memoization to Recursively Defined Data Structures in C++"
         }
     ]
 }
