@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787488317.127805,
-            "duration_seconds": 3574,
-            "topic": "Algebra: Number Systems"
-        },
-        {
             "timestamp": 1787499905.7014506,
             "duration_seconds": 11320,
             "topic": "Algebra: Number Systems"
@@ -493,6 +488,11 @@
         {
             "timestamp": 1788077477.2219396,
             "duration_seconds": 3228,
+            "topic": "PyTorch from Scratch"
+        },
+        {
+            "timestamp": 1788095676.5448463,
+            "duration_seconds": 1314,
             "topic": "PyTorch from Scratch"
         }
     ]
