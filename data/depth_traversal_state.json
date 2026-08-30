@@ -113,19 +113,20 @@
         "arch": {
             "active_branch": [
                 "arch",
-                "arch.cpu",
-                "arch.cpu.superscalar_execution_and_register_renaming"
+                "arch.memory"
             ],
-            "current_node": "arch.cpu.superscalar_execution_and_register_renaming",
+            "current_node": "arch.memory",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
             "last_backtrack_at": {
                 "arch.cpu.instruction-level_parallelism": 1788046851.1691842,
-                "arch.cpu.pipeline_stalls_and_bypassing": 1788049253.8868127
+                "arch.cpu.pipeline_stalls_and_bypassing": 1788049253.8868127,
+                "arch.cpu.superscalar_execution_and_register_renaming": 1788052912.539442,
+                "arch.cpu": 1788052912.5401812
             },
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "arch"
 }

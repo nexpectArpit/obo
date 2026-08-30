@@ -57,7 +57,7 @@
                 "arch.cpu",
                 "arch.memory"
             ],
-            "mastery_level": 1,
+            "mastery_level": 15,
             "evidence": {}
         }
     },
@@ -284,15 +284,30 @@
                 "concepts_covered": 1,
                 "unique_concepts_list": [],
                 "unique_concepts_count": 0
-            }
+            },
+            "status": "EXHAUSTED"
         },
         "arch.memory": {
             "id": "arch.memory",
             "name": "Memory",
             "parent": "arch",
             "children": [],
-            "mastery_level": 1,
-            "evidence": {}
+            "mastery_level": 10,
+            "evidence": {
+                "concepts_covered": 21,
+                "unique_concepts_list": [
+                    "optimize",
+                    "computational",
+                    "memory",
+                    "threads.worldscientific.com",
+                    "thread",
+                    "optimal",
+                    "algorithms"
+                ],
+                "unique_concepts_count": 7,
+                "successful_assessments": 20
+            },
+            "status": "MASTERED"
         },
         "maths.algebra.linear_equations_with_two_variables": {
             "id": "maths.algebra.linear_equations_with_two_variables",
@@ -1301,7 +1316,7 @@
                 ],
                 "unique_concepts_count": 3
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.training.microlearning_strategies_for_personalized_training": {
             "id": "dl.training.microlearning_strategies_for_personalized_training",

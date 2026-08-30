@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787449814.917472,
-            "duration_seconds": 3463,
-            "topic": "Algorithms: Ternary Search"
-        },
-        {
             "timestamp": 1787455795.5731487,
             "duration_seconds": 5304,
             "topic": "Machine Learning: Loss Functions"
@@ -489,6 +484,11 @@
             "timestamp": 1788052139.948933,
             "duration_seconds": 1859,
             "topic": "Performance Metrics for Measuring Training Effectiveness"
+        },
+        {
+            "timestamp": 1788055657.1490533,
+            "duration_seconds": 2787,
+            "topic": "Memory"
         }
     ]
 }
