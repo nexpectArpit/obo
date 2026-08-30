@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787525655.4615843,
-            "duration_seconds": 5025,
-            "topic": "Neural Networks: Backpropagation"
-        },
-        {
             "timestamp": 1787530275.419782,
             "duration_seconds": 3941,
             "topic": "Algorithms: Disjoint Set Union (DSU)"
@@ -499,6 +494,11 @@
             "timestamp": 1788129450.987409,
             "duration_seconds": 1551,
             "topic": "Deep Learning"
+        },
+        {
+            "timestamp": 1788132028.3563814,
+            "duration_seconds": 1968,
+            "topic": "Implementing Memoization in C++ using Stl Maps and Unordered Maps for Efficient Function Calls"
         }
     ]
 }
