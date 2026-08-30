@@ -1282,7 +1282,7 @@
                 ],
                 "unique_concepts_count": 3
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.cpu.superscalar_execution_and_register_renaming": {
             "id": "arch.cpu.superscalar_execution_and_register_renaming",
@@ -1291,9 +1291,15 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 6,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "processing\u2011in\u2011memory",
+                    "memory",
+                    "rollback"
+                ],
+                "unique_concepts_count": 3
             },
             "status": "AVAILABLE"
         },

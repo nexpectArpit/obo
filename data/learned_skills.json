@@ -1,6 +1,6 @@
 {
     "AI Hardware Acceleration": 3,
-    "Computer Architecture": 7,
+    "Computer Architecture": 9,
     "Fault-Tolerant Systems": 1,
     "Hardware Engineering": 1,
     "Memory Systems": 52,
@@ -96,7 +96,7 @@
     "GPU Architecture": 3,
     "Memory Coalescing": 1,
     "Scratchpad Memory": 1,
-    "Memory Management": 1,
+    "Memory Management": 2,
     "Microcontrollers": 1,
     "Embedded Systems": 1,
     "Performance Optimization": 5,

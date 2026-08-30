@@ -113,14 +113,15 @@
             "active_branch": [
                 "arch",
                 "arch.cpu",
-                "arch.cpu.pipeline_stalls_and_bypassing"
+                "arch.cpu.superscalar_execution_and_register_renaming"
             ],
-            "current_node": "arch.cpu.pipeline_stalls_and_bypassing",
+            "current_node": "arch.cpu.superscalar_execution_and_register_renaming",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
             "last_backtrack_at": {
-                "arch.cpu.instruction-level_parallelism": 1788046851.1691842
+                "arch.cpu.instruction-level_parallelism": 1788046851.1691842,
+                "arch.cpu.pipeline_stalls_and_bypassing": 1788049253.8868127
             },
             "branch_status": "IN_PROGRESS"
         }

@@ -484,6 +484,11 @@
             "timestamp": 1788048555.2854824,
             "duration_seconds": 1732,
             "topic": "Pipeline Stalls and Bypassing"
+        },
+        {
+            "timestamp": 1788049702.2852745,
+            "duration_seconds": 477,
+            "topic": "Superscalar Execution and Register Renaming"
         }
     ]
 }
