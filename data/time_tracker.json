@@ -1,21 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787611592.3221776,
-            "duration_seconds": 340,
-            "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping and ReLU"
-        },
-        {
-            "timestamp": 1787612716.3991704,
-            "duration_seconds": 446,
-            "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping Implementation in PyTorch"
-        },
-        {
-            "timestamp": 1787613623.023687,
-            "duration_seconds": 268,
-            "topic": "Gradient Clipping with Norm"
-        },
-        {
             "timestamp": 1787614586.9881818,
             "duration_seconds": 334,
             "topic": "Memoization with Overlapping Subproblems"
@@ -474,6 +459,11 @@
             "timestamp": 1788216268.2982144,
             "duration_seconds": 1956,
             "topic": "Fetch and Decode Pipelining"
+        },
+        {
+            "timestamp": 1788218709.5119622,
+            "duration_seconds": 1875,
+            "topic": "Implementing the forward pass in a convolutional neural network"
         }
     ]
 }

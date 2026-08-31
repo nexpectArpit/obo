@@ -51,9 +51,10 @@
         },
         "dl": {
             "active_branch": [
-                "dl"
+                "dl",
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network"
             ],
-            "current_node": "dl",
+            "current_node": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -131,5 +132,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "arch"
+    "active_anchor": "dl"
 }

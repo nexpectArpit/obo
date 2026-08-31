@@ -45,7 +45,10 @@
             "name": "Deep Learning",
             "children": [
                 "dl.neural_networks",
-                "dl.training"
+                "dl.training",
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
+                "dl.deriving_backpropagation_for_a_multilayer_perceptron",
+                "dl.regularization_techniques_in_deep_learning_including_dropout_and_l1/l2_regularization"
             ],
             "mastery_level": 15,
             "evidence": {
@@ -1528,6 +1531,49 @@
             "id": "arch.branch_prediction_techniques",
             "name": "Branch Prediction Techniques",
             "parent": "arch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.implementing_the_forward_pass_in_a_convolutional_neural_network": {
+            "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
+            "name": "Implementing the forward pass in a convolutional neural network",
+            "parent": "dl",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.deriving_backpropagation_for_a_multilayer_perceptron": {
+            "id": "dl.deriving_backpropagation_for_a_multilayer_perceptron",
+            "name": "Deriving backpropagation for a multilayer perceptron",
+            "parent": "dl",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.regularization_techniques_in_deep_learning_including_dropout_and_l1/l2_regularization": {
+            "id": "dl.regularization_techniques_in_deep_learning_including_dropout_and_l1/l2_regularization",
+            "name": "Regularization techniques in deep learning including dropout and L1/L2 regularization",
+            "parent": "dl",
             "children": [],
             "mastery_level": 1,
             "evidence": {
