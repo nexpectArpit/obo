@@ -1,36 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787590725.9938033,
-            "duration_seconds": 2618,
-            "topic": "Computer Architecture: Instruction Set Architecture"
-        },
-        {
-            "timestamp": 1787596556.2870495,
-            "duration_seconds": 3147,
-            "topic": "Data Types and Structures"
-        },
-        {
-            "timestamp": 1787598909.0145361,
-            "duration_seconds": 1183,
-            "topic": "Algorithms: Binary Search Trees"
-        },
-        {
-            "timestamp": 1787603787.8525045,
-            "duration_seconds": 1905,
-            "topic": "Neural Networks"
-        },
-        {
-            "timestamp": 1787604886.6387537,
-            "duration_seconds": 896,
-            "topic": "Algebra"
-        },
-        {
-            "timestamp": 1787608442.2103436,
-            "duration_seconds": 313,
-            "topic": "Dynamic Programming"
-        },
-        {
             "timestamp": 1787609522.6084774,
             "duration_seconds": 428,
             "topic": "Linear Equations with Two Variables"
@@ -504,6 +474,11 @@
             "timestamp": 1788195127.4992716,
             "duration_seconds": 1732,
             "topic": "Machine Learning vs Neural Networks"
+        },
+        {
+            "timestamp": 1788213601.5094538,
+            "duration_seconds": 1868,
+            "topic": "Caching Results with a Hash Table in Memoization"
         }
     ]
 }

@@ -895,7 +895,7 @@
                 ],
                 "unique_concepts_count": 5
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
@@ -908,11 +908,13 @@
             ],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 2,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
-                "unique_concepts_list": [],
-                "unique_concepts_count": 0
+                "unique_concepts_list": [
+                    "<algorithm>"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },
@@ -1085,7 +1087,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.calculating_relu_derivative_for_matrix_operations": {
             "id": "dl.neural_networks.vanishing_gradient_problem_solutions:_gradient_clipping_and_relu.vanishing_gradient_problem_solutions:_relu_derivative_calculation.calculating_relu_derivative_for_matrix_operations",
