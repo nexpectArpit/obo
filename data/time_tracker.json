@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787539519.819176,
-            "duration_seconds": 3166,
-            "topic": "Algebra: Number Systems"
-        },
-        {
             "timestamp": 1787575916.5819252,
             "duration_seconds": 4497,
             "topic": "Machine Learning: Vanishing and Exploding Gradients"
@@ -504,6 +499,11 @@
             "timestamp": 1788142935.0694973,
             "duration_seconds": 3478,
             "topic": "Computer Architecture"
+        },
+        {
+            "timestamp": 1788169869.4559176,
+            "duration_seconds": 3183,
+            "topic": "machine learning"
         }
     ]
 }

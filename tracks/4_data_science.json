@@ -362,10 +362,992 @@
       "prompt": "explain density-based spatial clustering parameters (Epsilon, MinPts), Core, Border, and Noise points classifications, and handling arbitrary shapes",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a BFGS Solver for High-Dimensional Sparse Logistic Regression",
+      "prompt": "Let's design and implement a memory-efficient BFGS algorithm tailored to optimize sparse logistic regression models on millions of features.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Applying L-BFGS to Accelerate Training of Deep Neural Networks with Adaptive Batch Sizes",
+      "prompt": "Let's develop an L-BFGS variant that dynamically adjusts batch sizes during training of convolutional neural networks to improve convergence speed.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quasi-Newton Methods for Large-Scale PDE-Constrained Optimization in Fluid Dynamics",
+      "prompt": "Let's construct a quasi-Newton framework to solve PDE-constrained optimization problems arising in computational fluid dynamics, focusing on efficient Hessian approximations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid BFGS with Trust-Region for Non-Convex Hamiltonian Monte Carlo Sampling",
+      "prompt": "Let's create a hybrid BFGS/trust-region algorithm to enhance Hamiltonian Monte Carlo sampling in high-dimensional, non-convex posterior landscapes.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Manifold Optimization via Riemannian L-BFGS for Low-Rank Matrix Completion",
+      "prompt": "Let's implement a Riemannian L-BFGS algorithm to solve low-rank matrix completion problems on manifolds, ensuring convergence to global minima.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Protein\u2013Protein Interaction Prediction with Edge-Conditioned Convolutions",
+      "prompt": "Let's design a GNN that predicts protein\u2013protein interactions using edge-conditioned convolutions and node embeddings extracted from amino acid sequences.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning in Large-Scale Deep Reinforcement Learning",
+      "prompt": "Let's implement a Bayesian optimization framework to tune the exploration\u2013exploitation parameters of a PPO agent training on a complex robotic manipulation task.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy for Edge Device Image Classification",
+      "prompt": "Let's build a federated learning system that trains a CNN on edge devices while preserving privacy using Gaussian DP and secure aggregation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Training for Robustness in Medical Image Segmentation",
+      "prompt": "Let's implement adversarial training to improve the robustness of a U-Net segmentation model against intensity perturbations in CT scans.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference via Structural Causal Models for Time-Series Forecasting",
+      "prompt": "Let's construct a structural causal model to disentangle confounding factors in multivariate time-series data for accurate forecasting of electricity demand.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Large-Scale L-BFGS Optimizer for Deep CNN Training with PyTorch Autograd",
+      "prompt": "Let's design an L-BFGS solver that integrates with PyTorch's autograd to train a deep CNN on CIFAR-10, optimizing memory usage and convergence speed.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Quasi-Newton Trust\u2011Region Parameter Estimation for Noisy Nonlinear ODEs",
+      "prompt": "Let's formulate a hybrid algorithm combining BFGS updates with a trust\u2011region strategy to estimate parameters of a nonlinear ODE model from noisy data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adaptive Curvature\u2011Matching Quasi\u2011Newton for Bayesian Hyperparameter Optimization",
+      "prompt": "Let's develop an adaptive quasi\u2011Newton scheme that updates the Hessian approximation based on curvature matching to accelerate Bayesian optimization in hyperparameter tuning.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stochastic BFGS for Kernelized Structured Prediction with Mini\u2011Batch Variance Reduction",
+      "prompt": "Let's construct a stochastic BFGS variant that operates on kernelized structured prediction problems, handling mini\u2011batches and variance reduction.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Distributed Quasi\u2011Newton for Federated Learning with Non\u2011IID Data Aggregation",
+      "prompt": "Let's design a distributed quasi\u2011Newton algorithm that aggregates curvature information across edge devices with heterogeneous data distributions, ensuring convergence.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Molecular Property Prediction",
+      "prompt": "Let's design a GNN architecture that predicts binding affinity for drug candidates, focusing on message passing and attention mechanisms.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Contrastive Learning on Large-Scale ImageNet with Momentum Contrast",
+      "prompt": "Let's implement MoCo v2 from scratch, optimizing the encoder and queue update for 1M images.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning of Deep Reinforcement Learning Agents",
+      "prompt": "Let's build a Bayesian optimizer that tunes epsilon-greedy and learning rate for a DQN on Atari.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Secure Aggregation for Edge Devices",
+      "prompt": "Let's design a federated averaging protocol that incorporates homomorphic encryption to protect local updates from IoT sensors.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference via Deep Counterfactual Networks for Treatment Effect Estimation",
+      "prompt": "Let's construct a twin network that learns potential outcomes and estimates heterogeneous treatment effects on observational health data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implement L-BFGS for Training a 10M-Parameter Transformer on a Distributed GPU Cluster",
+      "prompt": "Let's design a distributed L-BFGS optimizer to train a 10-million-parameter transformer model, focusing on memory-efficient quasi-Newton updates across multiple GPUs.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quasi-Newton Optimization of Large-Scale PDE-Constrained Design Problems Using Limited-Memory BFGS",
+      "prompt": "Let's formulate a limited-memory BFGS scheme to solve a PDE-constrained design problem with millions of state variables and thousands of design parameters, ensuring scalability and convergence.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stochastic SR1 Quasi-Newton Method for Real-Time Reinforcement Learning Policy Optimization",
+      "prompt": "Let's develop a stochastic SR1 quasi-Newton algorithm tailored for policy gradient reinforcement learning, capable of handling noisy gradient estimates and online updates.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quasi-Newton Methods with Augmented Lagrangian for Large-Scale Constrained Logistic Regression",
+      "prompt": "Let's construct a quasi-Newton (BFGS) solver integrated with an augmented Lagrangian framework to handle inequality constraints in a high-dimensional logistic regression problem.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adaptive Quasi-Newton Preconditioning for Deep Neural Network Training via Hessian-Free Approximation",
+      "prompt": "Let's design an adaptive quasi-Newton preconditioner that approximates the Hessian using finite differences, aiming to accelerate convergence for training deep neural networks without explicit Hessian computation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Robustness in Graph Neural Networks: Formulating the Min\u2013Max Optimization Problem",
+      "prompt": "Let's formulate the adversarial training objective for GNNs on node classification, derive the dual form, and discuss gradient-based attacks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Deep Learning with Variational Inference for Time-Series Forecasting",
+      "prompt": "Let's design a Bayesian LSTM architecture, set up the ELBO for sequential data, and implement stochastic variational inference.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy for Medical Imaging: Secure Aggregation Protocols",
+      "prompt": "Let's construct a federated learning pipeline for multi-center CT scans, incorporate DP\u2011SGD, and analyze privacy budgets.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference via Neural Counterfactual Models: Estimating Individual Treatment Effects with GANs",
+      "prompt": "Let's build a GAN-based counterfactual generator, formulate the loss for treatment assignment, and evaluate ITE metrics.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quantum Machine Learning for Kernel Approximation: Implementing the Quantum Random Feature Map",
+      "prompt": "Let's implement a quantum circuit that approximates a Gaussian kernel, derive its feature map, and benchmark against classical RFF.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Broyden's Second Method for Large-Scale Logistic Regression",
+      "prompt": "Let's explore how Broyden's second method can be applied to large-scale logistic regression, focusing on efficient Hessian approximation and convergence properties.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Limited-Memory BFGS in Training Deep Neural Networks with Adaptive Learning Rates",
+      "prompt": "Let's design a training pipeline that integrates Limited-Memory BFGS with adaptive learning rates for deep neural networks, analyzing memory usage and speedup over SGD.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quasi-Newton Hessian Approximation for Stochastic Optimization in Recommender Systems",
+      "prompt": "Let's investigate the use of stochastic quasi-Newton methods to approximate the Hessian in large-scale recommender system optimization, with emphasis on variance reduction techniques.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quasi-Newton Methods for Solving Nonlinear PDEs via Newton-Krylov Preconditioning",
+      "prompt": "Let's formulate a Newton-Krylov solver that incorporates quasi-Newton Hessian updates for nonlinear partial differential equations, examining preconditioning strategies.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Parallel Implementation of the Symmetric Rank-One Update for Real-Time Control Systems",
+      "prompt": "Let's design a parallel algorithm for the Symmetric Rank-One quasi-Newton update tailored to real-time control applications, focusing on latency and synchronization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning in Deep Neural Networks",
+      "prompt": "Let's discuss applying Gaussian Process-based Bayesian optimization for tuning large-scale transformer hyperparameters.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Robustness in Federated Learning Systems",
+      "prompt": "Let's analyze defense mechanisms against adversarial attacks in federated learning.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference with Deep Generative Models",
+      "prompt": "Let's investigate using variational autoencoders to estimate treatment effects from observational data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Differentially Private Training of Generative Adversarial Networks",
+      "prompt": "Let's examine privacy-preserving techniques for training GANs on sensitive datasets.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Neural Architecture Search on Edge Devices",
+      "prompt": "Let's explore how to formulate Bayesian optimization to efficiently search for lightweight neural architectures that meet latency constraints on edge devices.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Molecular Property Prediction with QM9 dataset",
+      "prompt": "Let's discuss designing a GNN that predicts quantum chemical properties, including loss functions and data augmentation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference in Reinforcement Learning for Clinical Decision Support",
+      "prompt": "Let's build a causal RL framework that learns treatment policies while accounting for confounders and counterfactuals.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy for Federated Hyperparameter Tuning",
+      "prompt": "Let's design a federated hyperparameter tuning protocol that preserves privacy using DP mechanisms.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Contrastive Learning for Domain Adaptation in Satellite Imagery",
+      "prompt": "Let's devise a contrastive learning pipeline that adapts a model trained on optical imagery to SAR data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy on Edge Devices",
+      "prompt": "Let's explore how to implement a federated learning framework that incorporates differential privacy mechanisms for training a CNN on decentralized mobile device data while ensuring model convergence and privacy budgets.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Molecular Property Prediction with SchNet Architecture",
+      "prompt": "Let's design a SchNet-based GNN to predict quantum chemical properties of organic molecules, including feature construction, training loss functions, and evaluation metrics on benchmark datasets.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning in Deep Reinforcement Learning",
+      "prompt": "Let's build a Bayesian optimization pipeline to efficiently tune hyperparameters of a DQN agent for Atari games, focusing on acquisition functions and surrogate model selection.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Robustness Evaluation using Projected Gradient Descent in Image Classification",
+      "prompt": "Let's conduct a systematic evaluation of a ResNet-50 classifier's robustness against PGD adversarial attacks, detailing attack parameters, threat models, and defense strategies.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Time-Series Forecasting with Temporal Fusion Transformers on Multivariate Healthcare Data",
+      "prompt": "Let's construct a Temporal Fusion Transformer to forecast patient vital signs using multivariate EHR data, including attention mechanisms, gating, and interpretability analysis.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Variational Autoencoder for Anomaly Detection in High-Dimensional IoT Sensor Data",
+      "prompt": "Let's design a VAE to detect anomalies in IoT sensor streams, focusing on reconstruction loss thresholds and latent space regularization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Contrastive Learning for Graph Neural Networks on Protein Interaction Networks",
+      "prompt": "Let's build a GNN using SimCLR-style contrastive loss to learn embeddings for protein interaction graphs without labels.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy for Medical Image Segmentation",
+      "prompt": "Let's set up a federated learning pipeline for U-Net segmentation on medical images, incorporating DP-SGD to protect patient data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization of Transformer Hyperparameters for Low-Resource Language Translation",
+      "prompt": "Let's use Bayesian optimization to tune a transformer for a low-resource language pair, focusing on learning rate, layer depth, and attention heads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Explainable XGBoost Models with SHAP on Credit Risk Scoring",
+      "prompt": "Let's train an XGBoost classifier on credit data and interpret feature contributions using SHAP values for regulatory compliance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Example Generation via Projected Gradient Descent in High-Dimensional Spaces",
+      "prompt": "Let's design a PGD-based adversarial attack on a 512-dimensional image classification model and analyze its robustness metrics.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Molecular Property Prediction with Attention Mechanisms",
+      "prompt": "Let's implement a GAT architecture to predict solubility of complex organic molecules and compare with baseline GCN.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning with Model-Based Planning in Continuous Action Spaces",
+      "prompt": "Let's build a Dyna-style RL agent using an MPC controller for a continuous control task like MuJoCo Humanoid.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Secure Aggregation using Homomorphic Encryption",
+      "prompt": "Let's construct a federated training pipeline that encrypts model updates with Paillier cryptosystem and aggregates them securely.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference via Deep Counterfactual Networks for Policy Evaluation",
+      "prompt": "Let's train a deep counterfactual network to estimate treatment effects from observational data in a healthcare setting.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Protein-Protein Interaction Prediction",
+      "prompt": "Let's build a GNN model that predicts protein-protein interaction networks using node attributes and graph topology.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Meta-Learning for Rapid Adaptation in Autonomous Driving Perception",
+      "prompt": "Let's create a meta-learning framework that quickly adapts a perception model to new driving scenarios with minimal labeled data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Neural Architecture Search for Multi-Objective Time Series Forecasting",
+      "prompt": "Let's implement a NAS algorithm that optimizes for both accuracy and inference latency on time series forecasting tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference via Structural Equation Models for Fairness Auditing",
+      "prompt": "Let's develop a structural causal model to detect and mitigate bias in machine learning predictions for loan approval."
+    },
+    {
+      "name": "Graph Neural Networks for Molecular Property Prediction Using Message Passing with Edge-Conditioned Convolutions",
+      "prompt": "Let's implement a graph neural network that predicts molecular properties using message passing with edge-conditioned convolutions.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy on Heterogeneous Edge Devices for Healthcare Time-Series Forecasting",
+      "prompt": "Let's design a federated learning system that incorporates differential privacy for forecasting patient vitals across diverse edge devices.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimization of Transformer Architectures for Low-Resource Speech Recognition via Sparse Attention and Knowledge Distillation",
+      "prompt": "Let's optimize a transformer model for speech recognition in low-resource settings using sparse attention mechanisms and knowledge distillation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning in Large-Scale Deep Reinforcement Learning on Autonomous Driving Simulators",
+      "prompt": "Let's apply Bayesian optimization to tune hyperparameters of a deep reinforcement learning agent in an autonomous driving simulation environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Training of Vision Transformers for Robust Object Detection in Satellite Imagery under Cloud Occlusion",
+      "prompt": "Let's develop an adversarial training pipeline for vision transformers to improve object detection robustness in satellite images with cloud occlusion.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Training with Projected Gradient Descent for Robust CNNs on CIFAR-10",
+      "prompt": "Implement and evaluate a robust convolutional neural network using PGD adversarial training on the CIFAR-10 dataset, comparing clean vs adversarial accuracy.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Network for Molecular Property Prediction using Message Passing with Attention",
+      "prompt": "Build a GNN that predicts quantum chemical properties of molecules, incorporating edge-level attention mechanisms, and benchmark on the QM9 dataset.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Neural Networks with Variational Inference via Flipout for Uncertainty Estimation in Time Series Forecasting",
+      "prompt": "Create a Bayesian LSTM model using Flipout estimator to forecast stock prices, evaluating predictive uncertainty on the S&P 500 dataset.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Meta-Learning for Few-Shot Image Classification using MAML with Reptile Warm-Start",
+      "prompt": "Implement a meta-learning pipeline that trains a CNN with MAML and uses Reptile for initialization, then evaluate on miniImageNet with 5-way 1-shot.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Neural Architecture Search with Differentiable Search (DARTS) for Efficient MobileNetV3 Variants",
+      "prompt": "Apply DARTS to discover efficient mobile-friendly architectures on ImageNet, comparing FLOPs and accuracy to baseline MobileNetV3.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization of Deep CNN Hyperparameters on ImageNet",
+      "prompt": "Let's design and implement a Bayesian optimization loop that tunes learning rate, batch size, and weight decay for a ResNet-50 training on ImageNet, using Gaussian Process surrogate and Expected Improvement acquisition.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Network for Predicting Molecular Binding Affinity",
+      "prompt": "Let's build a Graph Convolutional Network that takes SMILES-derived graph representations and predicts binding affinity scores for a set of protein-ligand complexes, optimizing with MSE loss and early stopping.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Variational Autoencoder with Normalizing Flow for High-Dimensional Image Generation",
+      "prompt": "Let's implement a VAE that incorporates a planar normalizing flow to improve latent distribution flexibility, and train it on CelebA to generate realistic faces.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Distributional Reinforcement Learning for Risk-Averse Portfolio Management",
+      "prompt": "Let's implement a C51 distributional RL agent that learns to allocate assets in a synthetic market, optimizing for CVaR rather than expected return.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy for Multi-Institution MRI Classification",
+      "prompt": "Let's orchestrate a federated training pipeline across three hospitals, adding Gaussian DP noise to model updates, to classify brain tumor types from MRI scans.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Variational Autoencoder for High-Dimensional Anomaly Detection in Industrial Sensor Data",
+      "prompt": "Let's design a VAE architecture that captures multimodal sensor distributions and derive reconstruction loss formulations for anomaly scoring.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Secure Aggregation for Edge IoT Devices",
+      "prompt": "Let's formulate the secure aggregation protocol and analyze communication complexity for a federated learning system across thousands of constrained devices.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Network for Predicting Protein-Protein Interaction Networks",
+      "prompt": "Let's construct a GNN model that incorporates edge-type embeddings and explain the message-passing equations tailored to PPI data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning with Hierarchical Policy for Autonomous Drone Navigation in Dynamic Environments",
+      "prompt": "Let's design a hierarchical RL framework that decomposes high-level goal planning and low-level control, and derive the corresponding Bellman equations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Explainable AI via Counterfactual Explanations in Credit Scoring Models",
+      "prompt": "Let's develop an algorithm to generate minimal perturbations that flip a credit decision, and prove its optimality under L1 norm constraints.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy for Medical Imaging",
+      "prompt": "Design a federated learning pipeline that trains a CNN on distributed medical imaging datasets while guaranteeing differential privacy at each client, and analyze the privacy-utility trade-off using R\u00e9nyi differential privacy.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Molecular Property Prediction with Quantum Feature Integration",
+      "prompt": "Implement a graph neural network that incorporates quantum chemistry descriptors into node features for predicting drug-likeness, and compare performance against baseline GNNs on the QM9 dataset.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference via Structural Causal Models in Time-Series Forecasting",
+      "prompt": "Construct a structural causal model to disentangle confounding variables in a multivariate time series of economic indicators, then use back-door adjustment to forecast GDP growth with uncertainty estimates.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Robustness in Transformer-Based Language Models via Certified Defense",
+      "prompt": "Develop a certified robust training procedure for a transformer language model using randomized smoothing, and evaluate the certified accuracy on the GLUE benchmark under L2 perturbations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Meta-Learning for Few-Shot Reinforcement Learning in Robotics Control",
+      "prompt": "Create a meta-learning algorithm that learns a policy initialization enabling rapid adaptation to new robotic manipulation tasks with only five demonstrations, and benchmark on the Meta-World benchmark.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Robustness via Projected Gradient Descent (PGD) on CIFAR-10",
+      "prompt": "Let's design a PGD-based adversarial training pipeline for a ResNet on CIFAR-10, focusing on epsilon selection and loss function tuning.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Averaging with Differential Privacy on Mobile Health Data",
+      "prompt": "Can we implement Federated Averaging across mobile health devices, adding DP noise to gradients, and evaluate utility vs privacy trade-offs?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Attention Networks for Protein-Protein Interaction Prediction",
+      "prompt": "Let's build a Graph Attention Network to predict protein-protein interactions from biological graphs, optimizing attention heads and node features.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Model-Agnostic Meta-Learning (MAML) for Few-Shot Text Classification",
+      "prompt": "Let's apply MAML to a transformer-based text classifier for few-shot sentiment tasks, exploring inner-loop learning rates and batch sizes.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Bayesian Networks for Counterfactual Recommendation Systems",
+      "prompt": "Can we construct a causal Bayesian network to model user-item interactions and compute counterfactual recommendations, comparing with standard collaborative filtering?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Federated Learning with Differential Privacy for Healthcare Data",
+      "prompt": "Let's build a federated learning pipeline that trains a disease risk model across hospitals while preserving patient privacy using DP-SGD.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimal Transport-based Domain Adaptation for Satellite Imagery",
+      "prompt": "Let's implement a domain adaptation framework that aligns source and target satellite image distributions via Sinkhorn divergence for land cover classification.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Neural Architecture Search for Time Series Forecasting",
+      "prompt": "Let's apply differentiable NAS to discover an efficient LSTM-based architecture for high-frequency trading price prediction.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Robustness in Transformer-based NLP Models",
+      "prompt": "Let's evaluate and improve the robustness of a BERT model against text-based adversarial attacks using gradient-based perturbations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Training for Robustness in Deep Neural Networks",
+      "prompt": "Let's design and implement a robust image classification system using adversarial training with FGSM and PGD attacks on ResNet-50, measuring robustness against unseen attacks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Variational Autoencoders for Anomaly Detection in Time Series",
+      "prompt": "Let's implement a VAE that learns latent representations of multivariate sensor data and flags anomalies when reconstruction error exceeds a learned threshold.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization with Gaussian Processes for Hyperparameter Tuning",
+      "prompt": "Let's apply Bayesian optimization using a GP surrogate to tune hyperparameters of a Transformer model for language modeling, aiming to reduce perplexity by at least 5%.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Training for Image Classification: FGSM and PGD Attacks",
+      "prompt": "Can you explain how to implement Fast Gradient Sign Method (FGSM) and Projected Gradient Descent (PGD) attacks on a deep neural network, and how to use them for adversarial training?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Spectral Clustering for Graph Data: Normalized Cut and Laplacian Eigenmaps",
+      "prompt": "Let's discuss how to apply normalized cut and Laplacian eigenmaps for spectral clustering on a graph dataset, including the choice of kernel and parameter selection.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Attention Mechanism in Transformers: Scaled Dot-Product and Multi-Head Attention",
+      "prompt": "Can you describe the scaled dot-product attention and multi-head attention mechanisms used in transformers, and provide an example of how to implement them in PyTorch?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks: Graph Convolutional Network (GCN) and Graph Attention Network (GAT)",
+      "prompt": "Let's discuss the architecture and implementation of Graph Convolutional Network (GCN) and Graph Attention Network (GAT) for graph classification and regression tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Information-Theoretic Learning: Mutual Information and Wasserstein Autoencoder",
+      "prompt": "Can you explain how to use mutual information and Wasserstein autoencoder for information-theoretic learning, and provide an example of how to apply them to a real-world problem?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Robustness in Convolutional Neural Networks via Fast Gradient Method",
+      "prompt": "Explain the process of crafting adversarial examples for a pre-trained CNN using the Fast Gradient Sign Method (FGSM) and discuss its limitations.",
+      "covered": false,
+      "level_at_cover": 3
+    },
+    {
+      "name": "Solving the Wasserstein GAN Problem using the Lagrange Multiplier Method",
+      "prompt": "Derive the Lagrange multiplier method for solving the minimax problem in Wasserstein GANs and provide a Python implementation.",
+      "covered": false,
+      "level_at_cover": 4
+    },
+    {
+      "name": "Optimizing the k-Means++ Algorithm for Large-Scale Clustering",
+      "prompt": "Discuss the k-Means++ algorithm for initializing cluster centers and propose a parallelized version using MapReduce for large-scale clustering.",
+      "covered": false,
+      "level_at_cover": 3
+    },
+    {
+      "name": "TensorFlow Implementation of the Variational Autoencoder for Dimensionality Reduction",
+      "prompt": "Implement a Variational Autoencoder (VAE) using TensorFlow for dimensionality reduction on the MNIST dataset and evaluate its performance.",
+      "covered": false,
+      "level_at_cover": 4
+    },
+    {
+      "name": "Analyzing the Bias-Variance Tradeoff in Regularized Logistic Regression",
+      "prompt": "Derive the bias-variance tradeoff for regularized logistic regression and analyze its impact on model performance using the L1 and L2 regularization methods.",
+      "covered": false,
+      "level_at_cover": 4
+    },
+    {
+      "name": "Training Autoencoders for Anomaly Detection in Time Series Data",
+      "prompt": "How would you design a variational autoencoder to detect anomalies in stock prices using a sequence of daily returns?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Wasserstein GAN for Image-to-Image Translation Tasks",
+      "prompt": "Can you explain how to modify the WGAN loss function to stabilize the training of a CycleGAN for translating daytime images to nighttime images?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Mathematical Formulation of Contrastive Loss for Few-Shot Learning",
+      "prompt": "Derive the mathematical formulation of the InfoNCE loss function for training a Siamese network for few-shot image classification tasks",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Convolutional Neural Network for 3D Object Detection in LiDAR Point Clouds",
+      "prompt": "How would you modify the PointNet architecture to detect and classify 3D objects in LiDAR point clouds, and what are the key considerations for training such a model?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Applying the Concept of Explainability to LIME for Model Interpretability",
+      "prompt": "Can you explain how to use LIME to interpret the predictions of a logistic regression model, and what are the limitations of this approach?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning: Expected Improvement vs. Probability of Improvement",
+      "prompt": "Let's implement a Bayesian optimization pipeline to tune a Transformer-based model's learning rate and batch size using GPyOpt or BoTorch. Compare the Expected Improvement (EI) and Probability of Improvement (PI) acquisition functions on a synthetic benchmark (e.g., Rosenbrock function) and a real-world dataset like CIFAR-10. How does the choice of acquisition function impact convergence speed and final validation accuracy?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Contrastive Learning: MoCo v3 vs. SimCLR with Vision Transformers",
+      "prompt": "Implement MoCo v3 and SimCLR for ViT-Small on ImageNet-100 using PyTorch Lightning. Modify the queue size, temperature parameter, and projection head architecture. Evaluate the linear probing accuracy after self-supervised pretraining and compare the performance with supervised fine-tuning. How does the momentum encoder in MoCo v3 affect the quality of learned representations compared to SimCLR's purely end-to-end approach?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Drug Discovery: Message Passing vs. Attention Mechanisms in Molecule Property Prediction",
+      "prompt": "Design a GNN pipeline to predict molecular properties (e.g., solubility or binding affinity) using the MoleculeNet dataset. Compare a message-passing neural network (MPNN) with a graph attention network (GAT) and a graph transformer (GT). Use RDKit for featurization and PyG for implementation. How does the attention mechanism in GT improve interpretability and performance over MPNN and GAT?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Differentiable Neural Architecture Search (DNAS): Gradient-Based Optimization of Cell Topologies in EfficientNet",
+      "prompt": "Implement a differentiable NAS pipeline to optimize the cell structure of a lightweight CNN for CIFAR-10, similar to DARTS but with continuous relaxation. Use gradient descent to jointly optimize architecture parameters and weights. Compare the search runtime and final model performance against a manually designed EfficientNet-B0. How does the choice of operation space (e.g., separable convolutions, dilated convolutions) impact the discovered architecture?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning for Portfolio Optimization: PPO vs. SAC with Transaction Costs and Market Regime Switching",
+      "prompt": "Build a reinforcement learning agent to manage a financial portfolio using the Yahoo Finance API or a synthetic dataset. Implement PPO and SAC with a custom reward function that penalizes transaction costs and accounts for market regime shifts (e.g., bull vs. bear markets). Compare the cumulative returns and Sharpe ratios of the two algorithms. How does the inclusion of a market regime classifier (e.g., using an LSTM) improve the agent's performance?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning: Acquisition Functions and Multi-Fidelity Methods",
+      "prompt": "Let's implement a Bayesian optimization pipeline from scratch using GPyOpt or BoTorch, but replace the default expected improvement acquisition with a custom Thompson Sampling-based approach. How would we modify the acquisition function to handle noisy evaluations and integrate it with a multi-fidelity strategy like Hyperband? Let's compare convergence rates on a neural architecture search task for CIFAR-10.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Transformer-Based Time Series Forecasting: Temporal Fusion Transformers (TFT) with Interpretability Constraints",
+      "prompt": "Let's design a Temporal Fusion Transformer (TFT) from scratch for multivariate time series forecasting, but add a custom attention masking mechanism to enforce domain-specific constraints (e.g., disallowing attention between unrelated features). Train it on the Electricity Load Forecasting dataset and evaluate feature importance using the built-in interpretable components. How would we quantify the trade-off between forecast accuracy and interpretability?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Drug Discovery: Message Passing with 3D Molecular Graphs",
+      "prompt": "Let's build a Graph Neural Network (GNN) that operates on 3D molecular graphs (nodes = atoms, edges = bonds + spatial distances) to predict binding affinities. Implement a custom message-passing layer that incorporates both bond-based and distance-based interactions, then train it on the PDBBind dataset. How would we handle the lack of labeled data for rare interactions? Let's compare against ECFP featurization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning for Robot Control: Offline-to-Online Policy Transfer with Conservative Q-Learning",
+      "prompt": "Let's train a Sawyer robot to perform door-opening tasks using conservative Q-learning (CQL) on a pre-collected offline dataset, then fine-tune it online with minimal real-world interactions. How would we design the reward function to avoid local optima (e.g., jittering)? Let's implement a dual-clipping mechanism to stabilize training and compare against standard DDPG. Use PyBullet or Mujoco for simulation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Learning for Medical Imaging: Contrastive Learning with Domain-Specific Augmentations",
+      "prompt": "Let's pre-train a ResNet-50 on the CheXpert dataset using SimCLR but replace the standard augmentations (e.g., random crops) with domain-specific ones (e.g., synthetic lung lesion insertion, contrast enhancement). How would we design a custom contrastive loss that accounts for anatomical symmetry (e.g., left/right lungs)? Evaluate downstream performance on pneumonia detection and compare against supervised pretraining.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Hyperparameter Optimization with Tree-structured Parzen Estimators (TPE)",
+      "prompt": "How would you implement a Bayesian optimization pipeline using TPE for tuning a Transformer-based model's learning rate and dropout rate, given a noisy validation loss metric? Explain how the surrogate model and acquisition function interact to balance exploration and exploitation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Differentiable Neural Architecture Search (DARTS) with Second-Order Unrolling",
+      "prompt": "Walk through the mathematical formulation of DARTS' bi-level optimization problem. Implement the second-order approximation to compute the Hessian term efficiently for a small CNN on CIFAR-10. How does this approximation impact the final architecture selection?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stochastic Weight Averaging (SWA) for Robust Neural Network Generalization",
+      "prompt": "Derive the SWA update rule and explain its connection to the posterior distribution over weights in a Bayesian neural network. Implement SWA for a ResNet-50 trained on ImageNet and compare its performance to standard SGD in terms of calibration and out-of-distribution robustness.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Monte Carlo Dropout for Uncertainty Estimation in Medical Image Segmentation",
+      "prompt": "Implement a U-Net with Monte Carlo dropout at test time for segmenting MRI brain tumors. Formulate the predictive entropy and mutual information metrics to quantify aleatoric and epistemic uncertainty. How would you use these metrics to reject low-confidence predictions during deployment?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Contrastive Learning via SimCLR with Memory-Efficient Gradient Accumulation",
+      "prompt": "Explain the SimCLR loss function's dependence on positive and negative sample pairs. Implement it using gradient accumulation to handle large batch sizes on a single GPU. Modify the projection head architecture to reduce dimensional collapse. How does the temperature parameter affect the learned representations?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implicit Neural Representations for 3D Reconstruction: Neural Radiance Fields (NeRF) and Variants",
+      "prompt": "Let's implement a simplified NeRF from scratch to reconstruct a 3D object from 2D images. Start by formulating the volume rendering equation, then derive the positional encoding trick to handle high-frequency details. After implementing the MLP, train it on a synthetic dataset and evaluate the PSNR metric. Finally, compare it with a baseline NeRF implementation using PyTorch.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Training for Robust Deep Learning: Projected Gradient Descent (PGD) and TRADES Loss Optimization",
+      "prompt": "Let's design an adversarial training pipeline for a ResNet-50 classifier on CIFAR-10 using PGD attacks. First, implement the PGD attack with configurable perturbation budgets (L2 and Linf norms). Then, train the model using the TRADES loss function, which balances standard and adversarial training objectives. Finally, evaluate robustness via AutoAttack and compare against AT (Adversarial Training) and standard training baselines.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks for Molecular Property Prediction: Message Passing with Attention (AttentiveFP) and Graphormer",
+      "prompt": "Let's implement AttentiveFP, a GNN architecture for molecular property prediction, from scratch. Start by defining the molecular graph featurization (atom and bond features). Then, implement the message-passing mechanism with GRU-based updates and node-level attention. Train the model on the BACE dataset and compare its performance with Graphormer, a transformer-based GNN. Analyze the attention weights to interpret chemical substructures.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Differentiable Architecture Search (DARTS) with Second-Order Approximations and Gradient-Based Optimization",
+      "prompt": "Let's implement DARTS, a gradient-based neural architecture search (NAS) method, without relying on third-party libraries. Begin by defining the continuous relaxation of the architecture search space using softmax over operations. Then, compute the second-order approximation of the bilevel optimization problem (train vs. validation loss) and implement gradient descent for both the weights and architecture parameters. Finally, evaluate the discovered architecture on CIFAR-10 and compare it with random search and ENAS.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Learning for Time-Series: Contrastive Learning with TS-TCC and Masked Reconstruction Pretext Tasks",
+      "prompt": "Let's implement a self-supervised learning pipeline for time-series data using TS-TCC (Temporal Shift Contrasting) and masked reconstruction. Start by defining the contrastive loss (e.g., NT-Xent) and temporal shift augmentation strategies. Then, implement a transformer-based encoder and pretext tasks for both contrastive learning and masked reconstruction. Pretrain the model on the UCR Time Series Archive and fine-tune it for downstream classification tasks. Compare the results with supervised baselines.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Contrastive Learning with SwAV on Large-Scale Image Datasets",
+      "prompt": "Let's pretext-task implementation of SwAV (Swapping Assignments between Views) for unsupervised feature learning on the ImageNet-1K dataset. How does the queue-based dictionary update mechanism compare to MoCo's momentum encoder in terms of memory efficiency and representation quality?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Differentiable Neural Architecture Search (DARTS) with Gradient-Based Optimization",
+      "prompt": "Let's implement DARTS to search for optimal cell structures in a convolutional neural network (CNN) on the Penn Treebank dataset. How does the bi-level optimization (train vs. validation loss) affect the stability of the architecture search? Compare softmax vs. Gumbel-Softmax for categorical sampling.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning with Proximal Policy Optimization (PPO) in Continuous Action Spaces",
+      "prompt": "Let's train a PPO agent to solve the MuJoCo HalfCheetah-v4 environment. How does the clipping range (\u03b5) hyperparameter affect policy updates and sample efficiency? Compare the performance of Gaussian vs. Tanh-squashed action distributions in terms of exploration and stability.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks (GNNs) with Graph Attention Networks (GAT) for Molecular Property Prediction",
+      "prompt": "Let's implement a GAT model to predict solubility (ESOL) and quantum mechanical properties (QM9) using the MoleculeNet benchmark. How does multi-head attention (number of heads) impact the model's ability to capture long-range dependencies in molecular graphs? Compare GAT with GraphSAGE for inductive vs. transductive learning.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Hyperparameter Optimization via Expected Improvement Acquisition Function",
+      "prompt": "Let's implement the Expected Improvement (EI) acquisition function for Bayesian Optimization from scratch, including the Gaussian Process surrogate model and the Matern 5/2 kernel. How would you modify the acquisition function to handle noisy evaluations with a known noise variance \u03c3\u00b2? Walk me through the gradient computation for EI to derive the optimal next query point.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Learning with Contrastive Loss on Multi-Modal Data (Audio + Text)",
+      "prompt": "Let's design a contrastive learning framework where audio embeddings (from a pre-trained Wav2Vec 2.0 model) and text embeddings (from a fine-tuned BERT model) are projected into a shared latent space. How would you adapt the InfoNCE loss to account for the temporal alignment between audio and text? Implement the temperature scaling mechanism and explain its impact on the loss landscape.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Neural Architecture Search (NAS) for Efficient Transformer Variants with FLOPs Constraints",
+      "prompt": "Let's optimize a transformer architecture under strict FLOPs constraints (e.g., \u2264 10 GFLOPs) for sequence lengths up to 8192 tokens. How would you modify the search space to include grouped-query attention (GQA) and sliding window attention (SWA)? Implement a differentiable NAS framework using Gumbel-Softmax relaxation and derive the gradient updates for the architecture parameters.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning with Conservative Q-Learning (CQL) for Offline-to-Online Transfer",
+      "prompt": "Let's extend CQL to handle offline reinforcement learning followed by online fine-tuning. How would you modify the conservative penalty term to account for distributional shift when transitioning from offline data (e.g., D4RL datasets) to online interaction? Implement the dual Q-network trick and explain how it mitigates overestimation bias in the offline phase.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks with Spectral Attention for Molecular Property Prediction",
+      "prompt": "Let's design a GNN that combines spectral graph theory (e.g., Laplacian eigenvectors) with attention mechanisms to predict molecular properties (e.g., solubility or toxicity). How would you encode the molecular graph into a fixed-size representation while preserving geometric invariances? Implement the spectral attention layer and derive the backpropagation through the eigendecomposition step.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization with Thompson Sampling for Hyperparameter Tuning",
+      "prompt": "Let's implement a Thompson Sampling-based Bayesian Optimization algorithm to tune hyperparameters for a Transformer model. We'll derive the posterior update equations for Gaussian Process priors and compare it against grid search and random search on the WikiText-103 perplexity optimization task. Show me how to handle non-stationary reward landscapes in this setup.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks with Spectral Attention for Drug-Drug Interaction Prediction",
+      "prompt": "Let's design a Graph Neural Network with spectral attention mechanisms to predict drug-drug interactions from heterogeneous biomedical graphs. We'll implement the ChebNetII spectral filters and contrast them with standard GCN and GAT layers. Use the DrugBank dataset and evaluate on AUC-ROC with a focus on explainability via attention weights.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Differential Equation Guided Neural Networks (Neural ODEs) for Time-Series Forecasting",
+      "prompt": "Let's build a Neural ODE model for irregularly sampled time-series data where the dynamics are governed by SDEs with learnable drift and diffusion terms. We'll implement the adjoint sensitivity method for gradient computation and compare against LSTM and Transformer baselines on the PhysioNet sepsis prediction dataset. Focus on stability guarantees for long-horizon predictions.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Contrastive Learning with Hard Negative Mining for Self-Supervised Vision Tasks",
+      "prompt": "Let's implement a SimCLR variant with hard negative mining where negatives are selected based on feature space density and semantic similarity. We'll use the MoCo framework with a momentum encoder and evaluate on ImageNet-1K with linear probing. Derive the theoretical bounds on the InfoNCE loss when using hard negatives.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning with Conservative Q-Learning (CQL) for Offline Policy Evaluation",
+      "prompt": "Let's implement CQL for offline reinforcement learning where we learn a conservative estimate of the Q-function to avoid overestimation bias. We'll use the D4RL benchmark with the HalfCheetah-v2 environment and compare against BCQ and TD3+BC. Derive the dual formulation of the CQL objective and analyze its convergence properties.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning: Advanced Acquisition Functions and Multi-Armed Bandits",
+      "prompt": "Let's implement a Bayesian Optimization framework from scratch for tuning a Transformer-based model's hyperparameters (e.g., learning rate, dropout, attention heads) using the Expected Improvement (EI) and Thompson Sampling acquisition functions. How would we modify the acquisition function to handle noisy evaluations in a distributed training setup with GPUs? Discuss the trade-offs between UCB (Upper Confidence Bound) and EI in terms of convergence speed and sample efficiency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks (GNNs) for Fraud Detection: Message Passing and Anomaly Score Aggregation",
+      "prompt": "Design a GNN architecture for detecting fraudulent transactions in a dynamic graph where nodes represent users and edges represent transactions. Implement a custom message-passing mechanism that incorporates temporal features (e.g., transaction time, frequency) and anomaly scores. How would you aggregate node-level predictions to detect fraud rings (i.e., subgraphs of colluding users)? Compare the performance of GraphSAGE, GAT, and a custom attention-based aggregator.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Differential Privacy in Federated Learning: Secure Aggregation and Gradient Clipping",
+      "prompt": "Implement a federated learning system with differential privacy guarantees using the R\u00e9nyi Differential Privacy (RDP) framework. How would you extend the DP-FedAvg algorithm to include secure aggregation (e.g., using homomorphic encryption) to prevent server-side privacy leaks? Discuss the impact of gradient clipping thresholds and noise scales on model utility and convergence for a real-world dataset like EMNIST.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Neural Architecture Search (NAS) with Reinforcement Learning: Policy Gradient Optimization and Weight Sharing",
+      "prompt": "Build a NAS framework using Reinforcement Learning where the agent is trained with Proximal Policy Optimization (PPO) to discover optimal CNN architectures for CIFAR-10. Implement weight sharing between child models to reduce computational overhead. How would you modify the reward function to balance accuracy and latency on edge devices? Compare the performance of PPO with Evolutionary Algorithms (e.g., NSGA-II) for multi-objective NAS.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference with Deep Structural Causal Models (DSCMs): Counterfactual Data Generation and Potential Outcomes",
+      "prompt": "Implement a Deep Structural Causal Model (DSCM) to estimate counterfactual outcomes in a healthcare dataset (e.g., the effect of a drug on patient recovery). Use a neural network to model the structural equations and train it with a combination of observational data and synthetic counterfactual samples. How would you validate the model's counterfactual predictions using a held-out test set of randomized controlled trials (RCTs)? Discuss the limitations of DSCMs when dealing with unobserved confounders.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Self-Supervised Learning: Contrastive Learning with SimCLR and MoCo in Vision Transformers",
+      "prompt": "Let's implement a SimCLR-style contrastive learning pipeline using a Vision Transformer (ViT) backbone, then compare it with MoCo's momentum encoder approach. How do we handle augmentations, temperature scaling, and negative sampling in distributed training? Can we visualize the learned feature space with UMAP?",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Graph Neural Networks: Message Passing with Adaptive Node Embeddings and Graph Attention Variants",
+      "prompt": "Let's derive the mathematical formulation of Graph Attention Networks (GAT) with adaptive node embeddings, then extend it to a sparse transformer-based GNN. How do we implement multi-head attention with sparse adjacency matrices? Can we compare performance on ogbn-arxiv versus a standard GCN?",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Reinforcement Learning: Off-Policy Actor-Critic with Twin Delayed DDPG (TD3) and State-Action Entropy Regularization",
+      "prompt": "Let's implement TD3 from scratch, then add state-action entropy regularization to encourage exploration. How do we stabilize the target policy smoothing and delayed updates? Can we benchmark this on continuous control tasks like Mujoco Ant-v4 vs. standard DDPG?",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Neural Architecture Search (NAS): Differentiable Architecture Search (DARTS) with Second-Order Gradient Approximations",
+      "prompt": "Let's implement DARTS with PyTorch, focusing on the bilevel optimization problem and second-order gradient approximations. How do we handle memory constraints when computing Hessian-vector products? Can we compare the learned cell architectures on CIFAR-10 versus random search?",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Probabilistic Deep Learning: Variational Autoencoders with Normalizing Flows for Complex Likelihood Modeling",
+      "prompt": "Let's implement a VAE with a normalizing flow prior (e.g., RealNVP) and compare it to a standard Gaussian prior. How do we compute the log-likelihood gradient efficiently? Can we evaluate the model on MNIST with and without flows using bits per dimension?",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Bayesian Optimization for Hyperparameter Tuning: Acquisition Functions and Surrogate Models",
+      "prompt": "Let's implement a Bayesian Optimization framework from scratch to tune hyperparameters for a neural network. How would you choose between Expected Improvement (EI), Probability of Improvement (PI), or Upper Confidence Bound (UCB) as acquisition functions? Derive the mathematical formulation for UCB and discuss its bias-variance tradeoff in high-dimensional spaces. Implement the surrogate model using Gaussian Processes (GPs) with Mat\u00e9rn kernels and compare its performance against Tree-structured Parzen Estimator (TPE) on the CIFAR-10 dataset.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Graph Neural Networks (GNNs) for Molecular Property Prediction: Message Passing and Graph Attention Mechanisms",
+      "prompt": "Design a GNN architecture to predict molecular properties (e.g., toxicity or solubility) using the MoleculeNet dataset. Implement a custom message-passing layer with edge features and compare the performance of Graph Attention Networks (GAT) against Graph Convolutional Networks (GCN) in terms of interpretability and accuracy. Derive the attention mechanism's softmax operation over neighbors and discuss how to handle varying graph sizes. Use PyTorch Geometric and evaluate on the ESOL dataset with RMSE as the metric.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning for Trading: Deep Q-Learning with Portfolio Optimization Constraints",
+      "prompt": "Develop a Deep Q-Network (DQN) agent to trade stocks in a simulated environment with transaction costs and portfolio constraints. Implement a custom reward function that accounts for Sharpe ratio maximization and discuss the challenges of credit assignment in multi-asset trading. Use a replay buffer with prioritized experience replay (PER) and compare its performance against Double DQN. Train the agent on historical S&P 500 data and evaluate using cumulative returns and maximum drawdown.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adversarial Machine Learning: Generative Adversarial Networks (GANs) with Spectral Normalization and Self-Supervised Learning",
+      "prompt": "Train a GAN with spectral normalization on the CelebA dataset to generate high-resolution images. Implement the discriminator with self-supervised learning by adding an auxiliary rotation prediction task. Derive the gradient penalty term in the WGAN-GP formulation and discuss its role in stabilizing training. Compare the Fr\u00e9chet Inception Distance (FID) scores of your model against a baseline DCGAN and analyze mode collapse using t-SNE plots of latent space embeddings.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Causal Inference in Machine Learning: Propensity Score Matching and Double Machine Learning for Treatment Effect Estimation",
+      "prompt": "Implement a causal inference pipeline to estimate the average treatment effect (ATE) of a marketing campaign using propensity score matching (PSM) and Double Machine Learning (DML). Derive the doubly robust estimator and discuss its properties under model misspecification. Use logistic regression for propensity score estimation and a gradient-boosted tree for the outcome model. Evaluate the results on a synthetic dataset with hidden confounders and compare the bias and variance of ATE estimates against traditional regression adjustment.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
-    "Machine Learning",
-    "Hypothesis Testing"
+    "Quasi-Newton Methods",
+    "Machine Learning"
   ]
 }
