@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787535670.6293895,
-            "duration_seconds": 4718,
-            "topic": "Dynamic Programming: DSU Advanced Variations"
-        },
-        {
             "timestamp": 1787539519.819176,
             "duration_seconds": 3166,
             "topic": "Algebra: Number Systems"
@@ -504,6 +499,11 @@
             "timestamp": 1788138786.3966706,
             "duration_seconds": 3538,
             "topic": "Associative Memory with Neural Networks"
+        },
+        {
+            "timestamp": 1788142935.0694973,
+            "duration_seconds": 3478,
+            "topic": "Computer Architecture"
         }
     ]
 }

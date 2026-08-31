@@ -64,7 +64,17 @@
                 "arch.memory"
             ],
             "mastery_level": 15,
-            "evidence": {}
+            "evidence": {
+                "concepts_covered": 19,
+                "unique_concepts_list": [
+                    "compute",
+                    "computations",
+                    "tensor",
+                    "tensors",
+                    "memory"
+                ],
+                "unique_concepts_count": 5
+            }
         }
     },
     "nodes": {
@@ -330,7 +340,7 @@
                 "unique_concepts_count": 7,
                 "successful_assessments": 20
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         },
         "maths.algebra.linear_equations_with_two_variables": {
             "id": "maths.algebra.linear_equations_with_two_variables",
@@ -1455,7 +1465,7 @@
                 ],
                 "unique_concepts_count": 8
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         }
     }
 }

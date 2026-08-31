@@ -112,11 +112,9 @@
         },
         "arch": {
             "active_branch": [
-                "arch",
-                "arch.memory",
-                "arch.memory.associative_memory_with_neural_networks"
+                "arch"
             ],
-            "current_node": "arch.memory.associative_memory_with_neural_networks",
+            "current_node": "arch",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -126,7 +124,9 @@
                 "arch.cpu.superscalar_execution_and_register_renaming": 1788052912.539442,
                 "arch.cpu": 1788052912.5401812,
                 "arch.memory.encoding_schemes_in_neural_networks": 1788132834.8846095,
-                "arch.memory.short-term_vs_long-term_memory_models": 1788135285.4722886
+                "arch.memory.short-term_vs_long-term_memory_models": 1788135285.4722886,
+                "arch.memory.associative_memory_with_neural_networks": 1788139499.2838528,
+                "arch.memory": 1788139499.2844753
             },
             "branch_status": "IN_PROGRESS"
         }
