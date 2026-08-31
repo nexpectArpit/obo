@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787530275.419782,
-            "duration_seconds": 3941,
-            "topic": "Algorithms: Disjoint Set Union (DSU)"
-        },
-        {
             "timestamp": 1787535670.6293895,
             "duration_seconds": 4718,
             "topic": "Dynamic Programming: DSU Advanced Variations"
@@ -504,6 +499,11 @@
             "timestamp": 1788134597.3690445,
             "duration_seconds": 1809,
             "topic": "Short-Term vs Long-Term Memory Models"
+        },
+        {
+            "timestamp": 1788138786.3966706,
+            "duration_seconds": 3538,
+            "topic": "Associative Memory with Neural Networks"
         }
     ]
 }

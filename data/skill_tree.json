@@ -1431,20 +1431,31 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.memory.associative_memory_with_neural_networks": {
             "id": "arch.memory.associative_memory_with_neural_networks",
             "name": "Associative Memory with Neural Networks",
             "parent": "arch.memory",
             "children": [],
-            "mastery_level": 1,
+            "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 0,
-                "successful_assessments": 0,
-                "recent_repetition": 0
+                "concepts_covered": 29,
+                "successful_assessments": 16,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "degrading",
+                    "compute",
+                    "tensor",
+                    "tensors",
+                    "computational",
+                    "degradation",
+                    "memory",
+                    "layer"
+                ],
+                "unique_concepts_count": 8
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         }
     }
 }
