@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787581392.70515,
-            "duration_seconds": 5101,
-            "topic": "Machine Learning: Vanishing and Exploding Gradients"
-        },
-        {
-            "timestamp": 1787587642.8729281,
-            "duration_seconds": 4548,
-            "topic": "Machine Learning: Vanishing and Exploding Gradients"
-        },
-        {
             "timestamp": 1787590725.9938033,
             "duration_seconds": 2618,
             "topic": "Computer Architecture: Instruction Set Architecture"
@@ -504,6 +494,11 @@
             "timestamp": 1788184458.7635205,
             "duration_seconds": 3592,
             "topic": "computer Arch..."
+        },
+        {
+            "timestamp": 1788193077.9811425,
+            "duration_seconds": 437,
+            "topic": "Deep Learning"
         }
     ]
 }
