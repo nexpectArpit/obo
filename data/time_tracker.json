@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787609522.6084774,
-            "duration_seconds": 428,
-            "topic": "Linear Equations with Two Variables"
-        },
-        {
-            "timestamp": 1787610619.5444772,
-            "duration_seconds": 449,
-            "topic": "Neural Networks"
-        },
-        {
             "timestamp": 1787611592.3221776,
             "duration_seconds": 340,
             "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping and ReLU"
@@ -479,6 +469,11 @@
             "timestamp": 1788213601.5094538,
             "duration_seconds": 1868,
             "topic": "Caching Results with a Hash Table in Memoization"
+        },
+        {
+            "timestamp": 1788216268.2982144,
+            "duration_seconds": 1956,
+            "topic": "Fetch and Decode Pipelining"
         }
     ]
 }

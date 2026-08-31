@@ -61,7 +61,10 @@
             "name": "Computer Architecture",
             "children": [
                 "arch.cpu",
-                "arch.memory"
+                "arch.memory",
+                "arch.fetch_and_decode_pipelining",
+                "arch.data_hazard_handling_and_stalling",
+                "arch.branch_prediction_techniques"
             ],
             "mastery_level": 15,
             "evidence": {
@@ -1489,6 +1492,50 @@
                 "unique_concepts_count": 8
             },
             "status": "EXHAUSTED"
+        },
+        "arch.fetch_and_decode_pipelining": {
+            "id": "arch.fetch_and_decode_pipelining",
+            "name": "Fetch and Decode Pipelining",
+            "parent": "arch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensor",
+                    "tensors"
+                ],
+                "unique_concepts_count": 2
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.data_hazard_handling_and_stalling": {
+            "id": "arch.data_hazard_handling_and_stalling",
+            "name": "Data Hazard Handling and Stalling",
+            "parent": "arch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.branch_prediction_techniques": {
+            "id": "arch.branch_prediction_techniques",
+            "name": "Branch Prediction Techniques",
+            "parent": "arch",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
         }
     }
 }
