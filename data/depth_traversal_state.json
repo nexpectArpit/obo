@@ -114,9 +114,9 @@
             "active_branch": [
                 "arch",
                 "arch.memory",
-                "arch.memory.encoding_schemes_in_neural_networks"
+                "arch.memory.short-term_vs_long-term_memory_models"
             ],
-            "current_node": "arch.memory.encoding_schemes_in_neural_networks",
+            "current_node": "arch.memory.short-term_vs_long-term_memory_models",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -124,10 +124,11 @@
                 "arch.cpu.instruction-level_parallelism": 1788046851.1691842,
                 "arch.cpu.pipeline_stalls_and_bypassing": 1788049253.8868127,
                 "arch.cpu.superscalar_execution_and_register_renaming": 1788052912.539442,
-                "arch.cpu": 1788052912.5401812
+                "arch.cpu": 1788052912.5401812,
+                "arch.memory.encoding_schemes_in_neural_networks": 1788132834.8846095
             },
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "cpp"
+    "active_anchor": "arch"
 }

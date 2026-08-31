@@ -1414,7 +1414,7 @@
                 ],
                 "unique_concepts_count": 4
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.memory.short-term_vs_long-term_memory_models": {
             "id": "arch.memory.short-term_vs_long-term_memory_models",
@@ -1423,9 +1423,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },
