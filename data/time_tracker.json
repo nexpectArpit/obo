@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787647556.650704,
-            "duration_seconds": 2817,
-            "topic": "Vanishing Gradient Problem in Recurrent Neural Networks"
-        },
-        {
             "timestamp": 1787657924.2084281,
             "duration_seconds": 10295,
             "topic": "Identifying the x and y Intercepts of a Linear Equation"
@@ -469,6 +464,11 @@
             "timestamp": 1788231007.3873355,
             "duration_seconds": 1998,
             "topic": "Applying padding and stride to convolutional layers in Keras"
+        },
+        {
+            "timestamp": 1788253973.777318,
+            "duration_seconds": 5008,
+            "topic": "Machine Learning vs Neural Networks"
         }
     ]
 }
