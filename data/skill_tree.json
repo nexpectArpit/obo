@@ -1606,7 +1606,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.applying_padding_and_stride_to_convolutional_layers_in_keras": {
             "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.applying_padding_and_stride_to_convolutional_layers_in_keras",
@@ -1615,9 +1615,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },

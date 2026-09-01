@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787624845.637206,
-            "duration_seconds": 3212,
-            "topic": "Gradient Clipping with Value"
-        },
-        {
             "timestamp": 1787647556.650704,
             "duration_seconds": 2817,
             "topic": "Vanishing Gradient Problem in Recurrent Neural Networks"
@@ -469,6 +464,11 @@
             "timestamp": 1788228405.6416917,
             "duration_seconds": 1837,
             "topic": "Instruction Decode Unit (IDU) Pipeline Hazards"
+        },
+        {
+            "timestamp": 1788231007.3873355,
+            "duration_seconds": 1998,
+            "topic": "Applying padding and stride to convolutional layers in Keras"
         }
     ]
 }

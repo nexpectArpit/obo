@@ -53,9 +53,9 @@
             "active_branch": [
                 "dl",
                 "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
-                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch"
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.applying_padding_and_stride_to_convolutional_layers_in_keras"
             ],
-            "current_node": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch",
+            "current_node": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.applying_padding_and_stride_to_convolutional_layers_in_keras",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -76,7 +76,8 @@
                 "dl.training.microlearning_strategies_for_personalized_training": 1788041575.2473085,
                 "dl.training.gamification_techniques_for_enhanced_engagement": 1788050398.6627963,
                 "dl.training.performance_metrics_for_measuring_training_effectiveness": 1788127992.9746215,
-                "dl.training": 1788127992.9817526
+                "dl.training": 1788127992.9817526,
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch": 1788229129.7350528
             },
             "branch_status": "IN_PROGRESS"
         },
@@ -136,5 +137,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "arch"
+    "active_anchor": "dl"
 }
