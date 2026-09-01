@@ -115,9 +115,9 @@
             "active_branch": [
                 "arch",
                 "arch.fetch_and_decode_pipelining",
-                "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode"
+                "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design"
             ],
-            "current_node": "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode",
+            "current_node": "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -129,7 +129,8 @@
                 "arch.memory.encoding_schemes_in_neural_networks": 1788132834.8846095,
                 "arch.memory.short-term_vs_long-term_memory_models": 1788135285.4722886,
                 "arch.memory.associative_memory_with_neural_networks": 1788139499.2838528,
-                "arch.memory": 1788139499.2844753
+                "arch.memory": 1788139499.2844753,
+                "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode": 1788224508.955096
             },
             "branch_status": "IN_PROGRESS"
         }

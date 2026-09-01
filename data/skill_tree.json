@@ -1650,7 +1650,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design": {
             "id": "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design",
@@ -1659,9 +1659,14 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 2,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensors",
+                    "tensor"
+                ],
+                "unique_concepts_count": 2
             },
             "status": "AVAILABLE"
         },

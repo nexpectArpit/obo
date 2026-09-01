@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787620993.3335938,
-            "duration_seconds": 4640,
-            "topic": "Memoization with Tabulation"
-        },
-        {
             "timestamp": 1787624845.637206,
             "duration_seconds": 3212,
             "topic": "Gradient Clipping with Value"
@@ -464,6 +459,11 @@
             "timestamp": 1788223808.4731743,
             "duration_seconds": 1853,
             "topic": "Pipelining stages in Fetch and Decode"
+        },
+        {
+            "timestamp": 1788225875.2802715,
+            "duration_seconds": 1424,
+            "topic": "Instruction Fetch Unit (IFU) Design"
         }
     ]
 }
