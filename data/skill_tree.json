@@ -1500,7 +1500,11 @@
             "id": "arch.fetch_and_decode_pipelining",
             "name": "Fetch and Decode Pipelining",
             "parent": "arch",
-            "children": [],
+            "children": [
+                "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode",
+                "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design",
+                "arch.fetch_and_decode_pipelining.instruction_decode_unit_(idu)_pipeline_hazards"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -1621,6 +1625,50 @@
             "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.analyzing_the_role_of_dilation_in_convolutional_neural_networks",
             "name": "Analyzing the role of dilation in convolutional neural networks",
             "parent": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode": {
+            "id": "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode",
+            "name": "Pipelining stages in Fetch and Decode",
+            "parent": "arch.fetch_and_decode_pipelining",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensor",
+                    "tensors"
+                ],
+                "unique_concepts_count": 2
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design": {
+            "id": "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design",
+            "name": "Instruction Fetch Unit (IFU) Design",
+            "parent": "arch.fetch_and_decode_pipelining",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.fetch_and_decode_pipelining.instruction_decode_unit_(idu)_pipeline_hazards": {
+            "id": "arch.fetch_and_decode_pipelining.instruction_decode_unit_(idu)_pipeline_hazards",
+            "name": "Instruction Decode Unit (IDU) Pipeline Hazards",
+            "parent": "arch.fetch_and_decode_pipelining",
             "children": [],
             "mastery_level": 1,
             "evidence": {

@@ -459,6 +459,11 @@
             "timestamp": 1788221254.4517968,
             "duration_seconds": 1892,
             "topic": "Understanding Conv2D and Conv3D operations in PyTorch"
+        },
+        {
+            "timestamp": 1788223808.4731743,
+            "duration_seconds": 1853,
+            "topic": "Pipelining stages in Fetch and Decode"
         }
     ]
 }

@@ -114,9 +114,10 @@
         "arch": {
             "active_branch": [
                 "arch",
-                "arch.fetch_and_decode_pipelining"
+                "arch.fetch_and_decode_pipelining",
+                "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode"
             ],
-            "current_node": "arch.fetch_and_decode_pipelining",
+            "current_node": "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -133,5 +134,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "arch"
 }
