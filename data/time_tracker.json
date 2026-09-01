@@ -1,21 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787657924.2084281,
-            "duration_seconds": 10295,
-            "topic": "Identifying the x and y Intercepts of a Linear Equation"
-        },
-        {
-            "timestamp": 1787661667.543005,
-            "duration_seconds": 3672,
-            "topic": "Kernel"
-        },
-        {
-            "timestamp": 1787662572.1855798,
-            "duration_seconds": 636,
-            "topic": "Vanishing Gradient Problem Solutions: ReLU Derivative Calculation"
-        },
-        {
             "timestamp": 1787668015.9812467,
             "duration_seconds": 3095,
             "topic": "Machine Learning"
@@ -469,6 +454,11 @@
             "timestamp": 1788253973.777318,
             "duration_seconds": 5008,
             "topic": "Machine Learning vs Neural Networks"
+        },
+        {
+            "timestamp": 1788269850.646848,
+            "duration_seconds": 1923,
+            "topic": "Deep Learning"
         }
     ]
 }
