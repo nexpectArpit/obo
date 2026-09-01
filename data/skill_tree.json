@@ -1668,7 +1668,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.fetch_and_decode_pipelining.instruction_decode_unit_(idu)_pipeline_hazards": {
             "id": "arch.fetch_and_decode_pipelining.instruction_decode_unit_(idu)_pipeline_hazards",
@@ -1677,9 +1677,14 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensors",
+                    "tensor"
+                ],
+                "unique_concepts_count": 2
             },
             "status": "AVAILABLE"
         }

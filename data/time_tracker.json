@@ -464,6 +464,11 @@
             "timestamp": 1788225875.2802715,
             "duration_seconds": 1424,
             "topic": "Instruction Fetch Unit (IFU) Design"
+        },
+        {
+            "timestamp": 1788228405.6416917,
+            "duration_seconds": 1837,
+            "topic": "Instruction Decode Unit (IDU) Pipeline Hazards"
         }
     ]
 }
