@@ -32,9 +32,9 @@
                 "cpp.dynamic_programming",
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming"
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.implementing_hash_table_in_c++_for_memoization"
             ],
-            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming",
+            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.implementing_hash_table_in_c++_for_memoization",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -46,7 +46,8 @@
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.overcoming_the_exponential_time_complexity_of_recursive_functions_with_memoization_in_c++": 1788125446.8064628,
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.applying_memoization_to_recursively_defined_data_structures_in_c++": 1788130199.2816932,
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization.implementing_memoization_in_c++_using_stl_maps_and_unordered_maps_for_efficient_function_calls": 1788211851.4881537,
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization": 1788211851.488796
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.optimizing_recursive_function_calls_with_memoization": 1788211851.488796,
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming": 1788303738.4834635
             },
             "branch_status": "IN_PROGRESS"
         },

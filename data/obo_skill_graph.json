@@ -140,8 +140,8 @@
         },
         "Dynamic_Programming": {
           "topic": "Dynamic Programming Subproblem State Transitions and Memoization",
-          "level": 139,
-          "target_level": 140,
+          "level": 140,
+          "target_level": 141,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [

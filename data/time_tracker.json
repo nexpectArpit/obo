@@ -1,21 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787699121.289582,
-            "duration_seconds": 855,
-            "topic": "Finding the x and y Intercepts of Linear Equations with Two Variables"
-        },
-        {
-            "timestamp": 1787700505.6754718,
-            "duration_seconds": 721,
-            "topic": "Finding the x-Intercept of Linear Equations with Two Variables using the Zero y-Value Method"
-        },
-        {
-            "timestamp": 1787701931.866642,
-            "duration_seconds": 774,
-            "topic": "Graphical Analysis of Linear Equations to Locate the x and y Intercepts"
-        },
-        {
             "timestamp": 1787703426.8068519,
             "duration_seconds": 842,
             "topic": "Applying the Slope-Intercept Form to Identify the y-Intercept of Linear Equations"
@@ -424,6 +409,11 @@
             "timestamp": 1788302932.0230412,
             "duration_seconds": 4767,
             "topic": "Memoization vs. Dynamic Programming"
+        },
+        {
+            "timestamp": 1788306693.939171,
+            "duration_seconds": 3097,
+            "topic": "Implementing Hash Table in C++ for Memoization"
         }
     ]
 }
