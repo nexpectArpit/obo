@@ -1216,13 +1216,16 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 1,
+                "concepts_covered": 11,
                 "successful_assessments": 0,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "optimal"
+                    "<algorithm>",
+                    "optimal",
+                    "tails.push_back(x);",
+                    "space-optimized"
                 ],
-                "unique_concepts_count": 1
+                "unique_concepts_count": 4
             },
             "status": "AVAILABLE"
         },

@@ -1,46 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787668015.9812467,
-            "duration_seconds": 3095,
-            "topic": "Machine Learning"
-        },
-        {
-            "timestamp": 1787676388.8341413,
-            "duration_seconds": 3238,
-            "topic": "Memoization with Tabulation in Dynamic Programming"
-        },
-        {
-            "timestamp": 1787683114.4929898,
-            "duration_seconds": 636,
-            "topic": "Memoization with Tabulation for Combinatorial Problems"
-        },
-        {
-            "timestamp": 1787684471.9683983,
-            "duration_seconds": 598,
-            "topic": "Optimizing Recursive Function Calls with Memoization"
-        },
-        {
-            "timestamp": 1787693995.000797,
-            "duration_seconds": 640,
-            "topic": "Overcoming the Exponential Time Complexity of Recursive Functions with Memoization in C++"
-        },
-        {
-            "timestamp": 1787695360.191729,
-            "duration_seconds": 721,
-            "topic": "Graphing a Linear Equation in Standard Form (Ax + By = C)"
-        },
-        {
-            "timestamp": 1787696470.4640958,
-            "duration_seconds": 450,
-            "topic": "Calculating ReLU Derivative for Matrix Operations"
-        },
-        {
-            "timestamp": 1787697671.5521011,
-            "duration_seconds": 543,
-            "topic": "Applying Memoization to Recursively Defined Data Structures in C++"
-        },
-        {
             "timestamp": 1787699121.289582,
             "duration_seconds": 855,
             "topic": "Finding the x and y Intercepts of Linear Equations with Two Variables"
@@ -459,6 +419,11 @@
             "timestamp": 1788269850.646848,
             "duration_seconds": 1923,
             "topic": "Deep Learning"
+        },
+        {
+            "timestamp": 1788302932.0230412,
+            "duration_seconds": 4767,
+            "topic": "Memoization vs. Dynamic Programming"
         }
     ]
 }

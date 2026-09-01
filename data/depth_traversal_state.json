@@ -31,9 +31,10 @@
                 "cpp",
                 "cpp.dynamic_programming",
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems",
-                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization"
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
+                "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming"
             ],
-            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization",
+            "current_node": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.memoization_vs__dynamic_programming",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -137,5 +138,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "cpp"
 }
