@@ -1544,7 +1544,11 @@
             "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
             "name": "Implementing the forward pass in a convolutional neural network",
             "parent": "dl",
-            "children": [],
+            "children": [
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch",
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.applying_padding_and_stride_to_convolutional_layers_in_keras",
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.analyzing_the_role_of_dilation_in_convolutional_neural_networks"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -1574,6 +1578,49 @@
             "id": "dl.regularization_techniques_in_deep_learning_including_dropout_and_l1/l2_regularization",
             "name": "Regularization techniques in deep learning including dropout and L1/L2 regularization",
             "parent": "dl",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch": {
+            "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch",
+            "name": "Understanding Conv2D and Conv3D operations in PyTorch",
+            "parent": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.applying_padding_and_stride_to_convolutional_layers_in_keras": {
+            "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.applying_padding_and_stride_to_convolutional_layers_in_keras",
+            "name": "Applying padding and stride to convolutional layers in Keras",
+            "parent": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.analyzing_the_role_of_dilation_in_convolutional_neural_networks": {
+            "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.analyzing_the_role_of_dilation_in_convolutional_neural_networks",
+            "name": "Analyzing the role of dilation in convolutional neural networks",
+            "parent": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
             "children": [],
             "mastery_level": 1,
             "evidence": {

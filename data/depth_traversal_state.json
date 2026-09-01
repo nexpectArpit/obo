@@ -52,9 +52,10 @@
         "dl": {
             "active_branch": [
                 "dl",
-                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network"
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch"
             ],
-            "current_node": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
+            "current_node": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,

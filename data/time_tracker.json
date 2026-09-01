@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787614586.9881818,
-            "duration_seconds": 334,
-            "topic": "Memoization with Overlapping Subproblems"
-        },
-        {
-            "timestamp": 1787615714.2869933,
-            "duration_seconds": 439,
-            "topic": "Graphing Linear Equations with Two Variables on a Coordinate Plane"
-        },
-        {
             "timestamp": 1787620993.3335938,
             "duration_seconds": 4640,
             "topic": "Memoization with Tabulation"
@@ -464,6 +454,11 @@
             "timestamp": 1788218709.5119622,
             "duration_seconds": 1875,
             "topic": "Implementing the forward pass in a convolutional neural network"
+        },
+        {
+            "timestamp": 1788221254.4517968,
+            "duration_seconds": 1892,
+            "topic": "Understanding Conv2D and Conv3D operations in PyTorch"
         }
     ]
 }
