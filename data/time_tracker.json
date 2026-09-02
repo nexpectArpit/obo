@@ -1,31 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787754934.1295142,
-            "duration_seconds": 672,
-            "topic": "optimization : in subarray problem"
-        },
-        {
-            "timestamp": 1787770989.178337,
-            "duration_seconds": 187,
-            "topic": "random"
-        },
-        {
-            "timestamp": 1787780412.5838711,
-            "duration_seconds": 643,
-            "topic": "Gradient Clipping with Norm"
-        },
-        {
-            "timestamp": 1787781685.5282261,
-            "duration_seconds": 592,
-            "topic": "Memoization with Tabulation"
-        },
-        {
-            "timestamp": 1787783048.8954463,
-            "duration_seconds": 717,
-            "topic": "Gradient Clipping with Value"
-        },
-        {
             "timestamp": 1787784776.839744,
             "duration_seconds": 1153,
             "topic": "Graphing a Linear Equation in Slope-Intercept Form (y = mx + b)"
@@ -379,6 +354,11 @@
             "timestamp": 1788358585.2863936,
             "duration_seconds": 5141,
             "topic": "machine learning and ml models"
+        },
+        {
+            "timestamp": 1788388884.7077842,
+            "duration_seconds": 4356,
+            "topic": "Optimal Substructure and Overlapping Subproblems in Recursive Solutions"
         }
     ]
 }

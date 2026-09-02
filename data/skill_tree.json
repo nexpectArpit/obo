@@ -852,7 +852,7 @@
                 ],
                 "unique_concepts_count": 5
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions": {
             "id": "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions",
@@ -861,9 +861,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 16,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "uncomputed"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },
