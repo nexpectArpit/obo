@@ -829,7 +829,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation": {
             "id": "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation",
@@ -838,9 +838,17 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 7,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory",
+                    "computation",
+                    "algorithms",
+                    "uncomputed",
+                    "algorithmic"
+                ],
+                "unique_concepts_count": 5
             },
             "status": "AVAILABLE"
         },
@@ -928,7 +936,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "ds.machine_learning.custom_autograd_function_double_backward": {
             "id": "ds.machine_learning.custom_autograd_function_double_backward",
@@ -1268,7 +1276,7 @@
                 ],
                 "unique_concepts_count": 6
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "os.kernel.linux_kernel_module_loaders_and_unloaders": {
             "id": "os.kernel.linux_kernel_module_loaders_and_unloaders",
