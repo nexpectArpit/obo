@@ -1,26 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787703426.8068519,
-            "duration_seconds": 842,
-            "topic": "Applying the Slope-Intercept Form to Identify the y-Intercept of Linear Equations"
-        },
-        {
-            "timestamp": 1787705095.7754507,
-            "duration_seconds": 1034,
-            "topic": "Determining the Number of Solutions for Linear Equations with Two Variables"
-        },
-        {
-            "timestamp": 1787706379.8064275,
-            "duration_seconds": 541,
-            "topic": "Implementing Memoization in C++ using Stl Maps and Unordered Maps for Efficient Function Calls"
-        },
-        {
-            "timestamp": 1787707401.6375515,
-            "duration_seconds": 374,
-            "topic": "ReLU Derivative in Backpropagation Algorithm Flowcharts"
-        },
-        {
             "timestamp": 1787708575.7631567,
             "duration_seconds": 515,
             "topic": "Caching Results with a Hash Table in Memoization"
@@ -414,6 +394,11 @@
             "timestamp": 1788306693.939171,
             "duration_seconds": 3097,
             "topic": "Implementing Hash Table in C++ for Memoization"
+        },
+        {
+            "timestamp": 1788312575.327551,
+            "duration_seconds": 5211,
+            "topic": "Applying Memoization to Recursive Functions in C++"
         }
     ]
 }

@@ -1246,7 +1246,7 @@
                 ],
                 "unique_concepts_count": 3
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++",
@@ -1255,9 +1255,18 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 8,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "degrade",
+                    "precompute",
+                    "paths.cp-algorithms.com",
+                    "optimized",
+                    "optimize",
+                    "<algorithm>"
+                ],
+                "unique_concepts_count": 6
             },
             "status": "AVAILABLE"
         },
