@@ -1,26 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787726731.6508114,
-            "duration_seconds": 167,
-            "topic": "The mechanism of gravitational wave detection"
-        },
-        {
-            "timestamp": 1787728629.8875675,
-            "duration_seconds": 1053,
-            "topic": "Understanding Mariana Trench depth pressure"
-        },
-        {
-            "timestamp": 1787744274.6940494,
-            "duration_seconds": 133,
-            "topic": "CPU"
-        },
-        {
-            "timestamp": 1787746032.1027973,
-            "duration_seconds": 643,
-            "topic": "Vanishing Gradient Problem Solutions: Gradient Clipping Implementation in PyTorch"
-        },
-        {
             "timestamp": 1787754934.1295142,
             "duration_seconds": 672,
             "topic": "optimization : in subarray problem"
@@ -394,6 +374,11 @@
             "timestamp": 1788319018.4101038,
             "duration_seconds": 3178,
             "topic": "Top-Down Dynamic Programming with Tabulation"
+        },
+        {
+            "timestamp": 1788358585.2863936,
+            "duration_seconds": 5141,
+            "topic": "machine learning and ml models"
         }
     ]
 }
