@@ -1647,7 +1647,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.analyzing_the_role_of_dilation_in_convolutional_neural_networks": {
             "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.analyzing_the_role_of_dilation_in_convolutional_neural_networks",
@@ -1656,9 +1656,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },

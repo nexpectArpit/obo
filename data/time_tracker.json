@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787708575.7631567,
-            "duration_seconds": 515,
-            "topic": "Caching Results with a Hash Table in Memoization"
-        },
-        {
-            "timestamp": 1787709601.4234147,
-            "duration_seconds": 409,
-            "topic": "Numerical Gradient Check for ReLU Activation Function"
-        },
-        {
             "timestamp": 1787710804.5104663,
             "duration_seconds": 524,
             "topic": "Memoization vs. Dynamic Programming"
@@ -399,6 +389,11 @@
             "timestamp": 1788312575.327551,
             "duration_seconds": 5211,
             "topic": "Applying Memoization to Recursive Functions in C++"
+        },
+        {
+            "timestamp": 1788315174.981793,
+            "duration_seconds": 1937,
+            "topic": "Analyzing the role of dilation in convolutional neural networks"
         }
     ]
 }
