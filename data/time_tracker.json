@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787784776.839744,
-            "duration_seconds": 1153,
-            "topic": "Graphing a Linear Equation in Slope-Intercept Form (y = mx + b)"
-        },
-        {
-            "timestamp": 1787786185.0478532,
-            "duration_seconds": 667,
-            "topic": "Memoization with Tabulation in Dynamic Programming"
-        },
-        {
             "timestamp": 1787787720.99596,
             "duration_seconds": 941,
             "topic": "Graphing a Linear Equation in Standard Form (Ax + By = C)"
@@ -359,6 +349,11 @@
             "timestamp": 1788388884.7077842,
             "duration_seconds": 4356,
             "topic": "Optimal Substructure and Overlapping Subproblems in Recursive Solutions"
+        },
+        {
+            "timestamp": 1788391993.103677,
+            "duration_seconds": 2412,
+            "topic": "Algorithms"
         }
     ]
 }

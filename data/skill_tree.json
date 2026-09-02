@@ -202,7 +202,8 @@
                     "optimization"
                 ],
                 "unique_concepts_count": 1
-            }
+            },
+            "status": "EXHAUSTED"
         },
         "cpp.algorithms": {
             "id": "cpp.algorithms",
@@ -210,7 +211,13 @@
             "parent": "cpp",
             "children": [],
             "mastery_level": 1,
-            "evidence": {}
+            "evidence": {
+                "concepts_covered": 9,
+                "unique_concepts_list": [
+                    "uncomputed"
+                ],
+                "unique_concepts_count": 1
+            }
         },
         "ds.machine_learning": {
             "id": "ds.machine_learning",
@@ -869,7 +876,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation": {
             "id": "cpp.dynamic_programming.memoization_with_overlapping_subproblems.memoization_with_tabulation",

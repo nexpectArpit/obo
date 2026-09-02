@@ -29,10 +29,9 @@
         "cpp": {
             "active_branch": [
                 "cpp",
-                "cpp.dynamic_programming",
-                "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions"
+                "cpp.algorithms"
             ],
-            "current_node": "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions",
+            "current_node": "cpp.algorithms",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -50,7 +49,9 @@
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization.applying_memoization_to_recursive_functions_in_c++": 1788315976.195964,
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems.caching_results_with_a_hash_table_in_memoization": 1788315976.196807,
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems": 1788315976.1975012,
-                "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation": 1788384676.4118438
+                "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation": 1788384676.4118438,
+                "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions": 1788389717.23168,
+                "cpp.dynamic_programming": 1788389717.232497
             },
             "branch_status": "IN_PROGRESS"
         },
