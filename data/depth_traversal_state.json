@@ -59,9 +59,10 @@
         "dl": {
             "active_branch": [
                 "dl",
-                "dl.deriving_backpropagation_for_a_multilayer_perceptron"
+                "dl.deriving_backpropagation_for_a_multilayer_perceptron",
+                "dl.deriving_backpropagation_for_a_multilayer_perceptron.chain_rule_for_multivariable_functions"
             ],
-            "current_node": "dl.deriving_backpropagation_for_a_multilayer_perceptron",
+            "current_node": "dl.deriving_backpropagation_for_a_multilayer_perceptron.chain_rule_for_multivariable_functions",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -147,5 +148,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "arch"
+    "active_anchor": "dl"
 }

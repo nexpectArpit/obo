@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787847626.408931,
-            "duration_seconds": 1569,
-            "topic": "Dutch National Flag Algorithm"
-        },
-        {
-            "timestamp": 1787850986.2120135,
-            "duration_seconds": 1579,
-            "topic": "algorithm: Pigeon hole algorithm and its optimization"
-        },
-        {
             "timestamp": 1787868488.3725204,
             "duration_seconds": 2422,
             "topic": "Finding the x-Intercept of Linear Equations with Two Variables using the Zero y-Value Method"
@@ -329,6 +319,11 @@
             "timestamp": 1788447755.0574722,
             "duration_seconds": 4879,
             "topic": "Machine Learning and ML Models"
+        },
+        {
+            "timestamp": 1788472861.6043098,
+            "duration_seconds": 1948,
+            "topic": "Chain Rule for Multivariable Functions"
         }
     ]
 }
