@@ -1344,10 +1344,100 @@
       "prompt": "Implement a causal inference pipeline to estimate the average treatment effect (ATE) of a marketing campaign using propensity score matching (PSM) and Double Machine Learning (DML). Derive the doubly robust estimator and discuss its properties under model misspecification. Use logistic regression for propensity score estimation and a gradient-boosted tree for the outcome model. Evaluate the results on a synthetic dataset with hidden confounders and compare the bias and variance of ATE estimates against traditional regression adjustment.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Sparse PCA for Gene Expression Data with L1 Regularization",
+      "prompt": "Let's explore how to implement Sparse PCA on high-dimensional gene expression matrices, incorporating L1 regularization to enforce sparsity in the principal components.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "t-SNE with Perplexity Optimization on Large-Scale Image Embeddings",
+      "prompt": "Let's discuss optimizing perplexity parameters for t-SNE when visualizing embeddings from a 200M-image dataset, focusing on computational tricks and convergence criteria.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Autoencoder-Based Manifold Learning for 3D Point Cloud Compression",
+      "prompt": "Let's build an autoencoder architecture tailored for compressing 3D point clouds while preserving geometric structure, including loss functions that penalize reconstruction error and latent space regularization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Diffusion Maps for Anomaly Detection in Network Traffic Logs",
+      "prompt": "Let's formulate diffusion maps on large-scale network traffic data to identify anomalous patterns, detailing kernel choice, diffusion time selection, and out-of-sample extension methods.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multidimensional Scaling with Graph Laplacian Regularization for Social Network Visualization",
+      "prompt": "Let's design an MDS pipeline that incorporates graph Laplacian regularization to preserve community structure in social network embeddings, including efficient eigenvalue decomposition strategies.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Autoencoder-based Feature Extraction for High-dimensional Genomics Data",
+      "prompt": "Implement a variational autoencoder to reduce dimensionality of single-cell RNA-seq data while preserving cell-type clusters.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Sparse PCA for Real-time Anomaly Detection in Network Traffic",
+      "prompt": "Design a streaming sparse PCA algorithm that updates component weights online to detect intrusions in high-frequency packet logs.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "t-SNE Optimization with Barnes-Hut Approximation for Large-Scale Image Embedding",
+      "prompt": "Develop a GPU-accelerated Barnes-Hut t-SNE implementation that handles 10M image feature vectors and visualizes embeddings in 2D.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multidimensional Scaling (MDS) on Pairwise Distance Matrices from Heterogeneous Sensor Networks",
+      "prompt": "Create a scalable MDS solver that reconstructs 3D positions of sensors given noisy pairwise distances from a distributed IoT deployment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel PCA with Nystr\u00f6m Extension for Real-time Recommendation Systems",
+      "prompt": "Implement a Nystr\u00f6m-approximated kernel PCA to compress user-item interaction matrices, enabling fast similarity queries in a streaming recommender.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Isomap-Based Manifold Learning for High-Dimensional Genomics Data",
+      "prompt": "Let's implement Isomap to uncover low-dimensional structure in single-cell RNA-seq datasets and evaluate clustering quality.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Autoencoder-Driven Nonlinear Dimensionality Reduction for Video Compression",
+      "prompt": "Let's design a convolutional autoencoder to compress 4K video frames while preserving perceptual quality, and benchmark against traditional codecs.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Spectral Embedding on Graph-Structured Social Network Data",
+      "prompt": "Let's apply Laplacian Eigenmaps to embed users in a social network graph for community detection and recommendation tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Random Projection Techniques for Privacy-Preserving Data Sharing",
+      "prompt": "Let's explore Johnson-Lindenstrauss random projections to reduce dimensionality of sensitive health records while maintaining statistical utility.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Tensor Train Decomposition for Multi-Dimensional Sensor Fusion",
+      "prompt": "Let's implement tensor train decomposition to fuse high-dimensional LiDAR, radar, and camera data streams for autonomous navigation.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
     "Quasi-Newton Methods",
-    "Machine Learning"
+    "Dimensionality Reduction"
   ]
 }

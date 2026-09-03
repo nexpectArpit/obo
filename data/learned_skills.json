@@ -53,7 +53,7 @@
     "Combinatorics": 1,
     "Search Algorithms": 2,
     "Deep Learning": 136,
-    "Machine Learning": 26,
+    "Machine Learning": 38,
     "Neural Networks": 42,
     "Gradient Descent": 4,
     "Convolutional Neural Networks": 4,
@@ -120,7 +120,7 @@
     "Memory Consistency Models": 2,
     "Mixed Precision Training": 4,
     "Hardware-Software Co-Design": 5,
-    "Pipeline Parallelism": 2,
+    "Pipeline Parallelism": 7,
     "Tensor Parallelism": 1,
     "Flow Control": 2,
     "C++ Programming": 2,
@@ -132,7 +132,7 @@
     "Activation Functions": 9,
     "Numerical Optimization": 5,
     "Second-Order Optimization": 36,
-    "Quasi-Newton Methods": 89,
+    "Quasi-Newton Methods": 120,
     "SIMD Programming": 1,
     "Numerical Analysis": 1,
     "Statistical Error Analysis": 2,
@@ -242,5 +242,5 @@
     "Large Language Models": 2,
     "Feature Engineering": 1,
     "Clustering": 2,
-    "Dimensionality Reduction": 34
+    "Dimensionality Reduction": 46
 }
