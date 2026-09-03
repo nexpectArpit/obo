@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787868488.3725204,
-            "duration_seconds": 2422,
-            "topic": "Finding the x-Intercept of Linear Equations with Two Variables using the Zero y-Value Method"
-        },
-        {
             "timestamp": 1787870798.1195195,
             "duration_seconds": 1568,
             "topic": "Calculating ReLU Derivative for Matrix Operations"
@@ -324,6 +319,11 @@
             "timestamp": 1788472861.6043098,
             "duration_seconds": 1948,
             "topic": "Chain Rule for Multivariable Functions"
+        },
+        {
+            "timestamp": 1788475455.8789349,
+            "duration_seconds": 1893,
+            "topic": "Derivative of Composition of Functions in Multilayer Perceptron"
         }
     ]
 }

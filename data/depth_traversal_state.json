@@ -60,9 +60,9 @@
             "active_branch": [
                 "dl",
                 "dl.deriving_backpropagation_for_a_multilayer_perceptron",
-                "dl.deriving_backpropagation_for_a_multilayer_perceptron.chain_rule_for_multivariable_functions"
+                "dl.deriving_backpropagation_for_a_multilayer_perceptron.derivative_of_composition_of_functions_in_multilayer_perceptron"
             ],
-            "current_node": "dl.deriving_backpropagation_for_a_multilayer_perceptron.chain_rule_for_multivariable_functions",
+            "current_node": "dl.deriving_backpropagation_for_a_multilayer_perceptron.derivative_of_composition_of_functions_in_multilayer_perceptron",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -87,7 +87,8 @@
                 "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.understanding_conv2d_and_conv3d_operations_in_pytorch": 1788229129.7350528,
                 "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.applying_padding_and_stride_to_convolutional_layers_in_keras": 1788313404.4818487,
                 "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.analyzing_the_role_of_dilation_in_convolutional_neural_networks": 1788398648.7578225,
-                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network": 1788398648.7585707
+                "dl.implementing_the_forward_pass_in_a_convolutional_neural_network": 1788398648.7585707,
+                "dl.deriving_backpropagation_for_a_multilayer_perceptron.chain_rule_for_multivariable_functions": 1788473683.1765718
             },
             "branch_status": "IN_PROGRESS"
         },
