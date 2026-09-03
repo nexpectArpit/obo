@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787794630.637086,
-            "duration_seconds": 4947,
-            "topic": "Finding the x and y Intercepts of Linear Equations with Two Variables"
-        },
-        {
             "timestamp": 1787800702.999785,
             "duration_seconds": 5373,
             "topic": "Tabulation-based Memoization with Recursion"
@@ -349,6 +344,11 @@
             "timestamp": 1788397904.522223,
             "duration_seconds": 5243,
             "topic": "Array-based Disjoint-Set Data Structure"
+        },
+        {
+            "timestamp": 1788400598.444123,
+            "duration_seconds": 2068,
+            "topic": "Deriving backpropagation for a multilayer perceptron"
         }
     ]
 }
