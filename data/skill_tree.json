@@ -1565,7 +1565,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.data_hazard_handling_and_stalling": {
             "id": "arch.data_hazard_handling_and_stalling",
@@ -1574,9 +1574,14 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensor",
+                    "tensors"
+                ],
+                "unique_concepts_count": 2
             },
             "status": "AVAILABLE"
         },
@@ -1747,7 +1752,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "cpp.algorithms.array-based_disjoint-set_data_structure": {
             "id": "cpp.algorithms.array-based_disjoint-set_data_structure",

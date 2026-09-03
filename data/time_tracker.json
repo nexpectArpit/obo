@@ -349,6 +349,11 @@
             "timestamp": 1788400598.444123,
             "duration_seconds": 2068,
             "topic": "Deriving backpropagation for a multilayer perceptron"
+        },
+        {
+            "timestamp": 1788403098.1261668,
+            "duration_seconds": 1781,
+            "topic": "Data Hazard Handling and Stalling"
         }
     ]
 }
