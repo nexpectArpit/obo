@@ -209,7 +209,11 @@
             "id": "cpp.algorithms",
             "name": "Algorithms",
             "parent": "cpp",
-            "children": [],
+            "children": [
+                "cpp.algorithms.array-based_disjoint-set_data_structure",
+                "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation",
+                "cpp.algorithms.topological_sort_using_depth-first_search"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 9,
@@ -1738,6 +1742,49 @@
                     "tensor"
                 ],
                 "unique_concepts_count": 2
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.algorithms.array-based_disjoint-set_data_structure": {
+            "id": "cpp.algorithms.array-based_disjoint-set_data_structure",
+            "name": "Array-based Disjoint-Set Data Structure",
+            "parent": "cpp.algorithms",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 21,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "uncomputed"
+                ],
+                "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation": {
+            "id": "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation",
+            "name": "Kruskal's Minimum Spanning Tree Algorithm Implementation",
+            "parent": "cpp.algorithms",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "cpp.algorithms.topological_sort_using_depth-first_search": {
+            "id": "cpp.algorithms.topological_sort_using_depth-first_search",
+            "name": "Topological Sort using Depth-First Search",
+            "parent": "cpp.algorithms",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
             },
             "status": "AVAILABLE"
         }

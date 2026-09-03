@@ -29,9 +29,10 @@
         "cpp": {
             "active_branch": [
                 "cpp",
-                "cpp.algorithms"
+                "cpp.algorithms",
+                "cpp.algorithms.array-based_disjoint-set_data_structure"
             ],
-            "current_node": "cpp.algorithms",
+            "current_node": "cpp.algorithms.array-based_disjoint-set_data_structure",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
