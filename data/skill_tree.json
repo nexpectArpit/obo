@@ -1839,7 +1839,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.deriving_backpropagation_for_a_multilayer_perceptron.computing_partial_derivatives_of_the_loss_function_with_respect_to_weights_and_biases": {
             "id": "dl.deriving_backpropagation_for_a_multilayer_perceptron.computing_partial_derivatives_of_the_loss_function_with_respect_to_weights_and_biases",
@@ -1848,9 +1848,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         }

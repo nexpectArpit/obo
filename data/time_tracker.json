@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787870798.1195195,
-            "duration_seconds": 1568,
-            "topic": "Calculating ReLU Derivative for Matrix Operations"
-        },
-        {
-            "timestamp": 1787873399.0215833,
-            "duration_seconds": 1983,
-            "topic": "Graphical Analysis of Linear Equations to Locate the x and y Intercepts"
-        },
-        {
             "timestamp": 1787875937.052927,
             "duration_seconds": 1898,
             "topic": "Memoization with Tabulation for Combinatorial Problems"
@@ -324,6 +314,11 @@
             "timestamp": 1788475455.8789349,
             "duration_seconds": 1893,
             "topic": "Derivative of Composition of Functions in Multilayer Perceptron"
+        },
+        {
+            "timestamp": 1788478323.0311565,
+            "duration_seconds": 2222,
+            "topic": "Computing Partial Derivatives of the Loss Function with Respect to Weights and Biases"
         }
     ]
 }
