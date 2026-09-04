@@ -1605,22 +1605,22 @@
             "children": [],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 27,
+                "concepts_covered": 57,
                 "successful_assessments": 8,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "stalls.backup.education+1",
-                    "tensors",
+                    "thread",
+                    "optimizations",
+                    "memory",
+                    "tensor",
                     "multithreaded",
+                    "stalls.backup.education+1",
                     "optimize",
                     "threads",
-                    "memory",
-                    "optimizations",
                     "write-back",
                     "algorithms",
-                    "thread",
-                    "multi-threaded",
-                    "tensor"
+                    "tensors",
+                    "multi-threaded"
                 ],
                 "unique_concepts_count": 12
             },

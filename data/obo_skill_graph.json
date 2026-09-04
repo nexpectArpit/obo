@@ -7,8 +7,8 @@
       "nodes": {
         "Cache_Hierarchy": {
           "topic": "Cache Hierarchies and Line Allocation Mechanics",
-          "level": 3,
-          "target_level": 4,
+          "level": 7,
+          "target_level": 8,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [],
@@ -33,8 +33,8 @@
         },
         "Cache_Coherence": {
           "topic": "Directory-Based MESI and MOESI Cache Coherence Protocols",
-          "level": 7,
-          "target_level": 8,
+          "level": 10,
+          "target_level": 11,
           "status": "mastered",
           "attempts": 0,
           "prerequisites": [
