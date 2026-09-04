@@ -644,10 +644,40 @@
       "prompt": "Let's design a real-time video compression pipeline that performs DCT and motion estimation directly in MRAM arrays, optimizing for low-latency and power.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Verifying the MOSI Protocol for Coherence in Cache-Based Multicore Architectures",
+      "prompt": "Compare and contrast the MOSI protocol with the MESI protocol in the context of a 4-core CPU with 2MB L1 caches and 16MB L2 caches, assuming a 64-bit x86 architecture.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing the Impact of Cache Hierarchy on False Sharing in a Parallelized Radix Sort Algorithm",
+      "prompt": "Implement a Radix Sort algorithm for sorting 1 billion integers using 16 threads on a shared-memory system with 32MB L1 caches, 256MB L2 caches, and 4GB L3 caches. Investigate the effects of false sharing on cache coherence and parallel performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deriving the Cache Coherence Protocol for a Distributed Shared Memory (DSM) System with N-ary Trees",
+      "prompt": "Design a DSM system with a tree-based topology, where each node has a 4KB L1 cache, 32KB L2 cache, and 256KB L3 cache. Develop a cache coherence protocol that ensures consistency across the tree, considering both write-through and write-back policies.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Modeling and Optimizing Cache Coherence in a Hierarchical Memory System with Page Tables",
+      "prompt": "Develop a mathematical model to analyze the cache coherence in a hierarchical memory system with page tables, considering the effects of page size, cache size, and memory hierarchy on coherence and performance. Use the model to optimize cache coherence in a real-world system with 1MB page tables and 64KB cache lines.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the MESI Protocol in a 3D Stacked Memory Architecture with Multiple Cores",
+      "prompt": "Design a 3D stacked memory architecture with 8 cores, each with a 32KB L1 cache, 256KB L2 cache, and 4MB L3 cache. Implement the MESI protocol to ensure cache coherence across the stacked memory, considering the effects of thermal throttling and power consumption on coherence and performance.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
     "Memory Systems",
-    "Computer Architecture"
+    "Cache Coherence"
   ]
 }

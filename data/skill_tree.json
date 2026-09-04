@@ -1605,24 +1605,29 @@
             "children": [],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 57,
+                "concepts_covered": 105,
                 "successful_assessments": 8,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "thread",
-                    "optimizations",
-                    "memory",
-                    "tensor",
-                    "multithreaded",
-                    "stalls.backup.education+1",
-                    "optimize",
                     "threads",
-                    "write-back",
+                    "thread",
+                    "tensor",
                     "algorithms",
+                    "optimizing",
+                    "optimize",
+                    "write-back",
+                    "optimization",
+                    "stalls.backup.education+1",
+                    "memory",
+                    "multi-threaded",
+                    "optimizations",
+                    "backing",
                     "tensors",
-                    "multi-threaded"
+                    "optimistic",
+                    "multithreaded",
+                    "fallback"
                 ],
-                "unique_concepts_count": 12
+                "unique_concepts_count": 17
             },
             "status": "MASTERED"
         },
