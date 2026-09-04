@@ -1785,17 +1785,29 @@
             "name": "Array-based Disjoint-Set Data Structure",
             "parent": "cpp.algorithms",
             "children": [],
-            "mastery_level": 1,
+            "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 21,
-                "successful_assessments": 0,
+                "concepts_covered": 136,
+                "successful_assessments": 114,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "uncomputed"
+                    "uncomputed",
+                    "computed",
+                    "memory",
+                    "algorithm",
+                    "optimization",
+                    "optimal",
+                    "recomputation",
+                    "algorithms",
+                    "algorithm.geeksforgeeks.org",
+                    "recomputed",
+                    "recomputes",
+                    "space-optimized",
+                    "optimize"
                 ],
-                "unique_concepts_count": 1
+                "unique_concepts_count": 13
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         },
         "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation": {
             "id": "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation",

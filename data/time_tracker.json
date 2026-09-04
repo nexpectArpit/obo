@@ -1,16 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787902567.6731956,
-            "duration_seconds": 4859,
-            "topic": "Dutch National Flag Algorithm"
-        },
-        {
-            "timestamp": 1787903334.1993144,
-            "duration_seconds": 588,
-            "topic": "pytorch for machine learning and deep learning from scratch"
-        },
-        {
             "timestamp": 1787930111.385851,
             "duration_seconds": 538,
             "topic": "Supervised Learning and Evaluation"
@@ -319,6 +309,11 @@
             "timestamp": 1788490801.189201,
             "duration_seconds": 1933,
             "topic": "Branch Prediction Techniques"
+        },
+        {
+            "timestamp": 1788523412.8097444,
+            "duration_seconds": 3469,
+            "topic": "algorithms"
         }
     ]
 }
