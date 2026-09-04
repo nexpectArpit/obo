@@ -7,11 +7,6 @@
   },
   "nvidia": {},
   "mistral": {},
-  "groq_43b60c3c": {
-    "blocked_until": 1788547932.656036,
-    "blocked_at": "2026-09-04 10:52:12",
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjck1t4e9wvbt3f6n8xv0yh` service tier `on_demand` on tokens per day (TPD): Limit 2000"
-  },
   "mistral_6b8a1059": {
     "blocked_until": 1788550463.0162413,
     "blocked_at": "2026-09-04 11:34:23",

@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787954377.8169403,
-            "duration_seconds": 1822,
-            "topic": "Graphing Linear Equations in Slope-Intercept Form"
-        },
-        {
             "timestamp": 1787956646.090955,
             "duration_seconds": 1684,
             "topic": "Solving Systems of Linear Equations by Substitution"
@@ -314,6 +309,11 @@
             "timestamp": 1788558003.119536,
             "duration_seconds": 144,
             "topic": "Kruskal's Minimum Spanning Tree Algorithm Implementation"
+        },
+        {
+            "timestamp": 1788560946.291813,
+            "duration_seconds": 376,
+            "topic": "memory systems"
         }
     ]
 }
