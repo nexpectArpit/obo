@@ -84,6 +84,25 @@ export default {
       }
     }
 
+    if (requestUrl.pathname === "/api/toggle-scheduler" && request.method === "POST") {
+      try {
+        const body = await request.json().catch(() => ({}));
+        const newState = await updateSchedulerState(pat, repo, (state) => {
+          if (typeof body.enabled === "boolean") {
+            state.enabled = body.enabled;
+          } else {
+            state.enabled = !state.enabled;
+          }
+          return state;
+        });
+        return new Response(JSON.stringify({ success: true, enabled: newState ? newState.enabled : false, state: newState }), {
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ success: false, error: err.message }), { status: 500 });
+      }
+    }
+
     if (requestUrl.searchParams.has("test")) {
       ctx.waitUntil(handleScheduled(env));
       return new Response("Test cron trigger launched successfully!", { status: 200 });
@@ -523,6 +542,20 @@ function renderDashboardHtml() {
       <div id="statusDetails" class="status-box">Fetching live telemetry from GitHub Actions...</div>
     </div>
 
+    <!-- Auto-Loop Scheduler Card -->
+    <div class="card">
+      <div class="card-title">
+        <span>⏰ Auto-Loop Cron Scheduler</span>
+        <span id="schedulerBadge" class="badge badge-idle">CHECKING...</span>
+      </div>
+      <div id="schedulerDetails" class="status-box" style="margin-bottom: 12px;">Fetching scheduler state...</div>
+      <div class="btn-group">
+        <button id="toggleSchedulerBtn" class="btn-primary" onclick="toggleScheduler()">
+          ⏰ Toggle Active / Inactive
+        </button>
+      </div>
+    </div>
+
     <!-- Instant One-Click Trigger -->
     <div class="card">
       <div class="card-title"><span>⚡ Instant Run Now (0.5s Trigger)</span></div>
@@ -567,9 +600,38 @@ function renderDashboardHtml() {
                             '• <b>Status:</b> ' + data.latestRun.status + ' (' + (data.latestRun.conclusion || 'running') + ')<br>' +
                             '• <b>Last Updated:</b> ' + new Date(data.latestRun.updated_at).toLocaleTimeString();
         }
+
+        const schedBadge = document.getElementById('schedulerBadge');
+        const schedDetails = document.getElementById('schedulerDetails');
+        if (data.state) {
+          const isEnabled = data.state.enabled !== false;
+          schedBadge.className = 'badge ' + (isEnabled ? 'badge-running' : 'badge-idle');
+          schedBadge.innerText = isEnabled ? 'ACTIVE' : 'INACTIVE';
+          schedDetails.innerHTML = '• <b>Status:</b> ' + (isEnabled ? 'ACTIVE (Cron will auto-run sessions)' : 'INACTIVE (Automated cron runs STOPPED)') + '<br>' +
+                                  '• <b>Window:</b> ' + (data.state.start_time_ist || '03:00') + ' - ' + (data.state.end_time_ist || '08:00') + ' IST<br>' +
+                                  '• <b>Track Mode:</b> ' + (data.state.track || 'auto');
+        }
       } catch (err) {
         console.error(err);
       }
+    }
+
+    async function toggleScheduler() {
+      const btn = document.getElementById('toggleSchedulerBtn');
+      btn.innerText = '⏳ Updating...';
+      try {
+        const res = await fetch('/api/toggle-scheduler', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+          alert('⏰ Auto-Loop Scheduler is now ' + (data.enabled ? 'ACTIVE' : 'INACTIVE'));
+          fetchStatus();
+        } else {
+          alert('❌ Error: ' + (data.error || 'Failed to toggle'));
+        }
+      } catch (e) {
+        alert('Network error');
+      }
+      btn.innerText = '⏰ Toggle Active / Inactive';
     }
 
     async function triggerRun() {

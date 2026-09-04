@@ -89,3 +89,52 @@ def format_elapsed(started_at_str, ended_at_str=None):
         return f"{mins}m {secs}s"
     except Exception:
         return "unknown"
+
+def update_scheduler_state_on_github(update_fn):
+    """
+    Fetch data/scheduler_state.json from GitHub, apply update_fn(state), and PUT back to GitHub.
+    Returns the updated state dict, or None on failure.
+    """
+    import base64
+    import time
+    url = f"{GH_API}/contents/data/scheduler_state.json"
+    headers = gh_headers()
+    
+    for attempt in range(3):
+        try:
+            r = requests.get(url, headers=headers)
+            if r.status_code != 200:
+                print(f"[ERROR] Failed to fetch scheduler_state.json from GitHub: {r.status_code}")
+                return None
+            
+            file_data = r.json()
+            sha = file_data["sha"]
+            content_b64 = file_data.get("content", "")
+            decoded = base64.b64decode(content_b64).decode("utf-8")
+            state = json.loads(decoded)
+            
+            updated_state = update_fn(state)
+            
+            new_content = json.dumps(updated_state, indent=2)
+            new_b64 = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+            
+            payload = {
+                "message": "chore(scheduler): update scheduler state",
+                "content": new_b64,
+                "sha": sha
+            }
+            
+            put_r = requests.put(url, headers=headers, json=payload)
+            if put_r.status_code in (200, 201):
+                return updated_state
+            elif put_r.status_code == 409:
+                time.sleep(1)
+                continue
+            else:
+                print(f"[ERROR] Failed to update scheduler_state.json on GitHub: {put_r.status_code} - {put_r.text}")
+                return None
+        except Exception as e:
+            print(f"[ERROR] Error updating scheduler_state.json on GitHub: {e}")
+            return None
+    return None
+

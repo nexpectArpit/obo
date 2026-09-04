@@ -95,13 +95,19 @@ TRACK_SKILL_MAP = {
 
 def main_menu_keyboard():
     enabled = False
-    state_path = Path(__file__).resolve().parent.parent / "data" / "scheduler_state.json"
-    if state_path.exists():
-        try:
-            state = json.loads(state_path.read_text())
-            enabled = state.get("enabled", False)
-        except Exception:
-            pass
+    try:
+        from bot.github_api import get_file_json
+        remote_state = get_file_json("data/scheduler_state.json")
+        if remote_state is not None:
+            enabled = remote_state.get("enabled", False)
+        else:
+            state_path = Path(__file__).resolve().parent.parent / "data" / "scheduler_state.json"
+            if state_path.exists():
+                state = json.loads(state_path.read_text())
+                enabled = state.get("enabled", False)
+    except Exception:
+        pass
+
     loop_text = "⏰ Auto-Loop: ACTIVE" if enabled else "⏰ Auto-Loop: INACTIVE"
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🚀 Start Random", callback_data="start_random"),
@@ -313,24 +319,39 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text(msg, parse_mode="Markdown", reply_markup=main_menu_keyboard())
 
     elif action == "toggle_auto_loop":
+        from bot.github_api import update_scheduler_state_on_github
+        
+        def toggle_fn(state):
+            state["enabled"] = not state.get("enabled", False)
+            return state
+
+        updated_state = update_scheduler_state_on_github(toggle_fn)
+        
+        # Also update local file state
         state_path = Path(__file__).resolve().parent.parent / "data" / "scheduler_state.json"
-        enabled = False
-        state_data = {}
-        if state_path.exists():
+        if updated_state:
+            new_enabled = updated_state.get("enabled", False)
             try:
-                state_data = json.loads(state_path.read_text())
-                enabled = state_data.get("enabled", False)
+                state_path.write_text(json.dumps(updated_state, indent=2))
             except Exception:
                 pass
-        
-        new_enabled = not enabled
-        state_data["enabled"] = new_enabled
-        
-        try:
-            state_path.write_text(json.dumps(state_data, indent=4))
-        except Exception:
-            pass
-            
+        else:
+            # Fallback to local file update if GitHub update fails
+            enabled = False
+            state_data = {}
+            if state_path.exists():
+                try:
+                    state_data = json.loads(state_path.read_text())
+                    enabled = state_data.get("enabled", False)
+                except Exception:
+                    pass
+            new_enabled = not enabled
+            state_data["enabled"] = new_enabled
+            try:
+                state_path.write_text(json.dumps(state_data, indent=2))
+            except Exception:
+                pass
+
         status_msg = "⏰ *Auto-Loop Scheduler activated!*" if new_enabled else "🛑 *Auto-Loop Scheduler deactivated.*"
         await query.message.reply_text(
             status_msg,

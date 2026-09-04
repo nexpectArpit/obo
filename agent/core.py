@@ -6,10 +6,11 @@ from pathlib import Path
 from agent.browser import OboeBrowser
 from agent.llm import OboeLLM
 from curriculum import SkillDAGEngine
-from agent.time_tracker import update_time_tracker
 from agent.topic_selector import select_topic, remove_topic_from_pool
+from agent.stats_tracker import OboeStatsTracker
+from agent.session_state import OboeStateManager
+from agent.signals import register_shutdown_signals
 import config
-
 
 OBOE_COMPLETION_SIGNALS = [
     "you've completed", "curriculum is complete", "journey is complete",
@@ -24,6 +25,7 @@ class OboeAgent:
         self.llm = OboeLLM()
         self.max_duration = max_duration # in minutes
         self.dag_engine = SkillDAGEngine()
+        self.stats = OboeStatsTracker()
 
         # Load the scheduler's min_duration_mins so we never allow a wrap-up
         # transition before that floor has elapsed (prevents <10-min early exits).
@@ -57,12 +59,8 @@ class OboeAgent:
         self.steering_controller = None
 
         # session_skills: ALL skills seen on-screen this session (regardless of level-up or classification)
-        # This is the source of truth for "what skills did Oboe show during this session"
-        # Separate from achieved_skills (which is curriculum-filtered level-ups only)
         self.session_skills = {}
 
-
-        
         # Load learned skills history
         self.learned_skills_path = Path(__file__).resolve().parent.parent / "data" / "learned_skills.json"
         self.learned_skills = {}
@@ -73,84 +71,70 @@ class OboeAgent:
                 print(f"[WARNING] Failed to load learned_skills.json: {e}")
                 
         self.achieved_skills = {}
-        self.total_mcqs_count = 0
-        self.wrong_mcqs_count = 0
-        self.last_action_was_mcq = False
-        self.last_action_was_q_answer = False  # initialize alongside last_action_was_mcq
+
+    # Backwards-compatible property proxies to delegation target (self.stats)
+    @property
+    def total_mcqs_count(self):
+        return self.stats.total_mcqs_count
+    @total_mcqs_count.setter
+    def total_mcqs_count(self, val):
+        self.stats.total_mcqs_count = val
+
+    @property
+    def wrong_mcqs_count(self):
+        return self.stats.wrong_mcqs_count
+    @wrong_mcqs_count.setter
+    def wrong_mcqs_count(self, val):
+        self.stats.wrong_mcqs_count = val
+
+    @property
+    def last_action_was_mcq(self):
+        return self.stats.last_action_was_mcq
+    @last_action_was_mcq.setter
+    def last_action_was_mcq(self, val):
+        self.stats.last_action_was_mcq = val
+
+    @property
+    def last_action_was_q_answer(self):
+        return self.stats.last_action_was_q_answer
+    @last_action_was_q_answer.setter
+    def last_action_was_q_answer(self, val):
+        self.stats.last_action_was_q_answer = val
+
+    @property
+    def target_skill_leveled_up_this_turn(self):
+        return self.stats.target_skill_leveled_up_this_turn
+    @target_skill_leveled_up_this_turn.setter
+    def target_skill_leveled_up_this_turn(self, val):
+        self.stats.target_skill_leveled_up_this_turn = val
+
+    @property
+    def consecutive_mcqs_without_target_growth(self):
+        return self.stats.consecutive_mcqs_without_target_growth
+    @consecutive_mcqs_without_target_growth.setter
+    def consecutive_mcqs_without_target_growth(self, val):
+        self.stats.consecutive_mcqs_without_target_growth = val
+
+    @property
+    def mcq_drift_detected(self):
+        return self.stats.mcq_drift_detected
+    @mcq_drift_detected.setter
+    def mcq_drift_detected(self, val):
+        self.stats.mcq_drift_detected = val
 
     def save_summary(self, status="COMPLETED", start_time=None):
-        """Save state and write agent_state.json summary for Telegram notifications."""
+        """Save state and write agent_state.json summary via State Manager."""
+        state_path = Path(__file__).resolve().parent.parent / "data" / "agent_state.json"
+        pid_path = Path(__file__).resolve().parent.parent / "agent.pid"
         if start_time is None:
             start_time = getattr(self, "active_chat_start_time", None) or getattr(self, "start_time", time.time())
-        
-        if getattr(self, "active_chat_start_time", None) is None and status == "CANCELLED":
-            elapsed_time = 0
-        else:
-            elapsed_time = max(0, int(time.time() - start_time))
-            
-        rolling_24h_sec, today_ist_sec = update_time_tracker(elapsed_time, self.topic)
-        today_h = int(today_ist_sec // 3600)
-        today_m = int((today_ist_sec % 3600) // 60)
+        OboeStateManager.finalize_session(self, start_time, state_path, pid_path, status=status)
 
-        # Save learned skills to disk — always, not just when achieved_skills is populated
-        # (skills can be updated in-memory without new achievements, and on SIGTERM
-        # _finalize_session is not called, so this is the only save path)
-        try:
-            self.learned_skills_path.write_text(json.dumps(self.learned_skills, indent=4))
-            print(f"[INFO] Saved skill levels to {self.learned_skills_path.name}")
-        except Exception as e:
-            print(f"[WARNING] Failed to save learned_skills.json: {e}")
+    def _save_current_state(self, status="RUNNING"):
+        OboeStateManager.save_current_state(self, status=status)
 
-        # Update Parent Anchor level metadata for Depth Mode
-        if config.SKILL_DEPTH_MODE:
-            try:
-                from curriculum.mastery_evidence import MasteryEvidenceManager, TREE_FILE
-                if TREE_FILE.exists():
-                    tree_data = json.loads(TREE_FILE.read_text())
-                    anchor_id = self.pin or "maths"
-                    parent_lv = MasteryEvidenceManager.get_parent_mastery_level(anchor_id)
-                    if anchor_id in tree_data.get("anchors", {}):
-                        tree_data["anchors"][anchor_id]["mastery_level"] = parent_lv
-                        TREE_FILE.write_text(json.dumps(tree_data, indent=4))
-                        print(f"[EVIDENCE] Re-aggregated Parent Anchor Level for '{anchor_id}': LV {parent_lv}")
-            except Exception as ee:
-                print(f"[EVIDENCE] Error saving parent level: {ee}")
-
-        # Write final session summary to agent_state.json for Telegram notification
-        state_path = Path(__file__).resolve().parent.parent / "data" / "agent_state.json"
-        try:
-            summary = {
-                "status": status,
-                "topic": self.topic or "Unknown",
-                "elapsed_seconds": int(elapsed_time),
-                "mcqs_total": self.total_mcqs_count,
-                "mcqs_correct": max(0, self.total_mcqs_count - self.wrong_mcqs_count),
-                "mcqs_wrong": self.wrong_mcqs_count,
-                "today_ist_hours": today_h,
-                "today_ist_minutes": today_m,
-                "total_today_ist_seconds": int(today_ist_sec),
-                "achieved_skills": self.achieved_skills or {},
-                "session_skills": self.session_skills or {},
-                "side_skills": self.side_skills or {},
-                "telemetry": getattr(self.llm, "telemetry", {}),
-                "last_session": {
-                    "topic": self.topic or "Unknown",
-                    "elapsed_seconds": int(elapsed_time),
-                    "mcqs_total": self.total_mcqs_count,
-                    "mcqs_correct": max(0, self.total_mcqs_count - self.wrong_mcqs_count),
-                    "mcqs_wrong": self.wrong_mcqs_count,
-                    "today_ist_hours": today_h,
-                    "today_ist_minutes": today_m,
-                    "total_today_ist_seconds": int(today_ist_sec),
-                    "achieved_skills": self.achieved_skills or {},
-                    "session_skills": self.session_skills or {},
-                    "side_skills": self.side_skills or {},
-                    "telemetry": getattr(self.llm, "telemetry", {})
-                }
-            }
-            state_path.write_text(json.dumps(summary, indent=4))
-        except Exception as se:
-            print(f"[WARNING] Failed to write state file: {se}")
+    def _finalize_session(self, start_time, state_path, pid_path):
+        OboeStateManager.finalize_session(self, start_time, state_path, pid_path, status=getattr(self, "_final_status", "COMPLETED"))
 
     def _setup_pinned_track_session(self, state_data, state_path):
         """Helper to resolve next topic for pinned track and navigate to its sidebar chat."""
@@ -377,7 +361,8 @@ class OboeAgent:
                 assistant_msgs = [m for m in messages if m["role"] == "assistant"]
                 if assistant_msgs:
                     oboe_reply = assistant_msgs[-1]["text"].lower()
-                    wrong_indicators = ["actually", "incorrect", "wrong", "snag", "correct answer is", "close, but", "consequence of", "different", "not quite"]
+                    # Refined indicators to avoid false positives (e.g. Oboe using "different" or "consequence of" contextually)
+                    wrong_indicators = ["actually", "incorrect", "wrong", "snag", "correct answer is", "close, but", "not quite"]
                     correct_indicators = ["spot on", "correct", "perfect", "flawless", "exactly", "well done", "right", "great job", "accurate", "precisely"]
 
                     has_correct = any(ind in oboe_reply for ind in correct_indicators)
@@ -391,6 +376,18 @@ class OboeAgent:
                         self.wrong_mcqs_count += 1
                         print(f"\n>>> [STATS Update] Question Answer: INCORRECT <<< (Total: {self.total_mcqs_count}, Wrong: {self.wrong_mcqs_count})\n")
                     # else: ambiguous response — don't count either way
+
+            # Handle consecutive MCQ check to detect drift when no target skill grew over 2 consecutive MCQ turns
+            if was_mcq:
+                if getattr(self, "target_skill_leveled_up_this_turn", False):
+                    self.consecutive_mcqs_without_target_growth = 0
+                else:
+                    self.consecutive_mcqs_without_target_growth += 1
+                    print(f"[DRIFT MONITOR] Consecutive MCQs without target growth: {self.consecutive_mcqs_without_target_growth}")
+                    if self.consecutive_mcqs_without_target_growth >= 2:
+                        print(f"[DRIFT MONITOR] Threshold reached ({self.consecutive_mcqs_without_target_growth}>=2). Flagging drift redirect.")
+                        self.mcq_drift_detected = True
+                self.target_skill_leveled_up_this_turn = False
 
             # Configured human reading & rate-limit pacing delay (7-20 seconds)
             if messages and messages[-1]["role"] == "assistant":
@@ -466,7 +463,9 @@ class OboeAgent:
                             # Reactive MCQ Drift Check: If this is a non-targeted skill that leveled up, flag it!
                             targets = self.active_track_target_skills or []
                             is_target = any(t.lower() in skill.lower() or skill.lower() in t.lower() for t in targets)
-                            if not is_target and targets:
+                            if is_target:
+                                self.target_skill_leveled_up_this_turn = True
+                            elif targets:
                                 print(f"[DRIFT DETECTED] Gained level-up in non-target skill: '{skill}' -> LV {new_lv} (Target: {targets})")
                                 self.mcq_drift_detected = True
                         elif cls == "SIDE":
@@ -493,7 +492,7 @@ class OboeAgent:
                     from curriculum.depth_first_resolver import STATE_FILE
                     if STATE_FILE.exists():
                         traversal_state = json.loads(STATE_FILE.read_text())
-                        active_track = self.pin or "maths"
+                        active_track = self.active_track_name or self.pin or "maths"
                         if "anchors" in traversal_state and active_track in traversal_state["anchors"]:
                             active_node = traversal_state["anchors"][active_track].get("current_node")
                         else:
@@ -597,6 +596,26 @@ class OboeAgent:
                 if rejected:
                     print(f"[CURRICULUM GUARD] Rejected {len(rejected)} off-track option(s): {rejected}")
                 
+                # Trigger MCQ override redirect if drift is detected and the page accepts free text input
+                if getattr(self, "mcq_drift_detected", False) and self._page_accepts_free_text():
+                    self.mcq_drift_detected = False  # Reset flag
+                    steer_topic = self.topic or (self.active_track_target_skills[0] if self.active_track_target_skills else "Kernel Modules")
+                    print(f"[CURRICULUM GUARD] MCQ Drift override triggered. Redirecting to target skill: '{steer_topic}'...")
+                    decision = self.llm.decide_action(
+                        "free_text",  # Force LLM to formulate a redirect prompt
+                        messages,
+                        [],
+                        self.learned_skills,
+                        target_skill=steer_topic,
+                        target_skills=self.active_track_target_skills,
+                        force_steering="redirect"
+                    )
+                    text = decision.get("text")
+                    if text:
+                        self.browser.type_and_submit(text)
+                        self.last_action_was_q_answer = True
+                        continue
+
                 # Double enforcement: if no valid choices, trigger redirection instead of LLM select
                 if not valid_choices:
                     if self._page_accepts_free_text():
@@ -908,20 +927,7 @@ class OboeAgent:
             except Exception as e:
                 print(f"[INFO] Final skill observation status: {e}")
 
-        try:
-            self.browser.close()
-        except Exception as close_err:
-            print(f"[INFO] Browser close status: {close_err}")
-        except KeyboardInterrupt:
-            print("\n[INFO] Browser shutdown interrupted.")
-            raise  # re-raise so OS gets a clean shutdown signal
-            
-        # Clean up PID
-        if pid_path.exists():
-            try: pid_path.unlink()
-            except Exception: pass
-            
-        # Update state file
+        # 1. Update state file immediately (must run first so cancelled runs save their stats before browser close causes SIGKILL)
         state_data = {
             "status": "STOPPED",
             "topic": None,
@@ -938,8 +944,22 @@ class OboeAgent:
         }
         try:
             state_path.write_text(json.dumps(state_data, indent=4))
-        except Exception:
-            pass
+        except Exception as state_err:
+            print(f"[WARNING] Failed to write final agent_state.json: {state_err}")
+
+        # 2. Clean up PID file
+        if pid_path.exists():
+            try: pid_path.unlink()
+            except Exception: pass
+
+        # 3. Close browser last (this is slow and can be interrupted by SIGKILL)
+        try:
+            self.browser.close()
+        except Exception as close_err:
+            print(f"[INFO] Browser close status: {close_err}")
+        except KeyboardInterrupt:
+            print("\n[INFO] Browser shutdown interrupted.")
+            raise  # re-raise so OS gets a clean shutdown signal
 
         # Save updated skill levels
         try:
@@ -985,29 +1005,12 @@ class OboeAgent:
 
     def run(self):
         """Run the main observe-reason-act loop."""
-        import signal, sys
         print("Starting obo agent...")
         start_time = time.time()
         self.start_time = start_time
         self._final_status = "COMPLETED"
-
-        def handle_signal(sig, frame):
-            print(f"\n[INFO] Received signal {sig}. Interrupted/Cancelled. Saving session state...")
-            self._final_status = "CANCELLED"
-            # Do NOT call save_summary here — the finally block calls _finalize_session
-            # which calls save_summary exactly once. Calling it here would double-count
-            # the session's elapsed time in time_tracker.json.
-            try:
-                self.browser.close()
-            except Exception:
-                pass
-            sys.exit(0)
-
-        try:
-            signal.signal(signal.SIGTERM, handle_signal)
-            signal.signal(signal.SIGINT, handle_signal)
-        except Exception:
-            pass
+        # Register standard POSIX signals for clean abort state-saving
+        register_shutdown_signals(self)
         
         # Write PID file
         pid_path = Path(__file__).resolve().parent.parent / "agent.pid"

@@ -170,7 +170,7 @@ export async function updateSchedulerState(pat, repo, updateFn) {
         },
         body: JSON.stringify({
           message: "chore(scheduler): update scheduler state",
-          content: btoa(JSON.stringify(updatedState, null, 2)),
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(updatedState, null, 2)))),
           sha: sha
         })
       });

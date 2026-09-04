@@ -299,7 +299,8 @@ class OboeBrowser:
         self.dismiss_overlays()
         if not text:
             text = "I'm interested to learn more about this."
-        text_str = str(text)
+        # Programmatic em-dash constraint enforcement: replace em-dashes, en-dashes, and double hyphens with natural commas/spaces
+        text_str = str(text).replace("—", ", ").replace("–", ", ").replace("--", ", ")
 
         # Human-like thinking delay (2–5s — reduced from 3–9s to cut per-turn latency)
         delay = random.uniform(2.0, 5.0)

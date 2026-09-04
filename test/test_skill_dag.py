@@ -26,6 +26,8 @@ class TestSkillDAGEngine(unittest.TestCase):
         self.test_dir = tempfile.mkdtemp()
         self.graph_path = Path(self.test_dir) / "test_graph.json"
         self.learned_skills_path = Path(self.test_dir) / "test_learned_skills.json"
+        # Pre-seed with empty dictionary to avoid default state fallback
+        self.learned_skills_path.write_text("{}")
 
         # Copy original graph schema to temp file
         original_graph_path = Path(__file__).resolve().parent.parent / "data" / "obo_skill_graph.json"
@@ -42,6 +44,14 @@ class TestSkillDAGEngine(unittest.TestCase):
 
     def test_01_prerequisite_edge_enforcement(self):
         print("\n--- [TEST 1] Prerequisite Edge Enforcement ---")
+        # Programmatically reset the test nodes to a clean default state to make test hermetic
+        self.engine.graph["pillars"]["Computer_Architecture"]["nodes"]["Cache_Hierarchy"]["status"] = "available"
+        self.engine.graph["pillars"]["Computer_Architecture"]["nodes"]["Cache_Hierarchy"]["level"] = 0
+        self.engine.graph["pillars"]["Computer_Architecture"]["nodes"]["Cache_Hierarchy"]["target_level"] = 3
+        self.engine.graph["pillars"]["Computer_Architecture"]["nodes"]["Cache_Coherence"]["status"] = "blocked"
+        self.engine.graph["pillars"]["Computer_Architecture"]["nodes"]["Cache_Coherence"]["level"] = 0
+        self.engine.update_prerequisite_statuses()
+
         nodes = self.engine.graph["pillars"]["Computer_Architecture"]["nodes"]
 
         # Cache_Hierarchy has 0 prereqs -> should be in_progress/available

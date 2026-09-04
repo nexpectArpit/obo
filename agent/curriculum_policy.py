@@ -129,7 +129,7 @@ def classify_choice(track_name: str, target_skill: str, choice_text: str, dag_en
                 topics = track_data.get("topics", [])
                 
                 # If active index is known, check proximity
-                if active_track_topic_index is not None:
+                if active_track_topic_index is not None and active_track_topic_index < len(topics):
                     # Direct match to active topic
                     active_topic = topics[active_track_topic_index]
                     if active_topic["name"].lower() in text:

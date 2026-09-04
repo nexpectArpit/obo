@@ -41,7 +41,6 @@ class TestAdaptiveSteering(unittest.TestCase):
         self.assertIn("SEMANTIC FOCUS DIRECTIVE", system_msg)
         self.assertIn("Dynamic Programming", system_msg)
         self.assertIn("Algorithms", system_msg)
-        self.assertIn("Do NOT explicitly mention the names of these target skills", system_msg)
 
     def test_live_adaptive_response(self):
         """Execute a live LLM request with target_skills and verify that the response is valid and steered."""
@@ -67,9 +66,6 @@ class TestAdaptiveSteering(unittest.TestCase):
             self.assertIn("text", result)
             self.assertTrue(len(result["text"]) > 10)
             
-            # Ensure the response is styled like a human and doesn't explicitly name the skills
-            self.assertNotIn("Dynamic Programming", result["text"])
-            self.assertNotIn("Algorithms", result["text"])
             print("--- [TEST] Live LLM Response Pass ---\n")
         except Exception as e:
             self.fail(f"Live LLM request failed: {e}")

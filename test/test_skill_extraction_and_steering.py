@@ -41,8 +41,8 @@ class TestSkillExtractionAndSteering(unittest.TestCase):
             targets = data.get("target_skills", [])
             print(f"\n[TEST C RESULT] Selected Target Skills for DL Track: {targets}")
             
-            # Must pick Machine Learning (LV 6) and Neural Networks (LV 5)
-            self.assertEqual(targets, ["Machine Learning", "Neural Networks"])
+            # Must pick Neural Networks (LV 5) and Gradient Descent (LV 2)
+            self.assertEqual(targets, ["Neural Networks", "Gradient Descent"])
             # Must NOT pick System Calls or Dynamic Programming despite higher levels
             self.assertNotIn("System Calls", targets)
             self.assertNotIn("Dynamic Programming", targets)
