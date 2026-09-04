@@ -1593,7 +1593,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.branch_prediction_techniques": {
             "id": "arch.branch_prediction_techniques",
@@ -1602,9 +1602,14 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensor",
+                    "tensors"
+                ],
+                "unique_concepts_count": 2
             },
             "status": "AVAILABLE"
         },
@@ -1918,7 +1923,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         }
     }
 }

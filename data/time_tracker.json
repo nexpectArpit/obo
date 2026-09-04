@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787885948.2022989,
-            "duration_seconds": 2576,
-            "topic": "Determining the Number of Solutions for Linear Equations with Two Variables"
-        },
-        {
             "timestamp": 1787902567.6731956,
             "duration_seconds": 4859,
             "topic": "Dutch National Flag Algorithm"
@@ -319,6 +314,11 @@
             "timestamp": 1788488241.415947,
             "duration_seconds": 1826,
             "topic": "Memory Leak Detection and Management in TensorFlow"
+        },
+        {
+            "timestamp": 1788490801.189201,
+            "duration_seconds": 1933,
+            "topic": "Branch Prediction Techniques"
         }
     ]
 }
