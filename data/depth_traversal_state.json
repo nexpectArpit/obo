@@ -129,9 +129,9 @@
             "active_branch": [
                 "arch",
                 "arch.data_hazard_handling_and_stalling",
-                "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks"
+                "arch.data_hazard_handling_and_stalling.memory_leak_detection_and_management_in_tensorflow"
             ],
-            "current_node": "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks",
+            "current_node": "arch.data_hazard_handling_and_stalling.memory_leak_detection_and_management_in_tensorflow",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -148,7 +148,8 @@
                 "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design": 1788226611.5995238,
                 "arch.fetch_and_decode_pipelining.instruction_decode_unit_(idu)_pipeline_hazards": 1788401348.3355718,
                 "arch.fetch_and_decode_pipelining": 1788401348.3365295,
-                "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader": 1788484008.4112546
+                "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader": 1788484008.4112546,
+                "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks": 1788486460.5277672
             },
             "branch_status": "IN_PROGRESS"
         }

@@ -1900,7 +1900,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.data_hazard_handling_and_stalling.memory_leak_detection_and_management_in_tensorflow": {
             "id": "arch.data_hazard_handling_and_stalling.memory_leak_detection_and_management_in_tensorflow",
@@ -1909,9 +1909,14 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensors",
+                    "tensor"
+                ],
+                "unique_concepts_count": 2
             },
             "status": "AVAILABLE"
         }
