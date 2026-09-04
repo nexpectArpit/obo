@@ -7,9 +7,9 @@
   },
   "nvidia": {},
   "mistral": {},
-  "groq_f4ad7c1d": {
-    "blocked_until": 1788474165.4915712,
-    "blocked_at": "2026-09-03 14:22:45",
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjyp11cez2s479zkqw9br7m` service tier `on_demand` on tokens per day (TPD): Limit 2000"
+  "groq_43b60c3c": {
+    "blocked_until": 1788547932.656036,
+    "blocked_at": "2026-09-04 10:52:12",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjck1t4e9wvbt3f6n8xv0yh` service tier `on_demand` on tokens per day (TPD): Limit 2000"
   }
 }
