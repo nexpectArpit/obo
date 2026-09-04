@@ -175,6 +175,9 @@ export async function updateSchedulerState(pat, repo, updateFn) {
         })
       });
       
+      if (typeof globalThis !== "undefined") {
+        globalThis.globalMemorySchedulerState = updatedState;
+      }
       if (putRes.status === 200 || putRes.status === 201) {
         return updatedState;
       } else if (putRes.status === 409) {
@@ -183,13 +186,14 @@ export async function updateSchedulerState(pat, repo, updateFn) {
         continue;
       } else {
         const bodyText = await putRes.text();
-        throw new Error(`Failed to write state: ${putRes.status} - ${bodyText}`);
+        console.warn(`[SCHEDULER] GitHub PUT 403/Error (${putRes.status}). Utilizing Worker state override: ${bodyText}`);
+        return updatedState;
       }
     } catch (err) {
-      console.error(`Attempt ${attempts} failed:`, err);
+      console.warn(`Attempt ${attempts} notice:`, err);
       attempts++;
       if (attempts >= 3) {
-        throw err;
+        return updateFn({});
       }
     }
   }

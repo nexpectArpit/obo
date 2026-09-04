@@ -25,12 +25,21 @@ export default {
         const latestRun = await getLatestRun(pat, repo, workflow);
         let state = { enabled: true, config: {}, override: null };
         try {
-          const r = await fetch(`https://api.github.com/repos/${repo}/contents/data/scheduler_state.json`, {
-            headers: { "Authorization": `Bearer ${pat}`, "Accept": "application/vnd.github+json", "User-Agent": "cloudflare-worker-obo" }
+          const r = await fetch(`https://api.github.com/repos/${repo}/contents/data/scheduler_state.json?t=${Date.now()}`, {
+            headers: { "Authorization": `Bearer ${pat}`, "Accept": "application/vnd.github+json", "User-Agent": "cloudflare-worker-obo", "Cache-Control": "no-cache" },
+            cf: { cacheTtl: 0 }
           });
           if (r.ok) {
             const fileData = await r.json();
             state = JSON.parse(atob(fileData.content.replace(/\s/g, "")));
+          }
+          if (env.OBO_STATE) {
+            try {
+              const kvState = await env.OBO_STATE.get("state", "json");
+              if (kvState) {
+                state = Object.assign(state, kvState);
+              }
+            } catch (e) {}
           }
         } catch (e) {}
 
@@ -95,6 +104,11 @@ export default {
           }
           return state;
         });
+        if (env.OBO_STATE && newState) {
+          try {
+            await env.OBO_STATE.put("state", JSON.stringify(newState));
+          } catch (e) {}
+        }
         return new Response(JSON.stringify({ success: true, enabled: newState ? newState.enabled : false, state: newState }), {
           headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
         });

@@ -51,18 +51,28 @@ export async function handleScheduled(env) {
     };
 
     try {
-      const r = await fetch(`https://api.github.com/repos/${repo}/contents/data/scheduler_state.json`, {
+      const r = await fetch(`https://api.github.com/repos/${repo}/contents/data/scheduler_state.json?t=${Date.now()}`, {
         headers: {
           "Authorization": `Bearer ${pat}`,
           "Accept": "application/vnd.github+json",
-          "User-Agent": "cloudflare-worker-obo"
-        }
+          "User-Agent": "cloudflare-worker-obo",
+          "Cache-Control": "no-cache"
+        },
+        cf: { cacheTtl: 0 }
       });
       if (r.ok) {
         const fileData = await r.json();
         const decoded = atob(fileData.content.replace(/\s/g, ""));
         const parsed = JSON.parse(decoded);
         state = Object.assign(state, parsed);
+      }
+      if (env.OBO_STATE) {
+        try {
+          const kvState = await env.OBO_STATE.get("state", "json");
+          if (kvState) {
+            state = Object.assign(state, kvState);
+          }
+        } catch (e) {}
       }
     } catch (err) {
       console.warn("[AUTO-CRON] State fetch notice:", err);
@@ -154,12 +164,14 @@ export async function handleScheduled(env) {
     if (!selectedTrack) {
       let skills = {};
       try {
-        const skillRes = await fetch(`https://api.github.com/repos/${repo}/contents/data/learned_skills.json`, {
+        const skillRes = await fetch(`https://api.github.com/repos/${repo}/contents/data/learned_skills.json?t=${Date.now()}`, {
           headers: {
             "Authorization": `Bearer ${pat}`,
             "Accept": "application/vnd.github+json",
-            "User-Agent": "cloudflare-worker-obo"
-          }
+            "User-Agent": "cloudflare-worker-obo",
+            "Cache-Control": "no-cache"
+          },
+          cf: { cacheTtl: 0 }
         });
         if (skillRes.ok) {
           const fileData = await skillRes.json();

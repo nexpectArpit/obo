@@ -5,3 +5,7 @@ compatibility_date = "2024-01-01"
 [triggers]
 crons = [ "* * * * *" ]
 
+[[kv_namespaces]]
+binding = "OBO_STATE"
+id = "1d537c171ada434da21913bfd89336dd"
+
