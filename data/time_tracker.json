@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787880556.269287,
-            "duration_seconds": 1804,
-            "topic": "ReLU Derivative in Backpropagation Algorithm Flowcharts"
-        },
-        {
             "timestamp": 1787882788.4892085,
             "duration_seconds": 1607,
             "topic": "Optimizing Recursive Function Calls with Memoization"
@@ -319,6 +314,11 @@
             "timestamp": 1788483273.710153,
             "duration_seconds": 1705,
             "topic": "Regularization techniques in deep learning including dropout and L1/L2 regularization"
+        },
+        {
+            "timestamp": 1788485770.6542115,
+            "duration_seconds": 1803,
+            "topic": "Tensor Data Corruption and its Impact on Neural Networks"
         }
     ]
 }

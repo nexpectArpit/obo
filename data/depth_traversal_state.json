@@ -129,9 +129,9 @@
             "active_branch": [
                 "arch",
                 "arch.data_hazard_handling_and_stalling",
-                "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader"
+                "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks"
             ],
-            "current_node": "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader",
+            "current_node": "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -147,10 +147,11 @@
                 "arch.fetch_and_decode_pipelining.pipelining_stages_in_fetch_and_decode": 1788224508.955096,
                 "arch.fetch_and_decode_pipelining.instruction_fetch_unit_(ifu)_design": 1788226611.5995238,
                 "arch.fetch_and_decode_pipelining.instruction_decode_unit_(idu)_pipeline_hazards": 1788401348.3355718,
-                "arch.fetch_and_decode_pipelining": 1788401348.3365295
+                "arch.fetch_and_decode_pipelining": 1788401348.3365295,
+                "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader": 1788484008.4112546
             },
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "arch"
 }

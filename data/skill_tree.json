@@ -1882,7 +1882,7 @@
                 ],
                 "unique_concepts_count": 2
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks": {
             "id": "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks",
@@ -1891,9 +1891,14 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensor",
+                    "tensors"
+                ],
+                "unique_concepts_count": 2
             },
             "status": "AVAILABLE"
         },
