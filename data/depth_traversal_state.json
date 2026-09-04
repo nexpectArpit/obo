@@ -127,9 +127,10 @@
         "arch": {
             "active_branch": [
                 "arch",
-                "arch.data_hazard_handling_and_stalling"
+                "arch.data_hazard_handling_and_stalling",
+                "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader"
             ],
-            "current_node": "arch.data_hazard_handling_and_stalling",
+            "current_node": "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader",
             "last_good_node": "arch",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -150,5 +151,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "dl"
+    "active_anchor": "arch"
 }

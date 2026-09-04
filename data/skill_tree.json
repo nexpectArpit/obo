@@ -1577,7 +1577,11 @@
             "id": "arch.data_hazard_handling_and_stalling",
             "name": "Data Hazard Handling and Stalling",
             "parent": "arch",
-            "children": [],
+            "children": [
+                "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader",
+                "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks",
+                "arch.data_hazard_handling_and_stalling.memory_leak_detection_and_management_in_tensorflow"
+            ],
             "mastery_level": 1,
             "evidence": {
                 "concepts_covered": 1,
@@ -1855,6 +1859,50 @@
                     "memory"
                 ],
                 "unique_concepts_count": 1
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader": {
+            "id": "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader",
+            "name": "Error Handling in PyTorch's DataLoader",
+            "parent": "arch.data_hazard_handling_and_stalling",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 1,
+                "successful_assessments": 0,
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "tensors",
+                    "tensor"
+                ],
+                "unique_concepts_count": 2
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks": {
+            "id": "arch.data_hazard_handling_and_stalling.tensor_data_corruption_and_its_impact_on_neural_networks",
+            "name": "Tensor Data Corruption and its Impact on Neural Networks",
+            "parent": "arch.data_hazard_handling_and_stalling",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
+            },
+            "status": "AVAILABLE"
+        },
+        "arch.data_hazard_handling_and_stalling.memory_leak_detection_and_management_in_tensorflow": {
+            "id": "arch.data_hazard_handling_and_stalling.memory_leak_detection_and_management_in_tensorflow",
+            "name": "Memory Leak Detection and Management in TensorFlow",
+            "parent": "arch.data_hazard_handling_and_stalling",
+            "children": [],
+            "mastery_level": 1,
+            "evidence": {
+                "concepts_covered": 0,
+                "successful_assessments": 0,
+                "recent_repetition": 0
             },
             "status": "AVAILABLE"
         }

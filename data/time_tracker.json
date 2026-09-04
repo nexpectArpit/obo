@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787875937.052927,
-            "duration_seconds": 1898,
-            "topic": "Memoization with Tabulation for Combinatorial Problems"
-        },
-        {
             "timestamp": 1787878012.7137678,
             "duration_seconds": 1523,
             "topic": "Applying the Slope-Intercept Form to Identify the y-Intercept of Linear Equations"
@@ -319,6 +314,11 @@
             "timestamp": 1788478323.0311565,
             "duration_seconds": 2222,
             "topic": "Computing Partial Derivatives of the Loss Function with Respect to Weights and Biases"
+        },
+        {
+            "timestamp": 1788480979.6426098,
+            "duration_seconds": 1878,
+            "topic": "Error Handling in PyTorch's DataLoader"
         }
     ]
 }
