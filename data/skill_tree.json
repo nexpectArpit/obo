@@ -1822,7 +1822,7 @@
                 ],
                 "unique_concepts_count": 13
             },
-            "status": "MASTERED"
+            "status": "EXHAUSTED"
         },
         "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation": {
             "id": "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation",

@@ -30,9 +30,9 @@
             "active_branch": [
                 "cpp",
                 "cpp.algorithms",
-                "cpp.algorithms.array-based_disjoint-set_data_structure"
+                "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation"
             ],
-            "current_node": "cpp.algorithms.array-based_disjoint-set_data_structure",
+            "current_node": "cpp.algorithms.kruskal's_minimum_spanning_tree_algorithm_implementation",
             "last_good_node": "cpp",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -52,7 +52,8 @@
                 "cpp.dynamic_programming.memoization_with_overlapping_subproblems": 1788315976.1975012,
                 "cpp.dynamic_programming.top-down_dynamic_programming_with_tabulation": 1788384676.4118438,
                 "cpp.dynamic_programming.optimal_substructure_and_overlapping_subproblems_in_recursive_solutions": 1788389717.23168,
-                "cpp.dynamic_programming": 1788389717.232497
+                "cpp.dynamic_programming": 1788389717.232497,
+                "cpp.algorithms.array-based_disjoint-set_data_structure": 1788557885.077483
             },
             "branch_status": "IN_PROGRESS"
         },
@@ -155,5 +156,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "arch"
+    "active_anchor": "cpp"
 }

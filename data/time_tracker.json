@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787930111.385851,
-            "duration_seconds": 538,
-            "topic": "Supervised Learning and Evaluation"
-        },
-        {
             "timestamp": 1787954377.8169403,
             "duration_seconds": 1822,
             "topic": "Graphing Linear Equations in Slope-Intercept Form"
@@ -314,6 +309,11 @@
             "timestamp": 1788523412.8097444,
             "duration_seconds": 3469,
             "topic": "algorithms"
+        },
+        {
+            "timestamp": 1788558003.119536,
+            "duration_seconds": 144,
+            "topic": "Kruskal's Minimum Spanning Tree Algorithm Implementation"
         }
     ]
 }
