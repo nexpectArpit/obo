@@ -1603,18 +1603,28 @@
             "name": "Branch Prediction Techniques",
             "parent": "arch",
             "children": [],
-            "mastery_level": 1,
+            "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 1,
-                "successful_assessments": 0,
+                "concepts_covered": 27,
+                "successful_assessments": 8,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "tensor",
-                    "tensors"
+                    "stalls.backup.education+1",
+                    "tensors",
+                    "multithreaded",
+                    "optimize",
+                    "threads",
+                    "memory",
+                    "optimizations",
+                    "write-back",
+                    "algorithms",
+                    "thread",
+                    "multi-threaded",
+                    "tensor"
                 ],
-                "unique_concepts_count": 2
+                "unique_concepts_count": 12
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         },
         "dl.implementing_the_forward_pass_in_a_convolutional_neural_network": {
             "id": "dl.implementing_the_forward_pass_in_a_convolutional_neural_network",
