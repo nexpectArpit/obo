@@ -1648,7 +1648,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "dl.regularization_techniques_in_deep_learning_including_dropout_and_l1/l2_regularization": {
             "id": "dl.regularization_techniques_in_deep_learning_including_dropout_and_l1/l2_regularization",
@@ -1657,9 +1657,13 @@
             "children": [],
             "mastery_level": 1,
             "evidence": {
-                "concepts_covered": 0,
+                "concepts_covered": 1,
                 "successful_assessments": 0,
-                "recent_repetition": 0
+                "recent_repetition": 0,
+                "unique_concepts_list": [
+                    "memory"
+                ],
+                "unique_concepts_count": 1
             },
             "status": "AVAILABLE"
         },
@@ -1860,7 +1864,7 @@
                 ],
                 "unique_concepts_count": 1
             },
-            "status": "AVAILABLE"
+            "status": "EXHAUSTED"
         },
         "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader": {
             "id": "arch.data_hazard_handling_and_stalling.error_handling_in_pytorch's_dataloader",

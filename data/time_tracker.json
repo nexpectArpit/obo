@@ -1,11 +1,6 @@
 {
     "sessions": [
         {
-            "timestamp": 1787878012.7137678,
-            "duration_seconds": 1523,
-            "topic": "Applying the Slope-Intercept Form to Identify the y-Intercept of Linear Equations"
-        },
-        {
             "timestamp": 1787880556.269287,
             "duration_seconds": 1804,
             "topic": "ReLU Derivative in Backpropagation Algorithm Flowcharts"
@@ -319,6 +314,11 @@
             "timestamp": 1788480979.6426098,
             "duration_seconds": 1878,
             "topic": "Error Handling in PyTorch's DataLoader"
+        },
+        {
+            "timestamp": 1788483273.710153,
+            "duration_seconds": 1705,
+            "topic": "Regularization techniques in deep learning including dropout and L1/L2 regularization"
         }
     ]
 }

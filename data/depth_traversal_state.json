@@ -59,10 +59,9 @@
         "dl": {
             "active_branch": [
                 "dl",
-                "dl.deriving_backpropagation_for_a_multilayer_perceptron",
-                "dl.deriving_backpropagation_for_a_multilayer_perceptron.computing_partial_derivatives_of_the_loss_function_with_respect_to_weights_and_biases"
+                "dl.regularization_techniques_in_deep_learning_including_dropout_and_l1/l2_regularization"
             ],
-            "current_node": "dl.deriving_backpropagation_for_a_multilayer_perceptron.computing_partial_derivatives_of_the_loss_function_with_respect_to_weights_and_biases",
+            "current_node": "dl.regularization_techniques_in_deep_learning_including_dropout_and_l1/l2_regularization",
             "last_good_node": "dl",
             "branch_attempts": 0,
             "consecutive_stalls": 0,
@@ -89,7 +88,9 @@
                 "dl.implementing_the_forward_pass_in_a_convolutional_neural_network.analyzing_the_role_of_dilation_in_convolutional_neural_networks": 1788398648.7578225,
                 "dl.implementing_the_forward_pass_in_a_convolutional_neural_network": 1788398648.7585707,
                 "dl.deriving_backpropagation_for_a_multilayer_perceptron.chain_rule_for_multivariable_functions": 1788473683.1765718,
-                "dl.deriving_backpropagation_for_a_multilayer_perceptron.derivative_of_composition_of_functions_in_multilayer_perceptron": 1788476248.1429074
+                "dl.deriving_backpropagation_for_a_multilayer_perceptron.derivative_of_composition_of_functions_in_multilayer_perceptron": 1788476248.1429074,
+                "dl.deriving_backpropagation_for_a_multilayer_perceptron.computing_partial_derivatives_of_the_loss_function_with_respect_to_weights_and_biases": 1788481665.1073854,
+                "dl.deriving_backpropagation_for_a_multilayer_perceptron": 1788481665.1081197
             },
             "branch_status": "IN_PROGRESS"
         },
@@ -151,5 +152,5 @@
             "branch_status": "IN_PROGRESS"
         }
     },
-    "active_anchor": "arch"
+    "active_anchor": "dl"
 }
