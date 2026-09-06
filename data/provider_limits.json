@@ -7,24 +7,24 @@
   },
   "nvidia": {},
   "mistral": {},
+  "groq_f4ad7c1d": {
+    "blocked_until": 1788724988.69377,
+    "blocked_at": "2026-09-06 12:03:08",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjyp11cez2s479zkqw9br7m` service tier `on_demand` on tokens per minute (TPM): Limit 8"
+  },
   "mistral_6b8a1059": {
-    "blocked_until": 1788550463.0162413,
-    "blocked_at": "2026-09-04 11:34:23",
+    "blocked_until": 1788726680.0872915,
+    "blocked_at": "2026-09-06 12:31:20",
     "error": "Error code: 429 - {'object': 'error', 'message': 'Rate limit exceeded', 'type': 'rate_limited', 'param': None, 'code': '1300', 'raw_status_code': 429}"
   },
   "mistral_4be19f04": {
-    "blocked_until": 1788550464.9602091,
-    "blocked_at": "2026-09-04 11:34:24",
+    "blocked_until": 1788726681.8912628,
+    "blocked_at": "2026-09-06 12:31:21",
     "error": "Error code: 429 - {'object': 'error', 'message': 'Rate limit exceeded', 'type': 'rate_limited', 'param': None, 'code': '1300', 'raw_status_code': 429}"
   },
   "groq_43b60c3c": {
-    "blocked_until": 1788623471.268067,
-    "blocked_at": "2026-09-05 07:51:11",
-    "error": "Error code: 400 - {'error': {'message': \"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\", 'type': 'invalid_request_error', 'code': 'json_validate_failed'"
-  },
-  "groq_f4ad7c1d": {
-    "blocked_until": 1788625584.700651,
-    "blocked_at": "2026-09-05 08:26:24",
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjyp11cez2s479zkqw9br7m` service tier `on_demand` on tokens per day (TPD): Limit 2000"
+    "blocked_until": 1788727290.5381408,
+    "blocked_at": "2026-09-06 12:41:30",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjck1t4e9wvbt3f6n8xv0yh` service tier `on_demand` on tokens per minute (TPM): Limit 8"
   }
 }
