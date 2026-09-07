@@ -630,6 +630,6 @@
   ],
   "target_skills": [
     "Optimization",
-    "Second-Order Optimization"
+    "Quasi-Newton Methods"
   ]
 }
