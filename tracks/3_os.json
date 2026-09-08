@@ -944,6 +944,726 @@
       "prompt": "Explain the design and implementation of a B-TREE-based indexing scheme for the Linux page cache, including the necessary modifications to the page cache's lookup and insertion operations and the use of B-TREE node splitting and merging.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux slab allocator for dynamic memory allocation",
+      "prompt": "Let's discuss how to optimize the slab allocator's cache efficiency for a real-time operating system.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a lock-free algorithm for a high-performance CPU-bound kernel component",
+      "prompt": "Can you explain how the Michael-Scott non-blocking algorithm can be applied to a kernel-level priority queue?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing the performance impact of different page replacement algorithms in a virtual memory system",
+      "prompt": "Let's compare the effectiveness of the LRU, LFU, and Second-Chance page replacement algorithms in a real-world scenario.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a high-performance, low-latency I/O scheduler for a real-time embedded system",
+      "prompt": "How can the Deadline I/O scheduler be modified to prioritize I/O operations based on their deadline and priority?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Modeling and analyzing the scalability of a kernel-level parallel task scheduler using queueing theory",
+      "prompt": "Let's discuss how to apply Little's Law and the M/G/1 queueing model to analyze the performance of a parallel task scheduler.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Linux Network Stack for Low-Latency and High-Throughput: TCP Fast Open and Zero-Copy Transfers",
+      "prompt": "How can we implement TCP Fast Open in the Linux kernel to reduce connection establishment latency, and what are the trade-offs between zero-copy transfers and traditional copying methods?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a High-Performance File System for Flash Storage: F2FS and its Optimizations",
+      "prompt": "What are the key differences between F2FS and traditional file systems like ext4, and how can we optimize F2FS for better performance on flash storage?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Real-Time Scheduling Algorithm in the Linux Kernel: Earliest Deadline First (EDF) and Rate Monotonic Scheduling (RMS)",
+      "prompt": "How can we implement EDF and RMS in the Linux kernel to meet real-time scheduling requirements, and what are the advantages and disadvantages of each algorithm?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Secure Boot Process for the Linux Kernel: Measuring and Mitigating Boot-time Attacks",
+      "prompt": "What are the key components of a secure boot process, and how can we measure and mitigate boot-time attacks using techniques like Secure Boot and Boot Integrity Measurement",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Linux Device Drivers for Multi-Core Systems: Synchronization and Locking Techniques",
+      "prompt": "What are the challenges of optimizing device drivers for multi-core systems, and how can we use synchronization and locking techniques like spinlocks and semaphores to improve performance and reduce contention?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Linux Scheduler with EDF Scheduling Algorithm",
+      "prompt": "Can you describe the implementation details of the Earliest Deadline First (EDF) scheduling algorithm in the Linux kernel and its performance benefits?",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Designing a Hyper-Virtualized I/O Scheduler for High-Performance Storage Systems",
+      "prompt": "How would you architect a hyper-virtualized I/O scheduler for a high-performance storage system, taking into account the complexities of virtualized I/O operations?",
+      "covered": false,
+      "level_at_cover": 9
+    },
+    {
+      "name": "Implementing the Linux CFS Scheduler with Multi-Queue Support",
+      "prompt": "Can you walk me through the modifications required to extend the Completely Fair Scheduler (CFS) to support multiple queues, ensuring efficient task scheduling in multi-threaded environments?",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Analyzing the Performance Impact of the BFS vs. DFS in Linux Network Stack",
+      "prompt": "Compare and contrast the performance implications of using Breadth-First Search (BFS) vs. Depth-First Search (DFS) algorithms in the Linux network stack, considering factors like network latency and packet processing",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Developing a Linux Device Driver for a Custom NVMe SSD Controller",
+      "prompt": "Design a Linux device driver for a custom NVMe SSD controller, ensuring compliance with the NVMe specification and optimizing performance for high-speed storage operations",
+      "covered": false,
+      "level_at_cover": 9
+    },
+    {
+      "name": "Optimizing Interrupt Handling using the Nested Page Table Mechanism",
+      "prompt": "How would you optimize interrupt handling for a high-performance computing application using the nested page table mechanism?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Preemption-Based Scheduling Algorithm for Real-Time Systems",
+      "prompt": "Let's design a preemption-based scheduling algorithm for a real-time system with multiple priority levels and deadline constraints",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Load Balancing Algorithm for a Distributed File System using the 'split-brain' problem avoidance strategy",
+      "prompt": "How would you design and implement a load balancing algorithm for a distributed file system that avoids the 'split-brain' problem?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing and Optimizing the Performance of the Linux Kernel's 'rcu' (Read-Copy Update) mechanism",
+      "prompt": "Let's analyze the performance characteristics of the Linux kernel's 'rcu' mechanism and discuss potential optimization strategies",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Custom Memory Management System for a Real-Time Embedded System using a Priority-Based Allocation Scheme",
+      "prompt": "How would you design and implement a custom memory management system for a real-time embedded system using a priority-based allocation scheme?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Page Table Management with the Least Recently Used (LRU) Algorithm",
+      "prompt": "Consider a kernel implementing a 4-level page table for a 64-bit address space. Discuss the LRU algorithm for cache replacement and how it can be applied to optimize page table management.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the elevator algorithm for Disk Scheduling in a Real-Time Operating System",
+      "prompt": "Design and analyze the elevator algorithm for disk scheduling in a real-time operating system. Provide a step-by-step implementation of the algorithm and discuss its advantages and disadvantages.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing the Performance of the Token Bucket Algorithm for Network Traffic Control",
+      "prompt": "Consider a network interface with a 1 Gbps bandwidth. Analyze the performance of the token bucket algorithm for network traffic control and discuss its limitations. Provide a mathematical formulation of the algorithm and its parameters.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Priority Scheduling Algorithm for a Multi-Processor System with Dynamic Task Allocation",
+      "prompt": "Design and implement a priority scheduling algorithm for a multi-processor system with dynamic task allocation. Discuss the algorithm's performance and analyze its scalability for large numbers of tasks and processors.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Bounding Box Algorithm for Collision Detection in a Real-Time Graphics System",
+      "prompt": "Consider a real-time graphics system with multiple objects moving at high velocities. Discuss the bounding box algorithm for collision detection and provide a step-by-step implementation of the algorithm. Analyze its performance and discuss potential optimizations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Hyper-Threshold Synchronization for Real-Time Systems",
+      "prompt": "Discuss how to apply the hyper-threshold algorithm to minimize synchronization overhead in a preemptive scheduling environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing Efficient Spinlocks with Spin-Wait-Loop for Multi-Core Systems",
+      "prompt": "Design a spinlock algorithm that reduces contention and improves throughput in a multi-core environment with high contention rates.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Rate-Controller for Network Schedulers with Priority Inheritance",
+      "prompt": "Develop a rate-controller that enforces priority inheritance for network schedulers with a high-priority task set and a low-priority task set.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Memory Allocation for Kernel Mode using Buddy Memory Allocators",
+      "prompt": "Describe how to optimize the buddy memory allocator for kernel mode allocation, considering fragmentation and cache locality.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formulating the Optimal Scheduling Policy for Real-Time Systems with Deadline-Aware Fair Scheduling",
+      "prompt": "Derive the optimal scheduling policy for a real-time system with deadline-aware fair scheduling, considering the impact of task priority and deadline.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Page Table Walks for Multi-Level Page Tables",
+      "prompt": "Let's analyze the page table walk optimization strategies in Linux for multi-level page tables and discuss their impact on TLB misses.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Custom Scheduler for Real-Time Systems using Rate Monotonic Scheduling",
+      "prompt": "We need to design a custom scheduler for a real-time system using Rate Monotonic Scheduling and analyze its performance in terms of latency and throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the AIO (Asynchronous I/O) Subsystem for High-Performance I/O Operations",
+      "prompt": "Let's discuss the design and implementation of the AIO subsystem in Linux and explore its impact on high-performance I/O operations in applications.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing and Optimizing the Performance of the Linux FUSE (Filesystem in Userspace) Module",
+      "prompt": "We need to analyze the performance of the Linux FUSE module and discuss optimization strategies to improve its performance in terms of throughput and latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing and Implementing a Custom Device Driver for a Real-World Device using the Linux Device Model",
+      "prompt": "Let's design and implement a custom device driver for a real-world device using the Linux device model and discuss its integration with the Linux kernel.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Efficient Page Table Management for High-Performance Computing Systems",
+      "prompt": "Let's discuss how to minimize TLB misses in a modern CPU by employing a combination of hierarchical page tables and preemption-aware page replacement algorithms.",
+      "covered": false,
+      "level_at_cover": 4
+    },
+    {
+      "name": "Designing a Customized Memory Management Unit for Embedded Systems",
+      "prompt": "Design a MMU for a real-time embedded system that efficiently manages a limited amount of physical memory by utilizing a hybrid approach of paging and segmentation.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Optimizing I/O Scheduling Algorithms for SSDs in Cloud Storage Systems",
+      "prompt": "Develop a new I/O scheduler that leverages the parallelism of SSDs to reduce latency and improve throughput in cloud storage systems, considering factors like queueing delay and seek time.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Implementing a Memory-Mapped File System for Real-Time Operating Systems",
+      "prompt": "Design and implement a memory-mapped file system that provides efficient access to large files in a real-time OS, taking into account factors like memory allocation, synchronization, and fault tolerance.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Analyzing and Optimizing the Performance of Linux Kernel's Network Stack",
+      "prompt": "Analyze the performance bottlenecks in the Linux kernel's network stack and propose optimizations, including modifications to the socket receive path, TCP receive offloading, and network buffer management.",
+      "covered": false,
+      "level_at_cover": 5
+    },
+    {
+      "name": "Implementing the Linux Socket Filter API to Optimize Network Packet Processing",
+      "prompt": "Develop a kernel module that utilizes the Socket Filter API to inspect and modify network packets in real-time, focusing on optimizing packet processing for high-performance networks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Custom CPU Scheduling Algorithm for Real-Time Systems using Rate Monotonic Scheduling",
+      "prompt": "Create a kernel module that implements a custom CPU scheduling algorithm based on Rate Monotonic Scheduling (RMS) to prioritize tasks in real-time systems, ensuring predictable and efficient task execution.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Memory-Mapped File System using the Linux Kernel's Virtual File System (VFS) Interface",
+      "prompt": "Develop a kernel module that provides a memory-mapped file system interface using the Linux Kernel's VFS, allowing users to map files into virtual memory and access them as if they were regular memory addresses.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Linux Page Cache using a Custom Page Replacement Algorithm based on the LRU-K Algorithm",
+      "prompt": "Create a kernel module that implements a custom page replacement algorithm based on the LRU-K algorithm to optimize the Linux page cache, minimizing page faults and improving system performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Kernel-Based Network Stack using the TCP/IP Protocol Suite and the Linux Kernel's Socket API",
+      "prompt": "Develop a kernel module that implements a custom network stack using the TCP/IP protocol suite and the Linux kernel's socket API, allowing users to create custom network protocols and stack implementations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing Efficient Page Replacement Algorithms for Virtual Memory Management",
+      "prompt": "Suppose we are implementing a custom Linux kernel with 4GB of virtual memory. How would you optimize the LRU (Least Recently Used) page replacement algorithm to minimize page faults in this scenario?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Device Model: Major and Minor Number Allocation",
+      "prompt": "Explain the difference between major and minor numbers in the Linux device model and provide an example of how to allocate these numbers for a custom block device driver.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formulating the Page Fault Handling Algorithm using Markov Decision Processes",
+      "prompt": "Model page fault handling as a Markov decision process and derive a policy to minimize page faults in a virtual memory system with a limited number of page frames.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing I/O Scheduling for High-Performance Storage Systems using the Earliest Deadline First (EDF) Algorithm",
+      "prompt": "Describe how to modify the EDF algorithm to prioritize I/O operations in a high-performance storage system with multiple disk drives and varying I/O request deadlines.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deriving the Linux Scheduler's Completely Fair Scheduler (CFS) Algorithm using Rate Monotonic Scheduling (RMS) Theory",
+      "prompt": "Show that the CFS algorithm can be derived using RMS theory and explain how this derivation leads to a fair and efficient scheduling policy for the Linux kernel.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Efficient Memory Allocation for the Linux Slab Allocator",
+      "prompt": "How would you optimize the slab allocator's memory allocation for a system with a high number of concurrent connections, like a web server?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formulating and Implementing the Btrfs Checksum Algorithm",
+      "prompt": "Let's discuss the mathematical formulation of the Btrfs checksum algorithm, and how to optimize its implementation for high-speed data integrity verification.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a High-Performance Scheduler for Real-Time Systems",
+      "prompt": "Design a real-time scheduler that can efficiently manage tasks with varying priority and deadline constraints, and provide a detailed explanation of its architecture.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux VFS (Virtual File System) with Ext4 Filesystem",
+      "prompt": "Describe how to integrate the Ext4 filesystem with the Linux VFS, and explain the key data structures and algorithms used in this implementation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing and Optimizing the Performance of the Linux Page Cache",
+      "prompt": "How would you analyze and optimize the performance of the Linux page cache, considering factors such as page fault rates, cache hit ratios, and disk I/O patterns?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Scheduling of Interrupt Service Routines in a Real-Time Linux Kernel",
+      "prompt": "Can you explain the differences between the SRT (Static Rate Monotonic) and EDF (Earliest Deadline First) scheduling algorithms and provide an example use case of each in a real-time kernel?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Frame Buffer Device Driver: A Case Study in Kernel Graphics Programming",
+      "prompt": "Let's discuss the details of the Linux frame buffer API and how to implement a basic frame buffer device driver using the DRM (Direct Rendering Manager) framework. What are the key data structures and functions involved?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Kernel-Based Key Management System for Secure Boot",
+      "prompt": "Suppose you need to design a key management system for secure boot. How would you implement a kernel-based key store using a cryptographic hash tree (Merkle tree)? What are the security considerations and trade-offs involved?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing the Performance Impact of Kernel Locking Mechanisms in a High-Performance Computing Environment",
+      "prompt": "We're developing a high-performance computing cluster and need to optimize the kernel locking mechanisms to minimize contention and maximize throughput. Can you explain the differences between spinlocks, mutexes, and semaphores, and provide recommendations for choosing the right locking strategy?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Kernel-Based Network Stack for a Custom Embedded System",
+      "prompt": "Let's design a custom network stack for an embedded system using a kernel-based approach. How would you implement the TCP/IP protocol stack, including the transport layer, network layer, and link layer, and what are the key considerations for optimizing performance and security?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux TCP/IP Offload Engine (TOE) Driver",
+      "prompt": "Let's discuss the low-level socket programming required to offload TCP/IP processing from the host CPU to a network interface card (NIC).",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Linux Device Driver for a PCIe SSD using DMA and Scatter-Gather",
+      "prompt": "Can you explain the DMA and scatter-gather techniques used in PCIe SSDs and how to implement a Linux device driver that utilizes these techniques?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing the Performance of a Linux Filesystem using Ftrace and perf",
+      "prompt": "Let's discuss how to use Ftrace and perf to analyze the performance of a Linux filesystem, focusing on I/O patterns, latency, and throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Linux Kernel Module for Real-time Data Compression using LZ4 and Zero-Copy",
+      "prompt": "Can you explain the design and implementation of a Linux kernel module that provides real-time data compression using LZ4 and zero-copy techniques?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Linux Network Stack for 10GbE and InfiniBand using RDMA and RoCE",
+      "prompt": "Let's discuss the design and implementation of a Linux network stack that supports 10GbE and InfiniBand networks using RDMA and RoCE protocols.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Linux Page Cache Using the Buddy Algorithm",
+      "prompt": "How would you implement a custom buddy allocator for the Linux page cache to minimize fragmentation and maximize memory efficiency?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a High-Performance Networking Stack with TCAM-Based Packet Classification",
+      "prompt": "Let's discuss the trade-offs of using a Ternary Content-Addressable Memory (TCAM) for packet classification in a high-performance networking stack, and how to optimize its configuration for maximum throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Real-Time Scheduling Algorithm for Embedded Systems Using the Rate Monotonic Scheduling (RMS) Framework",
+      "prompt": "How would you adapt the Rate Monotonic Scheduling (RMS) algorithm to meet the real-time requirements of an embedded system, and what are the key considerations for its implementation?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Low-Latency I/O Scheduler for High-Performance Storage Systems Using the Deadline Scheduling Algorithm",
+      "prompt": "Let's discuss the design and implementation of a low-latency I/O scheduler using the Deadline Scheduling algorithm, and how to optimize its configuration for high-performance storage systems.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing and Optimizing the Performance of the Linux Kernel's Memory Management Subsystem Using the Page Migration Algorithm",
+      "prompt": "How would you use the Page Migration algorithm to analyze and optimize the performance of the Linux kernel's memory management subsystem, and what are the key metrics to measure its effectiveness?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Page Table Walks for ARMv8 Architectures",
+      "prompt": "How would you implement a page table walker for the ARMv8 architecture, considering the TLB, page tables, and memory mapping?",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Designing a Linux Kernel Scheduler for Real-Time Systems",
+      "prompt": "Let's discuss the implementation of a real-time scheduler for Linux, including the use of rate monotonic scheduling, earliest deadline first, and priority ceiling protocols.",
+      "covered": false,
+      "level_at_cover": 9
+    },
+    {
+      "name": "Implementing Efficient Synchronization Primitives using Spinlocks and Semaphores",
+      "prompt": "How would you design and implement efficient synchronization primitives, such as spinlocks and semaphores, for a kernel that supports multiple CPU cores?",
+      "covered": false,
+      "level_at_cover": 7
+    },
+    {
+      "name": "Optimizing Device Driver Performance using DMA and Scatter-Gather I/O",
+      "prompt": "Let's discuss the use of DMA and scatter-gather I/O to optimize device driver performance, considering the benefits and trade-offs of different approaches.",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Designing a Memory Management Unit (MMU) for a Custom CPU Architecture",
+      "prompt": "How would you design and implement a memory management unit (MMU) for a custom CPU architecture, considering the trade-offs between performance, power consumption, and security?",
+      "covered": false,
+      "level_at_cover": 9
+    },
+    {
+      "name": "Designing Efficient Page Table Walks using TLB Prefetching",
+      "prompt": "Suppose you are designing a kernel for a high-performance computing system. Describe the TLB prefetching algorithm you would implement to minimize page table walks and improve system throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing I/O Scheduling using Earliest Deadline First (EDF) Algorithm",
+      "prompt": "You are developing a kernel for a real-time operating system. Explain how you would adapt the EDF algorithm to prioritize I/O requests and minimize system latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing Memory-Mapped I/O using DMA and Coalescing",
+      "prompt": "Design a memory-mapped I/O system that leverages DMA and coalescing to optimize data transfer between devices. Provide a detailed explanation of the DMA engine and coalescing logic.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing Cache Coherence Protocols for NUMA Architectures",
+      "prompt": "Explain the trade-offs between different cache coherence protocols (e.g., MESI, MOESI) for NUMA architectures. Provide a detailed analysis of the protocol's impact on system performance and scalability.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Custom Scheduler for Heterogeneous CPU-GPU Systems",
+      "prompt": "Design a custom scheduler that optimizes task allocation between CPU and GPU resources in a heterogeneous system. Explain the scheduling algorithm and its performance benefits.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux I/O Scheduler: CFQ (Complete Fair Queueing) Algorithm",
+      "prompt": "Explain how CFQ's priority queueing mechanism handles I/O requests from multiple processes and how it ensures fairness in I/O allocation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Memory Management Unit (MMU) for a 64-bit ARMv8 Architecture",
+      "prompt": "Describe the translation lookaside buffer (TLB) organization and how it affects page table walk performance, and propose optimizations for TLB misses.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing the Performance Impact of TLB Shootdowns in a Multi-Core System",
+      "prompt": "Derive the mathematical formulation for the TLB shootdown overhead and discuss the trade-offs between shootdown latency and TLB occupancy.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Device Mapper: Thin Provisioning and Snapshots",
+      "prompt": "Explain how thin provisioning affects storage allocation and how snapshots are implemented using delta encoding and metadata management.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Linux Page Cache using the Second Chance Clock Algorithm",
+      "prompt": "Describe the second chance clock algorithm and how it is used to evict pages from the page cache, and analyze its performance under various workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Efficient Context Switching using TLB Shootdowns",
+      "prompt": "How would you optimize context switching in a modern OS to minimize the number of TLB shootdowns and page table updates?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Custom Scheduler for a Real-Time OS",
+      "prompt": "Suppose you are designing a real-time OS for a medical device; describe how you would implement a custom scheduler that ensures predictable and low-latency response to critical events.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing Coherent Memory in a Distributed OS",
+      "prompt": "Explain how you would implement a coherent memory system for a distributed OS that ensures cache consistency across multiple nodes, and provide examples of real-world use cases.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Page Replacement Algorithms for Embedded Systems",
+      "prompt": "Compare and contrast the performance of different page replacement algorithms (e.g. LRU, FIFO, Optimal) in an embedded system with limited memory, and provide recommendations for optimizing page replacement in such environments.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Microkernel Architecture for High-Performance Computing",
+      "prompt": "Describe the design and implementation of a microkernel architecture that enables high-performance computing in a multi-core system, and discuss the trade-offs between microkernel and monolithic kernel designs.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Linux Socket Filter Driver for Network Traffic Monitoring",
+      "prompt": "Design a socket filter driver in Linux that captures and analyzes network packets using BPF (Berkeley Packet Filter) and provides insights on packet transmission rates and source IP addresses.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing a Real-Time Scheduling Algorithm for Embedded Systems using Rate Monotonic Scheduling",
+      "prompt": "Develop a real-time scheduling algorithm using Rate Monotonic Scheduling (RMS) for an embedded system with multiple tasks, each with varying periods and deadlines, and demonstrate its performance using a case study.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Custom File System for a High-Performance Computing Cluster using a Journaling File System",
+      "prompt": "Design a custom journaling file system for a high-performance computing cluster, incorporating features like metadata caching, journaling, and data mirroring, and analyze its performance using benchmarking tools.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Load Balancer using the Linux Kernel's TCP/IP Stack and Connection Multiplexing",
+      "prompt": "Develop a load balancer using the Linux kernel's TCP/IP stack and connection multiplexing, and demonstrate its effectiveness in distributing incoming connections across multiple backend servers.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing and Optimizing the Performance of a Linux Device Driver using Per-CPU Statistics and System Calls",
+      "prompt": "Analyze the performance of a Linux device driver using per-CPU statistics and system calls, identify bottlenecks, and optimize the driver to improve its performance and reduce latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Load Balancer using Linux Kernel Modules",
+      "prompt": "Implement a Linux kernel module to distribute incoming network traffic across multiple servers, utilizing a least-connection algorithm and considering the impact of packet loss on the load balancing decision.",
+      "covered": false,
+      "level_at_cover": 3
+    },
+    {
+      "name": "Implementing a Real-Time Scheduling Algorithm for Hard Real-Time Systems",
+      "prompt": "Develop a Linux kernel module that implements a Rate Monotonic Scheduling (RMS) algorithm to ensure predictable and efficient execution of tasks in a hard real-time system, taking into account task priorities and deadlines.",
+      "covered": false,
+      "level_at_cover": 3
+    },
+    {
+      "name": "Optimizing File System Performance using Linux Kernel BTRFS",
+      "prompt": "Design and implement a BTRFS-based file system that utilizes the Linux kernel's CoW (Copy-on-Write) mechanism to optimize write performance, while minimizing metadata updates and maintaining data integrity.",
+      "covered": false,
+      "level_at_cover": 2
+    },
+    {
+      "name": "Developing a Kernel-Mode Cryptographic Accelerator",
+      "prompt": "Create a Linux kernel module that offloads cryptographic operations, such as AES and SHA-256, to dedicated hardware accelerators, ensuring high-performance encryption and decryption while minimizing CPU utilization.",
+      "covered": false,
+      "level_at_cover": 2
+    },
+    {
+      "name": "Designing a Linux Kernel Module for Network Stack Offloading",
+      "prompt": "Implement a Linux kernel module that offloads network stack processing to a dedicated hardware accelerator, such as a Network Interface Card (NIC), to optimize network performance, reduce CPU utilization, and improve system responsiveness.",
+      "covered": false,
+      "level_at_cover": 2
+    },
+    {
+      "name": "Optimizing Page Table Management using Multilevel Indexing for High-Performance Computing",
+      "prompt": "Design an efficient page table management algorithm utilizing multilevel indexing for a many-core CPU, minimizing TLB misses and reducing page table traversal latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Fast Path for Interrupt Handling in the Linux Kernel",
+      "prompt": "Develop a high-performance interrupt handling mechanism leveraging SIMD instructions and cache-friendly data structures to minimize interrupt latency in a real-time kernel.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Memory-Mapped File System using the Direct Access Storage Device (DASD) Architecture",
+      "prompt": "Create a memory-mapped file system that utilizes the DASD architecture to optimize sequential I/O operations, focusing on reducing memory fragmentation and improving overall system throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Efficiently Handling I/O Operations using the Async I/O Framework in the Linux Kernel",
+      "prompt": "Design an async I/O framework that leverages completion queues and worker threads to handle I/O operations, minimizing kernel lock contention and improving system responsiveness.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Device Driver Performance using the Coalesced I/O Queueing Algorithm",
+      "prompt": "Implement the coalesced I/O queueing algorithm to minimize I/O latency and improve device driver performance, focusing on reducing queueing delays and optimizing device utilization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing Efficient Scheduling Algorithms for Real-Time Systems",
+      "prompt": "How would you implement the Earliest Deadline First (EDF) scheduling algorithm in a Linux kernel to ensure that tasks are executed within their specified deadlines?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Memory-Mapped I/O Operations for High-Performance Computing",
+      "prompt": "Describe a method to optimize the use of memory-mapped I/O (MMIO) operations in a kernel driver for a graphics processing unit (GPU) to improve performance in a compute-bound workload.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux IRQ Balancer to Improve Interrupt Handling",
+      "prompt": "Design and implement an IRQ balancer similar to the Linux IRQ Balancer to dynamically adjust the interrupt affinity of devices in a system to minimize interrupt latency and optimize system performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing and Optimizing the Linux Page Table Walker",
+      "prompt": "Analyze the Linux page table walker and propose optimizations to improve its performance, including reducing TLB misses and minimizing page table traversals.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Low-Latency Networking Stack Using the Linux Socket API",
+      "prompt": "Design and implement a low-latency networking stack using the Linux socket API to optimize network packet processing and minimize latency in a high-performance computing application.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Scheduler for Real-time Systems using Rate Monotonic Scheduling (RMS) Algorithm",
+      "prompt": "Consider a real-time system with multiple tasks of varying periods and deadlines. Explain how to design a scheduler using RMS to minimize the likelihood of deadline misses.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Memory Management Unit (MMU) Page Table Walk",
+      "prompt": "Describe the process of implementing the MMU page table walk in a custom kernel, including the handling of page faults, TLB misses, and invalid page table entries.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formulating and Optimizing the Linux Btrfs Checksum Algorithm",
+      "prompt": "Derive the mathematical formulation for the Btrfs checksum algorithm, including the use of CRC32c and the handling of variable-length data structures. Explain how to optimize the algorithm for performance and correctness.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Load Balancer using the Linux TCP/IP Stack's Connection Tracking",
+      "prompt": "Explain how to design a load balancer using the Linux TCP/IP stack's connection tracking system, including the use of socket filters, connection tracking entries, and the handling of TCP SYN cookies.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Process Scheduler's Completely Fair Scheduler (CFS) Algorithm",
+      "prompt": "Describe the implementation of the CFS algorithm, including the use of a priority queue, the handling of process migration, and the optimization of the algorithm for fairness and responsiveness.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the BFS Algorithm for Topology Discovery in Linux Kernel",
+      "prompt": "Consider a Linux system with multiple network interfaces; design a BFS algorithm to discover the topology of the network.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Page Fault Handling in a Monolithic Kernel using TLB",
+      "prompt": "Explain how to optimize the page fault handling in a monolithic kernel using Translation Lookaside Buffers (TLB) to minimize the performance impact.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Lock-Free Queue for High-Performance I/O Scheduling in the Linux Kernel",
+      "prompt": "Design a lock-free queue data structure for high-performance I/O scheduling in the Linux kernel, ensuring low latency and high throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Earliest Deadline First (EDF) Scheduling Algorithm for Real-Time Systems in a Microkernel",
+      "prompt": "Implement the Earliest Deadline First (EDF) scheduling algorithm for real-time systems in a microkernel, considering task priority and deadline.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing and Optimizing the Performance of the Linux Kernel's Network Stack using the Jitter Buffer Algorithm",
+      "prompt": "Analyze and optimize the performance of the Linux kernel's network stack using the jitter buffer algorithm to minimize packet loss and latency.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
