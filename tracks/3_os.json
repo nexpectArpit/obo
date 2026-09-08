@@ -1664,6 +1664,90 @@
       "prompt": "Analyze and optimize the performance of the Linux kernel's network stack using the jitter buffer algorithm to minimize packet loss and latency.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing Page Table Walks for ARMv8-A Architecture",
+      "prompt": "Let's discuss how to minimize the number of page table walks for a kernel implementing the ARMv8-A architecture, given its complex page table hierarchy.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formulating the Shortest Job First (SJF) Scheduling Algorithm using Rate Monotonic Scheduling (RMS)",
+      "prompt": "Explain how to adapt the SJF scheduling algorithm to work with the RMS framework, which is commonly used in real-time operating systems.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Scheduler's Completely Fair Scheduler (CFS) using a Priority Inversion-Free (PIF) Algorithm",
+      "prompt": "Describe how to modify the CFS algorithm to prevent priority inversion, which can occur when a high-priority task is blocked by a low-priority task.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deriving the Closed-Form Solution for the Memory Bandwidth Bottleneck in NUMA Architectures",
+      "prompt": "Prove the closed-form solution for the memory bandwidth bottleneck in Non-Uniform Memory Access (NUMA) architectures, assuming a specific workload and memory hierarchy.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing the Performance Impact of the TLB Shootdown Mechanism in a Multi-Core CPU with Simultaneous Multithreading (SMT)",
+      "prompt": "Explain how the TLB shootdown mechanism affects performance in a multi-core CPU with SMT, given the complexities of cache coherence and thread scheduling.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Memory Barrier (smp_mb) on PowerPC64 CPUs",
+      "prompt": "Explain how to correctly implement the smp_mb() function on a PowerPC64-based Linux kernel to ensure memory ordering across multiple CPU cores.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Linux Device Driver for PCIe SSDs with NVMe",
+      "prompt": "Describe the steps to develop a custom Linux kernel driver for an NVMe-based PCIe SSD, including handling queue management, command completion, and error handling.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formulating the Mathieu's C Curve for Linux's RCU (Read-Copy Update) Algorithm",
+      "prompt": "Derive and explain the mathematical formulation of Mathieu's C curve used in the Linux kernel's RCU algorithm to calculate the interval between read-side critical sections.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Tuning the Linux TCP Stack for High-Bandwidth, Low-Latency Networks",
+      "prompt": "Discuss the key parameters and knobs in the Linux TCP stack that can be tuned to optimize performance on high-bandwidth, low-latency networks, including congestion control, window scaling, and flow control.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Memory Management Subsystem's Page Table Walk Optimizations",
+      "prompt": "Describe how the Linux kernel's page table walk optimization for the Armv8 architecture works, and provide a C implementation of the relevant code.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Custom Scheduler Algorithm for Real-Time Systems using Rate Monotonic Scheduling",
+      "prompt": "Design a custom scheduler algorithm based on Rate Monotonic Scheduling (RMS) for a real-time system with multiple tasks, and provide a mathematical proof of its correctness.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Analyzing the Performance Impact of the Linux Kernel's Page Cache on File System I/O",
+      "prompt": "Measure and analyze the performance impact of the Linux kernel's page cache on file system I/O operations, and discuss potential optimizations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Custom Interrupt Handling Mechanism for a Embedded System",
+      "prompt": "Design and implement a custom interrupt handling mechanism for an embedded system using a microcontroller, and discuss the trade-offs between different interrupt handling approaches.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deriving the Mathematical Formulation for the Linux Kernel's Memory Ballooning Algorithm",
+      "prompt": "Derive the mathematical formulation for the Linux kernel's memory ballooning algorithm, and discuss its implications for system resource management.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [

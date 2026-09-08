@@ -1371,20 +1371,20 @@
             "children": [],
             "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 156,
+                "concepts_covered": 163,
                 "successful_assessments": 68,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "backed",
-                    "thread.freebsdfoundation.org",
-                    "thread",
                     "memory",
-                    "threads",
                     "callback",
+                    "thread.freebsdfoundation.org",
                     "multi-threaded",
-                    "optimize",
+                    "threads",
+                    "backed",
                     "callbacks",
-                    "degrade"
+                    "degrade",
+                    "optimize",
+                    "thread"
                 ],
                 "unique_concepts_count": 10
             },
