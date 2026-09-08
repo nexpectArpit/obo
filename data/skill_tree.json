@@ -1369,19 +1369,24 @@
             "name": "Linux Kernel System Call Implementation",
             "parent": "os.kernel",
             "children": [],
-            "mastery_level": 1,
+            "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 38,
-                "successful_assessments": 0,
+                "concepts_covered": 85,
+                "successful_assessments": 26,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
+                    "degrade",
+                    "backed",
+                    "threads",
                     "memory",
+                    "thread.freebsdfoundation.org",
                     "optimize",
-                    "backed"
+                    "thread",
+                    "callbacks"
                 ],
-                "unique_concepts_count": 3
+                "unique_concepts_count": 8
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         },
         "arch.cpu.instruction-level_parallelism": {
             "id": "arch.cpu.instruction-level_parallelism",

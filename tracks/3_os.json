@@ -584,10 +584,370 @@
       "prompt": "Let's discuss the design and implementation of a kernel module that uses LZ4 and Huffman coding to provide real-time data compression services, with a focus on minimizing latency and maximizing compression ratios.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "QoS-Aware Multicast Routing in Software-Defined Networks",
+      "prompt": "Let's design a QoS-aware multicast routing algorithm that minimizes delay variance for live video streams in an SDN environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "End-to-End Service Level Agreement Verification via Formal Methods",
+      "prompt": "Let's explore how to formally verify that a distributed application meets its SLA using temporal logic and model checking.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Adaptive Packet Scheduling with Weighted Fair Queuing and Deadline-Aware Priority",
+      "prompt": "Let's develop an adaptive packet scheduler that dynamically adjusts weights to satisfy hard real-time deadlines while maximizing throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Machine Learning-Based QoS Prediction for Cloud Resource Allocation",
+      "prompt": "Let's build a predictive model that forecasts network latency and jitter to optimize VM placement for QoS-sensitive workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "QoS Enforcement in Multi-tenant Container Orchestration with Cgroup v2 and Network Namespaces",
+      "prompt": "Let's devise a mechanism to enforce per-tenant bandwidth and latency guarantees using Linux cgroups and traffic control in Kubernetes.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Level Feedback Scheduler for VoIP 99th Percentile Latency",
+      "prompt": "Let's design a kernel patch that uses a weighted fair queueing scheduler with feedback from network latency probes to guarantee 99th percentile end-to-end latency for VoIP calls under bursty traffic.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "LP-Based Resource Allocation for Container QoS in Kubernetes",
+      "prompt": "Let's formulate and implement a linear programming model that allocates CPU shares and network bandwidth to pods to satisfy hard QoS constraints while minimizing overall resource cost.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Reinforcement Learning Scheduler for 5G URLLC and eMBB Services",
+      "prompt": "Let's build an RL-based scheduler that learns to assign scheduling weights to URLLC and eMBB flows in a 5G gNB to meet latency and reliability targets.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Petri Net Simulation of Priority Inversion Effects on OS QoS",
+      "prompt": "Let's construct a Petri net model to simulate priority inversion scenarios in a preemptive RTOS and analyze their impact on QoS metrics such as jitter and deadline miss rate.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Markov Decision Process for QoS-Aware Data Replication in Distributed File Systems",
+      "prompt": "Let's design an MDP that decides when and where to replicate data blocks in a distributed file system to meet read latency SLAs while minimizing replication overhead.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Stochastic Network Calculus for End-to-End Delay Bounds in Real-Time Video Streaming",
+      "prompt": "Let's design a simulation that uses stochastic network calculus to predict end-to-end delay bounds for a real-time video streaming application over a multi-hop wireless network with QoS constraints.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "QoS-Aware Dynamic Priority Scheduling for Real-Time OS Tasks",
+      "prompt": "Let's implement a dynamic priority scheduler that adjusts priorities based on QoS metrics such as latency and jitter to maintain fairness among real-time tasks in an operating system.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multi-Objective Optimization for QoS-Compliant Edge Load Balancing",
+      "prompt": "Let's formulate and solve a multi-objective optimization problem for load balancing across edge nodes, considering latency, bandwidth, and energy consumption constraints to meet QoS guarantees.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "ML-Driven Adaptive Traffic Shaping for Guaranteed Bandwidth in 5G Core",
+      "prompt": "Let's build a machine learning model that predicts traffic patterns and dynamically adjusts traffic shaping parameters to ensure a guaranteed minimum bandwidth for critical services in a 5G core network.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Markov Decision Process Model for QoS Compliance Probability in Cloud SLAs",
+      "prompt": "Let's model a cloud service provider's QoS compliance probability as a Markov Decision Process, optimizing resource allocation policies to maximize SLA adherence.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "QoS-Aware Multipath Routing in Software-Defined Data Centers",
+      "prompt": "Let's design a multipath routing algorithm that satisfies bandwidth and latency constraints using SDN controllers.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Predictive QoS Admission Control via Reinforcement Learning in Cloud Edge Environments",
+      "prompt": "Let's build an RL-based admission controller that predicts future traffic and ensures QoS for latency-sensitive workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Buffer Management for Real-Time Audio Streaming using Adaptive Priority Queues",
+      "prompt": "Let's formulate a dynamic buffer allocation strategy that guarantees jitter bounds for real-time audio in mixed traffic OS.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Mathematical Modeling of Deadline Monotonic Scheduling with QoS Constraints in Real-Time Systems",
+      "prompt": "Let's derive and solve the feasibility conditions for deadline monotonic scheduling when tasks have minimum throughput and maximum latency requirements.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Cross-Layer QoS Optimization in 5G NR using Network Slicing and Virtualized Resource Pools",
+      "prompt": "Let's architect a cross-layer optimization framework that allocates virtualized resources to network slices while meeting per-slice QoS metrics.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "QoS-aware Multi-Queue Scheduling with Weighted Fairness for Real-Time Traffic",
+      "prompt": "Let's design a scheduler that allocates CPU time among multiple traffic classes using weighted fair queuing while guaranteeing hard real-time deadlines.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "End-to-End Delay Bounding using Network Calculus for Virtualized Cloud Services",
+      "prompt": "Let's formulate and implement a network calculus model to compute worst-case end-to-end delays in a virtualized data center network.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Bandwidth Reservation via Software-Defined Networking Controllers",
+      "prompt": "Let's program an SDN controller module that dynamically reserves bandwidth for QoS classes based on real-time traffic measurements.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Priority Inversion Mitigation in Real-Time Operating Systems with Priority Ceiling Protocol",
+      "prompt": "Let's implement the Priority Ceiling Protocol in a kernel scheduler to prevent priority inversion in nested critical sections.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Predictive QoS Assurance using Machine Learning for Adaptive Video Streaming",
+      "prompt": "Let's build a predictive model that adjusts video bitrate and buffer size to maintain QoS targets under fluctuating network conditions.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Predictive QoS Modeling for Cloud-Based Applications",
+      "prompt": "Develop a statistical model to predict the end-to-end delay and jitter of a cloud-based video conferencing application based on historical network traffic data.",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Real-Time QoS Scheduling for Autonomous Vehicles",
+      "prompt": "Design a real-time scheduling algorithm for an autonomous vehicle's sensor data processing pipeline, ensuring that critical tasks meet strict deadlines and QoS requirements.",
+      "covered": false,
+      "level_at_cover": 9
+    },
+    {
+      "name": "Network-Aware QoS Optimization for IoT Devices",
+      "prompt": "Implement a QoS-aware routing algorithm for IoT devices in a low-power, low-bandwidth network, minimizing energy consumption while ensuring reliable data transmission.",
+      "covered": false,
+      "level_at_cover": 7
+    },
+    {
+      "name": "QoS-Driven Resource Allocation in Edge Computing",
+      "prompt": "Develop a resource allocation framework for edge computing that optimizes QoS for real-time video analytics applications, considering factors like latency, throughput, and power consumption.",
+      "covered": false,
+      "level_at_cover": 8
+    },
+    {
+      "name": "Mathematical Modeling of QoS in SDN Networks",
+      "prompt": "Derive and solve a mathematical model to analyze the QoS of a software-defined networking (SDN) architecture, focusing on the trade-off between network utilization and QoS guarantees.",
+      "covered": false,
+      "level_at_cover": 9
+    },
+    {
+      "name": "Zero-Page Memory Management for Real-Time Kernel Scheduling",
+      "prompt": "Let's design a zero-page memory management subsystem that supports deterministic real-time scheduling in a modern kernel, focusing on allocation, deallocation, and eviction policies.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Page Replacement Algorithms in Kernel Virtual Memory",
+      "prompt": "Let's develop a hybrid page replacement algorithm combining LRU and CLOCK for kernel virtual memory, optimizing for both latency and hit rate in high-throughput workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Mode Network Packet Scheduler Using Weighted Fair Queuing",
+      "prompt": "Let's implement a kernel-mode network packet scheduler based on weighted fair queuing, ensuring fair bandwidth allocation among multiple traffic classes while minimizing packet latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware-Assisted Memory Encryption for Kernel Data Structures",
+      "prompt": "Let's design a kernel subsystem that leverages Intel SGX/AMD SEV to encrypt critical kernel data structures, addressing key management and performance overhead.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Binary Translation for Kernel-Level Emulation of Legacy System Calls",
+      "prompt": "Let's build a dynamic binary translation layer within the kernel to emulate legacy system calls for 32-bit applications on a 64-bit kernel, focusing on instruction set compatibility and performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Page Memory Management: Implementing Transparent Huge Pages with Coalescing and Splitting in the Linux Kernel",
+      "prompt": "Let's design and implement a kernel module that dynamically coalesces adjacent zero pages into transparent huge pages, handling split and merge operations while maintaining page table consistency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Real-Time Scheduler Enhancements: Integrating a Priority-Based EDF Scheduler with Preemption Thresholds",
+      "prompt": "Let's extend the Linux Completely Fair Scheduler to support Earliest Deadline First (EDF) for real-time tasks, incorporating preemption thresholds and deadline monitoring.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Memory-Mapped I/O Security: Building a Kernel-Mode Driver that Enforces Fine-Grained Access Control Using BPF eBPF Maps",
+      "prompt": "Let's create a kernel module that uses eBPF maps to define per-process read/write permissions on memory-mapped device regions, ensuring sandboxed access.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Interrupt Handling: Implementing a Hybrid Edge/Level-Triggered Interrupt Dispatcher with Adaptive Latency Guarantees",
+      "prompt": "Let's design a hybrid interrupt dispatcher that dynamically switches between edge-triggered and level-triggered modes based on workload, providing bounded latency guarantees.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Distributed Kernel Synchronization: Implementing a Cross-Node RCU (Read-Copy-Update) Protocol for Multi-Cluster Systems",
+      "prompt": "Let's build a kernel extension that extends RCU to synchronize across nodes in a multi-cluster environment, ensuring consistent visibility of data structures.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Promotion of 4KB Pages to 2MB Huge Pages During Demand Paging",
+      "prompt": "Let's design a kernel module that promotes 4KB pages to 2MB huge pages on demand, minimizing TLB shootdowns. What data structures, synchronization primitives, and TLB flush strategies should we use?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Lock-Free B-Tree for Concurrent Page Table Management",
+      "prompt": "Let's build a lock-free B-tree to manage page table entries, supporting concurrent lookups and insertions. How do we handle node splitting, concurrency, and memory reclamation in the kernel context?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid LRU-Clock Page Replacement for NUMA-Aware Systems",
+      "prompt": "Let's develop a page replacement algorithm that combines LRU hints with the Clock algorithm, optimized for NUMA locality. How do we maintain per-node LRU lists and integrate with the existing swapper?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware Performance Counter-Driven Memory Bandwidth Throttling",
+      "prompt": "Let's create a kernel module that monitors memory bandwidth via hardware performance counters and throttles processes when thresholds are exceeded. What scheduling hooks and counter interfaces should we use?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Mode Zero-Knowledge Proof Verification for Credential Authentication",
+      "prompt": "Let's implement a kernel module that verifies zk-SNARK proofs for credential authentication without exposing secrets. How do we integrate with the authentication stack and ensure constant-time operations?",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Lock-Free Reference Counting with RCU in the Linux Kernel",
+      "prompt": "Let's design and implement a lock-free reference counting mechanism using RCU primitives in the Linux kernel, ensuring correctness under concurrent updates.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "NUMA-Aware Slab Allocator with Dynamic Tuning",
+      "prompt": "Let's build a kernel module that extends the slab allocator to be NUMA-aware, dynamically tuning cache sizes based on memory locality and workload patterns.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Copy GPU Buffer Page Fault Handler",
+      "prompt": "Let's implement a custom page fault handler for memory-mapped GPU buffers that achieves zero-copy transfer between user space and GPU memory, handling synchronization and caching correctly.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "SIMD-Accelerated Cryptographic Hash Kernel Module",
+      "prompt": "Let's develop a kernel module exposing a cryptographic hash function that leverages SIMD intrinsics for speed, interfacing via ioctl and ensuring thread safety.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Work-Stealing Scheduler for Heterogeneous CPU/GPU Cores",
+      "prompt": "Let's design a kernel scheduler that implements a work-stealing algorithm to balance tasks across heterogeneous CPU and GPU cores, considering affinity and power constraints.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Design and Implement a Lock-Free Slab Allocator with Per-CPU Caches",
+      "prompt": "Let's discuss how to build a lock-free slab allocator in the kernel that uses per-CPU caches and atomic compare-and-swap operations for allocation and deallocation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implement an Adaptive LRU Page Replacement Algorithm in the Kernel's Virtual Memory Subsystem",
+      "prompt": "Let's explore how to implement an adaptive LRU page replacement algorithm that dynamically adjusts its threshold based on page fault rates in the kernel's virtual memory manager.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Develop a Kernel Module for NUMA-Aware Scheduling with Workload Migration",
+      "prompt": "Let's design a kernel module that implements NUMA-aware scheduling, including workload migration policies that consider memory locality and CPU affinity.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Create a Kernel-Level Tracing Framework for Power-Aware Scheduling Using eBPF",
+      "prompt": "Let's build a kernel-level tracing framework that collects power consumption metrics and feeds them into a power-aware scheduler via eBPF programs.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implement a Real-Time Scheduler with Priority Inheritance and Deadline Monotonic Scheduling",
+      "prompt": "Let's discuss implementing a real-time scheduler that supports priority inheritance and deadline monotonic scheduling, ensuring no priority inversion and meeting hard deadlines.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Linux Networking Stack: BPF-based Packet Classification",
+      "prompt": "Describe the design considerations for implementing a BPF-based packet classifier that leverages the Linux networking stack's TC flower engine, including the trade-offs between TC action and action affinity.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Memory-Mapped File System using the Linux VFS Layer",
+      "prompt": "Explain how to implement a memory-mapped file system that leverages the Linux VFS layer, including the necessary modifications to the VFS inode operations and the use of page fault handlers.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Real-Time Scheduling Algorithm using the Linux CFS",
+      "prompt": "Discuss the design and implementation of a real-time scheduling algorithm that utilizes the Linux Completely Fair Scheduler (CFS), including the necessary modifications to the CFS's time slice allocation and the use of dynamic priority adjustments.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Level Security: Designing an IOMMU-based DMA Protection System",
+      "prompt": "Describe the design and implementation of an IOMMU-based DMA protection system that leverages the Linux IOMMU API, including the necessary modifications to the IOMMU's mapping and unmapping operations and the use of DMA protection keys.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Linux Page Cache using a B-TREE-based Indexing Scheme",
+      "prompt": "Explain the design and implementation of a B-TREE-based indexing scheme for the Linux page cache, including the necessary modifications to the page cache's lookup and insertion operations and the use of B-TREE node splitting and merging.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
-    "Kernel Modules",
-    "Meiosis"
+    "Kernel Development",
+    "Kernel Modules"
   ]
 }
