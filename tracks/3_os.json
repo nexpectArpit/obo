@@ -1748,6 +1748,744 @@
       "prompt": "Derive the mathematical formulation for the Linux kernel's memory ballooning algorithm, and discuss its implications for system resource management.",
       "covered": false,
       "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Copy Network Packet Processing with DPDK Integration in Linux Kernel",
+      "prompt": "Let's design a zero-copy packet forwarding path that integrates DPDK queues directly into the Linux kernel's networking stack, ensuring minimal data movement and preserving cache locality.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Memory Hotplug and Transparent HugePages Coalescing in ARM64 SoC Kernel",
+      "prompt": "Let's explore how to implement memory hotplug support for ARM64 SoCs while enabling Transparent HugePages coalescing across hot-added memory regions, ensuring page fault transparency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Scheduler: Composable Real-Time and Fair Scheduling for Multi-Core NUMA Systems",
+      "prompt": "Let's architect a hybrid scheduler that composes a real-time policy with a fair policy, optimizing for NUMA locality and core affinity in a multi-core environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Level Cryptographic Acceleration Using Intel AES-NI and RISC-V PKA",
+      "prompt": "Let's implement a kernel crypto API that offloads AES-GCM and RSA signatures to Intel AES-NI and RISC-V PKA hardware, managing context switching and fallback paths.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Binary Translation for System Call Interposition in the Kernel",
+      "prompt": "Let's build a dynamic binary translator that intercepts user-space system calls, rewrites them in kernel space to insert custom security checks, and preserves binary compatibility.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Copy Memory Mapping for High-Throughput Network Drivers",
+      "prompt": "Let's design a zero-copy DMA buffer management system for a high-throughput network driver, ensuring cache coherence and minimizing latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Binary Translation for Legacy System Calls in a Modern Kernel",
+      "prompt": "Let's implement a dynamic binary translation layer that maps legacy 32-bit system calls to 64-bit kernel interfaces, optimizing for minimal overhead.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formal Verification of Interrupt Coalescing Algorithms in Real-Time Kernels",
+      "prompt": "Let's formalize and verify the correctness of interrupt coalescing algorithms in a real-time kernel using temporal logic and model checking.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Scalable Hot-Plugging Mechanism for FPGA-Accelerated System Calls",
+      "prompt": "Let's develop a hot-plugging framework that allows runtime integration of FPGA-accelerated system calls into the kernel, handling state migration and consistency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Memory Consistency Modeling for Multi-Processor Kernel Scheduler",
+      "prompt": "Let's formulate a memory consistency model that guarantees correct task scheduling across NUMA nodes, integrating weak memory ordering guarantees.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Copy DMA Buffer Management in Multi-CPU NUMA Systems",
+      "prompt": "Let's design a zero-copy DMA buffer allocation scheme for a NUMA-aware kernel, ensuring minimal cross-node traffic and optimal memory bandwidth.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Lock-Free and Wait-Free Synchronization for Real-Time Scheduler",
+      "prompt": "Let's formulate a hybrid lock-free algorithm for the Linux Completely Fair Scheduler that guarantees bounded latency for high-priority real-time tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formal Verification of Memory Barriers Using Separation Logic",
+      "prompt": "Let's encode the memory ordering semantics of x86 memory barriers in separation logic and prove that a given kernel code fragment preserves data consistency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware-Assisted Page Table Compression Using Adaptive Huffman Coding",
+      "prompt": "Let's design a kernel module that compresses page tables on the fly with adaptive Huffman coding, evaluating the trade-off between compression ratio and TLB miss penalty.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Quantum-Resistant Cryptographic Primitives for Kernel Secure Boot",
+      "prompt": "Let's explore lattice-based key exchange schemes suitable for kernel secure boot, focusing on implementation constraints and side-channel resistance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Page Fault Mitigation via Hardware-Assisted TLB Prefetching",
+      "prompt": "Let's design a kernel module that leverages Intel's TLB shootdown optimization to reduce page fault latency in NUMA systems.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Kernel Scheduler Using Reinforcement Learning for Real-Time Workloads",
+      "prompt": "Let's formulate a reinforcement learning model to adaptively schedule tasks in a hybrid monolithic microkernel.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formal Verification of Mutex Implementation with Separation Logic",
+      "prompt": "Let's prove correctness of a custom spinlock implementation using separation logic in the Coq proof assistant.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Page-Level Cache Coherency Protocol for Multi-Processor Systems",
+      "prompt": "Let's design and implement a MESI-like cache coherency protocol at the OS page cache level.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Binary Translation for Self-Modifying Kernel Code",
+      "prompt": "Let's build a runtime binary translator that ensures safety when kernel code performs self-modifying operations.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Real-Time Mixed-Criticality Scheduler with EDF and Priority Inheritance",
+      "prompt": "Let's design a kernel-level scheduler that implements Earliest Deadline First (EDF) for high-criticality tasks while dynamically adjusting priorities and employing priority inheritance to prevent priority inversion in mixed-criticality systems.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Linux Kernel Driver for Intel SGX Enclave Management and Remote Attestation",
+      "prompt": "Let's develop a kernel module that securely maps enclave memory, manages enclave lifecycle, and performs remote attestation using Intel SGX APIs, ensuring isolation and minimal kernel-user space interaction.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "NVMe over Fabrics Optimized I/O Scheduler with Queue Pair Grouping",
+      "prompt": "Let's implement a new I/O scheduler for NVMe over Fabrics that groups commands by queue pair, adapts queue depth in real time, and minimizes command latency while maintaining fairness across devices.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Copy GPU Passthrough Hypervisor Extension for KVM",
+      "prompt": "Let's build a lightweight hypervisor extension within the kernel that enables GPU passthrough using zero-copy DMA techniques, ensuring minimal latency and high throughput for virtualized graphics workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Erasure-Coded Distributed File System with Kernel-Level Consistent Hashing",
+      "prompt": "Let's design a kernel-space file system that distributes file blocks across networked nodes using erasure coding and consistent hashing, providing fault tolerance and efficient data recovery while maintaining POSIX semantics.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Page Fault TLB Shootdown Mechanism in Multi-Core Systems",
+      "prompt": "Let's design a TLB shootdown algorithm that minimizes inter-core communication latency while ensuring consistency across NUMA nodes.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Hybrid Memory Management Scheme Using HugeTLB and Transparent HugePages",
+      "prompt": "Let's explore how to implement a hybrid memory manager that dynamically selects between HugeTLB and Transparent HugePages based on workload patterns.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Lock-Free Kernel Scheduler Using RCU and Futex Synchronization",
+      "prompt": "Let's build a lock-free scheduler that leverages RCU for read-side synchronization and futexes for efficient context switching.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Level Real-Time Scheduling with Deadline Monotonic and Sporadic Server",
+      "prompt": "Let's create a real-time scheduler in the kernel that supports both Deadline Monotonic and Sporadic Server policies for mixed-criticality systems.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Secure Kernel Module for Encrypted Filesystem Using Intel SGX",
+      "prompt": "Let's design a kernel module that offloads filesystem encryption/decryption to an Intel SGX enclave, ensuring confidentiality and integrity.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Overhead Context Switching via Thread Local Storage",
+      "prompt": "Design a kernel module that implements zero\u2011overhead context switching by leveraging per\u2011CPU thread local storage and hardware context\u2011switch hints.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "NUMA-Aware Memory Allocation with Work\u2011Stealing for Real\u2011Time Workloads",
+      "prompt": "Implement a NUMA\u2011aware memory allocator that uses work\u2011stealing to balance real\u2011time task memory footprints while minimizing latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deterministic Scheduling for Mixed\u2011Criticality Systems Using Mixed\u2011Criticality EDF",
+      "prompt": "Create a deterministic scheduler that supports mixed\u2011criticality tasks using the Mixed\u2011Criticality EDF algorithm, ensuring hard deadlines for high\u2011criticality tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware\u2011Accelerated Page Table Walks with Custom TLB Coherence Protocol",
+      "prompt": "Design a hardware\u2011accelerated page table walk mechanism and a custom TLB coherence protocol to reduce page fault latency in multi\u2011core systems.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formal Verification of Kernel Interrupt Handling Using Separation Logic",
+      "prompt": "Apply separation logic to formally verify the correctness of a kernel interrupt handler, proving that interrupt entry and exit preserve system invariants.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Copy I/O via DMA with Scatter-Gather Lists",
+      "prompt": "Let's design a kernel module that implements zero-copy I/O using DMA and scatter-gather lists to transfer data directly between user space buffers and device memory, ensuring minimal data copying and proper cache coherency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Futex-based User-Space Synchronization Primitive Implementation",
+      "prompt": "Let's implement futexes in the kernel to provide efficient user-space locking mechanisms, focusing on the syscall interface, atomic operations, and fallback to kernel threads for contention.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Preemptive Scheduler Combining CFS and Real-Time Policies",
+      "prompt": "Let's design a hybrid scheduler that integrates the Completely Fair Scheduler with real-time policies, ensuring fair CPU distribution while meeting hard deadlines for time-critical tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Multi-Core LRU Approximation Using Clock Algorithm for Page Replacement",
+      "prompt": "Let's implement a multi-core aware page replacement algorithm that approximates LRU using the Clock algorithm, handling shared page tables and per-core reference bits efficiently.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Lock-Free Buddy System Memory Allocator with Slab Integration",
+      "prompt": "Let's develop a memory allocator that combines the buddy system with slab allocation, using lock-free data structures to manage free lists and reduce contention in a highly concurrent kernel environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Page Fault Handling in a Hybrid Page Replacement Scheme",
+      "prompt": "Let's design a kernel module that implements a hybrid page replacement algorithm combining LRU and Clock with a predictive zero-page fault detection model.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Binary Translation for Kernel-Level Virtualization",
+      "prompt": "Let's develop a kernel-space dynamic binary translator that optimizes guest OS execution by inline caching and speculative execution.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Fine-Grained Memory Isolation Using Intel SGX in the Linux Kernel",
+      "prompt": "Let's implement a kernel extension that enforces per-thread memory isolation by mapping SGX enclaves to kernel address spaces, ensuring secure data separation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Real-Time Scheduling with Deadline Monotonic Priority Inversion Mitigation",
+      "prompt": "Let's create a real-time scheduler module that implements Deadline Monotonic scheduling and a priority inheritance protocol to eliminate priority inversion in a multi-core environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware-Accelerated Cryptographic Offloading for Kernel TLS",
+      "prompt": "Let's design a kernel driver that offloads TLS handshake and cipher operations to an Intel QuickAssist Engine, optimizing throughput for high-load servers.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Page Fault Handling via Memory Hotplug in NUMA Systems",
+      "prompt": "Let's design a kernel module that dynamically maps zero pages to avoid page faults during hot-plug events on a NUMA cluster.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Efficient Context Switch Optimization Using RCU and Futexes",
+      "prompt": "Let's explore how to reduce context switch overhead in a real-time kernel by combining RCU read-side critical sections with futex-based synchronization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Fault-Tolerant Inter-Processor Interrupt (IPI) Scheduler for Heterogeneous Multi-Core CPUs",
+      "prompt": "Let's build an IPI scheduler that balances load across ARM big.LITTLE cores while guaranteeing fault tolerance through redundancy.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Kernel-Level Virtual Memory Compression Algorithm using LZ4 and RLE",
+      "prompt": "Let's design a compression subsystem for the kernel's page cache that uses LZ4 combined with run-length encoding to reduce memory footprint under high load.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel Support for Hardware-Assisted Cryptographic Acceleration with Intel QuickAssist and ARM Crypto Extensions",
+      "prompt": "Let's implement a cryptographic driver that offloads AES-GCM and SHA-256 operations to Intel QAT and ARM Crypto Extensions, handling key management and DMA.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero\u2011Copy DMA Buffer Management in a Hybrid Multi\u2011Queue Network Driver",
+      "prompt": "Let's dive into how to design a zero\u2011copy DMA buffer system for a hybrid multi\u2011queue network driver, focusing on memory registration, scatter\u2011list handling, and per\u2011queue DMA ring synchronization.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Lock\u2011Free Per\u2011CPU Scheduler Queue with RCU\u2011Based Epoching",
+      "prompt": "Let's explore building a lock\u2011free per\u2011CPU scheduler queue that uses RCU epoching to safely remove tasks while preserving fairness and minimizing latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Hierarchical Page\u2011Table Walk Optimizer for HugeTLB Coalescing",
+      "prompt": "Let's discuss how to implement a hierarchical page\u2011table walk optimizer that coalesces HugeTLB entries, reducing walk overhead and improving translation look\u2011aside buffer (TLB) hit rates.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Architecting a Fault\u2011Tolerant Kernel Module Hot\u2011Swap Mechanism Using kprobe Hooks",
+      "prompt": "Let's design a fault\u2011tolerant kernel module hot\u2011swap system that uses kprobe hooks to trap module unload events and safely migrate state to a replacement module.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Mathematical Modeling of Cache\u2011Coherence Traffic for NUMA\u2011Aware Memory Allocation",
+      "prompt": "Let's model cache\u2011coherence traffic mathematically to inform NUMA\u2011aware memory allocation strategies, focusing on inter\u2011node bandwidth, latency, and contention patterns.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-copy Network Stack Optimization with eBPF-based Packet Filtering",
+      "prompt": "Let's design a zero-copy network stack that uses eBPF programs to perform packet filtering and classification directly in the kernel, minimizing data copies and improving throughput.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Hybrid Paging Algorithm Combining LRU and Clock for High-Throughput Workloads",
+      "prompt": "Let's implement a hybrid paging strategy that blends LRU and Clock algorithms to adapt to varying workload characteristics, optimizing page replacement decisions in the kernel memory manager.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Lock-Free, Multi-Producer Multi-Consumer Kernel Scheduler using RCU and Futexes",
+      "prompt": "Let's build a lock\u2011free kernel scheduler that supports multiple producers and consumers, leveraging RCU for read\u2011side concurrency and futexes for efficient wake\u2011up mechanisms.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Memory-Mapped I/O Consistency Guarantees in ARMv8 Architecture via MESI Protocol Extensions",
+      "prompt": "Let's analyze and implement MESI protocol extensions to ensure memory-mapped I/O consistency on ARMv8, focusing on cache coherence and ordering constraints in the kernel.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formal Verification of Kernel Interrupt Handler Dispatch Using Coq and Separation Logic",
+      "prompt": "Let's formalize and verify the correctness of kernel interrupt handler dispatch logic in Coq, applying separation logic to reason about shared state and concurrency safety.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Copy DMA Buffer Manager for High-Speed Network Devices",
+      "prompt": "Let's design and implement a zero-copy DMA buffer manager in the Linux kernel that minimizes latency and maximizes throughput for high-speed network devices.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Page Replacement Policy with Machine Learning in the Kernel",
+      "prompt": "Let's build a kernel-level hybrid page replacement policy that integrates a lightweight machine learning model to predict page eviction based on access patterns and system load.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Fault-Tolerant Kernel Scheduler with Priority Inheritance",
+      "prompt": "Let's develop a fault-tolerant kernel scheduler that incorporates priority inheritance and dynamic task migration across NUMA nodes to maintain real-time guarantees under hardware failures.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Level Secure Multi-Party Computation for Encrypted Data Paths",
+      "prompt": "Let's implement a kernel module that supports secure multi-party computation, enabling encrypted data paths between isolated processes without exposing plaintext to the kernel scheduler.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Binary Translation Layer for Kernel Hypervisor",
+      "prompt": "Let's design a dynamic binary translation layer within a kernel hypervisor to efficiently execute guest OS code while maintaining isolation and performance on ARM architectures.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Page Fault Handling in Hybrid Memory Systems",
+      "prompt": "Let's design a kernel module that implements zero-page fault handling for memory-mapped files in a NUMA environment, optimizing for reduced copy-on-write overhead and memory locality.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Real-Time Scheduling with EDF and Priority Inheritance in a Multi-Core Kernel",
+      "prompt": "Let's implement an Earliest Deadline First (EDF) scheduler with priority inheritance for shared resources in a multi-core kernel, focusing on bounded response times and avoidance of priority inversion.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Cryptographic Acceleration via Kernel-Mode DMA and AES-NI",
+      "prompt": "Let's design a kernel driver that offloads AES encryption/decryption to a DMA engine using AES-NI instructions, handling alignment, scatter-gather lists, and secure key storage.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Fault-Tolerant Filesystem Metadata Replication Using Raft in the Kernel",
+      "prompt": "Let's create a kernel-level replication layer for ext4 metadata that uses the Raft consensus algorithm to ensure strong consistency across multiple storage nodes while minimizing I/O latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Page Memory Management with Adaptive Page Replacement",
+      "prompt": "Let's design a kernel module that implements a zero-page memory allocator using an adaptive LRU-K page replacement policy to optimize for workloads with bursty page accesses.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Interrupt Handling: Software-Defined Interrupt Coalescing",
+      "prompt": "Let's build a kernel subsystem that dynamically coalesces hardware interrupts based on traffic patterns, using a reinforcement\u2011learning policy to minimize latency and CPU overhead.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Secure Kernel\u2011Space IPC via Homomorphic Encryption",
+      "prompt": "Let's implement a kernel-level inter\u2011process communication channel that encrypts message payloads homomorphically, allowing the kernel to perform aggregation without decrypting data.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "NUMA-Aware Scheduler with Work\u2011Stealing and Cache\u2011Aware Migration",
+      "prompt": "Let's develop a NUMA\u2011aware task scheduler that employs work\u2011stealing across nodes while ensuring cache\u2011line locality through dynamic task migration based on access patterns.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Deterministic Real\u2011Time Scheduler Using Time\u2011Triggered Queues",
+      "prompt": "Let's construct a deterministic real\u2011time scheduling framework that uses time\u2011triggered queues and preemptive priority inheritance to guarantee bounded latency for safety\u2011critical kernels."
+    },
+    {
+      "name": "Zero-Copy DMA Buffer Management in Hybrid CPU-GPU Kernels",
+      "prompt": "Design a kernel module that implements zero-copy DMA for transferring data between CPU and GPU memory spaces, ensuring cache coherence and minimal latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Priority-Based Preemptive Scheduler with Real-Time Constraints Using Rate-Monotonic Analysis",
+      "prompt": "Implement a preemptive scheduler in the kernel that supports priority inheritance and verifies schedulability using Rate-Monotonic Analysis for real-time tasks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Distributed Locking Mechanism for Multi-Node Kernel Synchronization via RCU and Futex",
+      "prompt": "Create a kernel-level distributed lock that combines Read-Copy-Update (RCU) and futex primitives to coordinate access across multiple nodes in a cluster.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Memory Protection Unit (MPU) Configuration for Secure Enclave Isolation in ARM TrustZone",
+      "prompt": "Write a kernel driver that configures the MPU to isolate a secure enclave, enforcing access policies and handling fault injection attacks.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware-Accelerated Cryptographic Hashing with Ring Buffer Integration in the Linux Crypto API",
+      "prompt": "Extend the Linux crypto API to use a ring buffer for continuous input streams and offload hash computation to a dedicated crypto accelerator, handling partial blocks and concurrency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Copy DMA Buffer Management with Scatter-Gather Lists",
+      "prompt": "Let's design a zero-copy DMA buffer management system using scatter-gather lists to minimize CPU overhead and maximize throughput for high-speed networking drivers.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Memory Management for NUMA Architectures",
+      "prompt": "Let's implement a hybrid memory allocator that dynamically balances local and remote memory usage across NUMA nodes, optimizing for latency and bandwidth in a multi-socket server.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Mode Fault-Tolerant Distributed Lock Service via Raft",
+      "prompt": "Let's build a kernel-level distributed lock service that uses the Raft consensus algorithm to provide fault tolerance and strong consistency across multiple nodes.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware-Assisted Context Switching with Thread Profiling",
+      "prompt": "Let's create a context switching mechanism that leverages hardware performance counters to profile threads and preemptively reorder scheduling to reduce cache misses and improve latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic System Call Table Rebinding for Runtime Patching",
+      "prompt": "Let's develop a runtime patching framework that safely rebinding system call table entries to new handlers without rebooting, ensuring minimal disruption to running processes.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Knowledge Proofs for Kernel Integrity Verification",
+      "prompt": "Let's design a kernel module that uses zk-SNARKs to verify that a memory region hasn't been tampered with, focusing on performance constraints.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Real-Time Scheduling with Adaptive EDF on ARM Cortex-A",
+      "prompt": "Let's implement an adaptive Earliest Deadline First scheduler that accounts for dynamic power states and thermal throttling on ARM CPUs.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formal Verification of Linux Kernel Mutexes via Separation Logic",
+      "prompt": "Let's model and verify the correctness of spinlock acquisition and release semantics using separation logic in a proof assistant.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware-Assisted Virtual Machine Monitor for Multi-tenant IoT Devices",
+      "prompt": "Let's architect a lightweight hypervisor that uses Intel VT-x to isolate multiple IoT firmware images with minimal overhead.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Probabilistic Page Replacement with Reinforcement Learning",
+      "prompt": "Let's develop a kernel page replacement algorithm that learns access patterns using a reinforcement learning agent to minimize fault rates.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Zero-Copy DMA Scheduler for Multi-Queue NVMe Devices",
+      "prompt": "Let's design a zero-copy DMA scheduler that dynamically maps NVMe multi-queue requests to CPU cores, ensuring optimal memory bandwidth and minimizing cache thrashing.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Real-Time Priority Inheritance in the Linux Kernel Scheduler",
+      "prompt": "Let's develop a priority inheritance mechanism for the Completely Fair Scheduler (CFS) to eliminate priority inversion in real-time workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Memory Management: Transparent Huge Pages with Fine-Grained Coherence",
+      "prompt": "Let's implement a hybrid memory manager that combines Transparent Huge Pages (THP) with fine-grained coherence protocols for NUMA systems.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Securing Kernel Module Loading via Cryptographic Hash Verification",
+      "prompt": "Let's build a kernel module loader that verifies module integrity using a public-key cryptographic hash chain before insertion.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Scalable Page Replacement Algorithm for Persistent Memory (NVDIMM)",
+      "prompt": "Let's create a page replacement strategy tailored for NVDIMM, balancing write amplification and latency while preserving durability guarantees."
+    },
+    {
+      "name": "Lock-Free Per-CPU Scheduler Queue for SMP Systems",
+      "prompt": "Let's design a lock-free per-CPU scheduler queue for SMP systems that ensures fairness under high contention, using atomic operations and epoch-based reclamation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "NUMA-Aware Memory Allocation with Cache Line Coherence Guarantees",
+      "prompt": "Let's implement a NUMA-aware memory allocator that guarantees cache line coherence across nodes while minimizing remote memory accesses in a multi-core environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Dynamic Binary Translation for Kernel-Mode Virtualization",
+      "prompt": "Let's build a dynamic binary translator that runs in kernel mode to accelerate guest OS code execution, focusing on instruction set conversion and register state preservation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formal Verification of Linux Interrupt Handling Path Using Coq",
+      "prompt": "Let's formalize the Linux interrupt handling path in Coq and verify properties such as absence of deadlocks and correct preemption semantics.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware-Accelerated Cryptographic Offloading via Intel QAT in the Kernel",
+      "prompt": "Let's design and integrate a kernel module that offloads AES-GCM encryption/decryption to Intel QuickAssist Technology (QAT) hardware, ensuring minimal latency and correct key management.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Design and Implementation of a Hybrid Page Replacement Algorithm Combining LRU with Adaptive Aging for Kernel Memory Management",
+      "prompt": "Let's design a kernel page replacement algorithm that merges LRU with adaptive aging to optimize memory usage in a multi-tenant environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Developing a Zero-Copy I/O Path for NVMe SSDs Using Kernel Direct I/O and io_uring",
+      "prompt": "Let's build a zero-copy I/O subsystem in the kernel that leverages io_uring to stream data directly from NVMe SSDs to user space without intermediate copies.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing a Kernel-Level GraphQL API for Real-Time System Telemetry",
+      "prompt": "Let's create a kernel module that exposes system telemetry via a GraphQL API, enabling dynamic querying of performance metrics in real time.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Formal Verification of a Custom Kernel Scheduler Using Coq and the CompCert Compiler",
+      "prompt": "Let's formalize a new preemptive scheduler in Coq, compile it with CompCert, and prove its correctness properties within the kernel.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Constructing a Secure, Encrypted Filesystem Layer with Kernel-Level FUSE Integration and SGX Attestation",
+      "prompt": "Let's design a kernel-level encrypted filesystem that uses FUSE for user space interaction and Intel SGX for attesting the integrity of the encryption keys."
+    },
+    {
+      "name": "Adaptive Demand Paging with Machine Learning Predictive Replacement",
+      "prompt": "Let's design a demand paging system that uses a lightweight ML model to predict future page accesses and minimize page faults.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Mixed-Criticality Scheduling with Rate-Monotonic and Earliest Deadline First Hybrid",
+      "prompt": "Let's formulate a scheduler that dynamically switches between RM and EDF for mixed-criticality tasks in a real-time kernel.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hardware-Accelerated Secure Memory Encryption Using AES-NI and Tagging",
+      "prompt": "Let's create a kernel module that encrypts user memory pages on the fly using AES-NI and maintains integrity tags.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "B-Tree Based VFS Metadata Index for High-Throughput File Systems",
+      "prompt": "Let's implement a VFS layer that stores inode metadata in a B-Tree to accelerate lookups under high concurrency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Predictive Power Management via Kernel-Level Time Series Forecasting",
+      "prompt": "Let's build a kernel power manager that predicts CPU load using ARIMA and adjusts frequency scaling accordingly.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Zero-Page Memory Mapping with NUMA-Aware Page Allocation",
+      "prompt": "Let's design and implement a zero-page memory mapping scheme that allocates zero pages from the nearest NUMA node to reduce cross-node traffic in a multi-socket system.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Kernel Scheduler with Real-Time Guarantees Using Hierarchical Rate Monotonic and EDF",
+      "prompt": "Let's build a kernel scheduler that combines Hierarchical Rate Monotonic (HRM) for periodic tasks with Earliest Deadline First (EDF) for sporadic tasks, ensuring hard real-time constraints in a mixed-criticality environment.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Fault-Tolerant Kernel Module for Hot-Plugging GPUs Using PCIe Resizable BARs",
+      "prompt": "Let's develop a kernel module that supports hot-plugging of GPUs by dynamically resizing BARs, handling state migration, and ensuring zero-downtime for GPU-accelerated workloads.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Level Cryptographic Acceleration: Integrating Intel AES-NI into the Linux Crypto API with Asynchronous I/O",
+      "prompt": "Let's integrate Intel AES-NI instructions into the Linux crypto API, exposing an asynchronous I/O interface for high-throughput encryption/decryption in user space.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel-Mode Network Stack with BPF eXpress (XDP) for Ultra-Low Latency Packet Processing",
+      "prompt": "Let's build a kernel-mode network stack that leverages XDP and eBPF programs to achieve sub-microsecond packet processing, including custom load balancing and congestion control.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Hybrid Kernel Memory Management: Transparent Hugepage Scheduler with Custom Page Migration",
+      "prompt": "Let's design and implement a kernel module that dynamically schedules transparent hugepages across NUMA nodes, using a graph-based migration algorithm that minimizes memory latency.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Real-Time Scheduling with SCHED_DEADLINE: Custom Priority Inheritance Mechanism",
+      "prompt": "Let's implement a custom priority inheritance scheme for SCHED_DEADLINE tasks, modifying the kernel's task_struct to track wait dependencies and adjusting the scheduler's time slice accordingly.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "KVM Hypervisor for ARM Cortex-A: Lightweight Virtualization Layer",
+      "prompt": "Let's build a lightweight KVM hypervisor for ARM Cortex-A CPUs, implementing stage-2 translation tables and exception vector handling, and expose a userspace API for VM creation.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "NVMe over Fabrics Device Driver: Asynchronous I/O with libaio Integration",
+      "prompt": "Let's develop a kernel NVMe-oF driver that uses libaio for asynchronous I/O, implements RDMA transport over RoCE, and handles command submission queues with zero-copy buffers.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Kernel Security Module: Mandatory Access Control for Container Isolation",
+      "prompt": "Let's design a kernel security module that provides a Mandatory Access Control policy layer for container isolation, integrating with SELinux's policy language and AppArmor profiles, and enforcing namespace constraints.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Linux Semaphore Wait Queue Algorithm",
+      "prompt": "Discuss the intricacies of the semaphore wait queue algorithm used in the Linux kernel, and provide an example implementation in C.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a High-Performance Scheduling Algorithm for Real-Time Systems",
+      "prompt": "Design and analyze a scheduling algorithm for real-time systems that minimizes latency and maximizes throughput, using a case study of a real-world system.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Optimizing the Linux Page Cache using a Least Recently Used (LRU) Cache Replacement Policy",
+      "prompt": "Explain the LRU cache replacement policy and its implementation in the Linux page cache, and discuss optimization techniques to improve cache performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Implementing the Amdahl's Law-based Performance Modeling for Multicore Systems",
+      "prompt": "Derive and implement Amdahl's Law-based performance models for a multicore system, and analyze the impact of thread-level parallelism on overall system performance.",
+      "covered": false,
+      "level_at_cover": 0
+    },
+    {
+      "name": "Designing a Priority Scheduling Algorithm for Embedded Systems with Limited Resources",
+      "prompt": "Design a priority scheduling algorithm for an embedded system with limited resources, taking into account constraints such as memory and power consumption, and analyze its performance using a case study.",
+      "covered": false,
+      "level_at_cover": 0
     }
   ],
   "target_skills": [
