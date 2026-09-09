@@ -7,24 +7,24 @@
   },
   "nvidia": {},
   "mistral": {},
-  "groq_43b60c3c": {
-    "blocked_until": 1788981312.873664,
-    "blocked_at": "2026-09-09 11:15:12",
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjck1t4e9wvbt3f6n8xv0yh` service tier `on_demand` on tokens per day (TPD): Limit 2000"
-  },
   "groq_f4ad7c1d": {
-    "blocked_until": 1788981877.0540445,
-    "blocked_at": "2026-09-09 11:24:37",
+    "blocked_until": 1789016797.513564,
+    "blocked_at": "2026-09-09 21:06:37",
     "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjyp11cez2s479zkqw9br7m` service tier `on_demand` on tokens per minute (TPM): Limit 8"
   },
+  "groq_43b60c3c": {
+    "blocked_until": 1789017059.8236744,
+    "blocked_at": "2026-09-09 21:10:59",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kqjck1t4e9wvbt3f6n8xv0yh` service tier `on_demand` on tokens per day (TPD): Limit 2000"
+  },
   "mistral_6b8a1059": {
-    "blocked_until": 1788982037.4149475,
-    "blocked_at": "2026-09-09 11:27:17",
+    "blocked_until": 1789017236.5085125,
+    "blocked_at": "2026-09-09 21:13:56",
     "error": "Error code: 429 - {'object': 'error', 'message': 'Rate limit exceeded', 'type': 'rate_limited', 'param': None, 'code': '1300', 'raw_status_code': 429}"
   },
   "mistral_4be19f04": {
-    "blocked_until": 1788982039.218515,
-    "blocked_at": "2026-09-09 11:27:19",
+    "blocked_until": 1789017238.4519534,
+    "blocked_at": "2026-09-09 21:13:58",
     "error": "Error code: 429 - {'object': 'error', 'message': 'Rate limit exceeded', 'type': 'rate_limited', 'param': None, 'code': '1300', 'raw_status_code': 429}"
   }
 }
