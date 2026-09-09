@@ -66,7 +66,7 @@
     "Gradient Boosting": 2,
     "Hyperparameter Tuning": 1,
     "Model Deployment": 1,
-    "Two Pointers Technique": 2,
+    "Two Pointers Technique": 3,
     "Tree Algorithms": 4,
     "Photosynthesis": 1,
     "Plant Physiology": 1,
@@ -243,5 +243,5 @@
     "Feature Engineering": 1,
     "Clustering": 2,
     "Dimensionality Reduction": 46,
-    "Cycle Detection Algorithms": 1
+    "Cycle Detection Algorithms": 2
 }
