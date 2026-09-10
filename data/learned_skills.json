@@ -62,7 +62,7 @@
     "Attention Mechanisms": 8,
     "Transformers": 4,
     "Neural Network Optimization": 5,
-    "Optimization": 153,
+    "Optimization": 160,
     "Gradient Boosting": 2,
     "Hyperparameter Tuning": 1,
     "Model Deployment": 1,
@@ -132,7 +132,7 @@
     "Activation Functions": 9,
     "Numerical Optimization": 5,
     "Second-Order Optimization": 36,
-    "Quasi-Newton Methods": 137,
+    "Quasi-Newton Methods": 138,
     "SIMD Programming": 1,
     "Numerical Analysis": 1,
     "Statistical Error Analysis": 2,
@@ -243,6 +243,6 @@
     "Feature Engineering": 1,
     "Clustering": 2,
     "Dimensionality Reduction": 46,
-    "Cycle Detection Algorithms": 23,
+    "Cycle Detection Algorithms": 28,
     "Register Allocation": 2
 }
