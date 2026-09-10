@@ -1886,17 +1886,22 @@
             "name": "Kruskal's Minimum Spanning Tree Algorithm Implementation",
             "parent": "cpp.algorithms",
             "children": [],
-            "mastery_level": 1,
+            "mastery_level": 10,
             "evidence": {
-                "concepts_covered": 2,
-                "successful_assessments": 0,
+                "concepts_covered": 28,
+                "successful_assessments": 11,
                 "recent_repetition": 0,
                 "unique_concepts_list": [
-                    "algorithms"
+                    "memory:",
+                    "algorithm",
+                    "optimization",
+                    "optimal",
+                    "algorithms",
+                    "memory"
                 ],
-                "unique_concepts_count": 1
+                "unique_concepts_count": 6
             },
-            "status": "AVAILABLE"
+            "status": "MASTERED"
         },
         "cpp.algorithms.topological_sort_using_depth-first_search": {
             "id": "cpp.algorithms.topological_sort_using_depth-first_search",
